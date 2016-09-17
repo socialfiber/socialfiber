@@ -1,0 +1,8 @@
+//Packages
+node_modules/
+
+//Front-end
+client/bundle.js
+
+//Back-end
+npm-debug.log
