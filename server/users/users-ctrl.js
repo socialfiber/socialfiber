@@ -22,6 +22,9 @@ const users = {
           console.log('Error: ', err);
         });
     }
+  },
+  '/api/users/getUserData': {
+    'get': (req, res)
   }
 }
 
