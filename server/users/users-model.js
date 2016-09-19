@@ -5,7 +5,7 @@ const Users = sequelize.define('users', {
   diary_id: {
     type: Sequelize.INTEGER,
     unique: true,
-    allowNull: false
+    allowNull: true
   },
   username: {
     type: Sequelize.STRING,

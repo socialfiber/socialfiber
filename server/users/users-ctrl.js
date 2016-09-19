@@ -3,7 +3,7 @@ const Users = require('./users-model.js');
 const users = {
   '/api/users/createUser': {
     'post': (req, res) => {
-      console.log('inside users-ctrl post');
+      console.log('Inside users-ctrl post');
       const newUser = Users.build({
         username: req.body.username,
         diary_id: req.body.diary_id,
@@ -22,6 +22,9 @@ const users = {
           console.log('Error: ', err);
         });
     }
+  },
+  '/api/users/getUserData': {
+    'get': (req, res)
   }
 }
 
