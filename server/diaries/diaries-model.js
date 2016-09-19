@@ -15,9 +15,9 @@ Diaries.hasMany(DiaryEntries);
 
 sequelize
   .sync()
-  .then(function(err) {
+  .then((err) => {
     console.log('Diaries model synced successfully.');
-}, function(err) {
+}, (err) => {
     console.log('An error has occurred:', err);
   });
 
