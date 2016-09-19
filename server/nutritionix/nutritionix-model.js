@@ -1,31 +1,29 @@
 const auth = require('../config/auth.js');
 const request = require('request');
 
-const appId = process.env.nutritionix_appId;
-const appKey = process.env.nutritionix_appKey;
-
+const appId = auth.nutritionixAuth.appId;
+const appKey = auth.nutritionixAuth.appKey;
 
 const Nutritionix = {
 	'search': (params) => {
-		console.log('inside nutritionix-model search');
 		const url = 'https://trackapi.nutritionix.com/v2/natural/nutrients';
 		const headers = {
-			'X-APP-ID':appId,
-			'X-APP-KEY':appKey
+			'Content-Type': 'application/json',
+			'x-app-id': appId,
+			'x-app-key': appKey
 		}
 		const options = {
-			'query':params.query
+			'query': params.query
 		}
 		return new Promise((resolve, reject) => {
 			request.post({ url: url, form: options, headers: headers }, (err, res, body) => {
 				if(err) {
-					console.log('err inside nutritionix-model', err);
 					reject(err);
 				} else {
-					resolve(body);
+					resolve(JSON.parse(body));
 				}
-			})
-		})
+			});
+		});
 	}
 }
 
