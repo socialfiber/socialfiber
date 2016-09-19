@@ -1,1 +1,1 @@
-const DiaryEntries = require('./diaryEntries/diaryEntries-model.js');
+const DiaryEntries = require('./diaryEntries-model.js');

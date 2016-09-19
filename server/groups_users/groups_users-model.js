@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../config/database');
-const Users = require('../users/users-model');
-const Groups = require('../groups/groups-model');
+const Users = require('../users/users-model.js');
+const Groups = require('../groups/groups-model.js');
 
 const Groups_Users = sequelize.define('groups_users', {
   group_id: {
@@ -25,4 +25,4 @@ sequelize
     console.log('An error has occurred:', err);
   });
 
-module.exports = Users;
+module.exports = Groups_Users;

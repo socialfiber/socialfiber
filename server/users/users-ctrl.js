@@ -1,4 +1,4 @@
-const Users = require('./users/users-model.js');
+const Users = require('./users-model.js');
 
 const users = {
   '/api/users/createUser': {

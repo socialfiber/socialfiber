@@ -20,6 +20,6 @@ app.set('port', process.env.PORT || 8080);
 
 app.listen(app.get('port'), () => {
   //database.ensureSchema();
-  //moment().format('h:mm:ss a') 
+  //moment().format('h:mm:ss a')
   console.log('Server is Listening on port', app.get('port'));
 });
