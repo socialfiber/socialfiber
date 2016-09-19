@@ -1,9 +1,8 @@
 const auth = require('../config/auth.js');
 const request = require('request');
 
-const appId = process.env.nutritionix_appId;
-const appKey = process.env.nutritionix_appKey;
-
+const appId = auth.nutritionixAuth.appId;
+const appKey = auth.nutritionixAuth.appKey;
 
 const Nutritionix = {
 	'search': (params) => {
