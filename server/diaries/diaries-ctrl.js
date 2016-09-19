@@ -1,1 +1,1 @@
-const Diaries = require('./diaries/diaries-ctrl.js');
+const Diaries = require('./diaries/diaries-model.js');
