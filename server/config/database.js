@@ -1,8 +1,8 @@
 const Sequelize = require('sequelize');
-const sequelize = new Sequelize('thesisDB', 'root', '', {
-  host: 'localhost',
+const sequelize = new Sequelize('tml_1001', 'tmluser', 'healthy1001', {
+  host: 'mysql.kanadachi.com',
   dialect: 'mysql',
-  port: '8080',
+  // port: '1337',
   options: {
   timezone: 'America/Los_Angeles'
   }
