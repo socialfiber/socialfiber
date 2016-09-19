@@ -32,9 +32,9 @@ const Users = sequelize.define('users', {
 
 sequelize
   .sync()
-  .then(function(err) {
+  .then((err) => {
     console.log('Users model synced successfully.');
-}, function(err) {
+}, (err) => {
     console.log('An error has occurred:', err);
   });
 
