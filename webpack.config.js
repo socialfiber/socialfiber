@@ -2,9 +2,8 @@ module.exports = {
   entry: './client/index.js',
 
   output: {
-    filename: 'client/bundle.js',
-    path: __dirname,
-    publicPath: ''
+    filename: 'bundle.js',
+    path: __dirname + '/client'
   },
 
   module: {
@@ -12,7 +11,8 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: 'babel-loader?presets[]=es2015&presets[]=react'
+        loader: 'babel',
+        query: { presets: ['es2015', 'react'] }
       }
     ]
   }
