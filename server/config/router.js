@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const nutritionix = require('../nutritionix/nutritionix-ctrl.js');
+const usersController = require('../users/users-ctrl.js');
 
 for (var route in nutritionix) {
 	router.route(route)
@@ -7,6 +8,11 @@ for (var route in nutritionix) {
 		.post(nutritionix[route].post)
 		// .put(nutritionix[route].put)
 		// .delete(nutritionix[route].delete);
+}
+
+for (var route in usersController) {
+	router.route(route)
+		.post(usersController[route].post)
 }
 
 // for (var route in controllers) {

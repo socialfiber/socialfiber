@@ -6,3 +6,6 @@ client/bundle.js
 
 //Back-end
 npm-debug.log
+
+//bash-profile
+.bash_profile
