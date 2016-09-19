@@ -1,1 +1,1 @@
-const Group = require('./groups/groups-ctrl.js');
+const Group = require('./groups/groups-model.js');
