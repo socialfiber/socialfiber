@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
 app.use(express.static('./client'));
-// app.use('/', router);
+app.use('/', router);
 
 app.get('*', (req,res) => {
   res.sendFile(path.resolve('client', 'index.html'));

@@ -19,7 +19,14 @@ class UserQuestionnaire extends Component {
   }
 
   postStats(userStatsObj) {
-  axios.post('/api/users/createUser', userStatsObj)
+    console.log('user stats obj: ', userStatsObj)
+    for (var data in userStatsObj){
+      if(data !== 'gender') {
+        userStatsObj[data]=parseInt(userStatsObj[data]);
+      }
+    }
+    console.log('user stats obj after for loop: ', userStatsObj)
+  axios.post('/api/questions/enterData', userStatsObj)
   .then(function(response){
     console.log("response.data: ", response.data)
   })
@@ -37,7 +44,7 @@ class UserQuestionnaire extends Component {
   sendUserStats (e) {
     e.preventDefault();
     console.log('state: ', this.state)
-    console.log('typeof', typeof parseInt(this.state.age))
+    console.log('typeof age', typeof this.state.age)
     this.postStats(this.state);
   }
 
