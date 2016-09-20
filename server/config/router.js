@@ -16,6 +16,7 @@ for (var route in nutritionix) {
 for (var route in usersController) {
 	router.route(route)
 		.post(usersController[route].post)
+		.get(usersController[route].get)
 }
 
 // for (var route in controllers) {
