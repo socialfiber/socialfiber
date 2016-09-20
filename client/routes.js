@@ -5,13 +5,16 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import reduxThunk from 'redux-thunk';
 
-import Landing from './components/app';
-import reducers from './reducers';
+import Landing from './landing';
+import reducers from './reducers/index';
+import UserQuestionnaire from './components/userQuestionnaire'
 
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
 const store = createStoreWithMiddleware(reducers);
 
-ReactDOM.render((<Router history={browserHistory}>
-          <Route path='/' component={Landing} />
-        </Router>
-), document.getElementById('main'));
+ReactDOM.render(
+  <Router history={browserHistory}>
+    <Route path='/' component={Landing} />
+    <Route path='/userQuestionnaire'       component={UserQuestionnaire}/>
+  </Router>
+, document.getElementById('main'));

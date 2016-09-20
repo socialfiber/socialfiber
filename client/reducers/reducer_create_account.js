@@ -1,6 +1,9 @@
 export default function(state = null, action) {
   switch(action.type) {
     case 'CREATING_ACCOUNT':
-      // Store info into DB    
+      return 'hi';
+      // Store info into DB
+    default:
+      return 'bi';
   }
 }
