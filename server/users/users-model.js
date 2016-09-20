@@ -12,21 +12,25 @@ const Users = sequelize.define('users', {
     unique: true,
     allowNull: false
   },
-  height: {
+  password: {
     type: Sequelize.STRING,
     allowNull: false
+  },
+  height: {
+    type: Sequelize.STRING,
+    allowNull: true
   },
   age: {
     type: Sequelize.INTEGER,
-    allowNull: false
+    allowNull: true
   },
   current_weight: {
     type: Sequelize.INTEGER,
-    allowNull: false
+    allowNull: true
   },
   gender: {
     type: Sequelize.STRING,
-    allowNull: false
+    allowNull: true
   }
 });
 

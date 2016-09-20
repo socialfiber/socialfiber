@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const nutritionix = require('../nutritionix/nutritionix-ctrl.js');
 const usersController = require('../users/users-ctrl.js');
+const questionsController = require('../questions/questions-ctrl.js');
 
 //sample controller template
 const dummy = require('../dummy/dummy-ctrl.js')
@@ -16,6 +17,13 @@ for (var route in nutritionix) {
 for (var route in usersController) {
 	router.route(route)
 		.post(usersController[route].post)
+		.get(usersController[route].get)
+}
+
+for (var route in questionsController) {
+	router.route(route)
+		.post(questionsController[route].post)
+		.get(questionsController[route].get)
 }
 
 // for (var route in controllers) {
