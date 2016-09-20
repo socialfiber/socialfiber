@@ -6,10 +6,10 @@ const Questions = sequelize.define('questions', {
   user_id: {
     type: Sequelize.INTEGER,
     unique: true,
-    allowNull: false
+    allowNull: true
   },
   height: {
-    type: Sequelize.STRING,
+    type: Sequelize.INTEGER,
     allowNull: false
   },
   age: {

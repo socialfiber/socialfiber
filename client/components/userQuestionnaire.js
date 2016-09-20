@@ -19,7 +19,14 @@ class UserQuestionnaire extends Component {
   }
 
   postStats(userStatsObj) {
-  axios.post('/api/users/createUser', userStatsObj)
+    console.log('user stats obj: ', userStatsObj)
+    for (var data in userStatsObj){
+      if(data !== 'gender') {
+        userStatsObj[data]=parseInt(userStatsObj[data]);
+      }
+    }
+    console.log('user stats obj after for loop: ', userStatsObj)
+  axios.post('/api/questions/enterData', userStatsObj)
   .then(function(response){
     console.log("response.data: ", response.data)
   })
@@ -44,11 +51,12 @@ class UserQuestionnaire extends Component {
 
     return (
       <div>
+        <h1>Tell us a little bit about yourself...</h1>
         <form onSubmit={this.sendUserStats}>
-          <input placeholder="Enter your age" value={this.state.age} onChange={this.handleInputEvent.bind(this, 'age')}></input>
-          <input placeholder="Enter your height inches" value={this.state.height} onChange={this.handleInputEvent.bind(this, 'height')}></input>
-          <input placeholder="Enter your current weight (in lbs)" value={this.state.weight} onChange={this.handleInputEvent.bind(this, 'weight')}></input>
-          <input placeholder="Enter your gender" value={this.state.gender} onChange={this.handleInputEvent.bind(this, 'gender')}></input>
+          <input placeholder="Enter your age" type="number" value={this.state.age} onChange={this.handleInputEvent.bind(this, 'age')}></input>
+          <input placeholder="Enter your height inches" type="number" value={this.state.height} onChange={this.handleInputEvent.bind(this, 'height')}></input>
+          <input placeholder="Enter your current weight (in lbs)" type="number" value={this.state.weight} onChange={this.handleInputEvent.bind(this, 'weight')}></input>
+          <input placeholder="Enter your gender" type="text" value={this.state.gender} onChange={this.handleInputEvent.bind(this, 'gender')}></input>
           <input type='submit' value='Create' className='btn btn-primary'></input>
         </form>
       </div>
