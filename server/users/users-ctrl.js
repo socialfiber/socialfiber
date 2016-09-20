@@ -7,11 +7,11 @@ const users = {
       const newUser = Users.build({
         username: req.body.username,
         password: req.body.password,
-        diary_id: req.body.diary_id,
-        height: req.body.height,
-        age: req.body.age,
-        current_weight: req.body.current_weight,
-        gender: req.body.gender
+        diary_id: req.body.diary_id
+        // height: req.body.height,
+        // age: req.body.age,
+        // current_weight: req.body.current_weight,
+        // gender: req.body.gender
       });
       newUser
         .save()
@@ -21,6 +21,9 @@ const users = {
         })
         .catch((err) => {
           console.log('Error: ', err);
+          res.status(400).send({
+            msg: 'The username you have selected already exists.'
+          });
         });
     },
     'get': (req, res) => {
@@ -35,11 +38,11 @@ const users = {
       const getUser = Users.findAll({
         attributes: [
           'username',
-          'diary_id',
-          'height',
-          'age',
-          'current_weight',
-          'gender'
+          'diary_id'
+          // 'height',
+          // 'age',
+          // 'current_weight',
+          // 'gender'
         ]
       })
       .then( (users) => {
@@ -53,7 +56,7 @@ const users = {
       })
       .catch( (err) => {
         console.log('Error: ', err);
-        res.send(err);
+        res.send(err.message);
       });
     },
     'post': (req, res) => {

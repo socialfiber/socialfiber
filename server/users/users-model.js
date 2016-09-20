@@ -15,23 +15,23 @@ const Users = sequelize.define('users', {
   password: {
     type: Sequelize.STRING,
     allowNull: false
-  },
-  height: {
-    type: Sequelize.STRING,
-    allowNull: false
-  },
-  age: {
-    type: Sequelize.INTEGER,
-    allowNull: false
-  },
-  current_weight: {
-    type: Sequelize.INTEGER,
-    allowNull: false
-  },
-  gender: {
-    type: Sequelize.STRING,
-    allowNull: false
   }
+  // height: {
+  //   type: Sequelize.INTEGER,
+  //   allowNull: false
+  // },
+  // age: {
+  //   type: Sequelize.INTEGER,
+  //   allowNull: false
+  // },
+  // current_weight: {
+  //   type: Sequelize.INTEGER,
+  //   allowNull: false
+  // },
+  // gender: {
+  //   type: Sequelize.STRING,
+  //   allowNull: false
+  // }
 });
 
 sequelize
@@ -40,6 +40,7 @@ sequelize
     console.log('Users model synced successfully.');
 }, (err) => {
     console.log('An error has occurred:', err);
+    res.send(err.message);
   });
 
 module.exports = Users;
