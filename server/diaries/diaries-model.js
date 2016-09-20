@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../config/database');
-const diaryEntries = require('../diaryEntries-model');
+const DiaryEntries = require('../diaryEntries-model');
 
 const Diaries = sequelize.define('diaries', {
   user_id: {
