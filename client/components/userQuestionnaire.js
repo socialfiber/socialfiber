@@ -44,7 +44,6 @@ class UserQuestionnaire extends Component {
   sendUserStats (e) {
     e.preventDefault();
     console.log('state: ', this.state)
-    console.log('typeof age', typeof this.state.age)
     this.postStats(this.state);
   }
 
