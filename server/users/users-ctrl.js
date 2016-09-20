@@ -6,6 +6,7 @@ const users = {
       console.log('Inside users-ctrl post');
       const newUser = Users.build({
         username: req.body.username,
+        password: req.body.password,
         diary_id: req.body.diary_id,
         height: req.body.height,
         age: req.body.age,

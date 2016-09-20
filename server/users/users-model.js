@@ -12,6 +12,10 @@ const Users = sequelize.define('users', {
     unique: true,
     allowNull: false
   },
+  password: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
   height: {
     type: Sequelize.STRING,
     allowNull: false
