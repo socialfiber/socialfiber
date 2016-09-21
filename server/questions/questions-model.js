@@ -5,8 +5,9 @@ const Users = require('../users/users-model');
 const Questions = sequelize.define('questions', {
   user_id: {
     type: Sequelize.INTEGER,
-    unique: true,
-    allowNull: true
+    // unique: true,
+    allowNull: true,
+    // autoIncrement: true
   },
   height: {
     type: Sequelize.INTEGER,

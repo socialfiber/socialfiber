@@ -3,19 +3,19 @@ import ReactDOM from 'react-dom';
 import { Router, Route, browserHistory } from 'react-router';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
-import reduxThunk from 'redux-thunk';
+import ReduxPromise from 'redux-promise';
 
 import Landing from './landing';
 import reducers from './reducers/index';
-import UserQuestionnaire from './components/userQuestionnaire'
+import UserQuestionnaire from './containers/userQuestionnaire'
 
-const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
-const store = createStoreWithMiddleware(reducers);
-console.log(store)
+const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
 
 ReactDOM.render(
-  <Router history={browserHistory}>
-    <Route path='/' component={Landing} />
-    <Route path='/userQuestionnaire' component={UserQuestionnaire}/>
-  </Router>
+  <Provider store={createStoreWithMiddleware(reducers)}>
+    <Router history={browserHistory}>
+      <Route path='/' component={Landing} />
+      <Route path='/userQuestionnaire' component={UserQuestionnaire}/>
+    </Router>
+  </Provider>
 , document.getElementById('main'));
