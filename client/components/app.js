@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { submitSignIn } from '../actions/signin';
+import { submitSignIn } from '../actions/auth';
 import {render} from 'react-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
