@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {render} from 'react-dom';
-import axios from 'axios';
 import { submitUserStats } from '../actions/submitUserStats';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
