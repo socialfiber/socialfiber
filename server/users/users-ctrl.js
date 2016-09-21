@@ -18,11 +18,17 @@ const users = {
         .save()
         .then((user) => {
           utils.hashPassword(req.body.password)
-            .then((hash) => {
-              newUser.update({ password: hash });
-              res.status(201).send({user: user});
-            })
-            .catch((err) => console.log("Password hashing error: ", err) )
+          .then((hash) => {
+            newUser.update({ password: hash });
+          })
+          .catch((err) => {
+            console.log("Password hashing error: ", err)
+          });
+          const token = utils.generateToken(user);
+          res.status(201).send({
+            token: token,
+            user: user
+          });
         })
         .catch((err) => {
           console.log('Error: ', err);
@@ -49,7 +55,11 @@ const users = {
         console.log(user);
         utils.comparePassword(req.body.password, user.password)
         .then((isMatch) => {
-          res.status(201).send({user: user})
+          const token = utils.generateToken(user);
+          res.status(201).send({
+            token: token,
+            user: user
+          });
         })
         .catch((err) => {
           res.status(400).send({
