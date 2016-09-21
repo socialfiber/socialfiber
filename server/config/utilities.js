@@ -1,8 +1,26 @@
 const jwt = require('jsonwebtoken');
-const moment = require('moment');
 const bcrypt = require('bcrypt');
 
 const utilities = {
+  generateToken: (user) => {
+    const payload = {
+      iss: 'tml',
+      sub: user.id
+    }
+    const options = {
+      expiresIn: '1d'
+    }
+    return jwt.sign(payload, 'secret', options);
+  },
+
+  // checkAuthentication: () => {
+  //   const token = 
+  //   try {
+  //     return jwt.verify(token, 'secret');
+  //   } catch (err) {
+  //     return false;
+  //   }
+  // },
 
   hashPassword: (input) => {
     return new Promise(function(resolve, reject) {
