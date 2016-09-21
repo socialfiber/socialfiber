@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import ReduxPromise from 'redux-promise';
 
-import Landing from './landing';
+import App from './components/app';
 import reducers from './reducers/index';
 import UserQuestionnaire from './containers/userQuestionnaire'
 
@@ -14,7 +14,7 @@ const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
 ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers)}>
     <Router history={browserHistory}>
-      <Route path='/' component={Landing} />
+      <Route path='/' component={App} />
       <Route path='/userQuestionnaire' component={UserQuestionnaire}/>
     </Router>
   </Provider>
