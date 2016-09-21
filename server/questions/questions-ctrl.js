@@ -4,7 +4,7 @@ const questions = {
   //Endpoint to enter survey data into the database.
   '/api/questions/enterData': {
     'post': (req, res) => {
-      console.log('Inside questions-ctrl post');
+      console.log('inside POST at /api/questions/enterData');
       const newQuestionData = Questions.build({
         user_id: req.body.user_id,
         height: req.body.height,
@@ -24,18 +24,10 @@ const questions = {
             msg: 'Please fill in all fields.'
           });
         });
-    },
-    'get': (req, res) => {
-			console.log('inside GET at /api/questions/enterData');
-			res.end('inside GET at /api/questions/enterData');
-		}
+    }
   },
   //Endpoint to retrieve survey data from the database.
   '/api/questions/getData': {
-    'post': (req, res) => {
-      console.log('Inside /api/questions/getData');
-      res.end('inside POST at /api/questions/getData');
-    },
     'get': (req, res) => {
 			console.log('inside GET at /api/questions/enterData');
       var userData = [];

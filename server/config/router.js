@@ -1,46 +1,25 @@
 const router = require('express').Router();
 const nutritionix = require('../nutritionix/nutritionix-ctrl.js');
-const usersController = require('../users/users-ctrl.js');
-const questionsController = require('../questions/questions-ctrl.js');
+const users = require('../users/users-ctrl.js');
+const questions = require('../questions/questions-ctrl.js');
 
 //sample controller template
 const dummy = require('../dummy/dummy-ctrl.js')
 
-for (var route in nutritionix) {
-	router.route(route)
-		.get(nutritionix[route].get)
-		.post(nutritionix[route].post)
-		.put(nutritionix[route].put)
-		.delete(nutritionix[route].delete);
-}
+const controllers = [
+	nutritionix,
+	users,
+	questions,
+	dummy
+]
 
-for (var route in usersController) {
-	router.route(route)
-		.post(usersController[route].post)
-		.get(usersController[route].get)
-}
-
-for (var route in questionsController) {
-	router.route(route)
-		.post(questionsController[route].post)
-		.get(questionsController[route].get)
-}
-
-// for (var route in controllers) {
-// 	router.route(route)
-// 		.get(controllers[route].get)
-// 		.post(controllers[route].post)
-// 		.put(controllers[route].put)
-// 		.delete(controllers[route].delete);
-// }
-
-//sample routing template
-for (var route in dummy) {
-	router.route(route)
-		.get(dummy[route].get)
-		.post(dummy[route].post)
-		.put(dummy[route].put)
-		.delete(dummy[route].delete);
+for (var controller of controllers) {
+	for (var route in controller) {
+		if(controller[route].get) router.route(route).get(controller[route].get);
+		if(controller[route].post) router.route(route).post(controller[route].post);
+		if(controller[route].put) router.route(route).put(controller[route].put);
+		if(controller[route].delete) router.route(route).delete(controller[route].delete);
+	}
 }
 
 module.exports = router;

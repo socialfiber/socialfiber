@@ -4,7 +4,7 @@ const utils = require('../config/utilities.js');
 const users = {
   '/api/users/createUser': {
     'post': (req, res) => {
-      console.log('Inside users-ctrl post');
+      console.log('inside POST at /api/users/createUser');
       const newUser = Users.build({
         username: req.body.username,
         password: req.body.password,
@@ -36,15 +36,11 @@ const users = {
             msg: 'The username you have selected already exists.'
           });
         });
-    },
-    'get': (req, res) => {
-			console.log('inside GET at /api/users/createUser');
-			res.end('inside GET at /api/users/createUser');
-		}
+    }
   },
   '/api/users/login': {
     'post': (req, res) => {
-      console.log('Inside POST at /api/users/login');
+      console.log('inside POST at /api/users/login');
       Users.findOne({
         where: {
           username: req.body.username
@@ -52,7 +48,6 @@ const users = {
         attributes: ['id', 'username', 'password']
       })
       .then((user) => {
-        console.log(user);
         utils.comparePassword(req.body.password, user.password)
         .then((isMatch) => {
           const token = utils.generateToken(user);
@@ -73,16 +68,12 @@ const users = {
           msg: 'The username you have selected does not exist.'
         });
       });
-    },
-    'get': (req, res) => {
-      console.log('inside GET at /api/users/login');
-      res.end('inside GET at /api/users/login');
     }
   },
   '/api/users/getUserData': {
     'get': (req, res) => {
       var userData = [];
-      console.log('Inside users-ctrl get', req.query);
+      console.log('inside GET at /api/users/getUserData', req.query);
       const getUser = Users.findAll({
         attributes: [
           'username',
@@ -106,11 +97,7 @@ const users = {
         console.log('Error: ', err);
         res.send(err.message);
       });
-    },
-    'post': (req, res) => {
-			console.log('inside GET at /api/users/getUserData');
-			res.end('inside GET at /api/users/getUserData');
-		}
+    }
   }
 }
 
