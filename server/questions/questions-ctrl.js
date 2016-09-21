@@ -6,13 +6,10 @@ const questions = {
     'post': (req, res) => {
       console.log('Inside questions-ctrl post');
       const newQuestionData = Questions.build({
-
-
-        //need to connect this user_id with the current user logged in
         user_id: req.body.user_id,
         height: req.body.height,
         age: req.body.age,
-        current_weight: req.body.current_weight,
+        current_weight: req.body.weight,
         gender: req.body.gender
       });
       newQuestionData
