@@ -1,4 +1,5 @@
 const Users = require('./users-model.js');
+const utils = require('../config/utilities.js');
 
 const users = {
   '/api/users/createUser': {
@@ -15,9 +16,13 @@ const users = {
       });
       newUser
         .save()
-        .then(() => {
-          console.log('New user has been created.');
-          res.sendStatus(201);
+        .then((user) => {
+          utils.hashPassword(req.body.password)
+            .then((hash) => {
+              newUser.update({ password: hash });
+              res.status(201).send({user: user});
+            })
+            .catch((err) => console.log("Password hashing error: ", err) )
         })
         .catch((err) => {
           console.log('Error: ', err);
@@ -27,9 +32,42 @@ const users = {
         });
     },
     'get': (req, res) => {
-			console.log('inside GET at /dummy_endpoint');
-			res.end('inside GET at /dummy_endpoint');
+			console.log('inside GET at /api/users/createUser');
+			res.end('inside GET at /api/users/createUser');
 		}
+  },
+  '/api/users/login': {
+    'post': (req, res) => {
+      console.log('Inside POST at /api/users/login');
+      Users.findOne({
+        where: {
+          username: req.body.username
+        },
+        attributes: ['id', 'username', 'password']
+      })
+      .then((user) => {
+        console.log(user);
+        utils.comparePassword(req.body.password, user.password)
+        .then((isMatch) => {
+          res.status(201).send({user: user})
+        })
+        .catch((err) => {
+          res.status(400).send({
+            msg: 'Incorrect Password.'
+          })
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        res.status(400).send({
+          msg: 'The username you have selected does not exist.'
+        });
+      });
+    },
+    'get': (req, res) => {
+      console.log('inside GET at /api/users/login');
+      res.end('inside GET at /api/users/login');
+    }
   },
   '/api/users/getUserData': {
     'get': (req, res) => {
@@ -60,8 +98,8 @@ const users = {
       });
     },
     'post': (req, res) => {
-			console.log('inside GET at /dummy_endpoint');
-			res.end('inside GET at /dummy_endpoint');
+			console.log('inside GET at /api/users/getUserData');
+			res.end('inside GET at /api/users/getUserData');
 		}
   }
 }
