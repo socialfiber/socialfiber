@@ -4,9 +4,10 @@ import { fetchUserData } from '../actions/fetchUserData';
 
 class UserProfile extends Component {
   componentWillMount() {
+    console.log('action');
     this.props.fetchUserData();
-  }
-  
+  }  
+
   render() {
     if(this.props.userData !== null) {
       return (
