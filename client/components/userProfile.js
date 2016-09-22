@@ -4,6 +4,7 @@ import { fetchUserData } from '../actions/fetchUserData';
 
 class UserProfile extends Component {
   componentWillMount() {
+    console.log('action');
     this.props.fetchUserData();
   }
 
