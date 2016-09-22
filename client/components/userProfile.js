@@ -28,5 +28,5 @@ class UserProfile extends Component {
 //   }
 // }
 
->>>>>>> [pull] progression on user profile feature
+
 export default connect(null, { fetchUserData })(UserProfile);
