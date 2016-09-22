@@ -4,7 +4,7 @@ import {render} from 'react-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-class App extends Component {
+class SignIn extends Component {
   constructor(props){
     super(props)
 
@@ -44,4 +44,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({ submitSignIn }, dispatch);
 }
 
-export default connect(null, mapDispatchToProps)(App);
+export default connect(null, mapDispatchToProps)(SignIn);
