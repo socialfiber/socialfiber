@@ -5,9 +5,8 @@ const Users = require('../users/users-model');
 const Questions = sequelize.define('questions', {
   user_id: {
     type: Sequelize.INTEGER,
-    // unique: true,
-    allowNull: true,
-    // autoIncrement: true
+    unique: true,
+    allowNull: false,
   },
   height: {
     type: Sequelize.INTEGER,
@@ -17,7 +16,7 @@ const Questions = sequelize.define('questions', {
     type: Sequelize.INTEGER,
     allowNull: false
   },
-  current_weight: {
+  weight: {
     type: Sequelize.INTEGER,
     allowNull: false
   },
@@ -27,7 +26,6 @@ const Questions = sequelize.define('questions', {
   }
 });
 
-Questions.belongsTo(Users);
 
 sequelize
   .sync()

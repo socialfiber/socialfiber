@@ -9,7 +9,7 @@ const questions = {
         user_id: req.body.user_id,
         height: req.body.height,
         age: req.body.age,
-        current_weight: req.body.weight,
+        weight: req.body.weight,
         gender: req.body.gender
       });
       newQuestionData
@@ -29,14 +29,17 @@ const questions = {
   //Endpoint to retrieve survey data from the database.
   '/api/questions/getData': {
     'get': (req, res) => {
-			console.log('inside GET at /api/questions/enterData', req);
+			console.log('inside GET at /api/questions/enterData');
       var userData = [];
       const getUserSurveyData = Questions.findAll({
+        where: {
+          user_id: req.query.userID
+        },
         attributes: [
           'user_id',
           'height',
           'age',
-          'current_weight',
+          'weight',
           'gender'
         ]
       })
