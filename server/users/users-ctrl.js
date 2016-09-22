@@ -76,6 +76,7 @@ const users = {
       console.log('inside GET at /api/users/getUserData', req.query);
       const getUser = Users.findAll({
         attributes: [
+          'id',
           'username',
           'diary_id'
           // 'height',
