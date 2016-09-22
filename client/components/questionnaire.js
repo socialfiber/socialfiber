@@ -14,15 +14,16 @@ class UserQuestionnaire extends Component {
         <h1>Tell us a little bit about yourself...</h1>
         <div>
           <label>Age</label>
-          <Field name="age" component="input" type="number" />
+          <Field name="age" component="input" type="number" min="0" required />
         </div>
         <div>
           <label>Height (ft & in)</label>
-          <Field name="ft" component="input" type="number" /><Field name="in" component="input" type="number" />
+          <Field name="ft" component="input" type="number" min = "0" max="8" required />
+          <Field name="in" component="input" type="number" min="0" max="11" />
         </div>
         <div>
           <label>Weight</label>
-          <Field name="weight" component="input" type="number" />
+          <Field name="weight" component="input" type="number" min="0" required />
         </div>
         <div>
           <label>Gender</label>
