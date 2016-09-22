@@ -29,7 +29,7 @@ const questions = {
   //Endpoint to retrieve survey data from the database.
   '/api/questions/getData': {
     'get': (req, res) => {
-			console.log('inside GET at /api/questions/enterData');
+			console.log('inside GET at /api/questions/enterData', req);
       var userData = [];
       const getUserSurveyData = Questions.findAll({
         attributes: [
