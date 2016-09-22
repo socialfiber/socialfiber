@@ -10,7 +10,7 @@ export function submitSignIn(usernameAndPasswordObj) {
       localStorage.setItem('userID', response.data.user.id);
       localStorage.setItem('username', response.data.user.username);
       console.log('localStorage in signIN: ', localStorage)
-      browserHistory.push('/userProfile');
+      browserHistory.push('userProfile');
       return { type: AUTH_USER, payload: response.data };
     })
     .catch((error) => {

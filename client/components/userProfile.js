@@ -15,4 +15,10 @@ class UserProfile extends Component {
   }
 }
 
-export default connect(null, { fetchUserData })(UserProfile);
+function mapStateToProps(state) {
+  return {
+    userData: 
+  }
+}
+
+export default connect(mapStateToProps, { fetchUserData })(UserProfile);

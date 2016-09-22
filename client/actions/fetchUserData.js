@@ -25,10 +25,15 @@ export function fetchUserData() {
   //     console.error(error);
   //   })
   // }
-  const request = axios.get('/api/users/getUserData');
+
+  const request = axios.get('/api/questions/getData', {
+    params: {
+      userID: localStorage.getItem('userID')
+    }
+  });
   console.log("This is request: ", request);
   return {
     type: FETCH_USER_DATA,
-    payload: request.data
+    payload: request
   }
 }
