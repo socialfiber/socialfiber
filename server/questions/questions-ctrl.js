@@ -4,7 +4,7 @@ const questions = {
   //Endpoint to enter survey data into the database.
   '/api/questions/enterData': {
     'post': (req, res) => {
-      console.log('inside POST at /api/questions/enterData');
+      console.log('inside POST at /api/questions/enterData', req.body);
       const newQuestionData = Questions.build({
         user_id: req.body.user_id,
         height: req.body.height,
