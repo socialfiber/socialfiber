@@ -9,10 +9,6 @@ const users = {
         username: req.body.username,
         password: req.body.password,
         diary_id: req.body.diary_id
-        // height: req.body.height,
-        // age: req.body.age,
-        // current_weight: req.body.current_weight,
-        // gender: req.body.gender
       });
       newUser
         .save()
