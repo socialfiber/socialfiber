@@ -31,7 +31,6 @@ const users = {
           });
         })
         .catch((err) => {
-          console.log('Error: ', err);
           res.status(400).send({
             msg: 'The username you have selected already exists.'
           });
@@ -50,17 +49,18 @@ const users = {
       .then((user) => {
         utils.comparePassword(req.body.password, user.password)
         .then((isMatch) => {
-          const token = utils.generateToken(user);
-          res.status(201).send({
-            token: token,
-            user: user
-          });
+          if(isMatch) {
+            const token = utils.generateToken(user);
+            res.status(201).send({
+              token: token,
+              user: user
+            });
+          } else {
+            res.status(400).send({
+              msg: 'Incorrect Password.'
+            })
+          }
         })
-        .catch((err) => {
-          res.status(400).send({
-            msg: 'Incorrect Password.'
-          })
-        });
       })
       .catch((err) => {
         console.log(err);
