@@ -13,7 +13,7 @@ class SignIn extends Component {
           <label>Username</label>
           <Field name="username" component="input" type="text" />
         </div>
-        <div className="form-group">
+        <div>
           <label>Password</label>
           <Field name="password" component="input" type="password" />
         </div>

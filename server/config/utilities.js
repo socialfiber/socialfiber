@@ -37,9 +37,12 @@ const utilities = {
   comparePassword: (input, hash) => {
     return new Promise(function(resolve, reject) {
       bcrypt.compare(input, hash, function(error, result) {
+
         if (error) {
+          console.log("ERRORRRRR!!!!", error)
           reject(error);
         } else {
+          console.log("RESULTTT!!!!", result)
           resolve(result);
         }
       });
