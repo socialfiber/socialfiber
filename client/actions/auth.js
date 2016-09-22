@@ -4,19 +4,16 @@ import { AUTH_USER, UNAUTH_USER, AUTH_ERROR } from './types'
 
 
 export function submitSignIn(usernameAndPasswordObj) {
-      return function(dispatch) => {
-        axios.post('/api/users/login', usernameAndPasswordObj){
-          .then(response=> {
-            dispatch({ type: AUTH_USER, payload: response.data })
-          })
-          .catch(()=>{
-            console.log("Wrong login info")
-          });
-        }
-      }
-    }
-
-      return {
-        type: 'SUBMIT_SIGNIN'
-      }
+  console.log("inside submitSignIn!!!!", usernameAndPasswordObj);
+  return (dispatch) => {
+    console.log('inside dispatch!!!!!!');
+    return axios.post('/api/users/login', usernameAndPasswordObj)
+      .then((response) => {
+        console.log("RESPONSE!!!", response);
+        dispatch({ type: 'AUTH_USER', payload: response.data });
+      })
+      .catch(()=>{
+        console.log("Wrong login info")
+      });
+  }
 }
