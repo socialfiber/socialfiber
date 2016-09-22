@@ -19,7 +19,7 @@ ReactDOM.render(
     <Router history={browserHistory}>
     	<Route path='signup' component={SignUp} />
     	<Route path='signin' component={SignIn} />
-    	<Route path='questionnaire' component={Questionnaire}/>
+    	<Route path='userQuestionnaire' component={Questionnaire}/>
     </Router>
   </Provider>
 , document.getElementById('main'));
