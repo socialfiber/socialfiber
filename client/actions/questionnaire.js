@@ -9,7 +9,7 @@ export function submitUserStats(userStatsObj) {
   return axios.post('/api/questions/enterData', userStatsObj)
   	.then((response) => {
   	  return { type: 'SUBMIT_USER_STATS' }
-      //browserHistory.push('/userProfile')
+      browserHistory.push('/userProfile')
     }).catch((error) => {
     	console.log(error);
     })
