@@ -4,12 +4,10 @@ import { fetchUserData } from '../actions/fetchUserData';
 
 class UserProfile extends Component {
   componentWillMount() {
-    console.log('action');
     this.props.fetchUserData();
   }
 
   render() {
-    console.log("this.props: ", this.props.userData)
     if(this.props.userData !== null) {
       return (
         <div>
@@ -36,4 +34,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(null, { fetchUserData })(UserProfile);
+export default connect(mapStateToProps, { fetchUserData })(UserProfile);
