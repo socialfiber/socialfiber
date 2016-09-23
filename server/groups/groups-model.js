@@ -2,9 +2,12 @@ const Sequelize = require('sequelize');
 const sequelize = require('../config/database');
 
 const Groups = sequelize.define('groups', {
+  group_id: {
+    type: Sequelize.INTEGER,
+    unique: true,
+  },
   name: {
     type: Sequelize.STRING,
-    unique: true,
     allowNull: false
   },
   description: {
