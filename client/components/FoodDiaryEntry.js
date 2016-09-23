@@ -1,26 +1,25 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
-import SelectComponent from './select';
 import { submitFoodDiaryEntry } from '../actions/foodDiary';
 
 class FoodDiaryEntry extends Component {
 
-  render(){
+  render() {
     const { handleSubmit } = this.props;
     return (
       <form onSubmit = {handleSubmit(this.props.submitFoodDiaryEntry)}>
-        <h1>Add Entry</h1>
+        <h3>Add Entry</h3>
           <p>Please submit a meal. You may enter phrases such as "cheesburger and fries" or "two eggs and whole wheat toast"</p>
           <div>
             <label>Date</label>
-            <Field name='date' component='input' type='data' required />
+            <Field name='date' component='input' type='date' required />
             <label>Qty</label>
             <Field name='qty' component='input' type='number' required />
             <label>Tell us what you ate</label>
             <Field name='food' component='input' type='text' required />
           </div>
-            <button type='submit'>Submit</button>
+          <button type='submit'>Submit</button>
       </form>
     )
   }

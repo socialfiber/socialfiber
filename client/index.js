@@ -10,6 +10,7 @@ import SignUp from './components/Signup';
 import SignIn from './components/Signin';
 import Questionnaire from './components/Questionnaire';
 import UserProfile from './components/UserProfile';
+import FoodDiary from './components/FoodDiary';
 
 const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
 const store = createStoreWithMiddleware(reducers);
@@ -20,8 +21,9 @@ ReactDOM.render(
     <Router history={browserHistory}>
     	<Route path='signup' component={SignUp} />
     	<Route path='signin' component={SignIn} />
-    	<Route path='userQuestionnaire' component={Questionnaire}/>
-      <Route path='userProfile' component={UserProfile} />
+    	<Route path='userquestionnaire' component={Questionnaire}/>
+    	<Route path='fooddiary' component={FoodDiary}/>
+      	<Route path='userprofile' component={UserProfile} />
     </Router>
   </Provider>
 , document.getElementById('main'));

@@ -9,12 +9,11 @@ export function submitSignIn(usernameAndPasswordObj) {
       localStorage.setItem('token', response.data.token);
       localStorage.setItem('userID', response.data.user.id);
       localStorage.setItem('username', response.data.user.username);
-      console.log('localStorage in signIN: ', localStorage)
-      browserHistory.push('userProfile');
+      browserHistory.push('/userProfile');
       return { type: AUTH_USER, payload: response.data };
     })
     .catch((error) => {
-      console.log(error);
+      console.error(error);
       return { type: AUTH_ERROR, payload: response.data };
     });
 }
@@ -26,12 +25,11 @@ export function submitSignUp(usernameAndPasswordObj) {
       localStorage.setItem('token', response.data.token);
       localStorage.setItem('userID', response.data.user.id);
       localStorage.setItem('username', response.data.user.username);
-      console.log('localStorage in signUP: ', localStorage)
       browserHistory.push('/userQuestionnaire');
       return { type: AUTH_USER, payload: response.data };
     })
     .catch((error) => {
-      console.log(error);
+      console.error(error);
       return { type: AUTH_ERROR, payload: response.data };
     });
 }

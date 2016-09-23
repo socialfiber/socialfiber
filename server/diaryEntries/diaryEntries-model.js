@@ -2,14 +2,6 @@ const Sequelize = require('sequelize');
 const sequelize = require('../config/database');
 
 const DiaryEntries = sequelize.define('diaryEntries', {
-  diary_id: {
-    type: Sequelize.INTEGER,
-    allowNull: false
-  },
-  user_id: {
-    type: Sequelize.INTEGER,
-    allowNull: false
-  },
   date: {
     type: Sequelize.DATEONLY,
     allowNull: false
@@ -23,6 +15,8 @@ const DiaryEntries = sequelize.define('diaryEntries', {
     allowNull: false
   }
 });
+
+
 
 sequelize
   .sync()

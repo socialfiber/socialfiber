@@ -1,21 +1,32 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchFoodDiary } from '../actions/foodDiary';
+import FoodDiaryLog from './FoodDiaryLog';
+import FoodDiaryEntry from './FoodDiaryEntry';
 
 class FoodDiary extends Component {
+  
   componentWillMount() {
     this.props.fetchFoodDiary();
   }
 
   render() {
-    if(this.props.userData !== null) {
+    if(this.props.diaryData !== null) {
+      const logs = this.props.diaryData.map((log, idx) =>
+        <FoodDiaryLog key={idx} log={log} />
+      );
       return (
         <div>
-          <h3>Food Diary</h3>
-          <div>Age: {this.props.userData.age}</div>
-          <div>Gender: {this.props.userData.gender}</div>
-          <div>Height: {this.props.userData.height}</div>
-          <div>Weight: {this.props.userData.weight}</div>
+          <h1>Food Diary</h1>
+          <FoodDiaryEntry />
+          <table>
+            <tr>
+              <th>Date</th>
+              <th>Qty</th>
+              <th>Food</th>
+            </tr>
+            {logs}
+          </table>
         </div>
       );
     } else {
@@ -23,14 +34,15 @@ class FoodDiary extends Component {
         <div>
           <h3>Loading your food diary...</h3>
         </div>
-      )
+      );  
     }
   }
+
 }
 
-function mapStateToProps(state) {
+const mapStateToProps = (state) => {
   return {
-    userData: state.userProfile
+    diaryData: state.foodDiary
   }
 }
 

@@ -1,14 +1,14 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { submitUserStats } from '../actions/questionnaire';
-import SelectComponent from './Select';
+import SelectComponent from './SelectComponent';
 
 class UserQuestionnaire extends Component {
 
-  render(){
+  render() {
     const { handleSubmit } = this.props;
-    const options = [{value: 'male', label: 'male'},{value: 'female', label: 'female'}];
+    const options = [{value: 'male', label: 'male'}, {value: 'female', label: 'female'}];
     return (
         <form onSubmit={handleSubmit(this.props.submitUserStats)}>
         <h1>Tell us a little bit about yourself...</h1>

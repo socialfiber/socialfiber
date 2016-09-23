@@ -1,13 +1,12 @@
 const DiaryEntries = require('./diaryEntries-model.js');
 
 const diaryEntries = {
-	'/api/diaryEntries/getEntry': {
+	'/api/diaryEntries/getAllEntries': {
 		'get': (req, res) => {
       var entryData = [];
-			console.log('inside GET at /api/diaryEntries/getEntry');
+			console.log('inside GET at /api/diaryEntries/getAllEntries');
       //find first result by date
       const getDiaryEntry = DiaryEntries.findAll({
-        limit: 1,
         where: {
           user_id: req.query.userID
         }
@@ -15,16 +14,14 @@ const diaryEntries = {
           ['date', 'DESC']
         ]
       })
-      .then( (entries) => {
+      .then((entries) => {
+        console.log("JOURNAL ENTRIES!!!!!", entries);
         entries.forEach( (entry) => {
-          console.log('entry : ', entry);
           entryData.push(entry);
         });
-        console.log('sending data');
-        console.log('entryData: ', entryData);
-        res.json(userData);
+        res.json(entryData);
       })
-      .catch( (err) => {
+      .catch((err) => {
         console.log('Error: ', err);
         res.status(400).send(err.message);
       });
@@ -33,8 +30,7 @@ const diaryEntries = {
   '/api/diaryEntries/createEntry': {
     'post': (req, res) => {
       const newEntryData = DiaryEntries.build({
-        diary_id: req.body.diary_id,
-        user_id: req.body.user_id,
+        user_id: req.body.userID,
         date: req.body.date,
         qty: req.body.qty,
         food: req.body.food
