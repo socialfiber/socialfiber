@@ -7,19 +7,20 @@ class FoodDiaryEntry extends Component {
 
   render() {
     const { handleSubmit } = this.props;
+    const today = new Date().toISOString().substr(0,10);
     return (
       <form onSubmit = {handleSubmit(this.props.submitFoodDiaryEntry)}>
         <h3>Add Entry</h3>
           <p>Please submit a meal. You may enter phrases such as "cheesburger and fries" or "two eggs and whole wheat toast"</p>
           <div>
             <label>Date</label>
-            <Field name='date' component='input' type='date' required />
+            <Field name="date" component="input" type="date" max={today} required />
             <label>Qty</label>
-            <Field name='qty' component='input' type='number' required />
+            <Field name="qty" component="input" type="number" min="1" required />
             <label>Tell us what you ate</label>
-            <Field name='food' component='input' type='text' required />
+            <Field name="food" component="input" type="text" required />
           </div>
-          <button type='submit'>Submit</button>
+          <button type="submit">Submit</button>
       </form>
     )
   }

@@ -1,10 +1,10 @@
 import React from 'react';
 
 const FoodDiaryLog = (props) => {
-	console.log(props)
+	const shortDate = props.log.date.substr(0,10);
 	return (
 		<tr>
-			<td>{props.log.date}</td>
+			<td>{shortDate}</td>
 			<td>{props.log.qty}</td>
 			<td>{props.log.food}</td>
 		</tr>

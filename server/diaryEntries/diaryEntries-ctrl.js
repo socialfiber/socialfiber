@@ -3,9 +3,6 @@ const DiaryEntries = require('./diaryEntries-model.js');
 const diaryEntries = {
 	'/api/diaryEntries/getAllEntries': {
 		'get': (req, res) => {
-      const entryData = [];
-			console.log('inside GET at /api/diaryEntries/getAllEntries');
-      //find first result by date
       const getDiaryEntry = DiaryEntries.findAll({
         where: {
           user_id: req.query.userID
@@ -15,14 +12,10 @@ const diaryEntries = {
         ]
       })
       .then((entries) => {
-        console.log("JOURNAL ENTRIES!!!!!", entries);
-        entries.forEach((entry) => {
-          entryData.push(entry);
-        });
-        res.json(entryData);
+        res.status(200).json(entries);
       })
       .catch((err) => {
-        console.log('Error: ', err);
+        console.error('Error: ', err);
         res.status(400).send(err.message);
       });
 		}
@@ -39,10 +32,10 @@ const diaryEntries = {
         .save()
         .then(() => {
           console.log('New diary entry data has been created.');
-          res.sendStatus(201);
+          res.status(201).send();
         })
         .catch((err) => {
-          console.log('Error: ', err);
+          console.error('Error: ', err);
           res.status(400).send({
             msg: 'Please fill in all fields.'
           });
