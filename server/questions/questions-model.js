@@ -3,11 +3,6 @@ const sequelize = require('../config/database');
 const Users = require('../users/users-model');
 
 const Questions = sequelize.define('questions', {
-  user_id: {
-    type: Sequelize.INTEGER,
-    unique: true,
-    allowNull: false,
-  },
   height: {
     type: Sequelize.INTEGER,
     allowNull: false
@@ -26,6 +21,7 @@ const Questions = sequelize.define('questions', {
   }
 });
 
+Questions.belongsTo(Users, {foreignKey: 'user_id'});
 
 sequelize
   .sync()
