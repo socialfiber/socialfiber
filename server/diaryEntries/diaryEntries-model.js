@@ -5,6 +5,22 @@ const DiaryEntries = sequelize.define('diaryEntries', {
   diary_id: {
     type: Sequelize.INTEGER,
     allowNull: false
+  },
+  user_id: {
+    type: Sequelize.INTEGER,
+    allowNull: false
+  },
+  date: {
+    type: Sequelize.DATEONLY,
+    allowNull: false
+  },
+  qty: {
+    type: Sequelize.INTEGER,
+    allowNull: false
+  },
+  food: {
+    type: Sequelize.STRING,
+    allowNull: false
   }
 });
 
