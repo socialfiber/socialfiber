@@ -1,26 +1,30 @@
 import React, {Component} from 'react';
 import {render} from 'react-dom';
 import { connect } from 'react-redux';
+import { Field, reduxForm } from 'redux-form';
+import SelectComponent from './select'
 import { bindActionCreators } from 'redux';
 
 class FoodDiary extends Component {
-  constructor(props){
-    super(props)
-    this.state{
-      diaryEntry: ''
-    }
-  }
-
 
   render(){
+    const { handleSubmit } = this.props;
     return (
-
-    <div>
-      <h1>Food Diary </h1>
-        <p>Please write what you ate meal by meal ex: cheeseburger with french fries</p>
-        <input value={this.state.diaryEntry}></input>
-        <input type = 'submit' value = 'Create' className='btn btn-primary' onSubmit={this.submitFoodDiaryEntry}/>
-    </div>
+      <form onSubmit = {handleSubmit(this.props.submitFoodDiaryEntry)}>
+        <h1>Food Diary</h1>
+          <p>Please submit a meal. You may enter phrases such as "cheesburger and fries" or "two eggs and whole wheat toast"</p>
+          <div>
+            <label>Tell us what you ate</label>
+              <Field name='age' component='input' type='text' required/>
+          </div>
+            <button type='submit'>Submit</button>
+      </form>
     )
   }
 }
+
+FoodDiary = reduxForm({
+  form: 'FoodDiary'
+})(FoodDiary);
+
+export default connect(null,{ submitFoodDiaryEntry })(FoodDiary);
