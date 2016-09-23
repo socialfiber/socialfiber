@@ -5,7 +5,7 @@ import { fetchUserData } from '../actions/fetchUserData';
 class UserProfile extends Component {
   componentWillMount() {
     this.props.fetchUserData();
-  }  
+  }
 
   render() {
     if(this.props.userData !== null) {
