@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../config/database');
+const Users = require('../users/users-model');
 
 const DiaryEntries = sequelize.define('diaryEntries', {
   date: {
@@ -16,7 +17,7 @@ const DiaryEntries = sequelize.define('diaryEntries', {
   }
 });
 
-
+DiaryEntries.belongsTo(Users, {foreignKey: 'user_id'});
 
 sequelize
   .sync()

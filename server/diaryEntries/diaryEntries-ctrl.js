@@ -3,20 +3,20 @@ const DiaryEntries = require('./diaryEntries-model.js');
 const diaryEntries = {
 	'/api/diaryEntries/getAllEntries': {
 		'get': (req, res) => {
-      var entryData = [];
+      const entryData = [];
 			console.log('inside GET at /api/diaryEntries/getAllEntries');
       //find first result by date
       const getDiaryEntry = DiaryEntries.findAll({
         where: {
           user_id: req.query.userID
-        }
+        },
         order: [
           ['date', 'DESC']
         ]
       })
       .then((entries) => {
         console.log("JOURNAL ENTRIES!!!!!", entries);
-        entries.forEach( (entry) => {
+        entries.forEach((entry) => {
           entryData.push(entry);
         });
         res.json(entryData);

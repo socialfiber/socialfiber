@@ -1,11 +1,12 @@
 import React from 'react';
 
 const FoodDiaryLog = (props) => {
+	console.log(props)
 	return (
 		<tr>
-			<td>this.props.date</td>
-			<td>this.props.qty</td>
-			<td>this.props.food</td>
+			<td>{props.log.date}</td>
+			<td>{props.log.qty}</td>
+			<td>{props.log.food}</td>
 		</tr>
 	);
 }

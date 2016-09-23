@@ -1,4 +1,4 @@
-import { SUBMIT_DIARY_ENTRY } from '../actions/types';
+import { FETCH_FOOD_DIARY, SUBMIT_DIARY_ENTRY } from '../actions/types';
 
 export default function(state=null, action) {
   switch(action.type) {
