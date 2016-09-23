@@ -7,12 +7,7 @@ class UserProfile extends Component {
     console.log('action');
     this.props.fetchUserData();
   }
-  // renderUserData() {
-  //   console.log("This is this.props.userData: ", this.props.userData)
-  //   // return this.props.userData.map((data) => {
-  //   //   return <div>{data}</div>;
-  //   // })
-  // }
+
   render() {
     console.log("this.props: ", this.props.userData)
     if(this.props.userData !== null) {
@@ -41,4 +36,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { fetchUserData })(UserProfile);
+export default connect(null, { fetchUserData })(UserProfile);
