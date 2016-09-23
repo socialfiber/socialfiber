@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { fetchUserData } from '../actions/fetchUserData';
 
 class UserProfile extends Component {
+  
   componentWillMount() {
     this.props.fetchUserData();
   }
@@ -26,6 +27,7 @@ class UserProfile extends Component {
       )
     }
   }
+
 }
 
 function mapStateToProps(state) {

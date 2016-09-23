@@ -1,30 +1,49 @@
-import React, {Component} from 'react';
-import {render} from 'react-dom';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Field, reduxForm } from 'redux-form';
-import SelectComponent from './select'
-import { bindActionCreators } from 'redux';
+import { fetchFoodDiary } from '../actions/foodDiary';
+import FoodDiaryLog from './FoodDiaryLog';
+import FoodDiaryEntry from './FoodDiaryEntry';
 
 class FoodDiary extends Component {
+  
+  componentWillMount() {
+    this.props.fetchFoodDiary();
+  }
 
-  render(){
-    const { handleSubmit } = this.props;
-    return (
-      <form onSubmit = {handleSubmit(this.props.submitFoodDiaryEntry)}>
-        <h1>Food Diary</h1>
-          <p>Please submit a meal. You may enter phrases such as "cheesburger and fries" or "two eggs and whole wheat toast"</p>
-          <div>
-            <label>Tell us what you ate</label>
-              <Field name='age' component='input' type='text' required/>
-          </div>
-            <button type='submit'>Submit</button>
-      </form>
-    )
+  render() {
+    if(this.props.diaryData !== null) {
+      const logs = this.props.diaryData.map((log, idx) =>
+        <FoodDiaryLog key={idx} log={log} />
+      );
+      return (
+        <div>
+          <h1>Food Diary</h1>
+          <FoodDiaryEntry />
+          <table>
+            <tr>
+              <th>Date</th>
+              <th>Qty</th>
+              <th>Food</th>
+            </tr>
+            {logs}
+          </table>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <h3>Loading your food diary...</h3>
+        </div>
+      );  
+    }
+  }
+
+}
+
+const mapStateToProps = (state) => {
+  return {
+    diaryData: state.foodDiary
   }
 }
 
-FoodDiary = reduxForm({
-  form: 'FoodDiary'
-})(FoodDiary);
-
-export default connect(null,{ submitFoodDiaryEntry })(FoodDiary);
+export default connect(mapStateToProps, { fetchFoodDiary })(FoodDiary);
