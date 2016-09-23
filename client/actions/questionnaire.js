@@ -8,8 +8,8 @@ export function submitUserStats(userStatsObj) {
   userStatsObj.height = userStatsObj.ft*12+userStatsObj.in;
   return axios.post('/api/questions/enterData', userStatsObj)
   	.then((response) => {
-  	  return { type: 'SUBMIT_USER_STATS' }
-      browserHistory.push('/userProfile')
+      browserHistory.push('/userProfile');
+      return { type: 'SUBMIT_USER_STATS' }
     }).catch((error) => {
     	console.log(error);
     })

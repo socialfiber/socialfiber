@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { submitUserStats } from '../actions/questionnaire';
-import SelectComponent from './select';
+import SelectComponent from './Select';
 
 class UserQuestionnaire extends Component {
 
@@ -18,7 +18,7 @@ class UserQuestionnaire extends Component {
         </div>
         <div>
           <label>Height (ft & in)</label>
-          <Field name="ft" component="input" type="number" min = "0" max="8" required />
+          <Field name="ft" component="input" type="number" min="0" max="8" required />
           <Field name="in" component="input" type="number" min="0" max="11" />
         </div>
         <div>
