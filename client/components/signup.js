@@ -17,6 +17,10 @@ class SignUp extends Component {
           <label>Password</label>
           <Field name="password" component="input" type="password" />
         </div>
+        <div>
+          <label>Password</label>
+          <Field name="confirmPW" component="input" type="password" />
+        </div>
         <button type="submit">Sign Up</button>
       </form>
     )
