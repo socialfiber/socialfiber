@@ -14,7 +14,7 @@ const controllers = [
 	users,
 	questions,
 	diaryEntries,
-	dummy
+	dummy,
 	groups,
 	groups_users
 ]

@@ -1,6 +1,6 @@
 const Groups = require('./groups-model.js');
 const Users = require('../users/users-model.js');
-const Groups_Users = require('../groups_users/groups_users-model.js');
+// const Groups_Users = require('../groups_users/groups_users-model.js');
 
 const groups = {
   '/api/groups/createGroups': {
@@ -28,26 +28,29 @@ const groups = {
   '/api/groups/addUser': {
     'post': (req, res) => {
       console.log('inside POST at /api/groups/addUser');
-      Groups.findOne({
-        where: {
-          group_id: req.body.group_id
-        }
-      })
-      .then(function(group){
-        console.log('group: ', group);
-        console.log('req body user id ', req.body.user_id);
-        console.log('req body group id ', req.body.group_id);
-
-        group.addUser(Users.findOne({
+        Groups.findOne({
           where: {
-            user_id: req.body.user_id
+            group_id: req.body.group_id
           }
-        }));
-        // group.getUsers()
-        //   .then(users => { console.log('users = ', users) });
-        group.save();
-        res.sendStatus(201);
-      })
+        })
+        .then((group) => {
+          Users.findOne({
+            where: {
+              id: req.body.user_id
+            }
+          })
+          .then((user) => {
+            group.addUsers(user);
+            group.save();
+            res.sendStatus(201);
+          })
+          .catch((err) => {
+            console.log('Error: ', err);
+            res.status(400).send({
+              msg: 'Error adding user to the group!'
+            });
+          })
+        })
       .catch((err) => {
         console.log('Error: ', err);
         res.status(400).send({
