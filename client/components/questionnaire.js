@@ -12,6 +12,7 @@ class UserQuestionnaire extends Component {
     const { handleSubmit } = this.props;
     const options = [{value: 'male', label: 'male'}, {value: 'female', label: 'female'}];
     return (
+      <div>
       <NavBar />
         <form onSubmit={handleSubmit(this.props.submitUserStats)}>
           <h1>Tell us a little bit about yourself...</h1>
@@ -34,6 +35,7 @@ class UserQuestionnaire extends Component {
           </div>
             <button type="submit">Submit</button>
         </form>
+      </div>
     )
   }
 }

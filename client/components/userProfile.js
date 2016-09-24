@@ -13,8 +13,8 @@ class UserProfile extends Component {
   render() {
     if(this.props.userData !== null) {
       return (
-        <NavBar />
         <div>
+        <NavBar />
           <h3>User Info</h3>
           <div>Age: {this.props.userData.age}</div>
           <div>Gender: {this.props.userData.gender}</div>

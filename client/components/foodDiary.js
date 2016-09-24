@@ -18,8 +18,8 @@ class FoodDiary extends Component {
         <FoodDiaryLog key={idx} log={log} />
       );
       return (
-        <NavBar />
         <div>
+        <NavBar />
           <h1>Food Diary</h1>
           <FoodDiaryEntry />
           <table>

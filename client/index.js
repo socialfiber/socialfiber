@@ -13,7 +13,7 @@ import UserProfile from './components/UserProfile';
 import FoodDiary from './components/FoodDiary';
 
 const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
-const store = createStoreWithMiddleware(reducers);
+const store = createStoreWithMiddleware(reducers, window.devToolsExtension ? window.devToolsExtension() : f => f);
 
 
 ReactDOM.render(
