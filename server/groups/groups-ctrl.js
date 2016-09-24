@@ -90,6 +90,37 @@ const groups = {
       });
 		}
   }
+  //Endpoint to leave groups
+  // '/api/groups/leaveGroup': {
+  //   'post': (req, res) => {
+  //     console.log('inside POST at /api/groups/leaveGroup');
+  //     Groups.findAll({
+  //       attributes: [
+  //         'name',
+  //         'description'
+  //       ],
+  //       include: [{
+  //         model: Users,
+  //         through: {
+  //           where: {
+  //             userId: req.query.user_id
+  //           }
+  //         }
+  //       }]
+  //     })
+  //       .then((group) => {
+  //         //destroy record
+  //         console.log('group: ', group);
+  //         res.sendStatus(201);
+  //       })
+  //       .catch((err) => {
+  //         console.log('Error: ', err);
+  //         res.status(400).send({
+  //           msg: 'Unable to leave the group.'
+  //         });
+  //       });
+  //   }
+  // }
 }
 
 module.exports = groups;
