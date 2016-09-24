@@ -56,6 +56,39 @@ const groups = {
         });
       })
     }
+  },
+  //Endpoint to retrieve user groups based on user id.
+  '/api/groups/getUserGroups': {
+    'get': (req, res) => {
+			console.log('inside GET at /api/groups/getUserGroups');
+      var userGroups = [];
+      Groups.findAll({
+        attributes: [
+          'name',
+          'description'
+        ],
+        include: [{
+          model: Users,
+          through: {
+            where: {
+              userId: req.query.user_id
+            }
+          }
+        }]
+      })
+      .then( (rows) => {
+        rows.forEach((row) => {
+          if(row.users.length > 0) {
+            userGroups.push(row);
+          }
+        })
+        res.json(userGroups);
+      })
+      .catch( (err) => {
+        console.log('Error: ', err);
+        res.status(400).send(err.message);
+      });
+		}
   }
 }
 
