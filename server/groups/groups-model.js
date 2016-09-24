@@ -1,10 +1,11 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../config/database');
+const Users = require('../users/users-model.js');
+
 
 const Groups = sequelize.define('groups', {
   name: {
     type: Sequelize.STRING,
-    unique: true,
     allowNull: false
   },
   description: {
@@ -12,6 +13,10 @@ const Groups = sequelize.define('groups', {
     allowNull: false
   }
 });
+
+
+Groups.belongsToMany(Users, {through: 'Groups_Users'});
+Users.belongsToMany(Groups, {through: 'Groups_Users'});
 
 sequelize
   .sync()
