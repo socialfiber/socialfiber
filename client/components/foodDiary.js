@@ -3,9 +3,11 @@ import { connect } from 'react-redux';
 import { fetchFoodDiary } from '../actions/foodDiary';
 import FoodDiaryLog from './FoodDiaryLog';
 import FoodDiaryEntry from './FoodDiaryEntry';
+import NavBar from './navbar';
+
 
 class FoodDiary extends Component {
-  
+
   componentWillMount() {
     this.props.fetchFoodDiary();
   }
@@ -17,6 +19,7 @@ class FoodDiary extends Component {
       );
       return (
         <div>
+        <NavBar />
           <h1>Food Diary</h1>
           <FoodDiaryEntry />
           <table>
@@ -34,7 +37,7 @@ class FoodDiary extends Component {
         <div>
           <h3>Loading your food diary...</h3>
         </div>
-      );  
+      );
     }
   }
 

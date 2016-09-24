@@ -13,9 +13,9 @@ class NavBar extends Component {
       <nav className="navbar">
         <div>
           <ul className="nav navbar-nav">
-            <li className="navItem"> <Link to='/signin'>Sign In </Link> </li>
-            <li className="navItem"> <Link to='/signup'>Sign Up </Link> </li>
-            <li className="navItem"> <Link to='/UserQuestionnaire'>Update Questionnaire</Link></li>
+            <li className="navItem"><Link to='/signin'>Sign In </Link> </li>
+            <li className="navItem"><Link to='/signup'>Sign Up </Link> </li>
+            <li className="navItem"><Link to='/UserQuestionnaire'>Update Questionnaire</Link></li>
             <li className="navItem"><Link to='/userProfile'>Profile</Link></li>
             <li className="navItem"><Link to='/foodDiary'> Food Diary</Link></li>
           </ul>

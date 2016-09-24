@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchUserData } from '../actions/fetchUserData';
+import NavBar from './navbar';
+
 
 class UserProfile extends Component {
-  
+
   componentWillMount() {
     this.props.fetchUserData();
   }
@@ -12,6 +14,7 @@ class UserProfile extends Component {
     if(this.props.userData !== null) {
       return (
         <div>
+        <NavBar />
           <h3>User Info</h3>
           <div>Age: {this.props.userData.age}</div>
           <div>Gender: {this.props.userData.gender}</div>
