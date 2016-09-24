@@ -1,18 +1,15 @@
 const Groups = require('./groups-model.js');
 const Users = require('../users/users-model.js');
-// const Groups_Users = require('../groups_users/groups_users-model.js');
 
 const groups = {
+  //Endpoint to create groups
   '/api/groups/createGroups': {
     'post': (req, res) => {
       console.log('inside POST at /api/groups/createGroups');
-      const newGroup = Groups.build({
-        group_id: req.body.group_id,
+      Groups.create({
         name: req.body.name,
         description: req.body.description
-      });
-      newGroup
-        .save()
+      })
         .then(() => {
           console.log('New group has been created.');
           res.sendStatus(201);
@@ -25,12 +22,13 @@ const groups = {
         });
     }
   },
+  //Endpoint to add users to groups
   '/api/groups/addUser': {
     'post': (req, res) => {
       console.log('inside POST at /api/groups/addUser');
         Groups.findOne({
           where: {
-            group_id: req.body.group_id
+            id: req.body.group_id
           }
         })
         .then((group) => {
