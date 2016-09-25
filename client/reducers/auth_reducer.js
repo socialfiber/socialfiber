@@ -5,6 +5,7 @@ const INITIAL_STATE = {authInfo: {currentUser: ""}, authenticated: null}
 export default function(state = [], action) {
   switch(action.type) {
     case PW_DOES_NOT_MATCH:
+      console.log('PW_DOES_NOT_MATCH')
       return action.payload;
     case AUTH_USER:
       return action.payload;

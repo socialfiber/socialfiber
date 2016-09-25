@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
+import { SubmissionError } from 'redux-form';
 import { AUTH_USER, UNAUTH_USER, AUTH_ERROR, PW_DOES_NOT_MATCH } from './types';
 
 export function submitSignIn(usernameAndPasswordObj) {
