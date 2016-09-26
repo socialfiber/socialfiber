@@ -11,7 +11,7 @@ import SignIn from './components/Signin';
 import Questionnaire from './components/Questionnaire';
 import UserProfile from './components/UserProfile';
 import FoodDiary from './components/FoodDiary';
-import MyGroups from './components/MyGroups';
+import MyGroups from './components/myGroups';
 
 const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
 const store = createStoreWithMiddleware(reducers, window.devToolsExtension ? window.devToolsExtension() : f => f);

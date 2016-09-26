@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchUserGroups } from '../actions/fetchUserGroups';
 import NavBar from './navbar';
+import myGroupsIndividual from './myGroupsIndividual';
 
 class MyGroups extends Component {
 
@@ -11,21 +12,35 @@ class MyGroups extends Component {
 
 
   render() {
-    console.log('userGroups: ', this.props.userGroups);
+    if(this.props.myGroups !== null) {
+      const groups = this.props.myGroups.map((group, idx) =>
+        <myGroupsIndividual key={idx} groups={group} />
+      );
     return (
       <div>
         <h3>
           My Groups
         </h3>
+        <ul>
+          <li>{groups}</li>
+        </ul>
       </div>
     );
   }
-
+  else {
+    return (
+      <div>
+        <h3>
+          Loading your groups...
+        </h3>
+      </div>
+    );
+  }
 }
 
-function mapStateToProps(state) {
+const mapStateToProps = (state) => {
   return {
-    userGroups: state.myGroups
+    myGroups: state.myGroups
   }
 }
 
