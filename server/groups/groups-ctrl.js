@@ -89,6 +89,28 @@ const groups = {
         res.status(400).send(err.message);
       });
 		}
+  },
+  '/api/groups/getAllGroups': {
+    'get': (req, res) => {
+			console.log('inside GET at /api/groups/getAllGroups');
+      var allGroups = [];
+      Groups.findAll({
+        attributes: [
+          'name',
+          'description'
+        ]
+      })
+      .then( (groups) => {
+        groups.forEach((group) => {
+            allGroups.push(group);
+        })
+        res.json(allGroups);
+      })
+      .catch( (err) => {
+        console.log('Error: ', err);
+        res.status(400).send(err.message);
+      });
+		}
   }
   //Endpoint to leave groups
   // '/api/groups/leaveGroup': {
