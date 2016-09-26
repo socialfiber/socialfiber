@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {  }
+import { fetchAllGroups } from '../actions/groups';
 import NavBar from './navbar';
 
 
