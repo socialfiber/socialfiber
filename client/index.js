@@ -5,7 +5,6 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import ReduxPromise from 'redux-promise';
 import reducers from './reducers/root_reducer';
-
 import SignUp from './components/Signup';
 import SignIn from './components/Signin';
 import Questionnaire from './components/Questionnaire';

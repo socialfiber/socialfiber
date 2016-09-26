@@ -24,7 +24,7 @@ class AllGroups extends Component {
 
 function mapStateToProps(state) {
   return {
-    allGroups: state.appGroups
+    allGroups: state.groups
   }
 }
 
