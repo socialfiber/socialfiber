@@ -110,7 +110,7 @@ const fields = {
 for(var field in fields) {
 	for(var opt in fields[field]) {
 		for(var i=0; i<fields[field][opt].length; i++) {
-			const code = opt+i;
+			var code = opt+i;
 			profiles[code] = profiles[code] || {};
 			profiles[code][field] = fields[field][opt][i];
 		}
@@ -124,32 +124,31 @@ for(var code in profiles) {
 }
 
 //check all properties are there
-const flag = true;
-for(var code in profiles) {
-	specs.forEach((spec) => {
-		if(!profiles[code][spec]) {
-			flag = false;
-		}
-	})
-}
-
-const specs = [
-	carb,
-	carb_min, 
-	carb_max, 
-	fat,
-	fat_min, 
-	fat_max, 
-	protein, 
-	protein_min,
-	protein_max,
-	fiber, 
-	n6, 
-	n6_min, 
-	n6_max, 
-	n3, 
-	n3_min, 
-	n3_max
-];
+// const flag = true;
+// const specs = [
+// 	'carb',
+// 	'carb_min', 
+// 	'carb_max', 
+// 	'fat',
+// 	'fat_min', 
+// 	'fat_max', 
+// 	'protein', 
+// 	'protein_min',
+// 	'protein_max',
+// 	'fiber', 
+// 	'n6', 
+// 	'n6_min', 
+// 	'n6_max', 
+// 	'n3', 
+// 	'n3_min', 
+// 	'n3_max'
+// ];
+// for(var code in profiles) {
+// 	specs.forEach((spec) => {
+// 		if(!profiles[code][spec]) {
+// 			flag = false;
+// 		}
+// 	})
+// }
 
 module.exports = profiles;

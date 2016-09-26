@@ -4,6 +4,7 @@ const sequelize = require('../config/database');
 const DietaryProfiles = sequelize.define('dietaryProfiles', {
   code: {
     type: Sequelize.STRING,
+    unique: true,
     allowNull: false
   },
   carb: {
