@@ -15,10 +15,17 @@ class AllGroups extends Component {
       <div>
         <NavBar />
           <h1>Find a Group</h1>
-
-
       </div>
     )
   }
 
 }
+
+
+function mapStateToProps(state) {
+  return {
+    allGroups: state.appGroups
+  }
+}
+
+export default connect(mapStateToProps, { fetchAllGroups }) (AllGroups);
