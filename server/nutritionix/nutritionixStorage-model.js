@@ -7,15 +7,27 @@ const Storage = sequelize.define('storage', {
     unique: true,
     allowNull: false,
   },
-  carbs: {
+  cal: {
     type: Sequelize.REAL,
     allowNull: false
   },
-  fats: {
+  carb: {
     type: Sequelize.REAL,
     allowNull: false
   },
-  proteins: {
+  fat: {
+    type: Sequelize.REAL,
+    allowNull: false
+  },
+  protein: {
+    type: Sequelize.REAL,
+    allowNull: false
+  },
+  fiber: {
+    type: Sequelize.REAL,
+    allowNull: false
+  },
+  n6: {
     type: Sequelize.REAL,
     allowNull: false
   }
@@ -23,7 +35,7 @@ const Storage = sequelize.define('storage', {
 
 sequelize
   .sync()
-  .then((err) => {
+  .then(() => {
     console.log('Storage model synced successfully.');
 }, (err) => {
     console.log('An error has occurred:', err);
