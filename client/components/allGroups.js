@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import {  }
 import NavBar from './navbar';
 
 
 class AllGroups extends Component {
 
   componentWillMount() {
-    //need to fetch all group data
+    this.props.fetchAllGroups()
   }
 
   render(){
@@ -14,7 +15,7 @@ class AllGroups extends Component {
       <div>
         <NavBar />
           <h1>Find a Group</h1>
-            
+
 
       </div>
     )
