@@ -23,8 +23,8 @@ const utilities = {
   // },
 
   hashPassword: (input) => {
-    return new Promise(function(resolve, reject) {
-      bcrypt.hash(input, 10, function(error, hash) {
+    return new Promise((resolve, reject) => {
+      bcrypt.hash(input, 10, (error, hash) => {
         if (error) {
           reject(error);
         } else {
@@ -35,17 +35,34 @@ const utilities = {
   },
 
   comparePassword: (input, hash) => {
-    return new Promise(function(resolve, reject) {
-      bcrypt.compare(input, hash, function(error, result) {
-
+    return new Promise((resolve, reject) => {
+      bcrypt.compare(input, hash, (error, result) => {
         if (error) {
-          console.log("ERRORRRRR!!!!", error)
           reject(error);
         } else {
-          console.log("RESULTTT!!!!", result)
           resolve(result);
         }
       });
+    });
+  },
+
+  generateDietaryProfileCode: (user) => {
+    return new Promise((resolve, reject) => {
+      var code;
+      if(user.lact) {code = 'lact0'}
+      else if(user.preg) {code = 'preg0'}
+      else if(user.age<=3) {code = 'child0'}
+      else if(user.age<=8) {code = 'child1'}
+      else {
+        var word = user.gender
+        if(user.age<=13) {word+='0'}
+        else if(user.age<=18) {word+='1'}
+        else if(user.age<=30) {word+='2'}
+        else if(user.age<=50) {word+='3'}
+        else if(user.age>50) {word+='4'}
+        code = word;
+      }
+      resolve(code);
     });
   }
 

@@ -4,7 +4,7 @@ const Storage = require('./nutritionixStorage-model.js');
 const nutritionix = {
 	'/api/nutritionix/search': {
 		'post': (req, res) => {
-			Nutritionix.search(req.body)
+			Nutritionix.search(req.body.query)
 			.then((data) => {
 				res.status(200).send(data);
 			}).catch((err) => {
