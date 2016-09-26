@@ -1,5 +1,5 @@
 const Nutritionix = require('./nutritionix-model.js');
-const NutritionixStorage = require('./nutritionixStorage-model.js');
+const Storage = require('./nutritionixStorage-model.js');
 
 const nutritionix = {
 	'/api/nutritionix/search': {
