@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
+import
 
 
-class AddGroup extends Component {
+class CreateGroup extends Component {
 
   render(){
     const { handleSubmit } = this.props;
@@ -23,8 +24,8 @@ class AddGroup extends Component {
   }
 }
 
-AddGroup = reduxForm({
-  form: 'AddGroup'
-})(AddGroup)
+CreateGroup = reduxForm({
+  form: 'CreateGroup'
+})(CreateGroup)
 
 export default connect()
