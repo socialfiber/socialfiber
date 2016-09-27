@@ -18,6 +18,9 @@ class NavBar extends Component {
             <li className="navItem"><Link to='/UserQuestionnaire'>Update Questionnaire</Link></li>
             <li className="navItem"><Link to='/userProfile'>Profile</Link></li>
             <li className="navItem"><Link to='/foodDiary'> Food Diary</Link></li>
+            <li className="navItem"><Link to='/viewallgroups'> All Groups</Link></li>
+            <li className="navItem"><Link to='/mygroups'> My Groups</Link></li>
+            <li className="navItem"><Link to='/creategroup'> Create a Group</Link></li>
           </ul>
         </div>
       </nav>
