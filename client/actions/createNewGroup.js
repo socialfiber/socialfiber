@@ -6,7 +6,9 @@ export function createNewGroup(newGroupObj){
   console.log('newGroupObj: ', newGroupObj)
   return axios.post('/api/groups/createGroups', newGroupObj)
     .then((response) => {
-      console.log('resp in create new group action',  response)
+      console.log('resp in create new group action',  response.data)
+      localStorage.setItem('group_id', response.data.group.id);
+      localStorage.setItem('groupName', response.data.group.name);
       return { type : CREATE_NEW_GROUP, payload: response.data }
     })
     .catch(() => {
