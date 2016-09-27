@@ -12,6 +12,7 @@ import UserProfile from './components/UserProfile';
 import FoodDiary from './components/FoodDiary';
 import SplashPg from './components/splashpg';
 import AllGroups from './components/allGroups'
+import MyGroups from './components/myGroups';
 
 const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
 const store = createStoreWithMiddleware(reducers, window.devToolsExtension ? window.devToolsExtension() : f => f);
@@ -26,7 +27,9 @@ ReactDOM.render(
     	<Route path='userquestionnaire' component={Questionnaire}/>
     	<Route path='fooddiary' component={FoodDiary}/>
       <Route path='userprofile' component={UserProfile} />
-      <Route path = 'viewallgroups' component={AllGroups}/>
+      <Route path='viewallgroups' component={AllGroups}/>
+    	<Route path='userprofile' component={UserProfile} />
+      <Route path='mygroups' component={MyGroups} />
     </Router>
   </Provider>
 , document.getElementById('main'));
