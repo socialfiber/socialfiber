@@ -11,8 +11,9 @@ class AllGroups extends Component {
   }
 
   renderGroups(){
-    this.props.all.map((group)=>{
-        <li className='list-group-item' key={group.name}>
+    console.log("this.props.allGroups: ", this.props.allGroups)
+    this.props.allGroups.map((group)=>{
+        <li className='list-group-item' key={group}>
           <span className="pull-xs-right">{group.name}</span>
           <strong>{group.description}</strong>
         </li>
