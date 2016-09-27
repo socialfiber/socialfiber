@@ -2,7 +2,7 @@ const DiaryEntries = require('./diaryEntries-model.js');
 const nutritionix = require('../nutritionix/nutritionix-ctrl.js')
 
 const diaryEntries = {
-	'/api/diaryEntries/getAllEntries': {
+	'/api/diaryEntries/allEntries': {
 		'get': (req, res) => {
       const getDiaryEntry = DiaryEntries.findAll({
         where: {
@@ -21,7 +21,7 @@ const diaryEntries = {
       });
 		}
   },
-  '/api/diaryEntries/createEntry': {
+  '/api/diaryEntries/singleEntry': {
     'post': (req, res) => {
       nutritionix.search(req.body.food)
       .then((data) => {
@@ -50,8 +50,21 @@ const diaryEntries = {
       })
       .catch((err) => {
         res.status(400).send();
+      });
+		},
+    'delete': (req, res) => {
+      DiaryEntries.destroy({
+        where: {
+          id: req.query.id
+        }
       })
-		}
+      .then((affectedRows) => {
+        res.status(201).send();
+      })
+      .catch((err) => {
+        res.status(400).send();
+      });
+    }
   }
 }
 
