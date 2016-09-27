@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
-import
+import { createNewGroup } from '../actions/createNewGroup';
 
 
 class CreateGroup extends Component {
@@ -9,7 +9,7 @@ class CreateGroup extends Component {
   render(){
     const { handleSubmit } = this.props;
     return (
-      <form onSubmit={ handleSubmit() }>
+      <form onSubmit={ handleSubmit(this.props.createNewGroup) }>
         <h3>Create a Group Based on Your Dietary Interests</h3>
           <p>You may choose a topic such as "paleo" or "vegetarian"</p>
             <div>
@@ -28,4 +28,4 @@ CreateGroup = reduxForm({
   form: 'CreateGroup'
 })(CreateGroup)
 
-export default connect()
+export default connect(null, { createNewGroup })(CreateGroup);
