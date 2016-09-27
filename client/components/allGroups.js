@@ -5,15 +5,14 @@ import NavBar from './navbar';
 
 
 class AllGroups extends Component {
-
   componentWillMount() {
     this.props.fetchAllGroups()
   }
 
   renderGroups(){
     console.log("this.props.allGroups: ", this.props.allGroups)
-    this.props.allGroups.map((group)=>{
-        <li className='list-group-item' key={group}>
+    return this.props.allGroups.map((group, idx)=> {
+        return <li className='list-group-item'>
           <span className="pull-xs-right">{group.name}</span>
           <strong>{group.description}</strong>
         </li>
@@ -23,6 +22,7 @@ class AllGroups extends Component {
 
 
   render(){
+    console.log("func: ", this.renderGroups())
     return(
       <div>
         <NavBar />
