@@ -34,8 +34,6 @@ export function fetchUserGroups() {
 }
 
 export function leaveGroup(group_id) {
-  console.log('group id inside leavegroup: ', group_id);
-  console.log('local storage userid: ', localStorage.getItem('userID'));
   return axios.post('/api/groups/leaveGroup', {
       user_id: localStorage.getItem('userID'),
       group_id: group_id
