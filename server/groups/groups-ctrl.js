@@ -66,6 +66,7 @@ const groups = {
       var userGroups = [];
       Groups.findAll({
         attributes: [
+          'id',
           'name',
           'description'
         ],

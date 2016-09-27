@@ -22,7 +22,7 @@ export function fetchUserGroups() {
     }
   })
   .then(function(response) {
-    console.log("RESPONSE!!!!!",response)
+    console.log("Response in fetchUserGroups: ",response)
     return {
       type: FETCH_USER_GROUPS,
       payload: response
@@ -33,10 +33,10 @@ export function fetchUserGroups() {
   })
 }
 
-// export function leaveGroup() {
-//   return axios.post('/api/groups/leaveGroup', {
-//     params: {
-//       user_id: localStorage.getItem('userID')
-//     }
-//   })
-// }
+export function leaveGroup() {
+  return axios.post('/api/groups/leaveGroup', {
+    params: {
+      user_id: localStorage.getItem('userID')
+    }
+  })
+}
