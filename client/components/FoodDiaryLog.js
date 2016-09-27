@@ -7,6 +7,7 @@ const FoodDiaryLog = (props) => {
 			<td>{shortDate}</td>
 			<td>{props.log.qty}</td>
 			<td>{props.log.food}</td>
+			<td>x</td>
 		</tr>
 	);
 }
