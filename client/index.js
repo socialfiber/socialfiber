@@ -11,8 +11,9 @@ import Questionnaire from './components/Questionnaire';
 import UserProfile from './components/UserProfile';
 import FoodDiary from './components/FoodDiary';
 import SplashPg from './components/splashpg';
-import AllGroups from './components/allGroups'
 import MyGroups from './components/myGroups';
+import AllGroups from './components/allGroups';
+import CreateGroup from './components/CreateGroup';
 
 const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
 const store = createStoreWithMiddleware(reducers, window.devToolsExtension ? window.devToolsExtension() : f => f);
@@ -30,6 +31,7 @@ ReactDOM.render(
       <Route path='viewallgroups' component={AllGroups}/>
     	<Route path='userprofile' component={UserProfile} />
       <Route path='mygroups' component={MyGroups} />
+      <Route path = 'creategroup' component={CreateGroup}/>
     </Router>
   </Provider>
 , document.getElementById('main'));
