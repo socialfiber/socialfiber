@@ -57,6 +57,37 @@ const questions = {
         res.status(400).send(err.message);
       });
 		}
+  },
+  //Endpoint to update user data in the database.
+  '/api/questions/updateData': {
+    'post': (req, res) => {
+      console.log("inside POST at /api/questions/updateData");
+      console.log("req.body: ", req.body)
+      console.log("user_id: ", req.body.user_id)
+      Questions.update(
+        {
+          height: req.body.height,
+          age: req.body.age,
+          weight: req.body.weight,
+          gender: req.body.gender
+        },
+        {
+          where: {
+            user_id: req.body.user_id
+          }
+        }
+      )
+      .then(() => {
+        console.log('User information has been updated.');
+        res.sendStatus(201);
+      })
+      .catch((err) => {
+        console.log('Error: ', err);
+        res.status(400).send({
+          msg: err
+        });
+      });
+    }
   }
 }
 
