@@ -65,23 +65,23 @@ class UserProfile extends Component {
             <form onSubmit={handleSubmit(this.props.updateUserData)}>
               <div>
                 <label>Age</label>
-                <Field name="age" component="input" type="number" min="0" required />
+                <Field name="age" component="input" type="number" min="0" placeholder={this.props.userData.age} required />
               </div>
               <div>
                 <label>Height (ft & in)</label>
-                <Field name="ft" component="input" type="number" min = "0" max="8" required />
-                <Field name="in" component="input" type="number" min="0" max="11" />
+                <Field name="ft" component="input" type="number" min = "0" max="8" placeholder={Math.floor(this.props.userData.height / 12)} required />
+                <Field name="in" component="input" type="number" min="0" max="11" placeholder={this.props.userData.height % 12} />
               </div>
               <div>
                 <label>Weight</label>
-                <Field name="weight" component="input" type="number" min="0" required />
+                <Field name="weight" component="input" type="number" min="0" placeholder={this.props.userData.weight} required />
               </div>
               <div>
                 <label>Gender</label>
-                <Field name="gender" component={SelectComponent} options={options} />
+                <Field name="gender" component={SelectComponent} options={options} placeholder={this.props.userData.gender} />
               </div>
               <button type="submit">Submit</button>
-              {/* <button type="button" onClick={() => this.toggleEditing()}>Return</button> */}
+              <button type="button" onClick={() => this.toggleEditing()}>Return</button>
             </form>
           </div>
         );
