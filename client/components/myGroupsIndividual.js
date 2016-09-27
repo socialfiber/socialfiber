@@ -1,15 +1,14 @@
 import React from 'react';
+import { leaveGroup } from '../actions/groups';
 
 const myGroupsIndividual = (props) => (
 		<tr>
 			<td>
-					<button type="submit"> Leave Group </button>
+					<button onClick={ () => {leaveGroup(props.group.id)}}> Leave Group </button>
 			</td>
-			<td>{props.group.id}</td>
 	  	<td> {props.group.name} </td>
 			<td> {props.group.description} </td>
 	  </tr>
-
 )
 
 export default myGroupsIndividual;

@@ -119,6 +119,10 @@ const groups = {
   '/api/groups/leaveGroup': {
     'post': (req, res) => {
       console.log('inside POST at /api/groups/leaveGroup');
+      console.log('req body group id inside leaveGroup post: ', req.body.group_id);
+      console.log('req body user id inside leaveGroup post: ', req.body.user_id);
+
+
         Groups.findOne({
           where: {
             id: req.body.group_id
@@ -131,6 +135,7 @@ const groups = {
             }
           })
           .then((user) => {
+            console.log('user inside leavegroup endpoint: ', user);
             group.removeUser(user);
             group.save();
             res.sendStatus(201);
