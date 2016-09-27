@@ -1,11 +1,12 @@
 const auth = require('../config/auth.js');
 const request = require('request');
+const _ = require('underscore');
 
 const appId = auth.nutritionixAuth.appId;
 const appKey = auth.nutritionixAuth.appKey;
 
 const Nutritionix = {
-	'search': (params) => {
+	'search': (input) => {
 		const url = 'https://trackapi.nutritionix.com/v2/natural/nutrients';
 		const headers = {
 			'Content-Type': 'application/json',
@@ -13,14 +14,30 @@ const Nutritionix = {
 			'x-app-key': appKey
 		}
 		const options = {
-			'query': params.query
+			'query': input
 		}
 		return new Promise((resolve, reject) => {
 			request.post({ url: url, form: options, headers: headers }, (err, res, body) => {
 				if(err) {
 					reject(err);
 				} else {
-					resolve(JSON.parse(body));
+					body = JSON.parse(body);
+					if(body.message) {
+						resolve(body);
+					} else {
+						const result = body.foods[0];
+						const foodObj = {
+							food: input,
+							api_name: result.food_name,
+							cal: result.nf_calories,
+							carb: result.nf_total_carbohydrate,
+							fat: result.nf_total_fat,
+							protein: result.nf_protein,
+							fiber: result.nf_dietary_fiber,
+							n6: _.findWhere(result.full_nutrients, {"attr_id": 646}).value
+						}
+						resolve(foodObj);
+					}
 				}
 			});
 		});
