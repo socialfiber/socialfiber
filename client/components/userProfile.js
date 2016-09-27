@@ -2,26 +2,90 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchUserData } from '../actions/fetchUserData';
 import NavBar from './navbar';
+import { Field, reduxForm } from 'redux-form';
+import SelectComponent from './SelectComponent';
+import { updateUserData } from '../actions/updateUserData';
 
 
 class UserProfile extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      editFlag: false
+    }
+  }
 
   componentWillMount() {
     this.props.fetchUserData();
   }
 
+  componentDidUpdate() {
+    if(this.props.submitSucceeded === true) {
+      this.props.fetchUserData()
+      .then(() => {
+        this.toggleEditing();
+        this.props.reset();
+      });
+    }
+  }
+
+  toggleEditing() {
+    // console.log("Toggling editing");
+    this.setState({ editFlag: (!this.state.editFlag) });
+  }
+
   render() {
+
+    const { handleSubmit } = this.props;
+    const options = [{value: 'male', label: 'male'},{value: 'female', label: 'female'}];
+
     if(this.props.userData !== null) {
-      return (
-        <div>
-        <NavBar />
-          <h3>User Info</h3>
-          <div>Age: {this.props.userData.age}</div>
-          <div>Gender: {this.props.userData.gender}</div>
-          <div>Height: {this.props.userData.height}</div>
-          <div>Weight: {this.props.userData.weight}</div>
-        </div>
-      );
+      if(!this.state.editFlag) {
+        return (
+          <div>
+            <NavBar />
+            <h3>User Info</h3>
+            <div>Age: {this.props.userData.age}</div>
+            <div>Gender: {this.props.userData.gender}</div>
+            <div>Height: {this.props.userData.height}</div>
+            <div>Weight: {this.props.userData.weight}</div>
+            <div>
+              <button type="button" onClick={() => this.toggleEditing()}>Edit Info</button>
+            </div>
+          </div>
+        );
+      } else {
+        return (
+          <div>
+            <NavBar />
+            <div>
+              <h3>Edit User Info</h3>
+            </div>
+            <form onSubmit={handleSubmit(this.props.updateUserData)}>
+              <div>
+                <label>Age</label>
+                <Field name="age" component="input" type="number" min="0" required />
+              </div>
+              <div>
+                <label>Height (ft & in)</label>
+                <Field name="ft" component="input" type="number" min = "0" max="8" required />
+                <Field name="in" component="input" type="number" min="0" max="11" />
+              </div>
+              <div>
+                <label>Weight</label>
+                <Field name="weight" component="input" type="number" min="0" required />
+              </div>
+              <div>
+                <label>Gender</label>
+                <Field name="gender" component={SelectComponent} options={options} />
+              </div>
+              <button type="submit">Submit</button>
+              {/* <button type="button" onClick={() => this.toggleEditing()}>Return</button> */}
+            </form>
+          </div>
+        );
+      }
     } else {
       return (
         <div>
@@ -33,10 +97,14 @@ class UserProfile extends Component {
 
 }
 
+UserProfile = reduxForm({
+  form: 'userProfileForm'
+})(UserProfile);
+
 function mapStateToProps(state) {
   return {
     userData: state.userProfile
   }
 }
 
-export default connect(mapStateToProps, { fetchUserData })(UserProfile);
+export default connect(mapStateToProps, { fetchUserData, updateUserData })(UserProfile);
