@@ -1,41 +1,46 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchUserGroups } from '../actions/fetchUserGroups';
+import MyGroupsIndividual from './myGroupsIndividual';
 import NavBar from './navbar';
-import myGroupsIndividual from './myGroupsIndividual';
+
 
 class MyGroups extends Component {
 
-  componentWillMount(){
+  componentWillMount() {
     this.props.fetchUserGroups();
   }
 
-
   render() {
     if(this.props.myGroups !== null) {
+
+      console.log('this props mygroups: ', this.props.myGroups);
       const groups = this.props.myGroups.map((group, idx) =>
-        <myGroupsIndividual key={idx} groups={group} />
+        <MyGroupsIndividual key={idx} group={group} />
       );
-    return (
-      <div>
-        <h3>
-          My Groups
-        </h3>
-        <ul>
-          <li>{groups}</li>
-        </ul>
-      </div>
-    );
+
+      return (
+        <div>
+          <NavBar />
+          <h1>My Groups</h1>
+          <table>
+            <tr>
+              <th>Name</th>
+              <th>Description</th>
+            </tr>
+            {groups}
+          </table>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <h3>Loading your groups...</h3>
+        </div>
+      );
+    }
   }
-  else {
-    return (
-      <div>
-        <h3>
-          Loading your groups...
-        </h3>
-      </div>
-    );
-  }
+
 }
 
 const mapStateToProps = (state) => {

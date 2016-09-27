@@ -6,6 +6,7 @@ import FoodDiaryEntry from './FoodDiaryEntry';
 import NavBar from './navbar';
 
 
+
 class FoodDiary extends Component {
 
   componentWillMount() {

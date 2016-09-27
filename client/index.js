@@ -24,8 +24,8 @@ ReactDOM.render(
     	<Route path='signin' component={SignIn} />
     	<Route path='userquestionnaire' component={Questionnaire}/>
     	<Route path='fooddiary' component={FoodDiary}/>
-      	<Route path='userprofile' component={UserProfile} />
-        <Route path='mygroups' component={MyGroups} />
+    	<Route path='userprofile' component={UserProfile} />
+      <Route path='mygroups' component={MyGroups} />
     </Router>
   </Provider>
 , document.getElementById('main'));

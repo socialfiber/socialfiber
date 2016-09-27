@@ -1,12 +1,11 @@
 import React from 'react';
 
-const myGroupsIndividual = (props) => {
-	return (
+const myGroupsIndividual = (props) => (
 		<tr>
-			<td>{props.groups.name}</td>
-			<td>{props.groups.description}</td>
-		</tr>
-	);
-}
+	  	<td> {props.group.name} </td>
+			<td> {props.group.description} </td>
+	  </tr>
+
+)
 
 export default myGroupsIndividual;
