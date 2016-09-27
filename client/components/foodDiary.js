@@ -13,6 +13,10 @@ class FoodDiary extends Component {
     this.props.fetchFoodDiary();
   }
 
+  componentDidUpdate() {
+    this.props.fetchFoodDiary();
+  }
+
   render() {
     if(this.props.diaryData !== null) {
       const logs = this.props.diaryData.map((log, idx) =>
