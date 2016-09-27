@@ -32,3 +32,11 @@ export function fetchUserGroups() {
     console.error(error);
   })
 }
+
+// export function leaveGroup() {
+//   return axios.post('/api/groups/leaveGroup', {
+//     params: {
+//       user_id: localStorage.getItem('userID')
+//     }
+//   })
+// }
