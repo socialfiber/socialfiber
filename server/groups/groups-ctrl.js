@@ -10,9 +10,11 @@ const groups = {
         name: req.body.name,
         description: req.body.description
       })
-        .then(() => {
-          console.log('New group has been created.');
-          res.sendStatus(201);
+        .then((group) => {
+          console.log('New group has been created.', group);
+          res.status(201).send({
+            group: group
+          });
         })
         .catch((err) => {
           console.log('Error: ', err);
