@@ -6,10 +6,9 @@ export function fetchFoodDiary() {
     params: {
       userID: localStorage.getItem('userID')
     }
-  };
+  }
   return axios.get('/api/diaryEntries/allEntries', data)
     .then((response) => {
-      console.log("GET ALL ENTRIES RESPONSE!!!!", response)
       return { type: FETCH_FOOD_DIARY, payload: response.data }
     })
     .catch(() => {
@@ -21,7 +20,6 @@ export function fetchFoodDiary() {
   //rerender page on change
 export function submitFoodDiaryEntry(foodDiaryEntryObj) {
   foodDiaryEntryObj.userID = localStorage.getItem('userID');
-  console.log(foodDiaryEntryObj)
   return axios.post('/api/diaryEntries/singleEntry', foodDiaryEntryObj)
     .then((response) => {
       return { type: SUBMIT_DIARY_ENTRY, payload: response.data }
@@ -32,9 +30,11 @@ export function submitFoodDiaryEntry(foodDiaryEntryObj) {
 }
 
 export function deleteFoodDiaryEntry(foodDiaryEntryObj) {
-  //foodDiaryEntryObj.userID = localStorage.getItem('userID');
-  console.log("TRYING TO DELETE", foodDiaryEntryObj)
-  return axios.delete('/api/diaryEntries/singleEntry', foodDiaryEntryObj)
+  const data = {
+    params: foodDiaryEntryObj
+  }
+  console.log("TRYING TO DELETE", data)
+  return axios.delete('/api/diaryEntries/singleEntry', data)
     .then((response) => {
       return { type: DELETE_DIARY_ENTRY, payload: response.data }
     })

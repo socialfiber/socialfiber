@@ -1,4 +1,4 @@
-import { FETCH_FOOD_DIARY, SUBMIT_DIARY_ENTRY } from '../actions/types';
+import { FETCH_FOOD_DIARY, SUBMIT_DIARY_ENTRY, DELETE_DIARY_ENTRY } from '../actions/types';
 
 export default function(state=null, action) {
   switch(action.type) {
@@ -8,7 +8,9 @@ export default function(state=null, action) {
       //need to re render list of food diary entries upon submit. 
       return action.payload;
     case SUBMIT_DIARY_ENTRY:
-    	return action.payload;
+      return action.payload;
+    case DELETE_DIARY_ENTRY:
+      return action.payload;
     default:
       return state;
   }

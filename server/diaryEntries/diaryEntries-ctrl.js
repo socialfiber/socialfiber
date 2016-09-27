@@ -55,11 +55,11 @@ const diaryEntries = {
     'delete': (req, res) => {
       DiaryEntries.destroy({
         where: {
-          id: req.body.id
+          id: req.query.id
         }
       })
       .then((affectedRows) => {
-        res.status(201).send(affectedRows);
+        res.status(201).send();
       })
       .catch((err) => {
         res.status(400).send();
