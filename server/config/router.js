@@ -1,5 +1,4 @@
 const router = require('express').Router();
-const nutritionix = require('../nutritionix/nutritionix-ctrl.js');
 const users = require('../users/users-ctrl.js');
 const questions = require('../questions/questions-ctrl.js');
 const diaryEntries = require('../diaryEntries/diaryEntries-ctrl.js');
@@ -11,7 +10,6 @@ const dietaryProfiles = require('../dietaryProfiles/dietaryProfiles-ctrl.js');
 const dummy = require('../dummy/dummy-ctrl.js')
 
 const controllers = [
-	nutritionix,
 	users,
 	questions,
 	diaryEntries,

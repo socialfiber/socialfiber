@@ -22,17 +22,22 @@ const Nutritionix = {
 					reject(err);
 				} else {
 					body = JSON.parse(body);
-					const result = body.foods[0];
-					const foodObj = {
-						food: result.food_name,
-						cal: result.nf_calories,
-						carb: result.nf_total_carbohydrate,
-						fat: result.nf_total_fat,
-						protein: result.nf_protein,
-						fiber: result.nf_dietary_fiber,
-						n6: _.findWhere(result.full_nutrients, {"attr_id": 646}).value
+					if(body.message) {
+						resolve(body);
+					} else {
+						const result = body.foods[0];
+						const foodObj = {
+							food: input,
+							api_name: result.food_name,
+							cal: result.nf_calories,
+							carb: result.nf_total_carbohydrate,
+							fat: result.nf_total_fat,
+							protein: result.nf_protein,
+							fiber: result.nf_dietary_fiber,
+							n6: _.findWhere(result.full_nutrients, {"attr_id": 646}).value
+						}
+						resolve(foodObj);
 					}
-					resolve(foodObj);
 				}
 			});
 		});

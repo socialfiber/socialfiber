@@ -7,6 +7,10 @@ const Storage = sequelize.define('storage', {
     unique: true,
     allowNull: false,
   },
+  api_name: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
   cal: {
     type: Sequelize.REAL,
     allowNull: false
