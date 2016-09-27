@@ -33,12 +33,18 @@ class MyGroups extends Component {
           </table>
         </div>
       );
+    } else if(this.props.myGroups.length === 0) {
+      return (
+        <div>
+          <h3>You haven't joined any groups.</h3>
+        </div>
+      );
     } else {
       return (
         <div>
-          <h3>Loading your groups...</h3>
+          <h3>Loading groups...</h3>
         </div>
-      );
+      )
     }
   }
 
