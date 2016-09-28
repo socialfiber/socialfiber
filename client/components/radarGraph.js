@@ -5,21 +5,21 @@ class RadarGraph extends Component {
 
   render() {
     let dummyData = {
-      labels: ["Eating", "Drinking", "Sleeping", "Designing", "Coding", "Cycling", "Running"],
+      labels: ["Fats", "Protein", "Carbs", "N-6"],
       datasets: [
         {
           label: "Ideal",
           fillColor: "rgba(220,0,0,0.5)",
           strokeColor: "rgba(220,0,0,0.5)",
           pointColor: "rgba(220,0,0,0.5)",
-          data: [81, 77, 44, 99, 75, 65, 69]
+          data: [81, 77, 44, 52]
         },
         {
           label: "Actual",
           fillColor: "rgba(0,0,220,0.5)",
           strokeColor: "rgba(0,0,220,0.5)",
           pointColor: "rgba(0,0,220,0.5)",
-          data: [65, 59, 90, 81, 56, 55, 40]
+          data: [65, 59, 90, 47]
         }
       ]
     };

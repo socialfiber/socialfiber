@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { UPDATE_USER_DATA, TOGGLE_EDITING } from './types';
+import { UPDATE_USER_DATA, TOGGLE_EDITING, FETCH_IDEAL_MACROS, FETCH_ACTUAL_MACROS } from './types';
 
 export function updateUserData(userStatsObj) {
   userStatsObj.user_id = localStorage.getItem('userID');
@@ -17,3 +17,27 @@ export function updateUserData(userStatsObj) {
     console.error(error);
   })
 }
+
+// export function fetchIdealMacros() {
+//   return axios.get()
+//   .then((response) => {
+//     return {
+//       type: FETCH_IDEAL_MACROS,
+//       payload: response
+//     }
+//   })
+//   .catch((error) => {
+//     console.error(error)
+//   })
+// }
+//
+// export function fetchActualMacros() {
+//   return axios.get()
+//   .then((response) => {
+//     type: FETCH_ACTUAL_MACROS,
+//     payload: response
+//   })
+//   .catch((error) => {
+//     console.error(error)
+//   )
+// }
