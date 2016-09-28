@@ -6,8 +6,8 @@ const questions = {
   //Endpoint to enter survey data into the database.
   '/api/questions/enterData': {
     'post': (req, res) => {
-      console.log('inside POST at /api/questions/enterData', req.body);
-      const newQuestionData = Questions.build({
+      console.log('inside POST at /api/questions/enterData');
+      Questions.create({
         user_id: req.body.user_id,
         height: req.body.height,
         age: req.body.age,
@@ -15,9 +15,7 @@ const questions = {
         gender: req.body.gender,
         preg: req.body.preg,
         lact: req.body.lact
-      });
-      newQuestionData
-        .save()
+      })
         .then(() => {
           console.log('New questionnaire data has been created.');
           const code = utils.generateDietaryProfileCode(req.body);

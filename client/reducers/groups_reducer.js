@@ -9,7 +9,6 @@ export default function(state=INITIAL_STATE, action){
     case FETCH_USER_GROUPS:
       return action.payload.data;
     case LEAVE_GROUP:
-    console.log('action payload: ', action.payload);
       return action.payload;
     case JOIN_GROUP:
       return action.payload;
