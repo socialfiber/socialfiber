@@ -20,22 +20,17 @@ const questions = {
         .save()
         .then(() => {
           console.log('New questionnaire data has been created.');
-          utils.generateDietaryProfileCode(req.body)
-          .then((code) => {
-            Users.update({
-              code: code
-            },
-            {
-              where: {
-                id: req.body.user_id
-              }
-            })
-            .then((updated) => {
-              res.status(201).send();
-            })
-            .catch((err) => {
-              res.status(400).send();
-            });
+          const code = utils.generateDietaryProfileCode(req.body);
+          Users.update({
+            code: code
+          },
+          {
+            where: {
+              id: req.body.user_id
+            }
+          })
+          .then((updated) => {
+            res.status(201).send();
           })
           .catch((err) => {
             res.status(400).send();
@@ -53,8 +48,7 @@ const questions = {
   '/api/questions/getData': {
     'get': (req, res) => {
 			console.log('inside GET at /api/questions/enterData');
-      var userData = [];
-      const getUserSurveyData = Questions.findAll({
+      Questions.findOne({
         where: {
           user_id: req.query.userID
         },
@@ -66,14 +60,8 @@ const questions = {
           'gender'
         ]
       })
-      .then( (users) => {
-        users.forEach( (user) => {
-          console.log('user : ', user);
-          userData.push(user);
-        });
-        console.log('sending data');
-        console.log('userData: ', userData);
-        res.json(userData);
+      .then((user) => {
+        res.status(200).json(user);
       })
       .catch( (err) => {
         console.log('Error: ', err);
@@ -102,22 +90,17 @@ const questions = {
       )
       .then(() => {
         console.log('New questionnaire data has been created.');
-        utils.generateDietaryProfileCode(req.body)
-        .then((code) => {
-          Users.update({
-            code: code
-          },
-          {
-            where: {
-              id: req.body.user_id
-            }
-          })
-          .then((updated) => {
-            res.status(201).send();
-          })
-          .catch((err) => {
-            res.status(400).send();
-          });
+        const code = utils.generateDietaryProfileCode(req.body);
+        Users.update({
+          code: code
+        },
+        {
+          where: {
+            id: req.body.user_id
+          }
+        })
+        .then((updated) => {
+          res.status(201).send();
         })
         .catch((err) => {
           res.status(400).send();
