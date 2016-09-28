@@ -13,6 +13,7 @@ const posts = {
       })
         .then((group) => {
           Posts.create({
+            group_name: req.body.group_name,
             username: req.body.username,
             message: req.body.message
           })
@@ -47,6 +48,7 @@ const posts = {
         },
         attributes: [
           'id',
+          'group_name',
           'username',
           'message',
           'createdAt'

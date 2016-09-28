@@ -8,6 +8,11 @@ const Posts = sequelize.define('posts', {
     type: Sequelize.INTEGER,
     unique: false
   },
+  group_name: {
+    type: Sequelize.STRING,
+    unique: false,
+    allowNull: false
+  },
   username: {
     type: Sequelize.STRING,
     unique: false,
