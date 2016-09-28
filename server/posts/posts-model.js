@@ -8,19 +8,19 @@ const Posts = sequelize.define('posts', {
     type: Sequelize.INTEGER,
     unique: false
   },
-  userName: {
+  username: {
     type: Sequelize.STRING,
     unique: false,
     allowNull: false
   },
-  postMessage: {
+  message: {
     type: Sequelize.TEXT,
     allowNull: false
   }
 });
 
 
-Groups.hasMany(Posts);
+Groups.hasMany(Posts, {foreignKey: 'group_id'});
 
 sequelize
   .sync()
