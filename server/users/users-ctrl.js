@@ -7,8 +7,7 @@ const users = {
       console.log('inside POST at /api/users/createUser');
       const newUser = Users.build({
         username: req.body.username,
-        password: req.body.password,
-        diary_id: req.body.diary_id
+        password: req.body.password
       });
       newUser
         .save()

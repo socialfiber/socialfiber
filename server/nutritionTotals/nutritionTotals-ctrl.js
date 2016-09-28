@@ -72,7 +72,7 @@ const nutritionTotals = {
 				reject(err);
 			});
 		});
-	},
+	}
 }
 
 module.exports = nutritionTotals;

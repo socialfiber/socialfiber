@@ -10,7 +10,7 @@ export function fetchUserData() {
   .then(function(response) {
     return {
       type: FETCH_USER_DATA,
-      payload: response
+      payload: response.data
     };
   })
   .catch(function(error) {

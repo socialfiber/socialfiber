@@ -1,4 +1,6 @@
 const Questions = require('./questions-model.js');
+const Users = require('../users/users-model.js');
+const utils = require('../config/utilities.js');
 
 const questions = {
   //Endpoint to enter survey data into the database.
@@ -10,13 +12,29 @@ const questions = {
         height: req.body.height,
         age: req.body.age,
         weight: req.body.weight,
-        gender: req.body.gender
+        gender: req.body.gender,
+        preg: req.body.preg,
+        lact: req.body.lact
       });
       newQuestionData
         .save()
         .then(() => {
           console.log('New questionnaire data has been created.');
-          res.sendStatus(201);
+          const code = utils.generateDietaryProfileCode(req.body);
+          Users.update({
+            code: code
+          },
+          {
+            where: {
+              id: req.body.user_id
+            }
+          })
+          .then((updated) => {
+            res.status(201).send();
+          })
+          .catch((err) => {
+            res.status(400).send();
+          });
         })
         .catch((err) => {
           console.log('Error: ', err);
@@ -30,8 +48,7 @@ const questions = {
   '/api/questions/getData': {
     'get': (req, res) => {
 			console.log('inside GET at /api/questions/enterData');
-      var userData = [];
-      const getUserSurveyData = Questions.findAll({
+      Questions.findOne({
         where: {
           user_id: req.query.userID
         },
@@ -43,14 +60,8 @@ const questions = {
           'gender'
         ]
       })
-      .then( (users) => {
-        users.forEach( (user) => {
-          console.log('user : ', user);
-          userData.push(user);
-        });
-        console.log('sending data');
-        console.log('userData: ', userData);
-        res.json(userData);
+      .then((user) => {
+        res.status(200).json(user);
       })
       .catch( (err) => {
         console.log('Error: ', err);
@@ -62,14 +73,14 @@ const questions = {
   '/api/questions/updateData': {
     'post': (req, res) => {
       console.log("inside POST at /api/questions/updateData");
-      console.log("req.body: ", req.body)
-      console.log("user_id: ", req.body.user_id)
       Questions.update(
         {
           height: req.body.height,
           age: req.body.age,
           weight: req.body.weight,
-          gender: req.body.gender
+          gender: req.body.gender,
+          preg: req.body.preg,
+          lact: req.body.lact
         },
         {
           where: {
@@ -78,13 +89,27 @@ const questions = {
         }
       )
       .then(() => {
-        console.log('User information has been updated.');
-        res.sendStatus(201);
+        console.log('New questionnaire data has been created.');
+        const code = utils.generateDietaryProfileCode(req.body);
+        Users.update({
+          code: code
+        },
+        {
+          where: {
+            id: req.body.user_id
+          }
+        })
+        .then((updated) => {
+          res.status(201).send();
+        })
+        .catch((err) => {
+          res.status(400).send();
+        });
       })
       .catch((err) => {
         console.log('Error: ', err);
         res.status(400).send({
-          msg: err
+          msg: 'Please fill in all fields.'
         });
       });
     }

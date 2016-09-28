@@ -23,6 +23,14 @@ const Questions = sequelize.define('questions', {
     type: Sequelize.INTEGER,
     allowNull: false,
     unique: true
+  },
+  preg: {
+    type: Sequelize.BOOLEAN,
+    allowNull: false
+  },
+  lact: {
+    type: Sequelize.BOOLEAN,
+    allowNull: false
   }
 });
 
