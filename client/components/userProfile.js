@@ -50,7 +50,7 @@ class UserProfile extends Component {
             <h3>User Info</h3>
             <div>Age: {this.props.userData.age}</div>
             <div>Gender: {this.props.userData.gender}</div>
-            <div>Height: {this.props.userData.height}</div>
+            <div>Height: {Math.floor(this.props.userData.height/12)}ft {this.props.userData.height %12}in</div>
             <div>Weight: {this.props.userData.weight}</div>
             <div>
               <button type="button" onClick={() => this.toggleEditing()}>Edit Info</button>
