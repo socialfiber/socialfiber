@@ -13,15 +13,13 @@ class AllGroups extends Component {
   renderGroups(){
     return this.props.allGroups.map((group, idx)=> {
         return (
-        <li className='list-group-item'>
-  
-          <AllGroupsIndividual key={idx} group={group}/>
+            <li className='list-group-item'>
 
-        </li>
-      )
-    }
-  )
-}
+              <AllGroupsIndividual key={idx} group={group}/>
+            </li>
+          )
+    })
+  }
 
 
   render(){

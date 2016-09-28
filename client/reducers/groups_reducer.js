@@ -4,7 +4,6 @@ const INITIAL_STATE = {all:[]}
 export default function(state=INITIAL_STATE, action){
   switch(action.type) {
     case FETCH_ALL_GROUPS:
-      console.log('action.payload.data+++++++: ', action.payload.data)
       return {all: action.payload.data};
     case FETCH_USER_GROUPS:
       return action.payload.data;
