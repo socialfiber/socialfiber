@@ -40,6 +40,8 @@ const groups = {
             }
           })
           .then((user) => {
+            console.log('user in groups ctrl: ', user)
+            console.log('group in groups ctrl: ', group)
             group.addUsers(user);
             group.save();
             res.sendStatus(201);
@@ -99,13 +101,14 @@ const groups = {
       var allGroups = [];
       Groups.findAll({
         attributes: [
+          'id',
           'name',
           'description'
         ]
       })
       .then( (groups) => {
         groups.forEach((group) => {
-            allGroups.push(group);
+            allGroups.push(group.dataValues);
         })
         res.json(allGroups);
       })

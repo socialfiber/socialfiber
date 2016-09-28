@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchAllGroups } from '../actions/groups';
+import AllGroupsIndividual from './AllGroupsIndividual';
 import NavBar from './navbar';
 
 
@@ -10,19 +11,20 @@ class AllGroups extends Component {
   }
 
   renderGroups(){
-    console.log("this.props.allGroups: ", this.props.allGroups)
     return this.props.allGroups.map((group, idx)=> {
-        return <li className='list-group-item'>
-          <span className="pull-xs-right">{group.name}</span>
-          <strong>{group.description}</strong>
+        return (
+        <li className='list-group-item'>
+  
+          <AllGroupsIndividual key={idx} group={group}/>
+
         </li>
+      )
     }
   )
 }
 
 
   render(){
-    console.log("func: ", this.renderGroups())
     return(
       <div>
         <NavBar />
