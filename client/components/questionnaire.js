@@ -10,7 +10,9 @@ class UserQuestionnaire extends Component {
 
   render() {
     const { handleSubmit } = this.props;
-    const options = [{value: 'male', label: 'male'}, {value: 'female', label: 'female'}];
+    const genderOptions = [{value: 'male', label: 'male'}, {value: 'female', label: 'female'}];
+    const pregnantOptions = [{value: true, label: 'true'}, {value: false, label: 'false'}];
+    const lactatingOptions = [{value: true, label: 'true'}, {value: false, label: 'false'}];
     return (
       <div>
       <NavBar />
@@ -31,8 +33,16 @@ class UserQuestionnaire extends Component {
             </div>
             <div>
               <label>Gender</label>
-              <Field name="gender" component={SelectComponent} options={options} />
-          </div>
+              <Field name="gender" component={SelectComponent} options={genderOptions} />
+            </div>
+            <div>
+              <label>Are you currently pregnant?</label>
+              <Field name="preg" component={SelectComponent} options={pregnantOptions} />
+            </div>
+            <div>
+              <label>Are you currently lactating?</label>
+              <Field name="lact" component={SelectComponent} options={lactatingOptions} />
+            </div>
             <button type="submit">Submit</button>
         </form>
       </div>

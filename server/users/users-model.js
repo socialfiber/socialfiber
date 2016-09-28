@@ -2,11 +2,6 @@ const Sequelize = require('sequelize');
 const sequelize = require('../config/database');
 
 const Users = sequelize.define('users', {
-  diary_id: {
-    type: Sequelize.INTEGER,
-    unique: true,
-    allowNull: true
-  },
   username: {
     type: Sequelize.STRING,
     unique: true,
@@ -15,6 +10,10 @@ const Users = sequelize.define('users', {
   password: {
     type: Sequelize.STRING,
     allowNull: false
+  },
+  code: {
+    type: Sequelize.STRING,
+    allowNull: true
   }
 });
 
