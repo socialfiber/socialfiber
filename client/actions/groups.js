@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
-import { FETCH_ALL_GROUPS, FETCH_USER_GROUPS, LEAVE_GROUP, JOIN_GROUP } from './types';
+import { FETCH_ALL_GROUPS, FETCH_USER_GROUPS, LEAVE_GROUP, JOIN_GROUP, FETCH_GROUP_POSTS } from './types';
 
 export function fetchAllGroups(){
   return axios.get('/api/groups/getAllGroups')
@@ -64,4 +64,19 @@ export function leaveGroup(group_id) {
   .catch(function(error) {
     console.error(error);
   })
-}
+
+export function fetchGroupPosts(group_id) {
+  return axios.get('/api/posts/getMessage', {
+    params: {
+      group_id: group_id
+    }
+  })
+  .then(function(response){
+    return {
+      type: FETCH_GROUP_POSTS,
+      payload: response
+    }
+  })
+  .catch(error){
+    console.error(error)}
+  }
