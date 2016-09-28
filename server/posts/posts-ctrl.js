@@ -12,13 +12,11 @@ const posts = {
         }
       })
         .then((group) => {
-          console.log('New post has been created.', group);
           Posts.create({
             username: req.body.username,
             message: req.body.message
           })
           .then((post) => {
-            console.log('new post: ', post);
             group.addPosts(post);
             group.save();
             res.sendStatus(201);
