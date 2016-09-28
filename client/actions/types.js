@@ -13,3 +13,4 @@ export const CREATE_NEW_GROUP = 'CREATE_NEW_GROUP';
 export const TOGGLE_EDITING = 'TOGGLE_EDITING';
 export const DELETE_DIARY_ENTRY = 'DELETE_DIARY_ENTRY';
 export const LEAVE_GROUP = 'LEAVE_GROUP';
+export const JOIN_GROUP = 'JOIN_GROUP';
