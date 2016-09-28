@@ -5,12 +5,10 @@ const users = {
   '/api/users/createUser': {
     'post': (req, res) => {
       console.log('inside POST at /api/users/createUser');
-      const newUser = Users.build({
+      Users.create({
         username: req.body.username,
         password: req.body.password
-      });
-      newUser
-        .save()
+      })
         .then((user) => {
           utils.hashPassword(req.body.password)
           .then((hash) => {
@@ -32,6 +30,7 @@ const users = {
         });
     }
   },
+  //Endpoint that allows users to login.
   '/api/users/login': {
     'post': (req, res) => {
       console.log('inside POST at /api/users/login');
@@ -65,28 +64,22 @@ const users = {
       });
     }
   },
+  //Endpoint that retrieves user data such as user id and username.
   '/api/users/getUserData': {
     'get': (req, res) => {
       var userData = [];
-      console.log('inside GET at /api/users/getUserData', req.query);
+      console.log('inside GET at /api/users/getUserData');
       const getUser = Users.findAll({
         attributes: [
           'id',
           'username',
           'diary_id'
-          // 'height',
-          // 'age',
-          // 'current_weight',
-          // 'gender'
         ]
       })
       .then( (users) => {
         users.forEach( (user) => {
-          console.log('user : ', user);
           userData.push(user);
         });
-        console.log('sending data');
-        console.log('userData: ', userData);
         res.json(userData);
       })
       .catch( (err) => {
