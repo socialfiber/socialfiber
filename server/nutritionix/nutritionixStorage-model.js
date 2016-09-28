@@ -5,7 +5,7 @@ const Storage = sequelize.define('storage', {
   food: {
     type: Sequelize.STRING,
     unique: true,
-    allowNull: false,
+    allowNull: false
   },
   api_name: {
     type: Sequelize.STRING,

@@ -5,32 +5,37 @@ const Users = require('../users/users-model');
 const NutritionTotals = sequelize.define('nutritionTotals', {
   date: {
     type: Sequelize.DATEONLY,
-    unique: true,
-    allowNull: false,
+    allowNull: false
   },
   cal: {
     type: Sequelize.REAL,
-    allowNull: false
+    allowNull: false,
+    defaultValue: 0
   },
   carb: {
     type: Sequelize.REAL,
-    allowNull: false
+    allowNull: false,
+    defaultValue: 0
   },
   fat: {
     type: Sequelize.REAL,
-    allowNull: false
+    allowNull: false,
+    defaultValue: 0
   },
   protein: {
     type: Sequelize.REAL,
-    allowNull: false
+    allowNull: false,
+    defaultValue: 0
   },
   fiber: {
     type: Sequelize.REAL,
-    allowNull: false
+    allowNull: false,
+    defaultValue: 0
   },
   n6: {
     type: Sequelize.REAL,
-    allowNull: false
+    allowNull: false,
+    defaultValue: 0
   }
 });
 

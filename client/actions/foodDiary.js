@@ -30,10 +30,10 @@ export function submitFoodDiaryEntry(foodDiaryEntryObj) {
 }
 
 export function deleteFoodDiaryEntry(foodDiaryEntryObj) {
+  foodDiaryEntryObj.userID = localStorage.getItem('userID');
   const data = {
     params: foodDiaryEntryObj
   }
-  console.log("TRYING TO DELETE", data)
   return axios.delete('/api/diaryEntries/singleEntry', data)
     .then((response) => {
       return { type: DELETE_DIARY_ENTRY, payload: response.data }
