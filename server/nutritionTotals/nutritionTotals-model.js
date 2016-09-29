@@ -36,10 +36,16 @@ const NutritionTotals = sequelize.define('nutritionTotals', {
     type: Sequelize.REAL,
     allowNull: false,
     defaultValue: 0
+  },
+  user_id: {
+    type: Sequelize.INTEGER,
+    allowNull: false,
+    defaultValue: 0
   }
 });
 
-NutritionTotals.belongsTo(Users, {foreignKey: 'user_id'});
+NutritionTotals.belongsTo(Users, { foreignKey: 'user_id' });
+Users.hasMany(NutritionTotals, { foreignKey: 'user_id' })
 
 sequelize
   .sync()

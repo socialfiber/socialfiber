@@ -1,6 +1,7 @@
 const Users = require('./users-model.js');
 const Questions = require('../questions/questions-model.js');
 const DietaryProfiles = require('../dietaryProfiles/dietaryProfiles-model.js');
+const NutritionTotals = require('../nutritionTotals/nutritionTotals-model.js');
 const utils = require('../config/utilities.js');
 
 const users = {
@@ -75,7 +76,7 @@ const users = {
         where: {
           id: req.query.userID
         },
-        include: [DietaryProfiles, Questions]
+        include: [DietaryProfiles, Questions, NutritionTotals]
       })
       .then((userData) => {
         console.log('userData: ', userData);
