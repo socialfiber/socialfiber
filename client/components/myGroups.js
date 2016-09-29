@@ -10,9 +10,9 @@ class MyGroups extends Component {
   componentWillMount() {
     this.props.fetchUserGroups();
   }
-  componentDidUpdate() {
-    this.props.fetchUserGroups();
-  }
+  // componentDidUpdate() {
+  //   this.props.fetchUserGroups();
+  // }
 
   render() {
     console.log(this.props.myGroups)
@@ -55,7 +55,7 @@ class MyGroups extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    myGroups: state.myGroups.userGroups
+    myGroups: state.groups.userGroups
   }
 }
 
