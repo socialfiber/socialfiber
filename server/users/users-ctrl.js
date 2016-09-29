@@ -1,4 +1,5 @@
 const Users = require('./users-model.js');
+const DietaryProfiles = require('../dietaryProfiles/dietaryProfiles-model.js');
 const utils = require('../config/utilities.js');
 
 const users = {
@@ -67,6 +68,7 @@ const users = {
   //Endpoint that retrieves user data such as user id and username.
   '/api/users/getUserData': {
     'get': (req, res) => {
+<<<<<<< fbeee33c3b57783a84f52f7ce987619dedd8e279
       var userData = [];
       console.log('inside GET at /api/users/getUserData');
       const getUser = Users.findAll({
@@ -81,6 +83,22 @@ const users = {
           userData.push(user);
         });
         res.json(userData);
+=======
+      var userData = [];
+      console.log('inside GET at /api/users/getUserData');
+      const getUser = Users.findAll({
+        attributes: [
+          'id',
+          'username',
+          'diary_id'
+        ]
+      })
+      .then( (users) => {
+        users.forEach( (user) => {
+          userData.push(user);
+        });
+        res.json(userData);
+>>>>>>> [feature] sends dietary profile with user
       })
       .catch( (err) => {
         console.log('Error: ', err);
