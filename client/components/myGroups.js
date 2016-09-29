@@ -10,9 +10,6 @@ class MyGroups extends Component {
   componentWillMount() {
     this.props.fetchUserGroups();
   }
-  // componentDidUpdate() {
-  //   this.props.fetchUserGroups();
-  // }
 
   render() {
     console.log(this.props.myGroups)

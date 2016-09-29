@@ -6,12 +6,12 @@ class Comments extends Component {
 
     render() {
       const { handleSubmit } = this.props;
+      console.log('this props:', this.props);
       return (
         <form>
-          <h3>Add Comment</h3>
             <p>Post a Comment</p>
             <div>
-              <label>Comment Box</label>
+              <label>Reply</label>
               <Field name="comment" component="input" type="text" required />
             </div>
             <button type="submit">Submit</button>
