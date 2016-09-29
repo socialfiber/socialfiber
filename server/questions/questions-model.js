@@ -35,6 +35,7 @@ const Questions = sequelize.define('questions', {
 });
 
 Questions.belongsTo(Users, {foreignKey: 'user_id'});
+Users.hasOne(Questions, {foreignKey: 'id', targetKey: 'user_id' })
 
 sequelize
   .sync()

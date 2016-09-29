@@ -11,6 +11,7 @@ const Friends = sequelize.define('friends', {
 
 Friends.belongsTo(Users, {foreignKey: 'user1_id'});
 Friends.belongsTo(Users, {foreignKey: 'user2_id'});
+Users.hasMany(Friends, {foreignKey: 'id', targetKey: 'user1_id'});
 
 sequelize
   .sync()

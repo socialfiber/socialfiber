@@ -12,6 +12,18 @@ const Users = sequelize.define('users', {
     type: Sequelize.STRING,
     allowNull: false
   },
+  IBW: {
+    type: Sequelize.INTEGER,
+    allowNull: false
+  },
+  cal_min: {
+    type: Sequelize.INTEGER,
+    allowNull: false
+  },
+  cal_max: {
+    type: Sequelize.INTEGER,
+    allowNull: false
+  },
   code: {
     type: Sequelize.STRING,
     allowNull: true

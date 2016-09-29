@@ -1,4 +1,5 @@
 const Users = require('./users-model.js');
+const Questions = require('../questions/questions-model.js');
 const DietaryProfiles = require('../dietaryProfiles/dietaryProfiles-model.js');
 const utils = require('../config/utilities.js');
 
@@ -73,11 +74,11 @@ const users = {
         where: {
           id: req.query.userID
         },
-        include: [DietaryProfiles]
+        include: [DietaryProfiles, Questions]
       })
-      .then((user) => {
-        console.log('userData: ', user);
-        res.status(200).json(user);
+      .then((userData) => {
+        console.log('userData: ', userData);
+        res.status(200).json(userData);
       })
       .catch( (err) => {
         console.log('Error: ', err);
