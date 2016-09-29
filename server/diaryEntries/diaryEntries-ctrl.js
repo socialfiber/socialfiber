@@ -37,16 +37,16 @@ const diaryEntries = {
             food: req.body.food
           })
           .then((entry) => {
-            console.log('New diary entry data has been created.', req.body.userID);
+            console.log('New diary entry data has been created.', data);
             nutritionTotals.increase({
+              user_id: req.body.userID,
               date: req.body.date,
-              cal: data.cal,
-              carb: data.carb,
-              fat: data.fat,
-              protein: data.protein,
-              fiber: data.fiber,
-              n6: data.n6,
-              user_id: req.body.userID
+              cal: data.cal*entry.qty,
+              carb: data.carb*entry.qty,
+              fat: data.fat*entry.qty,
+              protein: data.protein*entry.qty,
+              fiber: data.fiber*entry.qty,
+              n6: data.n6*entry.qty
             })
             .then((increased) => {
               console.log("SUCCESSFULLY INCREASED!!!!");
@@ -69,6 +69,7 @@ const diaryEntries = {
       });
 		},
     'delete': (req, res) => {
+      console.log(req.query)
       DiaryEntries.destroy({
         where: {
           id: req.query.id
