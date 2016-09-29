@@ -1,5 +1,6 @@
 //action types
 export const AUTH_USER = 'AUTH_USER';
+export const SIGN_OUT = 'SIGN_OUT';
 export const UNAUTH_USER = 'UNAUTH_USER';
 export const AUTH_ERROR = 'AUTH_ERROR';
 export const SUBMIT_USER_STATS = 'SUBMIT_USER_STATS';
@@ -11,7 +12,6 @@ export const FETCH_ALL_GROUPS = 'FETCH_ALL_GROUPS';
 export const FETCH_USER_GROUPS = 'FETCH_USER_GROUPS';
 export const CREATE_NEW_GROUP = 'CREATE_NEW_GROUP';
 export const TOGGLE_EDITING = 'TOGGLE_EDITING';
-export const DELETE_DIARY_ENTRY = 'DELETE_DIARY_ENTRY';
 export const LEAVE_GROUP = 'LEAVE_GROUP';
 export const JOIN_GROUP = 'JOIN_GROUP';
 export const FETCH_IDEAL_MACROS = 'FETCH_IDEAL_MACROS';

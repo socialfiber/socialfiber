@@ -36,7 +36,7 @@ export function deleteFoodDiaryEntry(foodDiaryEntryObj) {
   }
   return axios.delete('/api/diaryEntries/singleEntry', data)
     .then((response) => {
-      return { type: DELETE_DIARY_ENTRY, payload: response.data }
+      return;
     })
     .catch(() => {
       console.error(error);
