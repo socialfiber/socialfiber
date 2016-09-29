@@ -14,6 +14,7 @@ import SplashPg from './components/splashpg';
 import MyGroups from './components/myGroups';
 import AllGroups from './components/allGroups';
 import CreateGroup from './components/CreateGroup';
+import GroupWall from './components/GroupWall';
 
 const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
 const store = createStoreWithMiddleware(reducers, window.devToolsExtension ? window.devToolsExtension() : f => f);
@@ -32,6 +33,7 @@ ReactDOM.render(
     	<Route path='userprofile' component={UserProfile} />
       <Route path='mygroups' component={MyGroups} />
       <Route path = 'creategroup' component={CreateGroup}/>
+      <Route path = 'groupwall' component={GroupWall}/>
     </Router>
   </Provider>
 , document.getElementById('main'));
