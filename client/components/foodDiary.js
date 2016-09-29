@@ -19,7 +19,7 @@ class FoodDiary extends Component {
   // }
 
   render() {
-    if(this.props.diaryData !== null) {
+    if(this.props.diaryData) {
       const logs = this.props.diaryData.map((log, idx) =>
         <FoodDiaryLog key={idx} log={log} />
       );

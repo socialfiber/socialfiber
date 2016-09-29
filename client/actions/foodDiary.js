@@ -22,9 +22,10 @@ export function submitFoodDiaryEntry(foodDiaryEntryObj) {
   foodDiaryEntryObj.userID = localStorage.getItem('userID');
   return axios.post('/api/diaryEntries/singleEntry', foodDiaryEntryObj)
     .then((response) => {
+      console.log('response++++ :', response)
       return { type: SUBMIT_DIARY_ENTRY, payload: response.data }
     })
-    .catch(() => {
+    .catch((error) => {
       console.error(error);
     });
 }

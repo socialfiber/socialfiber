@@ -25,8 +25,10 @@ const diaryEntries = {
   },
   '/api/diaryEntries/singleEntry': {
     'post': (req, res) => {
+		 console.log('req.body: ', req.body)
       nutritionix.search(req.body.food)
       .then((data) => {
+
         if(data.message) {
           res.status(400).send();
         } else {
@@ -37,6 +39,7 @@ const diaryEntries = {
             food: req.body.food
           })
           .then((entry) => {
+						console.log('entry: ', entry)
             nutritionTotals.increase({
               user_id: req.body.userID,
               date: req.body.date,
@@ -52,7 +55,7 @@ const diaryEntries = {
             })
             .catch((err) => {
               res.status(400).send();
-            })            
+            })
           })
           .catch((err) => {
             console.error('Error: ', err);

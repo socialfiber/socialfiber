@@ -15,7 +15,7 @@ class MyGroups extends Component {
   }
 
   render() {
-
+    console.log(this.props.myGroups)
     if(this.props.myGroups.length > 0) {
       const groups = this.props.myGroups.map((group, idx) =>
         <MyGroupsIndividual key={idx} group={group} />
@@ -55,7 +55,7 @@ class MyGroups extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    myGroups: state.groups
+    myGroups: state.myGroups.userGroups
   }
 }
 
