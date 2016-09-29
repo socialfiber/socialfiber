@@ -14,7 +14,7 @@ const users = {
         .then((user) => {
           utils.hashPassword(req.body.password)
           .then((hash) => {
-            newUser.update({ password: hash });
+            user.update({ password: hash });
           })
           .catch((err) => {
             console.log("Password hashing error: ", err)
@@ -26,6 +26,7 @@ const users = {
           });
         })
         .catch((err) => {
+          console.log(err);
           res.status(400).send({
             msg: 'The username you have selected already exists.'
           });

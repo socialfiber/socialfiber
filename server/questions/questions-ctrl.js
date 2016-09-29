@@ -18,9 +18,12 @@ const questions = {
       })
         .then(() => {
           console.log('New questionnaire data has been created.');
-          const code = utils.generateDietaryProfileCode(req.body);
+          const dietaryInfo = utils.generateDietaryInfo(req.body);
           Users.update({
-            code: code
+            IBW: dietaryInfo.IBW,
+            cal_min: dietaryInfo.cal_min,
+            cal_max: dietaryInfo.cal_max,
+            code: dietaryInfo.code
           },
           {
             where: {
@@ -88,9 +91,12 @@ const questions = {
       )
       .then(() => {
         console.log('New questionnaire data has been created.');
-        const code = utils.generateDietaryProfileCode(req.body);
+        const dietaryInfo = utils.generateDietaryInfo(req.body);
         Users.update({
-          code: code
+          IBW: dietaryInfo.IBW,
+          cal_min: dietaryInfo.cal_min,
+          cal_max: dietaryInfo.cal_max,
+          code: dietaryInfo.code
         },
         {
           where: {

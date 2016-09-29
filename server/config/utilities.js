@@ -46,7 +46,11 @@ const utilities = {
     });
   },
 
-  generateDietaryProfileCode: (user) => {
+  generateDietaryInfo: (user) => {
+    var IBW = user.gender === 'male' ? 106 : 100;
+    IBW += user.height > 60 ? (user.height-60)*6 : (60-user.height)*5;
+    var cal_min = IBW/2.2*25;
+    var cal_max = IBW/2.2*25;
     var code;
     if(user.lact) {code = 'lact0'}
     else if(user.preg) {code = 'preg0'}
@@ -61,7 +65,7 @@ const utilities = {
       else if(user.age>50) {word+='4'}
       code = word;
     }
-    return code;
+    return { code: code, IBW: IBW, cal_min: cal_min, cal_max: cal_max }
   }
 }
 
