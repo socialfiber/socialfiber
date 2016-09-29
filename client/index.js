@@ -18,6 +18,7 @@ import GroupWall from './components/GroupWall';
 import BrowseProfile from './components/BrowseProfile';
 import ChatWindow from './components/chatWindow';
 
+
 const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
 const store = createStoreWithMiddleware(reducers, window.devToolsExtension ? window.devToolsExtension() : f => f);
 
