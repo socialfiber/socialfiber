@@ -89,7 +89,7 @@ const questions = {
           }
         }
       )
-      .then(() => {
+      .then((questionnaire) => {
         console.log('New questionnaire data has been created.');
         const dietaryInfo = utils.generateDietaryInfo(req.body);
         Users.update({
