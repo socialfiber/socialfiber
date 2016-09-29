@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../config/database');
+const DietaryProfiles = require('../dietaryProfiles/dietaryProfiles-model.js');
 
 const Users = sequelize.define('users', {
   username: {
@@ -11,11 +12,26 @@ const Users = sequelize.define('users', {
     type: Sequelize.STRING,
     allowNull: false
   },
+  IBW: {
+    type: Sequelize.INTEGER,
+    allowNull: true
+  },
+  cal_min: {
+    type: Sequelize.INTEGER,
+    allowNull: true
+  },
+  cal_max: {
+    type: Sequelize.INTEGER,
+    allowNull: true
+  },
   code: {
     type: Sequelize.STRING,
     allowNull: true
   }
 });
+
+Users.belongsTo(DietaryProfiles, { foreignKey: 'code', targetKey: 'code' });
+DietaryProfiles.hasMany(Users, { foreignKey: 'code' });
 
 sequelize
   .sync()

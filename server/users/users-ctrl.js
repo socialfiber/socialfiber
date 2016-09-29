@@ -1,4 +1,6 @@
 const Users = require('./users-model.js');
+const Questions = require('../questions/questions-model.js');
+const DietaryProfiles = require('../dietaryProfiles/dietaryProfiles-model.js');
 const utils = require('../config/utilities.js');
 
 const users = {
@@ -12,7 +14,7 @@ const users = {
         .then((user) => {
           utils.hashPassword(req.body.password)
           .then((hash) => {
-            newUser.update({ password: hash });
+            user.update({ password: hash });
           })
           .catch((err) => {
             console.log("Password hashing error: ", err)
@@ -24,6 +26,7 @@ const users = {
           });
         })
         .catch((err) => {
+          console.log(err);
           res.status(400).send({
             msg: 'The username you have selected already exists.'
           });
@@ -67,20 +70,16 @@ const users = {
   //Endpoint that retrieves user data such as user id and username.
   '/api/users/getUserData': {
     'get': (req, res) => {
-      var userData = [];
-      console.log('inside GET at /api/users/getUserData');
-      const getUser = Users.findAll({
-        attributes: [
-          'id',
-          'username',
-          'diary_id'
-        ]
+      console.log('inside GET at /api/users/getUserData', req.query);
+      Users.findOne({
+        where: {
+          id: req.query.userID
+        },
+        include: [DietaryProfiles, Questions]
       })
-      .then( (users) => {
-        users.forEach( (user) => {
-          userData.push(user);
-        });
-        res.json(userData);
+      .then((userData) => {
+        console.log('userData: ', userData);
+        res.status(200).json(userData);
       })
       .catch( (err) => {
         console.log('Error: ', err);
