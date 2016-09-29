@@ -37,7 +37,6 @@ const diaryEntries = {
             food: req.body.food
           })
           .then((entry) => {
-            console.log('New diary entry data has been created.', data);
             nutritionTotals.increase({
               user_id: req.body.userID,
               date: req.body.date,
@@ -49,7 +48,6 @@ const diaryEntries = {
               n6: data.n6*entry.qty
             })
             .then((increased) => {
-              console.log("SUCCESSFULLY INCREASED!!!!");
               res.status(201).send();
             })
             .catch((err) => {
@@ -76,7 +74,29 @@ const diaryEntries = {
         }
       })
       .then((affectedRows) => {
-        res.status(201).send();
+        nutritionix.search(req.query.food)
+        .then((data) => {
+          console.log("DATA FROM SEARCH", data)
+          nutritionTotals.decrease({
+            user_id: req.query.userID,
+            date: req.query.date.substr(0,10),
+            cal: data.cal*req.query.qty,
+            carb: data.carb*req.query.qty,
+            fat: data.fat*req.query.qty,
+            protein: data.protein*req.query.qty,
+            fiber: data.fiber*req.query.qty,
+            n6: data.n6*req.query.qty
+          })
+          .then((decreased) => {
+            res.status(201).send();
+          })
+          .catch((err) => {
+            res.status(400).send();
+          });
+        })
+        .catch((err) => {
+          res.status(400).send();
+        });
       })
       .catch((err) => {
         res.status(400).send();

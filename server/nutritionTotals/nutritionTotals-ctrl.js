@@ -12,7 +12,6 @@ const nutritionTotals = {
 			})
 			.then((entry) => {
 				const start = entry[0].dataValues;
-				console.log("UPDATING AFTER CREATE", start)
 				NutritionTotals.update({
 					cal: start.cal+input.cal,
 					carb: start.carb+input.carb,
@@ -40,15 +39,16 @@ const nutritionTotals = {
 	},
 	'decrease': (input) => {
 		return new Promise((resolve, reject) => {
+			console.log("INPUT FOR DECREASE", input)
 			NutritionTotals.findOne({
 				where: {
-					user_id: input.userID,
+					user_id: input.user_id,
 					date: input.date
 				},
 				attributes: ['cal', 'carb', 'fat','protein','fiber','n6']
 			})
 			.then((entry) => {
-				const start = entry[0].dataValues;
+				const start = entry.dataValues;
 				NutritionTotals.update({
 					cal: start.cal-input.cal,
 					carb: start.carb-input.carb,
@@ -58,7 +58,7 @@ const nutritionTotals = {
 					n6: start.n6-input.n6
 				}, {
 					where: {
-						user_id: input.userID,
+						user_id: input.user_id,
 						date: input.date
 					}
 				})
@@ -67,7 +67,7 @@ const nutritionTotals = {
 				})
 				.catch((err) => {
 					reject(err);
-				})
+				});
 			})
 			.catch((err) => {
 				reject(err);
