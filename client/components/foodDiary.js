@@ -51,7 +51,7 @@ class FoodDiary extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    diaryData: state.foodDiary
+    diaryData: state.foodDiary.logs
   }
 }
 

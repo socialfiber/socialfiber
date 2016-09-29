@@ -10,7 +10,7 @@ export function fetchAllGroups(){
         payload: response
       };
     })
-    .catch(function(error){
+    .catch((error) => {
       console.error(error);
     })
 }
@@ -28,7 +28,7 @@ export function fetchUserGroups() {
       payload: response
     };
   })
-  .catch(function(error) {
+  .catch((error) => {
     console.error(error);
   })
 }
@@ -36,18 +36,18 @@ export function fetchUserGroups() {
 export function joinGroup(group_id) {
   console.log('group_id: ', group_id)
   return axios.post('api/groups/addUser', {
-      group_id: group_id,
-      user_id: localStorage.getItem('userID'),
-    })
-    .then(function(response) {
-      return {
-        type: JOIN_GROUP,
-        payload: response
-      }
-    })
-    .catch(function(error) {
-      console.error(error)
-    })
+    group_id: group_id,
+    user_id: localStorage.getItem('userID'),
+  })
+  .then(function(response) {
+    return {
+      type: JOIN_GROUP,
+      payload: response
+    }
+  })
+  .catch((error) => {
+    console.error(error);
+  })
 }
 
 export function leaveGroup(group_id) {
@@ -61,9 +61,10 @@ export function leaveGroup(group_id) {
       payload: response
     };
   })
-  .catch(function(error) {
+  .catch((error) => {
     console.error(error);
   })
+}
 
 export function fetchGroupPosts(group_id) {
   return axios.get('/api/posts/getMessage', {
@@ -77,6 +78,8 @@ export function fetchGroupPosts(group_id) {
       payload: response
     }
   })
-  .catch(error){
-    console.error(error)}
-  }
+  .catch((error) => {
+    console.error(error);
+  })
+}
+
