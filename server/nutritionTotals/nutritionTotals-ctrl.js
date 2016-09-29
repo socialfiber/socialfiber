@@ -5,13 +5,14 @@ const nutritionTotals = {
 		return new Promise((resolve, reject) => {
 			NutritionTotals.findOrCreate({
 				where: {
-					user_id: input.userID,
+					user_id: input.user_id,
 					date: input.date
 				},
-				attributes: ['user_id', 'date', 'cal', 'carb', 'fat','protein','fiber','n6']
+				attributes: ['cal', 'carb', 'fat','protein','fiber','n6']
 			})
 			.then((entry) => {
 				const start = entry[0].dataValues;
+				console.log("UPDATING AFTER CREATE", start)
 				NutritionTotals.update({
 					cal: start.cal+input.cal,
 					carb: start.carb+input.carb,
@@ -21,7 +22,7 @@ const nutritionTotals = {
 					n6: start.n6+input.n6
 				}, {
 					where: {
-						user_id: input.userID,
+						user_id: input.user_id,
 						date: input.date
 					}
 				})
@@ -39,22 +40,22 @@ const nutritionTotals = {
 	},
 	'decrease': (input) => {
 		return new Promise((resolve, reject) => {
-			NutritionTotals.findOrCreate({
+			NutritionTotals.findOne({
 				where: {
 					user_id: input.userID,
 					date: input.date
 				},
-				attributes: ['user_id', 'date', 'cal', 'carb', 'fat','protein','fiber','n6']
+				attributes: ['cal', 'carb', 'fat','protein','fiber','n6']
 			})
 			.then((entry) => {
 				const start = entry[0].dataValues;
 				NutritionTotals.update({
-					cal: start.cal+input.cal,
-					carb: start.carb+input.carb,
-					fat: start.fat+input.fat,
-					protein: start.protein+input.protein,
-					fiber: start.fiber+input.fiber,
-					n6: start.n6+input.n6
+					cal: start.cal-input.cal,
+					carb: start.carb-input.carb,
+					fat: start.fat-input.fat,
+					protein: start.protein-input.protein,
+					fiber: start.fiber-input.fiber,
+					n6: start.n6-input.n6
 				}, {
 					where: {
 						user_id: input.userID,

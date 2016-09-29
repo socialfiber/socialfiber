@@ -1,5 +1,7 @@
 const DiaryEntries = require('./diaryEntries-model.js');
-const nutritionix = require('../nutritionix/nutritionix-ctrl.js')
+const Storage = require('../nutritionix/nutritionixStorage-model.js');
+const nutritionix = require('../nutritionix/nutritionix-ctrl.js');
+const nutritionTotals = require('../nutritionTotals/nutritionTotals-ctrl.js');
 
 const diaryEntries = {
 	'/api/diaryEntries/allEntries': {
@@ -28,24 +30,38 @@ const diaryEntries = {
         if(data.message) {
           res.status(400).send();
         } else {
-          const newEntryData = DiaryEntries.build({
+          DiaryEntries.create({
             user_id: req.body.userID,
             date: req.body.date,
             qty: req.body.qty,
             food: req.body.food
-          });
-          newEntryData
-            .save()
-            .then(() => {
-              console.log('New diary entry data has been created.');
+          })
+          .then((entry) => {
+            console.log('New diary entry data has been created.', req.body.userID);
+            nutritionTotals.increase({
+              date: req.body.date,
+              cal: data.cal,
+              carb: data.carb,
+              fat: data.fat,
+              protein: data.protein,
+              fiber: data.fiber,
+              n6: data.n6,
+              user_id: req.body.userID
+            })
+            .then((increased) => {
+              console.log("SUCCESSFULLY INCREASED!!!!");
               res.status(201).send();
             })
             .catch((err) => {
-              console.error('Error: ', err);
-              res.status(400).send({
-                msg: 'Please fill in all fields.'
-              });
+              res.status(400).send();
+            })            
+          })
+          .catch((err) => {
+            console.error('Error: ', err);
+            res.status(400).send({
+              msg: 'Please fill in all fields.'
             });
+          });
         }
       })
       .catch((err) => {

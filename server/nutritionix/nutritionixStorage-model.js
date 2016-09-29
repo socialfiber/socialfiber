@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../config/database');
+const DiaryEntries = require('../diaryEntries/diaryEntries-model');
 
 const Storage = sequelize.define('storage', {
   food: {
@@ -36,6 +37,9 @@ const Storage = sequelize.define('storage', {
     allowNull: false
   }
 });
+
+Storage.belongsTo(DiaryEntries, { foreignKey: 'food' });
+DiaryEntries.hasOne(Storage, { foreignKey: 'food' });
 
 sequelize
   .sync()

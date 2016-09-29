@@ -17,7 +17,8 @@ const DiaryEntries = sequelize.define('diaryEntries', {
   }
 });
 
-DiaryEntries.belongsTo(Users, {foreignKey: 'user_id'});
+DiaryEntries.belongsTo(Users, { foreignKey: 'user_id' });
+Users.hasMany(DiaryEntries, { foreignKey: 'user_id' });
 
 sequelize
   .sync()

@@ -16,33 +16,33 @@ const questions = {
         preg: req.body.preg,
         lact: req.body.lact
       })
-        .then(() => {
-          console.log('New questionnaire data has been created.');
-          const dietaryInfo = utils.generateDietaryInfo(req.body);
-          Users.update({
-            IBW: dietaryInfo.IBW,
-            cal_min: dietaryInfo.cal_min,
-            cal_max: dietaryInfo.cal_max,
-            code: dietaryInfo.code
-          },
-          {
-            where: {
-              id: req.body.user_id
-            }
-          })
-          .then((updated) => {
-            res.status(201).send();
-          })
-          .catch((err) => {
-            res.status(400).send();
-          });
+      .then(() => {
+        console.log('New questionnaire data has been created.');
+        const dietaryInfo = utils.generateDietaryInfo(req.body);
+        Users.update({
+          IBW: dietaryInfo.IBW,
+          cal_min: dietaryInfo.cal_min,
+          cal_max: dietaryInfo.cal_max,
+          code: dietaryInfo.code
+        },
+        {
+          where: {
+            id: req.body.user_id
+          }
+        })
+        .then((updated) => {
+          res.status(201).send();
         })
         .catch((err) => {
-          console.log('Error: ', err);
-          res.status(400).send({
-            msg: 'Please fill in all fields.'
-          });
+          res.status(400).send();
         });
+      })
+      .catch((err) => {
+        console.log('Error: ', err);
+        res.status(400).send({
+          msg: 'Please fill in all fields.'
+        });
+      });
     }
   },
   //Endpoint to retrieve survey data from the database.
