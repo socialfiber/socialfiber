@@ -66,20 +66,19 @@ export function leaveGroup(group_id) {
   })
 }
 
-export function fetchGroupPosts(group_id) {
-  return axios.get('/api/posts/getMessage', {
-    params: {
-      group_id: group_id
-    }
-  })
-  .then(function(response){
-    return {
-      type: FETCH_GROUP_POSTS,
-      payload: response
-    }
-  })
-  .catch((error) => {
-    console.error(error);
-  })
-}
 
+// export function fetchGroupPosts(group_id) {
+//   return axios.get('/api/posts/getMessage', {
+//     params: {
+//       group_id: group_id
+//     }
+//   })
+//   .then(function(response){
+//     return {
+//       type: FETCH_GROUP_POSTS,
+//       payload: response
+//     }
+//   })
+//   .catch(error){
+//     console.error(error)}
+//   }
