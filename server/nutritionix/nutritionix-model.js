@@ -32,8 +32,8 @@ const Nutritionix = {
 							cal: result.nf_calories,
 							carb: result.nf_total_carbohydrate,
 							fat: result.nf_total_fat,
-							protein: result.nf_protein,
-							fiber: result.nf_dietary_fiber,
+							prot: result.nf_protein,
+							fib: result.nf_dietary_fiber,
 							n6: _.findWhere(result.full_nutrients, {"attr_id": 646}).value
 						}
 						resolve(foodObj);

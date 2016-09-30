@@ -18,17 +18,14 @@ const diaryEntries = {
         res.status(200).json(entries);
       })
       .catch((err) => {
-        console.error('Error: ', err);
-        res.status(400).send(err.message);
+        res.status(400).send();
       });
 		}
   },
   '/api/diaryEntries/singleEntry': {
     'post': (req, res) => {
-		 console.log('req.body: ', req.body)
       nutritionix.search(req.body.food)
       .then((data) => {
-
         if(data.message) {
           res.status(400).send();
         } else {
@@ -39,15 +36,14 @@ const diaryEntries = {
             food: req.body.food
           })
           .then((entry) => {
-						console.log('entry: ', entry)
             nutritionTotals.increase({
               user_id: req.body.userID,
               date: req.body.date,
               cal: data.cal*entry.qty,
               carb: data.carb*entry.qty,
               fat: data.fat*entry.qty,
-              protein: data.protein*entry.qty,
-              fiber: data.fiber*entry.qty,
+              prot: data.prot*entry.qty,
+              fib: data.fib*entry.qty,
               n6: data.n6*entry.qty
             })
             .then((increased) => {
@@ -58,10 +54,7 @@ const diaryEntries = {
             })
           })
           .catch((err) => {
-            console.error('Error: ', err);
-            res.status(400).send({
-              msg: 'Please fill in all fields.'
-            });
+            res.status(400).send();
           });
         }
       })
@@ -70,7 +63,6 @@ const diaryEntries = {
       });
 		},
     'delete': (req, res) => {
-      console.log(req.query)
       DiaryEntries.destroy({
         where: {
           id: req.query.id
@@ -79,15 +71,14 @@ const diaryEntries = {
       .then((affectedRows) => {
         nutritionix.search(req.query.food)
         .then((data) => {
-          console.log("DATA FROM SEARCH", data)
           nutritionTotals.decrease({
             user_id: req.query.userID,
-            date: req.query.date.substr(0,10),
+            date: req.query.date,
             cal: data.cal*req.query.qty,
             carb: data.carb*req.query.qty,
             fat: data.fat*req.query.qty,
-            protein: data.protein*req.query.qty,
-            fiber: data.fiber*req.query.qty,
+            prot: data.prot*req.query.qty,
+            fib: data.fib*req.query.qty,
             n6: data.n6*req.query.qty
           })
           .then((decreased) => {

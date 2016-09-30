@@ -4,6 +4,7 @@ import { Field, reduxForm } from 'redux-form';
 import { submitSignUp } from '../actions/auth';
 
 class SignUp extends Component {
+
   render() {
     const { handleSubmit } = this.props;
     return (
@@ -36,4 +37,5 @@ SignUp = reduxForm({
 const mapStateToProps = (state) => {
   return {}
 }
+
 export default connect(mapStateToProps, { submitSignUp })(SignUp);

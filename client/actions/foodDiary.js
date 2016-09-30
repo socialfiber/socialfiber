@@ -11,22 +11,19 @@ export function fetchFoodDiary() {
     .then((response) => {
       return { type: FETCH_FOOD_DIARY, payload: response.data }
     })
-    .catch(() => {
-      console.error(error);
+    .catch((err) => {
+      console.error(err);
     });
 }
 
-//post req to db
-  //rerender page on change
 export function submitFoodDiaryEntry(foodDiaryEntryObj) {
   foodDiaryEntryObj.userID = localStorage.getItem('userID');
   return axios.post('/api/diaryEntries/singleEntry', foodDiaryEntryObj)
     .then((response) => {
-      console.log('response++++ :', response)
       return { type: SUBMIT_DIARY_ENTRY, payload: response.data }
     })
-    .catch((error) => {
-      console.error(error);
+    .catch((err) => {
+      console.error(err);
     });
 }
 
@@ -39,7 +36,7 @@ export function deleteFoodDiaryEntry(foodDiaryEntryObj) {
     .then((response) => {
       return;
     })
-    .catch(() => {
-      console.error(error);
+    .catch((err) => {
+      console.error(err);
     });
 }

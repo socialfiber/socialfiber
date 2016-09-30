@@ -32,19 +32,19 @@ const DietaryProfiles = sequelize.define('dietaryProfiles', {
     type: Sequelize.REAL,
     allowNull: false
   },
-  protein: {
+  prot: {
     type: Sequelize.REAL,
     allowNull: false
   },
-  protein_min: {
+  prot_min: {
     type: Sequelize.REAL,
     allowNull: false
   },
-  protein_max: {
+  prot_max: {
     type: Sequelize.REAL,
     allowNull: false
   },
-  fiber: {
+  fib: {
     type: Sequelize.REAL,
     allowNull: false
   },

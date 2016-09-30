@@ -28,4 +28,8 @@ SignIn = reduxForm({
   form: 'SignInForm'
 })(SignIn);
 
-export default connect(null, { submitSignIn })(SignIn);
+const mapStateToProps = (state) => {
+  return {}
+}
+
+export default connect(mapStateToProps, { submitSignIn })(SignIn);

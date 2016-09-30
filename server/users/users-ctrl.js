@@ -15,11 +15,18 @@ const users = {
       .then((user) => {
         utils.hashPassword(req.body.password)
         .then((hash) => {
-          user.update({ password: hash });
-          const token = utils.generateToken(user);
-          res.status(201).send({
-            token: token,
-            user: user
+          user.update({ password: hash })
+          .then((updated) => {
+            const token = utils.generateToken(user);
+            res.status(201).send({
+              token: token,
+              user: user
+            });
+          })
+          .catch((err) => {
+            res.status(401).send({
+              msg: 'Error updating password to hash.'
+            });
           });
         })
         .catch((err) => {
@@ -68,7 +75,7 @@ const users = {
       });
     }
   },
-  //Endpoint that retrieves user data such as user id and username.
+
   '/api/users/getUserData': {
     'get': (req, res) => {
       console.log('inside GET at /api/users/getUserData');
@@ -82,7 +89,9 @@ const users = {
         res.status(200).json(userData);
       })
       .catch((err) => {
-        res.status(400).send();
+        res.status(400).send({
+          msg: 'Error getting user data.'
+        });
       });
     }
   }

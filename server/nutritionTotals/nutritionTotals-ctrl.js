@@ -8,7 +8,7 @@ const nutritionTotals = {
 					user_id: input.user_id,
 					date: input.date
 				},
-				attributes: ['cal', 'carb', 'fat','protein','fiber','n6']
+				attributes: ['cal', 'carb', 'fat','prot','fib','n6']
 			})
 			.then((entry) => {
 				const start = entry[0].dataValues;
@@ -16,8 +16,8 @@ const nutritionTotals = {
 					cal: start.cal+input.cal,
 					carb: start.carb+input.carb,
 					fat: start.fat+input.fat,
-					protein: start.protein+input.protein,
-					fiber: start.fiber+input.fiber,
+					prot: start.prot+input.prot,
+					fib: start.fib+input.fib,
 					n6: start.n6+input.n6
 				}, {
 					where: {
@@ -45,7 +45,7 @@ const nutritionTotals = {
 					user_id: input.user_id,
 					date: input.date
 				},
-				attributes: ['cal', 'carb', 'fat','protein','fiber','n6']
+				attributes: ['cal', 'carb', 'fat','prot','fib','n6']
 			})
 			.then((entry) => {
 				const start = entry.dataValues;
@@ -53,8 +53,8 @@ const nutritionTotals = {
 					cal: start.cal-input.cal,
 					carb: start.carb-input.carb,
 					fat: start.fat-input.fat,
-					protein: start.protein-input.protein,
-					fiber: start.fiber-input.fiber,
+					prot: start.prot-input.prot,
+					fib: start.fib-input.fib,
 					n6: start.n6-input.n6
 				}, {
 					where: {

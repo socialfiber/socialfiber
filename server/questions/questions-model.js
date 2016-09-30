@@ -39,10 +39,10 @@ Users.hasOne(Questions, { foreignKey: 'user_id' });
 
 sequelize
   .sync()
-  .then((err) => {
+  .then(() => {
     console.log('Questions model synced successfully.');
-}, (err) => {
-    console.log('An error has occurred:', err);
+  }, (err) => {
+    console.error('An error has occurred:', err);
   });
 
 module.exports = Questions;
