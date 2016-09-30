@@ -19,18 +19,20 @@ const Questions = sequelize.define('questions', {
     type: Sequelize.STRING,
     allowNull: false
   },
+  preg: {
+    type: Sequelize.BOOLEAN,
+    allowNull: false,
+    default: false
+  },
+  lact: {
+    type: Sequelize.BOOLEAN,
+    allowNull: false,
+    default: false
+  },
   user_id: {
     type: Sequelize.INTEGER,
     allowNull: false,
     unique: true
-  },
-  preg: {
-    type: Sequelize.BOOLEAN,
-    allowNull: false
-  },
-  lact: {
-    type: Sequelize.BOOLEAN,
-    allowNull: false
   }
 });
 

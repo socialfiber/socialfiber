@@ -42,7 +42,6 @@ const users = {
       });
     }
   },
-  //Endpoint that allows users to signin.
   '/api/users/signin': {
     'post': (req, res) => {
       console.log('inside POST at /api/users/signin');
