@@ -20,7 +20,7 @@ const users = {
             const token = utils.generateToken(user);
             res.status(201).send({
               token: token,
-              user: user
+              user: { id: user.id, username: user.username }
             });
           })
           .catch((err) => {
@@ -59,7 +59,7 @@ const users = {
             const token = utils.generateToken(user);
             res.status(201).send({
               token: token,
-              user: user
+              user: { id: user.id, username: user.username }
             });
           } else {
             res.status(401).send({
@@ -75,7 +75,6 @@ const users = {
       });
     }
   },
-
   '/api/users/getUserData': {
     'get': (req, res) => {
       console.log('inside GET at /api/users/getUserData');
@@ -83,7 +82,28 @@ const users = {
         where: {
           id: req.query.userID
         },
+        attributes: ['id', 'username', 'IBW', 'cal_min', 'cal_max', 'code'],
         include: [DietaryProfiles, Questions, NutritionTotals]
+      })
+      .then((userData) => {
+        res.status(200).json(userData);
+      })
+      .catch((err) => {
+        res.status(400).send({
+          msg: 'Error getting user data.'
+        });
+      });
+    }
+  },
+  '/api/users/browse/:id': {
+    'get': (req, res) => {
+      console.log('inside GET at /api/users/browse/:id');
+      Users.findOne({
+        where: {
+          id: req.query.userID //change to grab from endpoint
+        },
+        attributes: ['username'], //add privacy later
+        include: [DietaryProfiles, NutritionTotals] //add some of their food diary
       })
       .then((userData) => {
         res.status(200).json(userData);

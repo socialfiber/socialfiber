@@ -5,7 +5,8 @@ const Users = require('../users/users-model.js');
 const Friends = sequelize.define('friends', {
   status: {
     type: Sequelize.STRING,
-    allowNull: false
+    allowNull: true,
+    default: null
   }
 });
 

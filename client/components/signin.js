@@ -17,7 +17,7 @@ class SignIn extends Component {
           <label>Password</label>
           <Field name="password" component="input" type="password" />
         </div>
-        <button type="submit">Login</button>
+        <button type="submit">Sign In</button>
       </form>
     )
   }
