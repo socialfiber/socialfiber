@@ -67,9 +67,16 @@ class RadarGraph extends Component {
 
     let chartOptions = {
       scale: {
-        reverse: true
+        reverse: true,
+        ticks: {
+          beginAtZero: true,
+        }
       },
-      pointDot : false,
+      scaleShowLabels: true,
+      scaleOverride: true,
+      scaleSteps: 15,
+      scaleStepWidth: 10,
+      pointDot : false
     }
 
     if(this.state.idealMacros.fat) {
