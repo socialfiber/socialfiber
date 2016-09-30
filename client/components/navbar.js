@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {render} from 'react-dom';
 import {Link} from 'react-router';
-import { Nav, Navbar, NavItem } from 'react-bootstrap';
 
 class NavBar extends Component {
   constructor(props){
@@ -11,18 +10,20 @@ class NavBar extends Component {
 
   render(){
     return(
-      <Navbar>
-          <Nav>
-            <NavItem><Link to='/signin'>Sign In </Link> </NavItem>
-            <NavItem><Link to='/signup'>Sign Up </Link> </NavItem>
-            <NavItem><Link to='/UserQuestionnaire'>Update Questionnaire</Link></NavItem>
-            <NavItem><Link to='/userProfile'>Profile</Link></NavItem>
-            <NavItem><Link to='/foodDiary'> Food Diary</Link></NavItem>
-            <NavItem><Link to='/viewallgroups'> All Groups</Link></NavItem>
-            <NavItem><Link to='/mygroups'> My Groups</Link></NavItem>
-            <NavItem><Link to='/creategroup'> Create a Group</Link></NavItem>
-          </Nav>
-      </Navbar>
+      <nav className="navbar">
+        <div>
+          <ul className="nav navbar-nav">
+            <li className="navItem"><Link to='/signin'>Sign In </Link> </li>
+            <li className="navItem"><Link to='/signup'>Sign Up </Link> </li>
+            <li className="navItem"><Link to='/UserQuestionnaire'>Update Questionnaire</Link></li>
+            <li className="navItem"><Link to='/userProfile'>Profile</Link></li>
+            <li className="navItem"><Link to='/foodDiary'> Food Diary</Link></li>
+            <li className="navItem"><Link to='/viewallgroups'> All Groups</Link></li>
+            <li className="navItem"><Link to='/mygroups'> My Groups</Link></li>
+            <li className="navItem"><Link to='/creategroup'> Create a Group</Link></li>
+          </ul>
+        </div>
+      </nav>
     )
   }
 }
