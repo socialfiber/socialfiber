@@ -12,7 +12,6 @@ const nutritionTotals = {
 			})
 			.then((entry) => {
 				const start = entry[0].dataValues;
-				console.log("INPUT!!!!!!!!", input)
 				NutritionTotals.update({
 					cal: +(start.cal+input.cal).toFixed(4),
 					carb: +(start.carb+input.carb).toFixed(4),

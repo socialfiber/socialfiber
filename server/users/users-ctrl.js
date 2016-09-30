@@ -5,74 +5,70 @@ const NutritionTotals = require('../nutritionTotals/nutritionTotals-model.js');
 const utils = require('../config/utilities.js');
 
 const users = {
-  '/api/users/signup': {
-    'post': (req, res) => {
-      console.log('inside POST at /api/users/signup');
-      Users.create({
-        username: req.body.username,
-        password: req.body.password
-      })
-      .then((user) => {
-        utils.hashPassword(req.body.password)
-        .then((hash) => {
-          user.update({ password: hash })
-          .then((updated) => {
-            const token = utils.generateToken(user);
-            res.status(201).send({
-              token: token,
-              user: { id: user.id, username: user.username }
-            });
-          })
-          .catch((err) => {
-            res.status(401).send({
-              msg: 'Error updating password to hash.'
-            });
+  'signup': (req, res) => {
+    console.log('inside POST at /auth/signup');
+    Users.create({
+      username: req.body.username,
+      password: req.body.password
+    })
+    .then((user) => {
+      utils.hashPassword(req.body.password)
+      .then((hash) => {
+        user.update({ password: hash })
+        .then((updated) => {
+          const token = utils.generateToken(user);
+          res.status(201).send({
+            token: token,
+            user: { id: user.id, username: user.username }
           });
         })
         .catch((err) => {
-          res.status(401).send({
-            msg: 'Error hashing password.'
+          res.status(200).send({
+            msg: 'Error updating password to hash.'
           });
         });
       })
       .catch((err) => {
-        res.status(401).send({
-          msg: 'The username you have selected already exists.'
+        res.status(200).send({
+          msg: 'Error hashing password.'
         });
       });
-    }
+    })
+    .catch((err) => {
+      res.status(200).send({
+        msg: 'The username you have selected already exists.'
+      });
+    });
   },
-  '/api/users/signin': {
-    'post': (req, res) => {
-      console.log('inside POST at /api/users/signin');
-      Users.findOne({
-        where: {
-          username: req.body.username
-        },
-        attributes: ['id', 'username', 'password']
+  'signin': (req, res) => {
+    console.log('inside POST at /auth/signin');
+    Users.findOne({
+      where: {
+        username: req.body.username
+      },
+      attributes: ['id', 'username', 'password']
+    })
+    .then((user) => {
+      utils.comparePassword(req.body.password, user.password)
+      .then((isMatch) => {
+        if(isMatch) {
+          const token = utils.generateToken(user);
+          res.status(201).send({
+            token: token,
+            user: { id: user.id, username: user.username }
+          });
+        } else {
+          res.status(200).send({
+            msg: 'Incorrect Password.'
+          })
+        }
       })
-      .then((user) => {
-        utils.comparePassword(req.body.password, user.password)
-        .then((isMatch) => {
-          if(isMatch) {
-            const token = utils.generateToken(user);
-            res.status(201).send({
-              token: token,
-              user: { id: user.id, username: user.username }
-            });
-          } else {
-            res.status(401).send({
-              msg: 'Incorrect Password.'
-            })
-          }
-        })
-      })
-      .catch((err) => {
-        res.status(401).send({
-          msg: 'The username you have selected does not exist.'
-        });
+    })
+    .catch((err) => {
+      res.status(200).send({
+        msg: 'The username you have selected does not exist.'
       });
-    }
+    });
   },
   '/api/users/getUserData': {
     'get': (req, res) => {
