@@ -5,7 +5,6 @@ import UserProfileReducer from './userProfile_reducer';
 import FoodDiaryReducer from './foodDiary_reducer';
 import GroupsReducer from './groups_reducer';
 
-
 const rootReducer = combineReducers({
   auth: AuthReducer,
   form: FormReducer,
