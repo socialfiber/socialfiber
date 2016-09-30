@@ -66,7 +66,6 @@ export function leaveGroup(group_id) {
   })
 }
 
-
 // export function fetchGroupPosts(group_id) {
 //   return axios.get('/api/posts/getMessage', {
 //     params: {

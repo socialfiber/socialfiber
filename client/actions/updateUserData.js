@@ -19,27 +19,3 @@ export function updateUserData(userStatsObj) {
     console.error(error);
   })
 }
-
-// export function fetchIdealMacros() {
-//   return axios.get()
-//   .then((response) => {
-//     return {
-//       type: FETCH_IDEAL_MACROS,
-//       payload: response
-//     }
-//   })
-//   .catch((error) => {
-//     console.error(error)
-//   })
-// }
-//
-// export function fetchActualMacros() {
-//   return axios.get()
-//   .then((response) => {
-//     type: FETCH_ACTUAL_MACROS,
-//     payload: response
-//   })
-//   .catch((error) => {
-//     console.error(error)
-//   )
-// }

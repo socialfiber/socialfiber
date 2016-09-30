@@ -17,3 +17,37 @@ export function fetchUserData() {
     console.error(error);
   })
 }
+
+export function fetchIdealMacros() {
+  return axios.get('/api/users/getUserData', {
+    params: {
+      userID: localStorage.getItem('userID')
+    }
+  })
+  .then((response) => {
+    return {
+      type: FETCH_IDEAL_MACROS,
+      payload: response
+    }
+  })
+  .catch((error) => {
+    console.error(error)
+  })
+}
+
+export function fetchActualMacros() {
+  return axios.get('/api/users/getUserData', {
+    params: {
+      userID: localStorage.getItem('userID')
+    }
+  })
+  .then((response) => {
+    return {
+      type: FETCH_ACTUAL_MACROS,
+      payload: response
+    }
+  })
+  .catch((error) => {
+    console.error(error)
+  })
+}
