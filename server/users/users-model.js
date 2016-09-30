@@ -39,11 +39,10 @@ const Users = sequelize.define('users', {
 
 sequelize
   .sync()
-  .then((err) => {
+  .then(() => {
     console.log('Users model synced successfully.');
-}, (err) => {
-    console.log('An error has occurred:', err);
-    res.send(err.message);
+  }, (err) => {
+    console.error('An error has occurred:', err);
   });
 
 module.exports = Users;
