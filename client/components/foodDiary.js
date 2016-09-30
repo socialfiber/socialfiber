@@ -9,6 +9,7 @@ import NavBar from './navbar';
 
 class FoodDiary extends Component {
 
+
   componentWillMount() {
     this.props.fetchFoodDiary();
   }
@@ -18,7 +19,7 @@ class FoodDiary extends Component {
   // }
 
   render() {
-    if(this.props.diaryData !== null) {
+    if(this.props.diaryData) {
       const logs = this.props.diaryData.map((log, idx) =>
         <FoodDiaryLog key={idx} log={log} />
       );
@@ -54,5 +55,6 @@ const mapStateToProps = (state) => {
     diaryData: state.foodDiary.logs
   }
 }
+
 
 export default connect(mapStateToProps, { fetchFoodDiary })(FoodDiary);

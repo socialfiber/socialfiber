@@ -39,7 +39,7 @@ class AllGroups extends Component {
 
 function mapStateToProps(state) {
   return {
-    allGroups: state.groups.all
+    allGroups: state.groups.allGroups
   }
 }
 
