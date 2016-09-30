@@ -40,12 +40,12 @@ const diaryEntries = {
             nutritionTotals.increase({
               user_id: req.body.userID,
               date: req.body.date,
-              cal: (data.cal*req.body.qty).toFixed(4),
-              carb: (data.carb*req.body.qty).toFixed(4),
-              fat: (data.fat*req.body.qty).toFixed(4),
-              prot: (data.prot*req.body.qty).toFixed(4),
-              fib: (data.fib*req.body.qty).toFixed(4),
-              n6: (data.n6*req.body.qty).toFixed(4)
+              cal: +(data.cal*req.body.qty).toFixed(4),
+              carb: +(data.carb*req.body.qty).toFixed(4),
+              fat: +(data.fat*req.body.qty).toFixed(4),
+              prot: +(data.prot*req.body.qty).toFixed(4),
+              fib: +(data.fib*req.body.qty).toFixed(4),
+              n6: +(data.n6*req.body.qty).toFixed(4)
             })
             .then((increased) => {
               res.status(201).send();
@@ -75,12 +75,12 @@ const diaryEntries = {
           nutritionTotals.decrease({
             user_id: req.query.userID,
             date: req.query.date,
-            cal: (data.cal*req.query.qty).toFixed(4),
-            carb: (data.carb*req.query.qty).toFixed(4),
-            fat: (data.fat*req.query.qty).toFixed(4),
-            prot: (data.prot*req.query.qty).toFixed(4),
-            fib: (data.fib*req.query.qty).toFixed(4),
-            n6: (data.n6*req.query.qty).toFixed(4)
+            cal: +(data.cal*req.query.qty).toFixed(4),
+            carb: +(data.carb*req.query.qty).toFixed(4),
+            fat: +(data.fat*req.query.qty).toFixed(4),
+            prot: +(data.prot*req.query.qty).toFixed(4),
+            fib: +(data.fib*req.query.qty).toFixed(4),
+            n6: +(data.n6*req.query.qty).toFixed(4)
           })
           .then((decreased) => {
             res.status(201).send();

@@ -12,13 +12,14 @@ const nutritionTotals = {
 			})
 			.then((entry) => {
 				const start = entry[0].dataValues;
+				console.log("INPUT!!!!!!!!", input)
 				NutritionTotals.update({
-					cal: (start.cal+input.cal).toFixed(4),
-					carb: (start.carb+input.carb).toFixed(4),
-					fat: (start.fat+input.fat).toFixed(4),
-					prot: (start.prot+input.prot).toFixed(4),
-					fib: (start.fib+input.fib).toFixed(4),
-					n6: (start.n6+input.n6).toFixed(4)
+					cal: +(start.cal+input.cal).toFixed(4),
+					carb: +(start.carb+input.carb).toFixed(4),
+					fat: +(start.fat+input.fat).toFixed(4),
+					prot: +(start.prot+input.prot).toFixed(4),
+					fib: +(start.fib+input.fib).toFixed(4),
+					n6: +(start.n6+input.n6).toFixed(4)
 				}, {
 					where: {
 						user_id: input.user_id,
@@ -49,12 +50,12 @@ const nutritionTotals = {
 			.then((entry) => {
 				const start = entry.dataValues;
 				NutritionTotals.update({
-					cal: Math.max((start.cal-input.cal).toFixed(4), 0),
-					carb: Math.max((start.carb-input.carb).toFixed(4), 0),
-					fat: Math.max((start.fat-input.fat).toFixed(4), 0),
-					prot: Math.max((start.prot-input.prot).toFixed(4), 0),
-					fib: Math.max((start.fib-input.fib).toFixed(4), 0),
-					n6: Math.max((start.n6-input.n6).toFixed(4), 0)
+					cal: Math.max(+(start.cal-input.cal).toFixed(4), 0),
+					carb: Math.max(+(start.carb-input.carb).toFixed(4), 0),
+					fat: Math.max(+(start.fat-input.fat).toFixed(4), 0),
+					prot: Math.max(+(start.prot-input.prot).toFixed(4), 0),
+					fib: Math.max(+(start.fib-input.fib).toFixed(4), 0),
+					n6: Math.max(+(start.n6-input.n6).toFixed(4), 0)
 				}, {
 					where: {
 						user_id: input.user_id,
