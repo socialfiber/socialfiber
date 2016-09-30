@@ -115,7 +115,9 @@ UserProfile = reduxForm({
 
 function mapStateToProps(state) {
   return {
-    userData: state.userProfile
+    userData: state.userProfile.userData,
+    idealMacros: state.userProfile.idealMacros,
+    actualMacros: state.userProfile.actualMacros
   }
 }
 

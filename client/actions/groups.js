@@ -64,6 +64,7 @@ export function leaveGroup(group_id) {
   .catch(function(error) {
     console.error(error);
   })
+}
 
 export function fetchGroupPosts(group_id) {
   return axios.get('/api/posts/getMessage', {
@@ -77,6 +78,7 @@ export function fetchGroupPosts(group_id) {
       payload: response
     }
   })
-  .catch(error){
-    console.error(error)}
-  }
+  .catch(function(error) {
+    console.error(error)
+  })
+}

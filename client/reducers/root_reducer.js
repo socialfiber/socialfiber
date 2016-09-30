@@ -4,7 +4,7 @@ import AuthReducer from './auth_reducer';
 import UserProfileReducer from './userProfile_reducer';
 import FoodDiaryReducer from './foodDiary_reducer';
 import GroupsReducer from './groups_reducer';
-import CreateGroupsReducer from './createGroups_reducer'
+// import CreateGroupsReducer from './createGroups_reducer';
 
 const rootReducer = combineReducers({
   auth: AuthReducer,
@@ -12,7 +12,7 @@ const rootReducer = combineReducers({
   userProfile: UserProfileReducer,
   foodDiary: FoodDiaryReducer,
   groups: GroupsReducer,
-  newGroup: CreateGroupsReducer
+  // newGroup: CreateGroupsReducer
 });
 
 export default rootReducer;
