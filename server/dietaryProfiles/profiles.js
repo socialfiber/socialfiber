@@ -35,28 +35,28 @@ const fields = {
 		preg:[0.35],
 		lact:[0.35]
 	},
-	protein: {
+	prot: {
 		child: [13,19],
 		male: [34,52,56,56,56],
 		female: [34,46,46,46,46],
 		preg:[71],
 		lact:[71]
 	},
-	protein_min: {
+	prot_min: {
 		child: [0.05,0.10],
 		male: [0.10,0.10,0.10,0.10,0.10],
 		female: [0.10,0.10,0.10,0.10,0.10],
 		preg:[0.10],
 		lact:[0.10]
 	},
-	protein_max: {
+	prot_max: {
 		child: [0.20,0.30],
 		male: [0.30,0.30,0.35,0.35,0.35],
 		female: [0.30,0.30,0.35,0.35,0.35],
 		preg:[0.35],
 		lact:[0.35]
 	},
-	fiber: {
+	fib: {
 		child: [19,25],
 		male: [31,38,38,38,30],
 		female: [26,26,25,25,21],
@@ -120,7 +120,7 @@ for(var field in fields) {
 //adds code string and estimates fat
 for(var code in profiles) {
 	profiles[code].code = code;
-	profiles[code].fat = Math.round((profiles[code].fat_min/(1-profiles[code].fat_min)+profiles[code].fat_max/(1-profiles[code].fat_max))/2*(profiles[code].carb+profiles[code].protein+profiles[code].n6+profiles[code].n3));
+	profiles[code].fat = Math.round((profiles[code].fat_min/(1-profiles[code].fat_min)+profiles[code].fat_max/(1-profiles[code].fat_max))/2*(profiles[code].carb+profiles[code].prot+profiles[code].n6+profiles[code].n3));
 }
 
 //check all properties are there
@@ -132,10 +132,10 @@ for(var code in profiles) {
 // 	'fat',
 // 	'fat_min', 
 // 	'fat_max', 
-// 	'protein', 
-// 	'protein_min',
-// 	'protein_max',
-// 	'fiber', 
+// 	'prot', 
+// 	'prot_min',
+// 	'prot_max',
+// 	'fib', 
 // 	'n6', 
 // 	'n6_min', 
 // 	'n6_max', 

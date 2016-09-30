@@ -17,7 +17,6 @@ const questions = {
         lact: req.body.lact
       })
       .then(() => {
-        console.log('New questionnaire data has been created.');
         const dietaryInfo = utils.generateDietaryInfo(req.body);
         Users.update({
           IBW: dietaryInfo.IBW,
@@ -38,37 +37,9 @@ const questions = {
         });
       })
       .catch((err) => {
-        console.log('Error: ', err);
-        res.status(400).send({
-          msg: 'Please fill in all fields.'
-        });
+        res.status(400).send();
       });
     }
-  },
-  //Endpoint to retrieve survey data from the database.
-  '/api/questions/getData': {
-    'get': (req, res) => {
-			console.log('inside GET at /api/questions/enterData');
-      Questions.findOne({
-        where: {
-          user_id: req.query.userID
-        },
-        attributes: [
-          'user_id',
-          'height',
-          'age',
-          'weight',
-          'gender'
-        ]
-      })
-      .then((user) => {
-        res.status(200).json(user);
-      })
-      .catch( (err) => {
-        console.log('Error: ', err);
-        res.status(400).send(err.message);
-      });
-		}
   },
   //Endpoint to update user data in the database.
   '/api/questions/updateData': {
@@ -90,7 +61,6 @@ const questions = {
         }
       )
       .then((questionnaire) => {
-        console.log('New questionnaire data has been created.');
         const dietaryInfo = utils.generateDietaryInfo(req.body);
         Users.update({
           IBW: dietaryInfo.IBW,
@@ -111,10 +81,7 @@ const questions = {
         });
       })
       .catch((err) => {
-        console.log('Error: ', err);
-        res.status(400).send({
-          msg: 'Please fill in all fields.'
-        });
+        res.status(400).send();
       });
     }
   }

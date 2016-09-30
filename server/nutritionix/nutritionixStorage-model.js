@@ -24,11 +24,11 @@ const Storage = sequelize.define('storage', {
     type: Sequelize.REAL,
     allowNull: false
   },
-  protein: {
+  prot: {
     type: Sequelize.REAL,
     allowNull: false
   },
-  fiber: {
+  fib: {
     type: Sequelize.REAL,
     allowNull: false
   },

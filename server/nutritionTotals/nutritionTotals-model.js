@@ -22,12 +22,12 @@ const NutritionTotals = sequelize.define('nutritionTotals', {
     allowNull: false,
     defaultValue: 0
   },
-  protein: {
+  prot: {
     type: Sequelize.REAL,
     allowNull: false,
     defaultValue: 0
   },
-  fiber: {
+  fib: {
     type: Sequelize.REAL,
     allowNull: false,
     defaultValue: 0
@@ -51,8 +51,8 @@ sequelize
   .sync()
   .then(() => {
     console.log('Nutrition Totals model synced successfully.');
-}, (err) => {
-    console.log('An error has occurred:', err);
+  }, (err) => {
+    console.error('An error has occurred:', err);
   });
 
 module.exports = NutritionTotals;

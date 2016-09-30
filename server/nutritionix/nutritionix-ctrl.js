@@ -8,7 +8,7 @@ const nutritionix = {
 				where: {
 					food: input
 				},
-				attributes: ['food', 'api_name', 'cal', 'carb', 'fat','protein','fiber','n6']
+				attributes: ['food', 'api_name', 'cal', 'carb', 'fat','prot','fib','n6']
 			})
 			.then((entry) => {
 				if(entry!==null) {
@@ -19,16 +19,18 @@ const nutritionix = {
 						if(data.message) {
 							resolve(data);
 						} else {
-							const newStorage = Storage.build(data);
-							newStorage
-								.save()
-								.then((stored) => {
-									resolve(stored);
-								})
+							Storage.create(data)
+							.then((stored) => {
+								resolve(stored);
+							})
+							.catch((err) => {
+								reject(err);
+							})
 						}
-					}).catch((err) => {
+					})
+					.catch((err) => {
 						reject(err);
-					})	
+					});
 				}
 			})
 			.catch((err) => {
