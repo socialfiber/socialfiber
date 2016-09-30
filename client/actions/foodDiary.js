@@ -20,7 +20,7 @@ export function submitFoodDiaryEntry(foodDiaryEntryObj) {
   foodDiaryEntryObj.userID = localStorage.getItem('userID');
   return axios.post('/api/diaryEntries/singleEntry', foodDiaryEntryObj)
     .then((response) => {
-      return { type: SUBMIT_DIARY_ENTRY, payload: response.data }
+      return { type: SUBMIT_DIARY_ENTRY }
     })
     .catch((err) => {
       console.error(err);
@@ -34,7 +34,7 @@ export function deleteFoodDiaryEntry(foodDiaryEntryObj) {
   }
   return axios.delete('/api/diaryEntries/singleEntry', data)
     .then((response) => {
-      return;
+      return { type: DELETE_DIARY_ENTRY }
     })
     .catch((err) => {
       console.error(err);

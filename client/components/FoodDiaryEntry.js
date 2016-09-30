@@ -11,11 +11,11 @@ class FoodDiaryEntry extends Component {
     return (
       <form onSubmit = {handleSubmit(this.props.submitFoodDiaryEntry)}>
         <h3>Add Entry</h3>
-          <p>Please submit a meal. You may enter phrases such as "cheesburger and fries" or "two eggs and whole wheat toast"</p>
+          <p>Please submit a meal.</p>
           <div>
             <label>Date</label>
             <Field name="date" component="input" type="date" max={today} required />
-            <label>Qty</label>
+            <label>qty/srv</label>
             <Field name="qty" component="input" type="number" min="1" required />
             <label>Tell us what you ate</label>
             <Field name="food" component="input" type="text" required />

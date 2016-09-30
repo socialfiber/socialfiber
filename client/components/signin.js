@@ -17,7 +17,8 @@ class SignIn extends Component {
           <label>Password</label>
           <Field name="password" component="input" type="password" />
         </div>
-        <button type="submit">Login</button>
+        <button type="submit">Sign In</button>
+        <p>{this.props.err}</p>
       </form>
     )
   }
@@ -29,7 +30,9 @@ SignIn = reduxForm({
 })(SignIn);
 
 const mapStateToProps = (state) => {
-  return {}
+  return {
+    err: state.auth.err
+  }
 }
 
 export default connect(mapStateToProps, { submitSignIn })(SignIn);

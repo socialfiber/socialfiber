@@ -31,9 +31,15 @@ class FoodDiary extends Component {
           <table>
             <tr>
               <th>Date</th>
-              <th>Qty</th>
-              <th>Food</th>
-              <th>Delete</th>
+              <th>qty</th>
+              <th>Food Name</th>
+              <th>Calories (kcal)</th>
+              <th>Carbohydrates (g)</th>
+              <th>Protein (g)</th>
+              <th>Fat (g)</th>
+              <th>Fiber (g)</th>
+              <th>n6 (g)</th>
+              <th>delete</th>
             </tr>
             {logs}
           </table>

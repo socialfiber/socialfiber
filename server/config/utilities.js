@@ -48,9 +48,9 @@ const utilities = {
 
   generateDietaryInfo: (user) => {
     var IBW = user.gender === 'male' ? 106 : 100;
-    IBW += user.height > 60 ? (user.height-60)*6 : (60-user.height)*5;
-    var cal_min = IBW/2.2*25;
-    var cal_max = IBW/2.2*25;
+    IBW += user.height > 60 ? (user.height-60)*6 : (user.height-60)*5;
+    var cal_min = Math.round(IBW/2.2*25);
+    var cal_max = Math.round(IBW/2.2*25);
     var code;
     if(user.lact) {code = 'lact0'}
     else if(user.preg) {code = 'preg0'}

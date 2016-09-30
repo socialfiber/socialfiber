@@ -11,6 +11,14 @@ const Users = sequelize.define('users', {
     type: Sequelize.STRING,
     allowNull: false
   },
+  privacy: {
+    type: Sequelize.STRING,
+    allowNull: true
+  },
+  diet: {
+    type: Sequelize.STRING,
+    allowNull: true
+  },
   IBW: {
     type: Sequelize.INTEGER,
     allowNull: true
@@ -31,11 +39,10 @@ const Users = sequelize.define('users', {
 
 sequelize
   .sync()
-  .then((err) => {
+  .then(() => {
     console.log('Users model synced successfully.');
-}, (err) => {
-    console.log('An error has occurred:', err);
-    res.send(err.message);
+  }, (err) => {
+    console.error('An error has occurred:', err);
   });
 
 module.exports = Users;
