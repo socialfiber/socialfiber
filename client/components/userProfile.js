@@ -56,7 +56,7 @@ class UserProfile extends Component {
             <div>
               <button type="button" onClick={() => this.toggleEditing()}>Edit Info</button>
             </div>
-            <p><RadarGraph /></p>
+            <RadarGraph />
           </div>
         );
       } else {
@@ -116,8 +116,6 @@ UserProfile = reduxForm({
 function mapStateToProps(state) {
   return {
     userData: state.userProfile.userData,
-    idealMacros: state.userProfile.idealMacros,
-    actualMacros: state.userProfile.actualMacros
   }
 }
 

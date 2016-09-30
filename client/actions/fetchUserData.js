@@ -1,8 +1,8 @@
 import axios from 'axios';
-import { FETCH_USER_DATA } from './types';
+import { FETCH_USER_DATA, FETCH_IDEAL_MACROS, FETCH_ACTUAL_MACROS } from './types';
 
 export function fetchUserData() {
-  return axios.get('/api/questions/getData', {
+  return axios.get('/api/users/getUserData', {
     params: {
       userID: localStorage.getItem('userID')
     }
@@ -10,7 +10,7 @@ export function fetchUserData() {
   .then(function(response) {
     return {
       type: FETCH_USER_DATA,
-      payload: response.data
+      payload: response.data.question
     };
   })
   .catch(function(error) {
@@ -25,9 +25,10 @@ export function fetchIdealMacros() {
     }
   })
   .then((response) => {
+    // console.log("Ideal Macros: ", response.data.dietaryProfile);
     return {
       type: FETCH_IDEAL_MACROS,
-      payload: response
+      payload: response.data.dietaryProfile
     }
   })
   .catch((error) => {
