@@ -5,21 +5,17 @@ const NutritionTotals = require('../nutritionTotals/nutritionTotals-model.js');
 const utils = require('../config/utilities.js');
 
 const users = {
-  '/api/users/createUser': {
+  '/api/users/signup': {
     'post': (req, res) => {
-      console.log('inside POST at /api/users/createUser');
+      console.log('inside POST at /api/users/signup');
       Users.create({
         username: req.body.username,
         password: req.body.password
       })
-        .then((user) => {
-          utils.hashPassword(req.body.password)
-          .then((hash) => {
-            user.update({ password: hash });
-          })
-          .catch((err) => {
-            console.log("Password hashing error: ", err)
-          });
+      .then((user) => {
+        utils.hashPassword(req.body.password)
+        .then((hash) => {
+          user.update({ password: hash });
           const token = utils.generateToken(user);
           res.status(201).send({
             token: token,
@@ -27,17 +23,22 @@ const users = {
           });
         })
         .catch((err) => {
-          console.log(err);
-          res.status(400).send({
-            msg: 'The username you have selected already exists.'
+          res.status(401).send({
+            msg: 'Error hashing password.'
           });
         });
+      })
+      .catch((err) => {
+        res.status(401).send({
+          msg: 'The username you have selected already exists.'
+        });
+      });
     }
   },
-  //Endpoint that allows users to login.
-  '/api/users/login': {
+  //Endpoint that allows users to signin.
+  '/api/users/signin': {
     'post': (req, res) => {
-      console.log('inside POST at /api/users/login');
+      console.log('inside POST at /api/users/signin');
       Users.findOne({
         where: {
           username: req.body.username
@@ -54,15 +55,14 @@ const users = {
               user: user
             });
           } else {
-            res.status(400).send({
+            res.status(401).send({
               msg: 'Incorrect Password.'
             })
           }
         })
       })
       .catch((err) => {
-        console.log(err);
-        res.status(400).send({
+        res.status(401).send({
           msg: 'The username you have selected does not exist.'
         });
       });
@@ -71,7 +71,7 @@ const users = {
   //Endpoint that retrieves user data such as user id and username.
   '/api/users/getUserData': {
     'get': (req, res) => {
-      console.log('inside GET at /api/users/getUserData', req.query);
+      console.log('inside GET at /api/users/getUserData');
       Users.findOne({
         where: {
           id: req.query.userID
@@ -79,12 +79,10 @@ const users = {
         include: [DietaryProfiles, Questions, NutritionTotals]
       })
       .then((userData) => {
-        console.log('userData: ', userData);
         res.status(200).json(userData);
       })
-      .catch( (err) => {
-        console.log('Error: ', err);
-        res.send(err.message);
+      .catch((err) => {
+        res.status(400).send();
       });
     }
   }

@@ -4,7 +4,7 @@ import { SubmissionError } from 'redux-form';
 import { AUTH_USER, UNAUTH_USER, AUTH_ERROR, PW_DOES_NOT_MATCH } from './types';
 
 export function submitSignIn(usernameAndPasswordObj) {
-  return axios.post('/api/users/login', usernameAndPasswordObj)
+  return axios.post('/api/users/signin', usernameAndPasswordObj)
     .then((response) => {
       console.log(response.data)
       localStorage.setItem('token', response.data.token);
@@ -23,7 +23,7 @@ export function submitSignUp(usernameAndPasswordObj) {
   if (usernameAndPasswordObj.password !== usernameAndPasswordObj.confirmPW){
     return { type: PW_DOES_NOT_MATCH, payload: "Passwords do not match"}
   } else {
-    return axios.post('/api/users/createUser', usernameAndPasswordObj)
+    return axios.post('/api/users/signup', usernameAndPasswordObj)
       .then((response) => {
         console.log(response.data)
         localStorage.setItem('token', response.data.token);
