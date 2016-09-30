@@ -14,7 +14,7 @@ export function submitSignIn(usernameAndPasswordObj) {
       return { type: AUTH_USER, payload: response.data };
     })
     .catch((error) => {
-      console.error(error);
+      console.error("ERRRORRRRR!!!", error);
       return { type: AUTH_ERROR, payload: response.data };
     });
 }

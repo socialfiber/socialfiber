@@ -16,7 +16,7 @@ const questions = {
         preg: req.body.preg,
         lact: req.body.lact
       })
-      .then(() => {
+      .then((questionnaire) => {
         const dietaryInfo = utils.generateDietaryInfo(req.body);
         Users.update({
           IBW: dietaryInfo.IBW,

@@ -38,8 +38,8 @@ const Storage = sequelize.define('storage', {
   }
 });
 
-Storage.belongsTo(DiaryEntries, { foreignKey: 'food' });
-DiaryEntries.hasOne(Storage, { foreignKey: 'food' });
+DiaryEntries.belongsTo(Storage, { foreignKey: 'food', targetKey: 'food' });
+Storage.hasMany(DiaryEntries, { foreignKey: 'food' });
 
 sequelize
   .sync()

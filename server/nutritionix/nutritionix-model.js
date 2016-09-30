@@ -29,12 +29,12 @@ const Nutritionix = {
 						const foodObj = {
 							food: input,
 							api_name: result.food_name,
-							cal: result.nf_calories,
-							carb: result.nf_total_carbohydrate,
-							fat: result.nf_total_fat,
-							prot: result.nf_protein,
-							fib: result.nf_dietary_fiber,
-							n6: _.findWhere(result.full_nutrients, {"attr_id": 646}).value
+							cal: (result.nf_calories).toFixed(4),
+							carb: (result.nf_total_carbohydrate).toFixed(4),
+							fat: (result.nf_total_fat).toFixed(4),
+							prot: (result.nf_protein).toFixed(4),
+							fib: (result.nf_dietary_fiber).toFixed(4),
+							n6: (_.findWhere(result.full_nutrients, {"attr_id": 646}).value).toFixed(4)
 						}
 						resolve(foodObj);
 					}

@@ -7,7 +7,6 @@ export default function(state = INITIAL_STATE, action) {
     // case PW_DOES_NOT_MATCH:
     //   return {...state, passwordmatch: action.payload.something };
     case AUTH_USER:
-    console.log("AUTH_USER FIRED", action.payload)
       return {...state, currentUser: action.payload.user.username, currentUserID: action.payload.user.id, authenticated: true, token: action.payload.token };
     case SIGN_OUT:
       return INITIAL_STATE;
