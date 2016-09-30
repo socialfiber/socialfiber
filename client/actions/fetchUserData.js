@@ -25,7 +25,7 @@ export function fetchMacros() {
     }
   })
   .then((response) => {
-    console.log("Macros:  ", response.data);
+    // console.log("Macros:  ", response.data);
     return {
       type: FETCH_MACROS,
       payload: response.data

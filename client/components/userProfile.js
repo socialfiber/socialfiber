@@ -6,6 +6,7 @@ import { Field, reduxForm } from 'redux-form';
 import SelectComponent from './SelectComponent';
 import { updateUserData } from '../actions/updateUserData';
 import RadarGraph from './radarGraph';
+import ProfilePic from './profilePic';
 
 
 class UserProfile extends Component {
@@ -48,7 +49,7 @@ class UserProfile extends Component {
         return (
           <div>
             <NavBar />
-            <h3>User Info</h3>
+            <ProfilePic />
             <div>Age: {this.props.userData.age}</div>
             <div>Gender: {this.props.userData.gender}</div>
             <div>Height: {Math.floor(this.props.userData.height/12)}ft {this.props.userData.height %12}in</div>

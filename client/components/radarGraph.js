@@ -40,8 +40,6 @@ class RadarGraph extends Component {
           n6: Math.floor(this.props.actualMacros.n6)
         }
       })
-      console.log("ideal fat: ", this.state.idealMacros.fat)
-      console.log("actual fat: ", this.state.actualMacros.fat)
     })
   }
 
