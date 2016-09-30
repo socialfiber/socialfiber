@@ -74,7 +74,7 @@ class RadarGraph extends Component {
       },
       scaleShowLabels: true,
       scaleOverride: true,
-      scaleSteps: 13,
+      scaleSteps: 15,
       scaleStepWidth: 10,
       pointDot : false
     }
