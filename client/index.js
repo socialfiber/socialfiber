@@ -9,7 +9,7 @@ import SignUp from './components/Signup';
 import SignIn from './components/Signin';
 import Questionnaire from './components/Questionnaire';
 import UserProfile from './components/UserProfile';
-import FoodDiary from './components/FoodDiary';
+import FoodDiary from './components/foodDiary';
 import SplashPg from './components/Splashpg';
 import MyGroups from './components/MyGroups';
 import AllGroups from './components/AllGroups';
@@ -44,7 +44,6 @@ ReactDOM.render(
     	<Route path='/userprofile'  component={UserProfile} />
       <Route path='/mygroups'  component={MyGroups} />
       <Route path='/creategroup'  component={CreateGroup}/>
-      <Route path='/groupwall'  component={GroupWall}/>
     </Router>
   </Provider>
 , document.getElementById('main'));

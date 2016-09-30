@@ -54,6 +54,7 @@ const mapStateToProps = (state) => {
   return {
     diaryData: state.foodDiary.logs
   }
+}
 
 
 export default connect(mapStateToProps, { fetchFoodDiary })(FoodDiary);
