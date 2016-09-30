@@ -11,11 +11,11 @@ class AllGroups extends Component {
   }
 
   renderGroups(){
-    return this.props.allGroups.map((group, idx)=> {
+    return this.props.groups.allGroups.map((group, idx)=> {
         return (
-            <li className='list-group-item'>
+            <li className='list-group-item' key={idx}>
 
-              <AllGroupsIndividual key={idx} group={group}/>
+              <AllGroupsIndividual group={group}/>
             </li>
           )
     })
@@ -26,6 +26,11 @@ class AllGroups extends Component {
     return(
       <div>
         <NavBar />
+          <pre>
+            <code>
+              {JSON.stringify(this.props.groups, null, 4)}
+            </code>
+          </pre>
           <h1>Find a Group</h1>
           <ul className='list-group'>
             {this.renderGroups()}
@@ -39,7 +44,7 @@ class AllGroups extends Component {
 
 function mapStateToProps(state) {
   return {
-    allGroups: state.groups.allGroups
+    groups: state.groups
   }
 }
 

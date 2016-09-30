@@ -1,15 +1,22 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { joinGroup } from '../actions/groups';
 
 const AllGroupsIndividual = (props) => (
-    <tr>
-      <td>
+    <div>
+      <div>
         <button onClick= {() =>
-        {joinGroup(props.group.id)}}>Join Group</button>
-      </td>
-      <td> {props.group.name} </td>
-      <td> {props.group.description} </td>
-    </tr>
+        {props.joinGroup(props.group.id)}}>Join Group</button>
+      </div>
+      <div> {props.group.name} </div>
+      <div> {props.group.description} </div>
+    </div>
 )
 
-export default AllGroupsIndividual;
+function mapStateToProps(state) {
+  return {
+    groups: state.groups
+  }
+}
+
+export default connect(mapStateToProps, { joinGroup })(AllGroupsIndividual);

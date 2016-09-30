@@ -35,14 +35,19 @@ export function fetchUserGroups() {
 
 export function joinGroup(group_id) {
   console.log('group_id: ', group_id)
-  return axios.post('api/groups/addUser', {
+  return axios.post('/api/groups/addUser', {
     group_id: group_id,
     user_id: localStorage.getItem('userID'),
   })
   .then(function(response) {
+    var obj = {
+      groupId: group_id,
+      data: response.data
+    };
+
     return {
       type: JOIN_GROUP,
-      payload: response
+      payload: obj
     }
   })
   .catch((error) => {
