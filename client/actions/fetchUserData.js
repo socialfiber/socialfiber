@@ -1,12 +1,13 @@
 import axios from 'axios';
 import { FETCH_USER_DATA, FETCH_MACROS } from './types';
+import Cookies from 'js-cookie';
 
 export function fetchUserData() {
-  return axios.get('/api/users/getUserData', {
-    params: {
-      userID: localStorage.getItem('userID')
-    }
-  })
+  const data = {
+    params: { userID: Cookies.get('userID') },
+    headers: { 'x-access-token': Cookies.get('token') }
+  }
+  return axios.get('/api/users/getUserData', data)
   .then(function(response) {
     return {
       type: FETCH_USER_DATA,
@@ -19,11 +20,11 @@ export function fetchUserData() {
 }
 
 export function fetchMacros() {
-  return axios.get('/api/users/getUserData', {
-    params: {
-      userID: localStorage.getItem('userID')
-    }
-  })
+  const data = {
+    params: { userID: Cookies.get('userID') },
+    headers: { 'x-access-token': Cookies.get('token') }
+  }
+  return axios.get('/api/users/getUserData', data)
   .then((response) => {
     // console.log("Macros:  ", response.data);
     return {
