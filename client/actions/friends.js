@@ -16,7 +16,7 @@ export function fetchFriends() {
     });
 }
 
-export function getFriendshipStatus() {
+export function fetchFriendshipStatus() {
   const data = {
     params: {
       userID: Cookies.get('userID'),

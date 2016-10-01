@@ -5,6 +5,8 @@ import { FETCH_PROFILE } from './types';
 export function fetchProfile(OTHER_ID) {
   //if profile id = user id, redirect to user profile
   //if OTHER_ID === Cookies.get('userID') {}
+  //if friends or public, fetch all data,
+  //if private, fetch selected data
   const data = {
     headers: { 'x-access-token': Cookies.get('token') }
   }
