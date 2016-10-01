@@ -5,7 +5,7 @@ const nutritionTotals = {
 		return new Promise((resolve, reject) => {
 			NutritionTotals.findOrCreate({
 				where: {
-					user_id: input.user_id,
+					user_id: input.userID,
 					date: input.date
 				},
 				attributes: ['cal', 'carb', 'fat','prot','fib','n6']
@@ -21,7 +21,7 @@ const nutritionTotals = {
 					n6: +(start.n6+input.n6).toFixed(4)
 				}, {
 					where: {
-						user_id: input.user_id,
+						user_id: input.userID,
 						date: input.date
 					}
 				})
@@ -41,7 +41,7 @@ const nutritionTotals = {
 		return new Promise((resolve, reject) => {
 			NutritionTotals.findOne({
 				where: {
-					user_id: input.user_id,
+					user_id: input.userID,
 					date: input.date
 				},
 				attributes: ['cal', 'carb', 'fat','prot','fib','n6']
@@ -57,7 +57,7 @@ const nutritionTotals = {
 					n6: Math.max(+(start.n6-input.n6).toFixed(4), 0)
 				}, {
 					where: {
-						user_id: input.user_id,
+						user_id: input.userID,
 						date: input.date
 					}
 				})

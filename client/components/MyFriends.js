@@ -21,7 +21,7 @@ class MyFriends extends Component {
     if(this.props.myFriends.length > 0) {
       const myFriends = this.props.myFriends.map((friend, idx) => {
         <li>
-          <Friend key={idx} url={friend.url} img={friend.img} />
+          <Friend key={idx} url={friend.url} img={friend.img} otherID={friend.id} />
           <FriendRequestButton friendshipStatus={'friends'} />
         </li>
         }
@@ -35,10 +35,14 @@ class MyFriends extends Component {
       );
       return (
         <div>
-          <h1>My Friends</h1>
+          <h1>Friends</h1>
+          <h3>Friend Requests</h3>
+          </ul>
+            {friendRequests}
+          </ul>
+          <h3>My Friends</h3>
           <ul>
             {myFriends}
-            {friendRequests}
           </ul>
         </div>
       );

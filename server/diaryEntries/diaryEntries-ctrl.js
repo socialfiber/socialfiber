@@ -42,7 +42,7 @@ const diaryEntries = {
           })
           .then((entry) => {
             nutritionTotals.increase({
-              user_id: req.body.userID,
+              userID: req.body.userID,
               date: req.body.date,
               cal: +(data.cal*req.body.qty).toFixed(4),
               carb: +(data.carb*req.body.qty).toFixed(4),
@@ -83,7 +83,7 @@ const diaryEntries = {
         nutritionix.search(req.query.food)
         .then((data) => {
           nutritionTotals.decrease({
-            user_id: req.query.userID,
+            userID: req.query.userID,
             date: req.query.date,
             cal: +(data.cal*req.query.qty).toFixed(4),
             carb: +(data.carb*req.query.qty).toFixed(4),

@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React from 'react';
 import { sendFriendRequest, acceptFriendRequest, deleteFriendRequest } from '../actions/friends';
 
 const FriendRequestButton = (props) => {
@@ -36,8 +35,4 @@ const FriendRequestButton = (props) => {
 
 }
 
-function mapStateToProps(state) {
-  return {}
-}
-
-export default connect(mapStateToProps, { sendFriendRequest, acceptFriendRequest, deleteFriendRequest })(FriendRequestButton);
+export default FriendRequestButton;
