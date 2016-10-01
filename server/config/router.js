@@ -9,6 +9,7 @@ const posts = require('../posts/posts-ctrl.js');
 
 //sample controller template
 const dummy = require('../dummy/dummy-ctrl.js')
+const middleware = require('./middleware.js');
 
 const controllers = [
 	users,
@@ -23,10 +24,10 @@ const controllers = [
 
 for (var controller of controllers) {
 	for (var route in controller) {
-		if(controller[route].get) router.route(route).get(controller[route].get);
-		if(controller[route].post) router.route(route).post(controller[route].post);
-		if(controller[route].put) router.route(route).put(controller[route].put);
-		if(controller[route].delete) router.route(route).delete(controller[route].delete);
+		if(controller[route].get) router.get(route, middleware.auth, controller[route].get);
+		if(controller[route].post) router.post(route, middleware.auth, controller[route].post);
+		if(controller[route].put) router.put(route, middleware.auth, controller[route].put);
+		if(controller[route].delete) router.delete(route, middleware.auth, controller[route].delete);
 	}
 }
 

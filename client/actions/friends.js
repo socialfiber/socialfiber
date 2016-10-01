@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { FETCH_FRIENDS, FRIENDSHIP_STATUS } from './types';
+import Cookies from 'js-cookie';
 
 export function fetchFriends() {
   const data = {

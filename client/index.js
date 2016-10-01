@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Cookies from 'js-cookie';
 import { Router, Route, browserHistory, IndexRoute } from 'react-router';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
@@ -20,13 +21,13 @@ const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
 const store = createStoreWithMiddleware(reducers, window.devToolsExtension ? window.devToolsExtension() : f => f);
 
 const isAuthenticated = () => {
-  console.log(store.getState().auth)
-  return store.getState().auth.token && store.getState().auth.authenticated;
+  return Cookies.get('token') && Cookies.get('authenticated');
 }
 
 const ensureAuthenticated = (nextState, replace) => {
   if(!isAuthenticated()) { replace('/signin'); }
 };
+
 const skipIfAuthenticated = (nextState, replace) => {
   if(isAuthenticated()) { replace('/userprofile'); }
 };
@@ -34,16 +35,16 @@ const skipIfAuthenticated = (nextState, replace) => {
 ReactDOM.render(
   <Provider store={store}>
     <Router history={browserHistory}>
-      <Route path='/'  component={SplashPg} />
-    	<Route path='/signup'  component={SignUp} />
-    	<Route path='/signin'  component={SignIn} />
-    	<Route path='/userquestionnaire' component={Questionnaire}/>
-    	<Route path='/fooddiary'  component={FoodDiary}/>
-      <Route path='/userprofile'  component={UserProfile} />
-      <Route path='/viewallgroups'  component={AllGroups}/>
-    	<Route path='/userprofile'  component={UserProfile} />
-      <Route path='/mygroups'  component={MyGroups} />
-      <Route path='/creategroup'  component={CreateGroup}/>
+      <Route path='/' component={SplashPg} />
+    	<Route path='/signup' onEnter={skipIfAuthenticated} component={SignUp} />
+    	<Route path='/signin' onEnter={skipIfAuthenticated} component={SignIn} />
+    	<Route path='/userquestionnaire' onEnter={ensureAuthenticated} component={Questionnaire}/>
+    	<Route path='/fooddiary' onEnter={ensureAuthenticated} component={FoodDiary}/>
+      <Route path='/userprofile' onEnter={ensureAuthenticated} component={UserProfile} />
+      <Route path='/viewallgroups' onEnter={ensureAuthenticated} component={AllGroups}/>
+    	<Route path='/userprofile' onEnter={ensureAuthenticated} component={UserProfile} />
+      <Route path='/mygroups' onEnter={ensureAuthenticated} component={MyGroups} />
+      <Route path='/creategroup' onEnter={ensureAuthenticated} component={CreateGroup}/>
     </Router>
   </Provider>
 , document.getElementById('main'));

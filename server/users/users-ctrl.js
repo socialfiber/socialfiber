@@ -24,7 +24,7 @@ const users = {
         })
         .catch((err) => {
           res.status(200).send({
-            msg: 'Error updating password to hash.'
+            msg: err
           });
         });
       })
