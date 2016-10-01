@@ -1,9 +1,20 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
 import { FETCH_ALL_GROUPS, FETCH_USER_GROUPS, LEAVE_GROUP, JOIN_GROUP, FETCH_GROUP_POSTS } from './types';
+import Cookies from 'js-cookie';
 
 export function fetchAllGroups(){
-  return axios.get('/api/groups/getAllGroups')
+
+  const data = {
+    params: {
+      userID: localStorage.getItem('userID')
+    },
+    headers: {
+      'x-access-token': Cookies.get('token')
+    }
+  }
+
+  return axios.get('/api/groups/getAllGroups', data)
     .then(function(response){
       return {
         type: FETCH_ALL_GROUPS,
@@ -16,11 +27,13 @@ export function fetchAllGroups(){
 }
 
 export function fetchUserGroups() {
-  return axios.get('/api/groups/getUserGroups', {
+  const data = {
     params: {
-      user_id: localStorage.getItem('userID')
+      userID: localStorage.getItem('userID') },
+      headers: { 'x-access-token': Cookies.get('token') }
     }
-  })
+
+  return axios.get('/api/groups/getUserGroups', data)
   .then(function(response) {
     return {
       type: FETCH_USER_GROUPS,
@@ -70,24 +83,6 @@ export function leaveGroup(group_id) {
   })
 }
 
-<<<<<<< 641f6f36885b8ac519bfd2994cc17a1a1f58978c
-// export function fetchGroupPosts(group_id) {
-//   return axios.get('/api/posts/getMessage', {
-//     params: {
-//       group_id: group_id
-//     }
-//   })
-//   .then(function(response){
-//     return {
-//       type: FETCH_GROUP_POSTS,
-//       payload: response
-//     }
-//   })
-//   .catch(error){
-//     console.error(error)}
-//   }
-=======
-
 export function fetchGroupPosts(group_id) {
   return axios.get('/api/posts/getMessage', {
     params: {
@@ -104,4 +99,3 @@ export function fetchGroupPosts(group_id) {
     console.error(error)
   })
 }
->>>>>>> [feature] completes basic group wall component
