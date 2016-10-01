@@ -1,12 +1,11 @@
 import axios from 'axios';
-import { FETCH_FRIENDS, FRIENDSHIP_STATUS } from './types';
 import Cookies from 'js-cookie';
+import { FETCH_FRIENDS, FRIENDSHIP_STATUS } from './types';
 
 export function fetchFriends() {
   const data = {
-    params: {
-      userID: localStorage.getItem('userID')
-    }
+    params: { userID: Cookies.get('userID') },
+    headers: { 'x-access-token': Cookies.get('token') }
   }
   return axios.get('/api/friends/myFriends', data)
     .then((response) => {
@@ -20,9 +19,10 @@ export function fetchFriends() {
 export function getFriendshipStatus() {
   const data = {
     params: {
-      userID: localStorage.getItem('userID'),
-      otherID: localStorage.getItem('userID')
-    }
+      userID: Cookies.get('userID'),
+      otherID: Cookies.get('userID')
+    },
+    headers: { 'x-access-token': Cookies.get('token') }
   }
   return axios.get('/api/friends/friendshipStatus', data)
     .then((response) => {
@@ -35,10 +35,11 @@ export function getFriendshipStatus() {
 
 export function sendFriendRequest() {
   const data = {
-    userID: localStorage.getItem('userID'),
-    otherID: localStorage.getItem('userID')
+    userID: Cookies.get('userID'),
+    otherID: Cookies.get('userID')
   }
-  return axios.post('/api/friends/friendshipStatus', data)
+  const config = headers: { 'x-access-token': Cookies.get('token') }
+  return axios.post('/api/friends/friendshipStatus', data, config)
     .then((response) => {
       return { type: FRIENDSHIP_STATUS, payload: response.data }
     })
@@ -50,9 +51,10 @@ export function sendFriendRequest() {
 export function acceptFriendRequest() {
   const data = {
     params: {
-      userID: localStorage.getItem('userID'),
-      otherID: localStorage.getItem('userID')
-    }
+      userID: Cookies.get('userID'),
+      otherID: Cookies.get('userID')
+    },
+    headers: { 'x-access-token': Cookies.get('token') }
   }
   return axios.put('/api/friends/friendshipStatus', data)
     .then((response) => {
@@ -66,9 +68,10 @@ export function acceptFriendRequest() {
 export function deleteFriendRequest() {
   const data = {
     params: {
-      userID: localStorage.getItem('userID'),
-      otherID: localStorage.getItem('userID')
-    }
+      userID: Cookies.get('userID'),
+      otherID: Cookies.get('userID')
+    },
+    headers: { 'x-access-token': Cookies.get('token') }
   }
   return axios.delete('/api/friends/friendshipStatus', data)
     .then((response) => {
