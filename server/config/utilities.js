@@ -1,26 +1,19 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
+const moment = require('moment');
 
 const utilities = {
+
   generateToken: (user) => {
     const payload = {
       iss: 'tml',
-      sub: user.id
+      sub: user.id,
+      iat: moment().unix(),
+      exp: moment().add(1, 'days').unix()
     }
-    const options = {
-      expiresIn: '1d'
-    }
-    return jwt.sign(payload, 'secret', options);
+    console.log("GENERATING TOKEN", payload)
+    return jwt.sign(payload, 'secret');
   },
-
-  // checkAuthentication: () => {
-  //   const token = 
-  //   try {
-  //     return jwt.verify(token, 'secret');
-  //   } catch (err) {
-  //     return false;
-  //   }
-  // },
 
   hashPassword: (input) => {
     return new Promise((resolve, reject) => {
@@ -67,6 +60,7 @@ const utilities = {
     }
     return { code: code, IBW: IBW, cal_min: cal_min, cal_max: cal_max }
   }
+
 }
 
 module.exports = utilities;

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Cookies from 'js-cookie';
 import { browserHistory } from 'react-router';
 import { SubmissionError } from 'redux-form';
 import { AUTH_USER, AUTH_ERROR } from './types';
@@ -13,9 +14,10 @@ export function submitSignIn(usernameAndPasswordObj) {
       if(response.data.msg) {
         return { type: AUTH_ERROR, payload: response.data.msg }
       } else {
-        localStorage.setItem('token', response.data.token);
-        localStorage.setItem('userID', response.data.user.id);
-        localStorage.setItem('username', response.data.user.username);
+        Cookies.set('userID', response.data.user.id);
+        Cookies.set('username', response.data.user.username);
+        Cookies.set('token', response.data.token);
+        Cookies.set('authenticated', true);
         browserHistory.push('/userProfile');
         return { type: AUTH_USER, payload: response.data };
       }
@@ -34,10 +36,10 @@ export function submitSignUp(usernameAndPasswordObj) {
         if(response.data.msg) {
           return { type: AUTH_ERROR, payload: response.data.msg }
         } else {
-          console.log(response.data);
-          localStorage.setItem('token', response.data.token);
-          localStorage.setItem('userID', response.data.user.id);
-          localStorage.setItem('username', response.data.user.username);
+          Cookies.set('userID', response.data.user.id);
+          Cookies.set('username', response.data.user.username);
+          Cookies.set('token', response.data.token);
+          Cookies.set('authenticated', true);
           browserHistory.push('/userQuestionnaire');
           return { type: AUTH_USER, payload: response.data };
         }
@@ -46,4 +48,13 @@ export function submitSignUp(usernameAndPasswordObj) {
         return { type: AUTH_ERROR, payload: response.data.msg };
       });
   }
+}
+
+export function submitSignOut() {
+  Cookies.remove('userID');
+  Cookies.remove('username');
+  Cookies.remove('token');
+  Cookies.set('authenticated', false);
+  browserHistory.push('/signin');
+  return { type: SIGN_OUT }
 }

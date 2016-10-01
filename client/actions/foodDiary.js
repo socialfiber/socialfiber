@@ -1,11 +1,11 @@
 import axios from 'axios';
 import { FETCH_FOOD_DIARY, SUBMIT_DIARY_ENTRY, DELETE_DIARY_ENTRY } from './types';
+import Cookies from 'js-cookie';
 
 export function fetchFoodDiary() {
   const data = {
-    params: {
-      userID: localStorage.getItem('userID')
-    }
+    params: { userID: localStorage.getItem('userID') },
+    headers: { 'x-access-token': Cookies.get('token') }
   }
   return axios.get('/api/diaryEntries/allEntries', data)
     .then((response) => {
@@ -17,8 +17,12 @@ export function fetchFoodDiary() {
 }
 
 export function submitFoodDiaryEntry(foodDiaryEntryObj) {
-  foodDiaryEntryObj.userID = localStorage.getItem('userID');
-  return axios.post('/api/diaryEntries/singleEntry', foodDiaryEntryObj)
+  foodDiaryEntryObj.userID = Cookies.get('userID');
+  const data = foodDiaryEntryObj;
+  const config = {
+    headers: { 'x-access-token': Cookies.get('token') }
+  }
+  return axios.post('/api/diaryEntries/singleEntry', data, config)
     .then((response) => {
       return { type: SUBMIT_DIARY_ENTRY }
     })
@@ -28,9 +32,10 @@ export function submitFoodDiaryEntry(foodDiaryEntryObj) {
 }
 
 export function deleteFoodDiaryEntry(foodDiaryEntryObj) {
-  foodDiaryEntryObj.userID = localStorage.getItem('userID');
+  foodDiaryEntryObj.userID = Cookies.get('userID');
   const data = {
-    params: foodDiaryEntryObj
+    params: foodDiaryEntryObj,
+    headers: { 'x-access-token': Cookies.get('token') }
   }
   return axios.delete('/api/diaryEntries/singleEntry', data)
     .then((response) => {
