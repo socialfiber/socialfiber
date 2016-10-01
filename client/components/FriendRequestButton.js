@@ -1,42 +1,34 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchFriendshipStatus, sendFriendRequest, acceptFriendRequest, deleteFriendRequest } from '../actions/friends';
+import { sendFriendRequest, acceptFriendRequest, deleteFriendRequest } from '../actions/friends';
 
-class FriendRequestButton extends Component {
+const FriendRequestButton = (props) => {
 
-  componentWillMount() {
-    this.props.fetchFriendshipStatus();
-  }
-
-  componentDidUpdate() {
-  }
-
-  render() {
     //if nonexistent, request sendFriendRequest
     //if requestee, accept acceptFriendRequest
     //if requestor or friends, unfriend /delete request deleteFriendRequest 
-    if(this.props.friendshipStatus === null) {
+    if(props.friendshipStatus === null) {
       return (
         <div>
-          <button onClick={()=>{sendFriendRequest()}}>Send Friend Request</button>
+          <button onClick={()=>{sendFriendRequest(props.otherID)}}>Send Friend Request</button>
         </div>
       );
-    } else if(this.props.friendshipStatus === 'requestee') {
+    } else if(props.friendshipStatus === 'requestee') {
       return (
         <div>
-          <button onClick={()=>{acceptFriendRequest()}}>Accept Friend Request</button>
+          <button onClick={()=>{acceptFriendRequest(props.otherID)}}>Accept Friend Request</button>
         </div>
       )
-    } else if(this.props.friendshipStatus === 'requestor') {
+    } else if(props.friendshipStatus === 'requestor') {
       return (
         <div>
-          <button onClick={()=>{deleteFriendRequest()}}>Cancel Friend Request</button>
+          <button onClick={()=>{deleteFriendRequest(props.otherID)}}>Cancel Friend Request</button>
         </div>
       )
-    } else if(this.props.friendshipStatus === 'friends') {
+    } else if(props.friendshipStatus === 'friends') {
       return (
         <div>
-          <button onClick={()=>{deleteFriendRequest()}}>Unfriend</button>
+          <button onClick={()=>{deleteFriendRequest(props.otherID)}}>Unfriend</button>
         </div>
       )
     }
@@ -45,9 +37,7 @@ class FriendRequestButton extends Component {
 }
 
 function mapStateToProps(state) {
-  return {
-    friendshipStatus: state.friends.friendshipStatus
-  }
+  return {}
 }
 
-export default connect(mapStateToProps, { fetchFriendshipStatus })(FriendRequestButton);
+export default connect(mapStateToProps, { sendFriendRequest, acceptFriendRequest, deleteFriendRequest })(FriendRequestButton);

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchProfile } from '../actions/browse';
+import { fetchProfile, fetchFriendshipStatus } from '../actions/browse';
 import NavBar from './navbar';
 import FriendRequestButton from './FriendRequestButton';
 import RadarGraph from './radarGraph';
@@ -10,6 +10,7 @@ class BrowseProfile extends Component {
 
   componentWillMount() {
     this.props.fetchProfile();
+    this.props.fetchFriendshipStatus();
   }
 
   componentDidUpdate() {
