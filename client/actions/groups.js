@@ -7,7 +7,7 @@ export function fetchAllGroups(){
 
   const data = {
     params: {
-      userID: localStorage.getItem('userID')
+      userID: Cookies.get('userID')
     },
     headers: {
       'x-access-token': Cookies.get('token')
@@ -29,7 +29,7 @@ export function fetchAllGroups(){
 export function fetchUserGroups() {
   const data = {
     params: {
-      userID: localStorage.getItem('userID') },
+      userID: Cookies.getItem('userID') },
       headers: { 'x-access-token': Cookies.get('token') }
     }
 
@@ -47,10 +47,18 @@ export function fetchUserGroups() {
 
 export function joinGroup(group_id) {
   console.log('group_id: ', group_id)
-  return axios.post('/api/groups/addUser', {
+
+  const data = {
     group_id: group_id,
-    user_id: localStorage.getItem('userID'),
-  })
+    user_id: Cookies.get('userID')
+  }
+
+  const config = {
+    headers: { 'x-access-token' :  Cookies.get('token')}
+  }
+
+
+  return axios.post('/api/groups/addUser', data, config)
   .then(function(response) {
     console.log('inside join group')
     var obj = {
@@ -68,10 +76,18 @@ export function joinGroup(group_id) {
 }
 
 export function leaveGroup(group_id) {
-  return axios.post('/api/groups/leaveGroup', {
-      user_id: localStorage.getItem('userID'),
-      group_id: group_id
-    })
+
+
+  const data = {
+    user_id: Cookies.get('userID'),
+    group_id: group_id
+  };
+
+  const config = {
+    headers: { 'x-access-token': Cookies.get('token') }
+  }
+
+  return axios.post('/api/groups/leaveGroup', data, config)
   .then(function(response) {
     return {
       type: LEAVE_GROUP,
@@ -84,11 +100,14 @@ export function leaveGroup(group_id) {
 }
 
 export function fetchGroupPosts(group_id) {
-  return axios.get('/api/posts/getMessage', {
-    params: {
-      group_id: group_id
-    }
-  })
+
+  const data = {
+    params: { group_id: group_id },
+    headers: { 'x-access-token': Cookies.get('token') }
+  }
+
+
+  return axios.get('/api/posts/getMessage', data)
   .then(function(response){
     return {
       type: FETCH_GROUP_POSTS,
