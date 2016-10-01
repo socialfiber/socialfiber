@@ -4,7 +4,7 @@ import Cookies from 'js-cookie';
 
 export function fetchFoodDiary() {
   const data = {
-    params: { userID: localStorage.getItem('userID') },
+    params: { userID: Cookies.get('userID') },
     headers: { 'x-access-token': Cookies.get('token') }
   }
   return axios.get('/api/diaryEntries/allEntries', data)
