@@ -100,13 +100,10 @@ export function leaveGroup(group_id) {
 }
 
 export function fetchGroupPosts(group_id) {
-
   const data = {
     params: { group_id: group_id },
     headers: { 'x-access-token': Cookies.get('token') }
   }
-
-
   return axios.get('/api/posts/getMessage', data)
   .then(function(response){
     return {
