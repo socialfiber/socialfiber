@@ -53,14 +53,14 @@ class RadarGraph extends Component {
           fillColor: "rgba(220,0,0,0.5)",
           strokeColor: "rgba(220,0,0,0.5)",
           pointColor: "rgba(220,0,0,0.5)",
-          data: [this.state.idealMacros.prot, this.state.idealMacros.carb, this.state.idealMacros.n6, this.state.idealMacros.fat]
+          data: [this.state.idealMacros.fat, this.state.idealMacros.prot, this.state.idealMacros.carb, this.state.idealMacros.n6]
         },
         {
           label: "Actual",
           fillColor: "rgba(0,0,220,0.5)",
           strokeColor: "rgba(0,0,220,0.5)",
           pointColor: "rgba(0,0,220,0.5)",
-          data: [this.state.actualMacros.prot, this.state.actualMacros.carb, this.state.actualMacros.n6, this.state.actualMacros.fat]
+          data: [this.state.actualMacros.fat, this.state.actualMacros.prot, this.state.actualMacros.carb, this.state.actualMacros.n6]
         }
       ]
     }
@@ -74,7 +74,7 @@ class RadarGraph extends Component {
       },
       scaleShowLabels: true,
       scaleOverride: true,
-      scaleSteps: 15,
+      scaleSteps: 13,
       scaleStepWidth: 10,
       pointDot : false
     }
