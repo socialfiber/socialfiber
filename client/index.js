@@ -45,6 +45,7 @@ ReactDOM.render(
     	<Route path='/userprofile' onEnter={ensureAuthenticated} component={UserProfile} />
       <Route path='/mygroups' onEnter={ensureAuthenticated} component={MyGroups} />
       <Route path='/creategroup' onEnter={ensureAuthenticated} component={CreateGroup}/>
+      <Route path ='/groupwall/:id' onEnter={ensureAuthenticated} component={GroupWall}/>
     </Router>
   </Provider>
 , document.getElementById('main'));

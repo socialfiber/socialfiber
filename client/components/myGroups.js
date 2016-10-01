@@ -21,6 +21,10 @@ class MyGroups extends Component {
         <MyGroupsIndividual key={idx} group={group} />
       );
 
+    //  <Link to= {pathname: '/groupwall/:'+ group.id}>
+
+
+
       return (
         <div>
           <NavBar />

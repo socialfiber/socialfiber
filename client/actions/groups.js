@@ -22,7 +22,6 @@ export function fetchUserGroups() {
     }
   })
   .then(function(response) {
-    console.log("Response in fetchUserGroups: ",response)
     return {
       type: FETCH_USER_GROUPS,
       payload: response
@@ -40,11 +39,11 @@ export function joinGroup(group_id) {
     user_id: localStorage.getItem('userID'),
   })
   .then(function(response) {
+    console.log('inside join group')
     var obj = {
       groupId: group_id,
       data: response.data
     };
-
     return {
       type: JOIN_GROUP,
       payload: obj
@@ -71,6 +70,7 @@ export function leaveGroup(group_id) {
   })
 }
 
+<<<<<<< 641f6f36885b8ac519bfd2994cc17a1a1f58978c
 // export function fetchGroupPosts(group_id) {
 //   return axios.get('/api/posts/getMessage', {
 //     params: {
@@ -86,3 +86,22 @@ export function leaveGroup(group_id) {
 //   .catch(error){
 //     console.error(error)}
 //   }
+=======
+
+export function fetchGroupPosts(group_id) {
+  return axios.get('/api/posts/getMessage', {
+    params: {
+      group_id: group_id
+    }
+  })
+  .then(function(response){
+    return {
+      type: FETCH_GROUP_POSTS,
+      payload: response
+    }
+  })
+  .catch((error) => {
+    console.error(error)
+  })
+}
+>>>>>>> [feature] completes basic group wall component

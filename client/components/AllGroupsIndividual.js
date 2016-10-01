@@ -6,7 +6,7 @@ const AllGroupsIndividual = (props) => (
     <div>
       <div>
         <button onClick= {() =>
-        {props.joinGroup(props.group.id)}}>Join Group</button>
+          {props.joinGroup(props.group.id)}}>Join Group</button>
       </div>
       <div> {props.group.name} </div>
       <div> {props.group.description} </div>

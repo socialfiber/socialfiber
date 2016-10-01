@@ -26,11 +26,6 @@ class AllGroups extends Component {
     return(
       <div>
         <NavBar />
-          <pre>
-            <code>
-              {JSON.stringify(this.props.groups, null, 4)}
-            </code>
-          </pre>
           <h1>Find a Group</h1>
           <ul className='list-group'>
             {this.renderGroups()}
