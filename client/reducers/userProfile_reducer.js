@@ -10,7 +10,7 @@ export default function(state = INITIAL_STATE, action) {
       // console.log("User information has been updated.");
       return;
     case FETCH_MACROS:
-      // console.log("in reducer: ", action.payload)
+      console.log("in reducer: ", action.payload)
       return {...state, idealMacros: action.payload.dietaryProfile, actualMacros: action.payload.nutritionTotals[0]};
     default:
       return state;
