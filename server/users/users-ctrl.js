@@ -90,12 +90,12 @@ const users = {
       });
     }
   },
-  '/api/users/browse/:id': {
+  '/api/users/browse/:userID': {
     'get': (req, res) => {
       console.log('inside GET at /api/users/browse/:id');
       Users.findOne({
         where: {
-          id: req.query.userID //change to grab from endpoint
+          id: req.params.userID //change to grab from endpoint
         },
         attributes: ['username'], //add privacy later
         include: [DietaryProfiles, NutritionTotals] //add some of their food diary
