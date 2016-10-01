@@ -19,7 +19,9 @@ const diaryEntries = {
         res.status(200).json(entries);
       })
       .catch((err) => {
-        res.status(400).send();
+        res.status(400).send({
+          msg: 'Error fetching diary entries.'
+        });
       });
 		}
   },
@@ -28,7 +30,9 @@ const diaryEntries = {
       nutritionix.search(req.body.food)
       .then((data) => {
         if(data.message) {
-          res.status(400).send();
+          res.status(400).send({
+            msg: `No results found for ${req.body.food}.`
+          });
         } else {
           DiaryEntries.create({
             user_id: req.body.userID,
@@ -51,16 +55,22 @@ const diaryEntries = {
               res.status(201).send();
             })
             .catch((err) => {
-              res.status(400).send();
+              res.status(400).send({
+                msg: 'Error increasing nutrition totals.'
+              });
             })
           })
           .catch((err) => {
-            res.status(400).send();
+            res.status(400).send({
+              msg: 'Error creating diary entry.'
+            });
           });
         }
       })
       .catch((err) => {
-        res.status(400).send();
+        res.status(400).send({
+          msg: 'Error searching API.'
+        });
       });
 		},
     'delete': (req, res) => {
@@ -86,15 +96,21 @@ const diaryEntries = {
             res.status(201).send();
           })
           .catch((err) => {
-            res.status(400).send();
+            res.status(400).send({
+              msg: 'Error decreasing nutrition totals.'
+            });
           });
         })
         .catch((err) => {
-          res.status(400).send();
+          res.status(400).send({
+            msg: 'Error creating diary entry.'
+          });
         });
       })
       .catch((err) => {
-        res.status(400).send();
+        res.status(400).send({
+          msg: 'Error deleting diary entry.'
+        });
       });
     }
   }

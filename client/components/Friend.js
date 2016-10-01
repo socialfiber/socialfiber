@@ -9,4 +9,4 @@ const Friend = (props) => {
   );
 }
 
-export default FoodDiaryLog;
+export default Friend;

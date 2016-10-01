@@ -16,28 +16,35 @@ class MyFriends extends Component {
   // }
 
   render() {
-    console.log(this.props.myFriends)
+    console.log('MY FRIENDS!!!!!!', this.props.myFriends)
+    console.log('FRIEND REQUESTS!!!!!!', this.props.friendRequests)
     if(this.props.myFriends.length > 0) {
-      const friends = this.props.myFriends.map((friend, idx) => {
+      const myFriends = this.props.myFriends.map((friend, idx) => {
         <li>
           <Friend key={idx} url={friend.url} img={friend.img} />
           <FriendRequestButton friendshipStatus={'friends'} />
         </li>
         }
       );
+      const friendRequests = this.props.friendRequests.map((friend, idx) => {
+        <li>
+          <Friend key={idx} url={friend.url} img={friend.img} />
+          <FriendRequestButton friendshipStatus={'requestee'} />
+        </li>
+        }
+      );
       return (
         <div>
-          <NavBar />
           <h1>My Friends</h1>
           <ul>
-            {friends}
+            {myFriends}
+            {friendRequests}
           </ul>
         </div>
       );
     } else if(this.props.myFriends.length === 0) {
       return (
         <div>
-          <NavBar />
           <h3>You don't have any friends.</h3>
         </div>
       );
@@ -54,7 +61,8 @@ class MyFriends extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    myFriends: state.friends.myFriends
+    myFriends: state.friends.myFriends,
+    friendRequests: state.friends.friendRequests,
   }
 }
 
