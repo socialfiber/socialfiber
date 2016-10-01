@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
-import { FETCH_ALL_GROUPS, FETCH_USER_GROUPS, LEAVE_GROUP, JOIN_GROUP, FETCH_GROUP_POSTS } from './types';
+import { FETCH_ALL_GROUPS, FETCH_USER_GROUPS, LEAVE_GROUP, JOIN_GROUP, FETCH_GROUP_POSTS, POST_MESSAGES } from './types';
 import Cookies from 'js-cookie';
 
 export function fetchAllGroups(){
@@ -29,7 +29,7 @@ export function fetchAllGroups(){
 export function fetchUserGroups() {
   const data = {
     params: {
-      userID: Cookies.getItem('userID') },
+      user_id: Cookies.get('userID') },
       headers: { 'x-access-token': Cookies.get('token') }
     }
 
@@ -108,6 +108,30 @@ export function fetchGroupPosts(group_id) {
   .then(function(response){
     return {
       type: FETCH_GROUP_POSTS,
+      payload: response
+    }
+  })
+  .catch((error) => {
+    console.error(error)
+  })
+}
+
+export function postMessages(group_id, group_name, username, message) {
+  const data = {
+    group_id: group_id,
+    group_name: group_name,
+    username: username,
+    message: message
+  }
+
+  const config = {
+    headers: { 'x-access-token': Cookies.get('token') }
+  }
+
+  return axios.post('/api/posts/postMessage', data, config)
+  .then(function(response) {
+    return {
+      type: POST_MESSAGES,
       payload: response
     }
   })

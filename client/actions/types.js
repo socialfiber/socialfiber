@@ -21,3 +21,4 @@ export const FETCH_PROFILE = 'FETCH_PROFILE';
 export const REDIRECT_PROFILE = 'REDIRECT_PROFILE';
 export const CHANGE_TAB = 'CHANGE_TAB';
 export const CREATE_ROOM = 'CREATE_ROOM';
+export const POST_MESSAGES = 'POST_MESSAGES';
