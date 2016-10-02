@@ -30,7 +30,7 @@ export function fetchFriendshipStatus(otherID) {
   }
   return axios.get('/api/friends/friendshipStatus', data)
     .then((response) => {
-      return { type: FRIENDSHIP_STATUS, payload: response.data }
+      return { type: FRIENDSHIP_STATUS, payload: response.data.status }
     })
     .catch((err) => {
       console.error(err);

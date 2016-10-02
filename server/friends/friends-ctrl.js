@@ -125,13 +125,15 @@ const friends = {
 					Friends.update({
 						status: 'friends'
 					}, {
-						where: $or[{
-							user1_id: req.body.otherID,
-							user2_id: req.body.userID
-						}, {
-							user1_id: req.body.userID,
-							user2_id: req.body.otherID
-						}]
+						where: {
+							$or: [{
+								user1_id: req.body.otherID,
+								user2_id: req.body.userID
+							}, {
+								user1_id: req.body.userID,
+								user2_id: req.body.otherID
+							}]
+						}
 					})
 					.then((accepted) => {
 						res.status(201).send();
@@ -175,13 +177,15 @@ const friends = {
 		'delete': (req, res) => {
 			console.log('inside DELETE at /api/friends/friendshipStatus');
 			Friends.destroy({
-				where: $or[{
-					user1_id: req.query.otherID,
-					user2_id: req.query.userID
-				}, {
-					user1_id: req.query.userID,
-					user2_id: req.query.otherID
-				}]
+				where: {
+					$or: [{
+						user1_id: req.query.otherID,
+						user2_id: req.query.userID
+					}, {
+						user1_id: req.query.userID,
+						user2_id: req.query.otherID
+					}]
+				}
 			})
 			.then((affectedRows) => {
 				res.status(201).send();

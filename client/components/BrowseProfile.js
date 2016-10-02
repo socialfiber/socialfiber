@@ -10,7 +10,6 @@ import ProfilePic from './profilePic';
 class BrowseProfile extends Component {
 
   componentWillMount() {
-    console.log("PARAMS!!!!", this.props.params)
     this.props.fetchProfile(this.props.params.id);
     this.props.fetchFriendshipStatus(this.props.params.id);
   }
@@ -27,7 +26,7 @@ class BrowseProfile extends Component {
         <div>
           <NavBar />
           <ProfilePic />
-          <FriendRequestButton otherID={this.props.profileInfo.id} friendshipStatus={this.props.friendshipStatus} />
+          <FriendRequestButton otherID={this.props.params.id} friendshipStatus={this.props.friendshipStatus} />
           <div>Age: {this.props.profileInfo.age}</div>
           <div>Gender: {this.props.profileInfo.gender}</div>
           <RadarGraph />

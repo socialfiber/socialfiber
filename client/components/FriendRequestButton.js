@@ -2,7 +2,7 @@ import React from 'react';
 import { sendFriendRequest, acceptFriendRequest, deleteFriendRequest } from '../actions/friends';
 
 const FriendRequestButton = (props) => {
-
+  console.log(props);
   //if nonexistent, request sendFriendRequest
   //if requestee, accept acceptFriendRequest
   //if requestor or friends, unfriend /delete request deleteFriendRequest 
