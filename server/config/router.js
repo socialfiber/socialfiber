@@ -6,6 +6,7 @@ const groups = require('../groups/groups-ctrl.js');
 const groups_users = require('../groups_users/groups_users-ctrl.js');
 const dietaryProfiles = require('../dietaryProfiles/dietaryProfiles-ctrl.js');
 const posts = require('../posts/posts-ctrl.js');
+const friends = require('../friends/friends-ctrl.js');
 
 //sample controller template
 const dummy = require('../dummy/dummy-ctrl.js')
@@ -19,7 +20,8 @@ const controllers = [
 	groups,
 	groups_users,
 	dietaryProfiles,
-	posts
+	posts,
+	friends
 ]
 
 for (var controller of controllers) {

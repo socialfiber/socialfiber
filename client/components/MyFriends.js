@@ -16,9 +16,7 @@ class MyFriends extends Component {
   // }
 
   render() {
-    console.log('MY FRIENDS!!!!!!', this.props.myFriends)
-    console.log('FRIEND REQUESTS!!!!!!', this.props.friendRequests)
-    if(this.props.myFriends.length > 0) {
+    if(this.props.myFriends.length && this.props.friendRequests.length) {
       const myFriends = this.props.myFriends.map((friend, idx) => {
         <li>
           <Friend key={idx} url={friend.url} img={friend.img} otherID={friend.id} />
@@ -37,7 +35,7 @@ class MyFriends extends Component {
         <div>
           <h1>Friends</h1>
           <h3>Friend Requests</h3>
-          </ul>
+          <ul>
             {friendRequests}
           </ul>
           <h3>My Friends</h3>
@@ -46,7 +44,7 @@ class MyFriends extends Component {
           </ul>
         </div>
       );
-    } else if(this.props.myFriends.length === 0) {
+    } else if(!this.props.myFriends.length && !this.props.friendRequests.length) {
       return (
         <div>
           <h3>You don't have any friends.</h3>

@@ -1,4 +1,4 @@
-const Friends = require('./friend-model.js');
+const Friends = require('./friends-model.js');
 
 const friends = {
 	'/api/friends/myFriends': {
@@ -8,15 +8,10 @@ const friends = {
 			Friends.findAll({
 				where: {
 					user1_id: req.query.userID
-				},
-				attributes: ['user1_id', 'user2_id', 'status']
+				}
 			})
 			.then((friends) => {
-				// if(friends) {
-					res.status(200).json(friends);
-				// } else {
-				// 	res.status(200).json([])
-				// }
+				res.status(200).json(friends);
 			})
 			.catch((err) => {
 				res.status(400).send({
