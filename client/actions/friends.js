@@ -16,11 +16,11 @@ export function fetchFriends() {
     });
 }
 
-export function fetchFriendshipStatus() {
+export function fetchFriendshipStatus(otherID) {
   const data = {
     params: {
       userID: Cookies.get('userID'),
-      otherID: Cookies.get('userID')
+      otherID: otherID
     },
     headers: { 'x-access-token': Cookies.get('token') }
   }
@@ -33,10 +33,10 @@ export function fetchFriendshipStatus() {
     });
 }
 
-export function sendFriendRequest() {
+export function sendFriendRequest(otherID) {
   const data = {
     userID: Cookies.get('userID'),
-    otherID: Cookies.get('userID')
+    otherID: otherID
   }
   const config = headers: { 'x-access-token': Cookies.get('token') }
   return axios.post('/api/friends/friendshipStatus', data, config)
@@ -48,11 +48,11 @@ export function sendFriendRequest() {
     });
 }
 
-export function acceptFriendRequest() {
+export function acceptFriendRequest(otherID) {
   const data = {
     params: {
       userID: Cookies.get('userID'),
-      otherID: Cookies.get('userID')
+      otherID: otherID
     },
     headers: { 'x-access-token': Cookies.get('token') }
   }
@@ -65,11 +65,11 @@ export function acceptFriendRequest() {
     });
 }
 
-export function deleteFriendRequest() {
+export function deleteFriendRequest(otherID) {
   const data = {
     params: {
       userID: Cookies.get('userID'),
-      otherID: Cookies.get('userID')
+      otherID: otherID
     },
     headers: { 'x-access-token': Cookies.get('token') }
   }

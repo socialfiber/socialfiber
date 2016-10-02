@@ -7,7 +7,7 @@ const friends = {
 			console.log('inside GET at /api/friends/myFriends');
 			Friends.findAll({
 				where: {
-					user1_id: req.body.userID
+					user1_id: req.query.userID
 				},
 				attributes: ['user1_id', 'user2_id', 'status']
 			})
@@ -55,45 +55,124 @@ const friends = {
 		//send friend request
 		'post': (req, res) => {
 			console.log('inside POST at /api/friends/friendshipStatus');
-			Friends.create({
-				user1_id: req.body.userID,
-				user2_id: req.body.otherID,
-				status: 'requestor'
+			Friends.findOne({
+				where: {
+					user1_id: req.body.userID,
+					user2_id: req.body.otherID
+				},
+				attributes: ['status']
 			})
-			.then((requested) => {
-				Friends.create({
-					user1_id: req.body.otherID,
-					user2_id: req.body.userID,
-					status: 'requestee'
-				}).then((requestee) => {
+			.then((found) => {
+				console.log("FRIENDS FINDONE", found)
+				if(found && found.status === 'requestee') {
+					Friends.update({
+						status: 'friends'
+					}, {
+						where: $or[{
+							user1_id: req.body.otherID,
+							user2_id: req.body.userID
+						}, {
+							user1_id: req.body.userID,
+							user2_id: req.body.otherID
+						}]
+					})
+					.then((accepted) => {
+						res.status(201).send();
+					})
+					.catch((err) => {
+						res.status(400).send({
+							msg: 'Error updating friend request.'
+						});
+					});
+				} else if(found && (found.status === 'requestor' || found.status === 'friends'))  {
 					res.status(201).send();
-				})
+				} else {
+					Friends.create({
+						user1_id: req.body.userID,
+						user2_id: req.body.otherID,
+						status: 'requestor'
+					})
+					.then((requested) => {
+						Friends.create({
+							user1_id: req.body.otherID,
+							user2_id: req.body.userID,
+							status: 'requestee'
+						}).then((requestee) => {
+							res.status(201).send();
+						})
+					})
+					.catch((err) => {
+						res.status(400).send({
+							msg: 'Error sending friend request.'
+						});
+					});
+				}
 			})
 			.catch((err) => {
 				res.status(400).send({
-					msg: 'Error sending friend request.'
+					msg: 'Error checking friend request.'
 				});
 			});
+			
 		},
 		//accept friend request
 		'put': (req, res) => {
-			Friends.update({
-				status: 'friends'
-			}, {
-				where: $or[{
-					user1_id: req.query.otherID,
-					user2_id: req.query.userID
-				}, {
-					user1_id: req.query.userID,
-					user2_id: req.query.otherID
-				}]
+			console.log('inside POST at /api/friends/friendshipStatus');
+			Friends.findOne({
+				where: {
+					user1_id: req.body.userID,
+					user2_id: req.body.otherID
+				},
+				attributes: ['status']
 			})
-			.then((accepted) => {
-				res.status(201).send();
+			.then((found) => {
+				if(found && (found.status === 'requestee' || found.status === 'friends')) {
+					Friends.update({
+						status: 'friends'
+					}, {
+						where: $or[{
+							user1_id: req.body.otherID,
+							user2_id: req.body.userID
+						}, {
+							user1_id: req.body.userID,
+							user2_id: req.body.otherID
+						}]
+					})
+					.then((accepted) => {
+						res.status(201).send();
+					})
+					.catch((err) => {
+						res.status(400).send({
+							msg: 'Error accepting friend request.'
+						});
+					});
+				} else if(found && found.status === 'requestor') {
+					res.status(201).send();
+				} else {
+					Friends.create({
+						user1_id: req.body.userID,
+						user2_id: req.body.otherID,
+						status: 'requestor'
+					})
+					.then((requested) => {
+						Friends.create({
+							user1_id: req.body.otherID,
+							user2_id: req.body.userID,
+							status: 'requestee'
+						}).then((requestee) => {
+							res.status(201).send();
+						})
+					})
+					.catch((err) => {
+						res.status(400).send({
+							msg: 'Error sending friend request.'
+						});
+					});
+				}
 			})
 			.catch((err) => {
 				res.status(400).send({
-					msg: 'Error accepting friend request.'
+					msg: 'Error checking friend request.'
 				});
 			});
 		},

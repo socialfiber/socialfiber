@@ -2,6 +2,7 @@ const Users = require('./users-model.js');
 const Questions = require('../questions/questions-model.js');
 const DietaryProfiles = require('../dietaryProfiles/dietaryProfiles-model.js');
 const NutritionTotals = require('../nutritionTotals/nutritionTotals-model.js');
+const Friends = require('../friends/friends-model.js');
 const utils = require('../config/utilities.js');
 
 const users = {
@@ -75,7 +76,7 @@ const users = {
       console.log('inside GET at /api/users/getUserData', req.headers['x-access-token']);
       const options = {
         attributes: ['id', 'username', 'IBW', 'cal_min', 'cal_max', 'code'],
-        include: [DietaryProfiles, Questions, NutritionTotals]
+        include: [DietaryProfiles, Questions, NutritionTotals, Friends]
       }
       Users.findById(req.query.userID, options)
       .then((userData) => {
@@ -93,7 +94,7 @@ const users = {
       console.log('inside GET at /api/users/browse/:id');
       const options = {
         attributes: ['username', 'privacy'],
-        include: [DietaryProfiles, NutritionTotals]
+        include: [DietaryProfiles, NutritionTotals, Friends]
       }
       Users.findById(req.params.id, options)
       .then((userData) => {
