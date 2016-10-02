@@ -2,7 +2,7 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 import { browserHistory } from 'react-router';
 import { SubmissionError } from 'redux-form';
-import { AUTH_USER, AUTH_ERROR } from './types';
+import { AUTH_USER, AUTH_ERROR, SIGN_OUT } from './types';
 
 export function resetError() {
   return { type: AUTH_ERROR, payload: '' }

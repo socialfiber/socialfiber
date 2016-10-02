@@ -1,13 +1,13 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import { browserHistory } from 'react-router';
-import { FETCH_PROFILE } from './types';
+import { FETCH_PROFILE, REDIRECT_PROFILE } from './types';
 
 export function fetchProfile(OTHER_ID) {
   // if profile id = user id, redirect to user profile
   if(OTHER_ID === Cookies.get('userID')) {
     browserHistory.push('/userProfile');
-    return;
+    return { type: REDIRECT_PROFILE };
   } else {
     // if friends or public, fetch all data,
     // if private, fetch selected data

@@ -18,7 +18,6 @@ class BrowseProfile extends Component {
   }
 
   render() {
-    console.log("PARAMS!!!!", this.props.friendshipStatus)
     //if friends or public, fetch all data,
     //if private, fetch selected data
     if(this.props.profileInfo !== null) {

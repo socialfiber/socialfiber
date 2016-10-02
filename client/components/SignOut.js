@@ -6,7 +6,9 @@ class SignOut extends Component {
 
   render() {
     return (
-      <button onClick={this.props.submitSignOut}>Sign Out</button>
+    	<div>
+    		<button onClick={this.props.submitSignOut}>Sign Out</button>
+    	</div>
     )
   }
 
@@ -18,4 +20,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { submitSignOut })(SignIn);
+export default connect(mapStateToProps, { submitSignOut })(SignOut);

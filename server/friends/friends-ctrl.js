@@ -11,6 +11,7 @@ const friends = {
 				}
 			})
 			.then((friends) => {
+				console.log("FRIENDS!!!!!", friends)
 				res.status(200).json(friends);
 			})
 			.catch((err) => {

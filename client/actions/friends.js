@@ -10,7 +10,7 @@ export function fetchFriends() {
   return axios.get('/api/friends/myFriends', data)
     .then((response) => {
       const payload = {
-        myFriends: response.data.filter((friend) => { return friend.status === 'accepted' }),
+        myFriends: response.data.filter((friend) => { return friend.status === 'friends' }),
         friendRequests: response.data.filter((friend) => { return friend.status === 'requestee' })
       }
       return { type: FETCH_FRIENDS, payload: payload }
@@ -54,13 +54,11 @@ export function sendFriendRequest(otherID) {
 
 export function acceptFriendRequest(otherID) {
   const data = {
-    params: {
-      userID: Cookies.get('userID'),
-      otherID: otherID
-    },
-    headers: { 'x-access-token': Cookies.get('token') }
+    userID: Cookies.get('userID'),
+    otherID: otherID
   }
-  return axios.put('/api/friends/friendshipStatus', data)
+  const config = { headers: { 'x-access-token': Cookies.get('token') } }
+  return axios.put('/api/friends/friendshipStatus', data, config)
     .then((response) => {
       return { type: FRIENDSHIP_STATUS, payload: response.data }
     })

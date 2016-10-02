@@ -16,21 +16,23 @@ class MyFriends extends Component {
   // }
 
   render() {
-    if(this.props.myFriends.length && this.props.friendRequests.length) {
+    if(this.props.myFriends.length || this.props.friendRequests.length) {
       const myFriends = this.props.myFriends.map((friend, idx) => {
-        <li>
-          <Friend key={idx} url={friend.url} img={friend.img} otherID={friend.id} />
-          <FriendRequestButton friendshipStatus={'friends'} />
-        </li>
-        }
-      );
+        return (
+          <li key={idx}>
+            <Friend  url={friend.url} img={friend.img} otherID={friend.id} />
+            <FriendRequestButton friendshipStatus='friends' otherID={friend.id} />
+          </li>
+        )
+      })
       const friendRequests = this.props.friendRequests.map((friend, idx) => {
-        <li>
-          <Friend key={idx} url={friend.url} img={friend.img} otherID={friend.id} />
-          <FriendRequestButton friendshipStatus={'requestee'} />
-        </li>
-        }
-      );
+        return (
+          <li key={idx}>
+            <Friend url={friend.url} img={friend.img} otherID={friend.id} />
+            <FriendRequestButton friendshipStatus='requestee' otherID={friend.id} />
+          </li>
+        )
+      })
       return (
         <div>
           <h1>Friends</h1>

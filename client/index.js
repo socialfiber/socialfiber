@@ -28,11 +28,11 @@ const isAuthenticated = () => {
 
 const ensureAuthenticated = (nextState, replace) => {
   if(!isAuthenticated()) { replace('/signin'); }
-};
+}
 
 const skipIfAuthenticated = (nextState, replace) => {
   if(isAuthenticated()) { replace('/userprofile'); }
-};
+}
 
 ReactDOM.render(
   <Provider store={store}>
