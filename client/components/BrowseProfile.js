@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchProfile, fetchFriendshipStatus } from '../actions/browse';
+import { fetchProfile } from '../actions/browse';
+import { fetchFriendshipStatus } from '../actions/friends';
 import NavBar from './navbar';
 import FriendRequestButton from './FriendRequestButton';
 import RadarGraph from './radarGraph';
@@ -9,14 +10,16 @@ import ProfilePic from './profilePic';
 class BrowseProfile extends Component {
 
   componentWillMount() {
-    this.props.fetchProfile();
-    this.props.fetchFriendshipStatus();
+    console.log("PARAMS!!!!", this.props.params)
+    this.props.fetchProfile(this.props.params.id);
+    this.props.fetchFriendshipStatus(this.props.params.id);
   }
 
   componentDidUpdate() {
   }
 
   render() {
+    console.log("PARAMS!!!!", this.props.friendshipStatus)
     //if friends or public, fetch all data,
     //if private, fetch selected data
     if(this.props.profileInfo !== null) {
@@ -48,4 +51,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { fetchProfile })(BrowseProfile);
+export default connect(mapStateToProps, { fetchProfile, fetchFriendshipStatus })(BrowseProfile);

@@ -5,6 +5,7 @@ import UserProfileReducer from './userProfile_reducer';
 import FoodDiaryReducer from './foodDiary_reducer';
 import GroupsReducer from './groups_reducer';
 import FriendsReducer from './friends_reducer';
+import BrowseReducer from './browse_reducer';
 
 const rootReducer = combineReducers({
   auth: AuthReducer,
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
   userProfile: UserProfileReducer,
   foodDiary: FoodDiaryReducer,
   groups: GroupsReducer,
-  friends: FriendsReducer
+  friends: FriendsReducer,
+  browse: BrowseReducer
 });
 
 export default rootReducer;

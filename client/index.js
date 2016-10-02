@@ -44,12 +44,11 @@ ReactDOM.render(
     	<Route path='/fooddiary' onEnter={ensureAuthenticated} component={FoodDiary} />
       <Route path='/userprofile' onEnter={ensureAuthenticated} component={UserProfile} />
       <Route path='/viewallgroups' onEnter={ensureAuthenticated} component={AllGroups} />
-    	<Route path='/userprofile' onEnter={ensureAuthenticated} component={UserProfile} />
       <Route path='/mygroups' onEnter={ensureAuthenticated} component={MyGroups} />
       <Route path='/creategroup' onEnter={ensureAuthenticated} component={CreateGroup} />
       <Route path ='/groupwall/:id' onEnter={ensureAuthenticated} component={GroupWall} />
       <Route path ='/myfriends' onEnter={ensureAuthenticated} component={MyFriends} />
-      <Route path ='/browseprofile' onEnter={ensureAuthenticated} component={BrowseProfile} />
+      <Route path ='/browseprofile/:id' onEnter={ensureAuthenticated} component={BrowseProfile} />
     </Router>
   </Provider>
 , document.getElementById('main'));
