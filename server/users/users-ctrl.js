@@ -72,14 +72,12 @@ const users = {
   },
   '/api/users/getUserData': {
     'get': (req, res) => {
-      console.log('inside GET at /api/users/getUserData');
-      Users.findOne({
-        where: {
-          id: req.query.userID
-        },
+      console.log('inside GET at /api/users/getUserData', req.headers['x-access-token']);
+      const options = {
         attributes: ['id', 'username', 'IBW', 'cal_min', 'cal_max', 'code'],
         include: [DietaryProfiles, Questions, NutritionTotals]
-      })
+      }
+      Users.findById(req.query.userID, options)
       .then((userData) => {
         res.status(200).json(userData);
       })
@@ -90,16 +88,14 @@ const users = {
       });
     }
   },
-  '/api/users/browse/:userID': {
+  '/api/users/browse/:id': {
     'get': (req, res) => {
       console.log('inside GET at /api/users/browse/:id');
-      Users.findOne({
-        where: {
-          id: req.params.userID //change to grab from endpoint
-        },
-        attributes: ['username'], //add privacy later
-        include: [DietaryProfiles, NutritionTotals] //add some of their food diary
-      })
+      const options = {
+        attributes: ['username', 'privacy'],
+        include: [DietaryProfiles, NutritionTotals]
+      }
+      Users.findById(req.params.id, options)
       .then((userData) => {
         res.status(200).json(userData);
       })

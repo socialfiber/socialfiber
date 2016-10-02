@@ -77,8 +77,6 @@ const friends = {
 		},
 		//accept friend request
 		'put': (req, res) => {
-			
-
 			Friends.update({
 				status: 'friends'
 			}, {

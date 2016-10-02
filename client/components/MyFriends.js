@@ -28,7 +28,7 @@ class MyFriends extends Component {
       );
       const friendRequests = this.props.friendRequests.map((friend, idx) => {
         <li>
-          <Friend key={idx} url={friend.url} img={friend.img} />
+          <Friend key={idx} url={friend.url} img={friend.img} otherID={friend.id} />
           <FriendRequestButton friendshipStatus={'requestee'} />
         </li>
         }
