@@ -3,6 +3,16 @@ const sequelize = require('../config/database');
 const Users = require('../users/users-model.js');
 
 const Friends = sequelize.define('friends', {
+  user1_username: {
+    type: Sequelize.STRING,
+    allowNull: true,
+    default: null
+  },
+  user2_username: {
+    type: Sequelize.STRING,
+    allowNull: true,
+    default: null
+  },
   status: {
     type: Sequelize.STRING,
     allowNull: true,

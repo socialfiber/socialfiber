@@ -1,4 +1,5 @@
 const Friends = require('./friends-model.js');
+const Users = require('../users/users-model.js');
 
 const friends = {
 	'/api/friends/myFriends': {
@@ -11,7 +12,6 @@ const friends = {
 				}
 			})
 			.then((friends) => {
-				console.log("FRIENDS!!!!!", friends)
 				res.status(200).json(friends);
 			})
 			.catch((err) => {
@@ -84,25 +84,43 @@ const friends = {
 				} else if(found && (found.status === 'requestor' || found.status === 'friends'))  {
 					res.status(201).send(found);
 				} else {
-					Friends.create({
-						user1_id: req.body.userID,
-						user2_id: req.body.otherID,
-						status: 'requestor'
-					})
-					.then((requested) => {
+					Users.findById(req.body.otherID)
+					.then((otherUser) => {
 						Friends.create({
-							user1_id: req.body.otherID,
-							user2_id: req.body.userID,
-							status: 'requestee'
-						}).then((requestee) => {
-							res.status(201).send({
-								status: 'requestor'
+							user1_id: req.body.userID,
+							user1_username: req.body.username,
+							user2_id: req.body.otherID,
+							user2_username: otherUser.username,
+							status: 'requestor'
+						})
+						.then((requestor) => {
+							Friends.create({
+								user1_id: req.body.otherID,
+								user1_username: otherUser.username,
+								user2_id: req.body.userID,
+								user2_username: req.body.username,
+								status: 'requestee'
+							})
+							.then((requestee) => {
+								res.status(201).send({
+									status: 'requestor'
+								});
+							})
+							.catch((err) => {
+								res.status(400).send({
+									msg: 'Error creating requestee.'
+								});
 							});
 						})
+						.catch((err) => {
+							res.status(400).send({
+								msg: 'Error creating requestor.'
+							});
+						});
 					})
 					.catch((err) => {
 						res.status(400).send({
-							msg: 'Error sending friend request.'
+							msg: 'Error finding friend to add.'
 						});
 					});
 				}
@@ -152,25 +170,43 @@ const friends = {
 				} else if(found && found.status === 'requestor') {
 					res.status(201).send(found);
 				} else {
-					Friends.create({
-						user1_id: req.body.userID,
-						user2_id: req.body.otherID,
-						status: 'requestor'
-					})
-					.then((requested) => {
+					Users.findById(req.body.otherID)
+					.then((otherUser) => {
 						Friends.create({
-							user1_id: req.body.otherID,
-							user2_id: req.body.userID,
-							status: 'requestee'
-						}).then((requestee) => {
-							res.status(201).send({
-								status: 'requestor'
+							user1_id: req.body.userID,
+							user1_username: req.body.username,
+							user2_id: req.body.otherID,
+							user2_username: otherUser.username,
+							status: 'requestor'
+						})
+						.then((requestor) => {
+							Friends.create({
+								user1_id: req.body.otherID,
+								user1_username: otherUser.username,
+								user2_id: req.body.userID,
+								user2_username: req.body.username,
+								status: 'requestee'
+							})
+							.then((requestee) => {
+								res.status(201).send({
+									status: 'requestor'
+								});
+							})
+							.catch((err) => {
+								res.status(400).send({
+									msg: 'Error creating requestee.'
+								});
 							});
 						})
+						.catch((err) => {
+							res.status(400).send({
+								msg: 'Error creating requestor.'
+							});
+						});
 					})
 					.catch((err) => {
 						res.status(400).send({
-							msg: 'Error sending friend request.'
+							msg: 'Error finding friend to add.'
 						});
 					});
 				}
