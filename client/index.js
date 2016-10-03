@@ -45,7 +45,8 @@ ReactDOM.render(
       <Route path='/viewallgroups' onEnter={ensureAuthenticated} component={AllGroups} />
       <Route path='/mygroups' onEnter={ensureAuthenticated} component={MyGroups} />
       <Route path='/creategroup' onEnter={ensureAuthenticated} component={CreateGroup} />
-      <Route path ='/groupwall/:id' onEnter={ensureAuthenticated} component={GroupWall} />
+      <Route path ='/groupwall/:id/:groupname' onEnter={ensureAuthenticated} component={GroupWall} />
+      <Route path ='/myfriends' onEnter={ensureAuthenticated} component={MyFriends} />
       <Route path ='/browseprofile/:id' onEnter={ensureAuthenticated} component={BrowseProfile} />
       <Route path ='/chat' component={ChatWindow} />
     </Router>

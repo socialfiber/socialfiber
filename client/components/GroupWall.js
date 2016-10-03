@@ -3,68 +3,52 @@ import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { fetchGroupPosts } from '../actions/groups';
 import Messages from './PostMessageBox';
-import Comments from './comments';
+import Comments from './CommentsBox';
+import NavBar from './navbar';
+import GroupWallMessages from './GroupWallMessages';
 
 class GroupWall extends Component {
 
-  constructor(){
-    super();
-    this.state = {
-      showReply: false
-    }
-  }
-
-  showReplyForm(e){
-    e.preventDefault();
-    console.log('e:', e);
-    this.setState({showReply: !this.state.showReply})
-  }
-
-//fetch current posts on wall
-  //access groupID to pass in as param
-
     componentWillMount() {
       this.props.fetchGroupPosts(this.props.params.id);
-      console.log('this props: ', this.props.myGroups.userGroups);
-      console.log('this props: ', this.props.params);
-
     }
 
-
-
-
-    renderGroupPosts() {
-      return this.props.myGroups.groupPosts.map((post, indx)=> {
-        const shortDate = post.createdAt.substr(0,10);
+    render() {
+      if(this.props.myGroups.groupPosts.length > 0) {
+        const groupPosts = this.props.myGroups.groupPosts.map((post, idx) =>
+          <GroupWallMessages key={idx} post={post} />
+        );
           return(
-            <li className='list-group-item'>
-              {shortDate}
-              <strong> {post.username}: </strong>
-              <span>{post.message}</span>
-              <span><button onClick = {this.showReplyForm.bind(this)}> Reply </button></span>
-            </li>
-          )
-      })
+              <div>
+                <NavBar />
+                <h1>{this.props.params.groupname}</h1>
+                <Messages />
+                <ul className='list-group-item'>
+                  {groupPosts}
+                </ul>
+              </div>
+          );
+      } else if(this.props.myGroups.groupPosts.length === 0) {
+        return (
+          <div>
+            <h3>Nobody has posted anything yet.</h3>
+          </div>
+        );
+      } else {
+        return (
+          <div>
+            <h3>Loading posts...</h3>
+          </div>
+        )
+      }
     }
+  }
 
-    render(){
-      return(
-        <div>
-          <h1>Group Wall</h1>
-          <Messages />
-          <ul>
-          {this.renderGroupPosts()}
-
-          </ul>
-          {this.state.showReply && <Comments />}
-        </div>
-      )
-    }
-}
 
 const mapStateToProps = (state) => {
   return {
-    myGroups: state.groups
+    myGroups: state.groups,
+    groupPosts: state.groupPosts
   }
 }
 

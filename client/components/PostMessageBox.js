@@ -7,7 +7,6 @@ class Messages extends Component {
 
     render() {
       const { handleSubmit } = this.props;
-      console.log('this props inside postmessagebox:', this.props);
       return (
         <form onSubmit = {handleSubmit(this.props.postMessages)}>
             <p>Post a Message</p>
@@ -27,9 +26,8 @@ class Messages extends Component {
   })(Messages);
 
   const mapStateToProps = (state) => {
-  	console.log('state in postmessagebox: ', state);
   	return {
-  		myGroups: state.groups
+  		myGroups: state.groups,
   	}
   }
 

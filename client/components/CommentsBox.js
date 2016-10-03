@@ -1,18 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
+import { postComment } from '../actions/groups';
 
 class Comments extends Component {
 
     render() {
       const { handleSubmit } = this.props;
-      console.log('this props:', this.props);
       return (
-        <form>
-            <p>Post a Comment</p>
+        <form onSubmit = {handleSubmit(this.props.postComment)}>
             <div>
               <label>Reply</label>
-              <Field name="comment" component="input" type="text" required />
+              <Field name="message" component="input" type="text" required />
             </div>
             <button type="submit">Submit</button>
         </form>
@@ -25,4 +24,11 @@ class Comments extends Component {
     form: 'Comments'
   })(Comments);
 
-  export default connect(null)(Comments);
+  const mapStateToProps = (state) => {
+  	return {
+  		myGroups: state.groups,
+      groupMessages: state.groupPosts
+  	}
+  }
+
+  export default connect(mapStateToProps, { postComment })(Comments);

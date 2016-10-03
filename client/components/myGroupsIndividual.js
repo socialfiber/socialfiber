@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import { leaveGroup } from '../actions/groups';
-import { fetchGroupPosts } from '../actions/groups';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 
@@ -13,8 +12,6 @@ class MyGroupsIndividual extends Component {
 	}
 
 	groupClick (e) {
-		console.log('group was clicked');
-		console.log('this.props inside mygroups individual: ',this.props);
 		this.props.myGroups.postObject = {'group_id': this.props.group.id, 'group_name': this.props.group.name };
 	}
 
@@ -25,7 +22,7 @@ class MyGroupsIndividual extends Component {
 					<button onClick={ () => {leaveGroup(this.props.group.id)}}> Leave Group </button>
 				</td>
 				<div onClick={this.groupClick}>
-					<Link to = {'groupwall/'+ this.props.group.id} > {this.props.group.name}</Link>
+					<Link to = {'groupwall/'+ this.props.group.id + '/' + this.props.group.name} > {this.props.group.name}</Link>
 				</div>
 				<td>
 					{this.props.group.description}

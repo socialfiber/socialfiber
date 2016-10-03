@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
-import { FETCH_ALL_GROUPS, FETCH_USER_GROUPS, LEAVE_GROUP, JOIN_GROUP, FETCH_GROUP_POSTS, POST_MESSAGES } from './types';
+import { FETCH_ALL_GROUPS, FETCH_USER_GROUPS, LEAVE_GROUP, JOIN_GROUP, FETCH_GROUP_POSTS, POST_MESSAGE, POST_COMMENT } from './types';
 import Cookies from 'js-cookie';
 
 export function fetchAllGroups(){
@@ -116,10 +116,7 @@ export function fetchGroupPosts(group_id) {
   })
 }
 
-export function postMessages(message, group_name, groupid) {
-  console.log('message button clicked');
-  console.log('username: ', Cookies.get('username'));
-  console.log('groupid: ', groupid);
+export function postMessages(message, filler, groupid) {
 
   const data = {
     group_id: groupid.myGroups.postObject.group_id,
@@ -136,7 +133,34 @@ export function postMessages(message, group_name, groupid) {
   .then(function(response) {
     console.log('response: ', response);
     return {
-      type: POST_MESSAGES,
+      type: POST_MESSAGE,
+      payload: response
+    }
+  })
+  .catch((error) => {
+    console.error(error)
+  })
+}
+
+export function postComment(message, filler, commentObject){
+  console.log('message inside postcomment action: ', message.message);
+  console.log('filler inside postcomment action: ', Cookies.get('username'));
+  console.log('post_id inside postcomment action: ', commentObject.myGroups.commentObject.id);
+
+  const data = {
+    post_id: commentObject.myGroups.commentObject.id,
+    username: Cookies.get('username'),
+    message: message.message
+  }
+  const config = {
+    headers: { 'x-access-token': Cookies.get('token') }
+  }
+
+  return axios.post('/api/comments/postComment', data, config)
+  .then(function(response){
+    console.log('response: ', response);
+    return {
+      type: POST_COMMENT,
       payload: response
     }
   })
