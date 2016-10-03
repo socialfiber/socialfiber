@@ -1,6 +1,6 @@
 import { CHANGE_TAB } from '../actions/types';
 
-const INITIAL_STATE = { currentTab: 'MyFriends' }
+const INITIAL_STATE = { tabsList: [], currentTab: null }
 
 export default function(state = INITIAL_STATE, action) {
   	console.log(action)
