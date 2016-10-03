@@ -10,13 +10,11 @@ import SignUp from './components/Signup';
 import SignIn from './components/Signin';
 import Questionnaire from './components/Questionnaire';
 import UserProfile from './components/UserProfile';
-import FoodDiary from './components/foodDiary';
 import SplashPg from './components/Splashpg';
 import MyGroups from './components/MyGroups';
 import AllGroups from './components/AllGroups';
 import CreateGroup from './components/CreateGroup';
 import GroupWall from './components/GroupWall';
-import MyFriends from './components/MyFriends';
 import BrowseProfile from './components/BrowseProfile';
 
 const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
@@ -41,13 +39,11 @@ ReactDOM.render(
     	<Route path='/signup' onEnter={skipIfAuthenticated} component={SignUp} />
     	<Route path='/signin' onEnter={skipIfAuthenticated} component={SignIn} />
     	<Route path='/userquestionnaire' onEnter={ensureAuthenticated} component={Questionnaire} />
-    	<Route path='/fooddiary' onEnter={ensureAuthenticated} component={FoodDiary} />
       <Route path='/userprofile' onEnter={ensureAuthenticated} component={UserProfile} />
       <Route path='/viewallgroups' onEnter={ensureAuthenticated} component={AllGroups} />
       <Route path='/mygroups' onEnter={ensureAuthenticated} component={MyGroups} />
       <Route path='/creategroup' onEnter={ensureAuthenticated} component={CreateGroup} />
       <Route path ='/groupwall/:id' onEnter={ensureAuthenticated} component={GroupWall} />
-      <Route path ='/myfriends' onEnter={ensureAuthenticated} component={MyFriends} />
       <Route path ='/browseprofile/:id' onEnter={ensureAuthenticated} component={BrowseProfile} />
     </Router>
   </Provider>

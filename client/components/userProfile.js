@@ -8,6 +8,7 @@ import { updateUserData } from '../actions/updateUserData';
 import RadarGraph from './radarGraph';
 import ProfilePic from './profilePic';
 import ChatWindow from './chatWindow';
+import Tabs from './Tabs';
 
 
 class UserProfile extends Component {
@@ -60,6 +61,7 @@ class UserProfile extends Component {
             </div>
             <ChatWindow />
             <RadarGraph />
+            <Tabs />
           </div>
         );
       } else {

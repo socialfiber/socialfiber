@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { fetchFoodDiary } from '../actions/foodDiary';
 import FoodDiaryLog from './FoodDiaryLog';
 import FoodDiaryEntry from './FoodDiaryEntry';
-import NavBar from './navbar';
 
 
 
@@ -25,7 +24,6 @@ class FoodDiary extends Component {
       );
       return (
         <div>
-        <NavBar />
           <h1>Food Diary</h1>
           <FoodDiaryEntry />
           <table>

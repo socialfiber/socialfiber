@@ -26,7 +26,7 @@ class MyFriends extends Component {
       const myFriends = this.props.myFriends.map((friend, idx) => {
         return (
           <li key={idx}>
-            <Friend  username={friend.username} img={friend.img} otherID={friend.user2_id} />
+            <Friend username={friend.user2_username} img={friend.img} otherID={friend.user2_id} />
             <FriendRequestButton friendshipStatus='friends' otherID={friend.user2_id} />
           </li>
         )
@@ -34,7 +34,7 @@ class MyFriends extends Component {
       const friendRequests = this.props.friendRequests.map((friend, idx) => {
         return (
           <li key={idx}>
-            <Friend url={friend.url} img={friend.img} otherID={friend.user2_id} />
+            <Friend username={friend.user2_username} img={friend.img} otherID={friend.user2_id} />
             <FriendRequestButton friendshipStatus='requestee' otherID={friend.user2_id} />
           </li>
         )

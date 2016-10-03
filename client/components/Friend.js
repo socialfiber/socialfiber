@@ -5,8 +5,7 @@ const Friend = (props) => {
   return (
     <div>
       <img src={props.img}></img>
-      <Link to={`/browseprofile/${props.otherID}`}>USERNAME GOES HERE{props.username}</Link>
-      <a href={props.url}>username w/ url</a>
+      <Link to={`/browseprofile/${props.otherID}`}>{props.username}</Link>
     </div>
   );
 }
