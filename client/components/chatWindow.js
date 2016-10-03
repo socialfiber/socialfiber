@@ -25,7 +25,6 @@ class ChatWindow extends Component {
   handleSubmit(e) {
     // console.log("Submitted: ", e.target.value);
     const body = e.target.value;
-    e.preventDefault();
     if(e.keyCode === 13 && body) {
       const message = {
         body,
@@ -33,7 +32,7 @@ class ChatWindow extends Component {
       }
       this.setState({ messages: [message, ...this.state.messages] });
       this.socket.emit('message', body)
-      // console.log("emits: ", body)
+      console.log("emits: ", body)
       e.target.value = '';
     }
   }
@@ -44,10 +43,8 @@ class ChatWindow extends Component {
     });
     return (
       <div>
-      <h3>Live Chat</h3>
-        <form onSubmit={this.handleSubmit}>
-            <input type="text" placeholder="Enter a message..." onKeyUp={this.handleSubmit}/>
-        </form>
+        <h3>Live Chat</h3>
+        <input type="text" placeholder="Enter a message..." onKeyUp={this.handleSubmit}/>
         {messages}
       </div>
     );

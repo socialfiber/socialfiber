@@ -33,7 +33,7 @@ const io = socketIo(server);
 io.on('connection', (socket) => {
   console.log("A user has entered the room");
   socket.on('message', (body) => {
-    // console.log("recevied: ", message);
+    // console.log("recevied: ", body);
     socket.broadcast.emit('message', {
       body,
       from: socket.id.slice(8)
