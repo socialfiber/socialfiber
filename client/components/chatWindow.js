@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import io from 'socket.io-client';
-
+import Cookies from 'js-cookie';
+// import moment from 'moment';
 
 class ChatWindow extends Component {
   constructor(props) {
@@ -13,6 +14,7 @@ class ChatWindow extends Component {
   }
 
   componentDidMount() {
+    // console.log("timestamp: ", moment().format('h:mm:ss a'));
     this.socket = io('/') // Triggers on connection event on the web server.
     this.socket.on('message', (message) => { // Event listener
       this.setState({ messages: [message, ...this.state.messages] });
@@ -28,11 +30,11 @@ class ChatWindow extends Component {
     if(e.keyCode === 13 && body) {
       const message = {
         body,
-        from: "Me"
+        from: Cookies.get('username')
       }
       this.setState({ messages: [message, ...this.state.messages] });
-      this.socket.emit('message', body)
-      console.log("emits: ", body)
+      this.socket.emit('message', body, message.from);
+      console.log("emits: ", message.from + ": " + body);
       e.target.value = '';
     }
   }
