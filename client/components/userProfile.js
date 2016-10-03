@@ -7,6 +7,7 @@ import SelectComponent from './SelectComponent';
 import { updateUserData } from '../actions/updateUserData';
 import RadarGraph from './radarGraph';
 import ProfilePic from './profilePic';
+import ChatWindow from './chatWindow';
 
 
 class UserProfile extends Component {
@@ -57,6 +58,7 @@ class UserProfile extends Component {
             <div>
               <button type="button" onClick={() => this.toggleEditing()}>Edit Info</button>
             </div>
+            <ChatWindow />
             <RadarGraph />
           </div>
         );
