@@ -13,12 +13,14 @@ const Users = sequelize.define('users', {
   },
   privacy: {
     type: Sequelize.STRING,
-    allowNull: true
+    allowNull: true,
+    default: 'private'
   },
-  diet: {
-    type: Sequelize.STRING,
-    allowNull: true
-  },
+  // diets: {
+  //   type: Sequelize.ARRAY,
+  //   allowNull: false,
+  //   default: []
+  // },
   IBW: {
     type: Sequelize.INTEGER,
     allowNull: true

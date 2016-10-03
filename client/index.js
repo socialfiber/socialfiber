@@ -16,6 +16,8 @@ import MyGroups from './components/MyGroups';
 import AllGroups from './components/AllGroups';
 import CreateGroup from './components/CreateGroup';
 import GroupWall from './components/GroupWall';
+import MyFriends from './components/MyFriends';
+import BrowseProfile from './components/BrowseProfile';
 
 const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
 const store = createStoreWithMiddleware(reducers, window.devToolsExtension ? window.devToolsExtension() : f => f);
@@ -26,11 +28,11 @@ const isAuthenticated = () => {
 
 const ensureAuthenticated = (nextState, replace) => {
   if(!isAuthenticated()) { replace('/signin'); }
-};
+}
 
 const skipIfAuthenticated = (nextState, replace) => {
   if(isAuthenticated()) { replace('/userprofile'); }
-};
+}
 
 ReactDOM.render(
   <Provider store={store}>
@@ -38,14 +40,15 @@ ReactDOM.render(
       <Route path='/' component={SplashPg} />
     	<Route path='/signup' onEnter={skipIfAuthenticated} component={SignUp} />
     	<Route path='/signin' onEnter={skipIfAuthenticated} component={SignIn} />
-    	<Route path='/userquestionnaire' onEnter={ensureAuthenticated} component={Questionnaire}/>
-    	<Route path='/fooddiary' onEnter={ensureAuthenticated} component={FoodDiary}/>
+    	<Route path='/userquestionnaire' onEnter={ensureAuthenticated} component={Questionnaire} />
+    	<Route path='/fooddiary' onEnter={ensureAuthenticated} component={FoodDiary} />
       <Route path='/userprofile' onEnter={ensureAuthenticated} component={UserProfile} />
-      <Route path='/viewallgroups' onEnter={ensureAuthenticated} component={AllGroups}/>
-    	<Route path='/userprofile' onEnter={ensureAuthenticated} component={UserProfile} />
+      <Route path='/viewallgroups' onEnter={ensureAuthenticated} component={AllGroups} />
       <Route path='/mygroups' onEnter={ensureAuthenticated} component={MyGroups} />
-      <Route path='/creategroup' onEnter={ensureAuthenticated} component={CreateGroup}/>
-      <Route path ='/groupwall/:id' onEnter={ensureAuthenticated} component={GroupWall}/>
+      <Route path='/creategroup' onEnter={ensureAuthenticated} component={CreateGroup} />
+      <Route path ='/groupwall/:id' onEnter={ensureAuthenticated} component={GroupWall} />
+      <Route path ='/myfriends' onEnter={ensureAuthenticated} component={MyFriends} />
+      <Route path ='/browseprofile/:id' onEnter={ensureAuthenticated} component={BrowseProfile} />
     </Router>
   </Provider>
 , document.getElementById('main'));

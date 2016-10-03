@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
+import { Link } from 'react-router';
 import { submitSignIn } from '../actions/auth';
 
 class SignIn extends Component {
@@ -8,18 +9,21 @@ class SignIn extends Component {
   render() {
     const { handleSubmit } = this.props;
     return (
-      <form onSubmit={handleSubmit(this.props.submitSignIn)}>
-        <div>
-          <label>Username</label>
-          <Field name="username" component="input" type="text" />
-        </div>
-        <div>
-          <label>Password</label>
-          <Field name="password" component="input" type="password" />
-        </div>
-        <button type="submit">Sign In</button>
-        <p>{this.props.err}</p>
-      </form>
+      <div>
+        <form onSubmit={handleSubmit(this.props.submitSignIn)}>
+          <div>
+            <label>Username</label>
+            <Field name="username" component="input" type="text" />
+          </div>
+          <div>
+            <label>Password</label>
+            <Field name="password" component="input" type="password" />
+          </div>
+          <button type="submit">Sign In</button>
+          <p>{this.props.err}</p>
+          <Link to={'/signup'}>Sign up now!</Link>
+        </form>
+      </div>
     )
   }
 

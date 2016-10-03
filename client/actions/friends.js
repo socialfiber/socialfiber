@@ -1,78 +1,83 @@
 import axios from 'axios';
-import { FETCH_FRIENDS, FRIENDSHIP_STATUS } from './types';
 import Cookies from 'js-cookie';
+import { FETCH_FRIENDS, FRIENDSHIP_STATUS } from './types';
 
 export function fetchFriends() {
   const data = {
-    params: {
-      userID: localStorage.getItem('userID')
-    }
+    params: { userID: Cookies.get('userID') },
+    headers: { 'x-access-token': Cookies.get('token') }
   }
   return axios.get('/api/friends/myFriends', data)
     .then((response) => {
-      return { type: FETCH_FRIENDS, payload: response.data }
+      const payload = {
+        myFriends: response.data.filter((friend) => { return friend.status === 'friends' }),
+        friendRequests: response.data.filter((friend) => { return friend.status === 'requestee' })
+      }
+      return { type: FETCH_FRIENDS, payload: payload }
     })
     .catch((err) => {
       console.error(err);
     });
 }
 
-export function getFriendshipStatus() {
+export function fetchFriendshipStatus(otherID) {
   const data = {
     params: {
-      userID: localStorage.getItem('userID'),
-      otherID: localStorage.getItem('userID')
-    }
+      userID: Cookies.get('userID'),
+      otherID: otherID
+    },
+    headers: { 'x-access-token': Cookies.get('token') }
   }
   return axios.get('/api/friends/friendshipStatus', data)
     .then((response) => {
-      return { type: FRIENDSHIP_STATUS, payload: response.data }
+      return { type: FRIENDSHIP_STATUS, payload: response.data.status }
     })
     .catch((err) => {
       console.error(err);
     });
 }
 
-export function sendFriendRequest() {
+export function sendFriendRequest(otherID) {
   const data = {
-    userID: localStorage.getItem('userID'),
-    otherID: localStorage.getItem('userID')
+    userID: Cookies.get('userID'),
+    otherID: otherID
   }
-  return axios.post('/api/friends/friendshipStatus', data)
+  const config = { headers: { 'x-access-token': Cookies.get('token') } }
+  return axios.post('/api/friends/friendshipStatus', data, config)
     .then((response) => {
-      return { type: FRIENDSHIP_STATUS, payload: response.data }
+      return { type: FRIENDSHIP_STATUS, payload: response.data.status }
     })
     .catch((err) => {
       console.error(err);
     });
 }
 
-export function acceptFriendRequest() {
+export function acceptFriendRequest(otherID) {
+  const data = {
+    userID: Cookies.get('userID'),
+    otherID: otherID
+  }
+  const config = { headers: { 'x-access-token': Cookies.get('token') } }
+  return axios.put('/api/friends/friendshipStatus', data, config)
+    .then((response) => {
+      return { type: FRIENDSHIP_STATUS, payload: response.data.status }
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+}
+
+export function deleteFriendRequest(otherID) {
   const data = {
     params: {
-      userID: localStorage.getItem('userID'),
-      otherID: localStorage.getItem('userID')
-    }
-  }
-  return axios.put('/api/friends/friendshipStatus', data)
-    .then((response) => {
-      return { type: FRIENDSHIP_STATUS, payload: response.data }
-    })
-    .catch((err) => {
-      console.error(err);
-    });
-}
-
-export function deleteFriendRequest() {
-  const data = {
-    params: {
-      userID: localStorage.getItem('userID'),
-      otherID: localStorage.getItem('userID')
-    }
+      userID: Cookies.get('userID'),
+      otherID: otherID
+    },
+    headers: { 'x-access-token': Cookies.get('token') }
   }
   return axios.delete('/api/friends/friendshipStatus', data)
     .then((response) => {
-      return { type: FRIENDSHIP_STATUS, payload: response.data }
+      return { type: FRIENDSHIP_STATUS, payload: response.data.status }
     })
     .catch((err) => {
       console.error(err);

@@ -7,8 +7,7 @@ const nutritionix = {
 			Storage.findOne({
 				where: {
 					food: input
-				},
-				attributes: ['food', 'api_name', 'cal', 'carb', 'fat','prot','fib','n6']
+				}
 			})
 			.then((entry) => {
 				if(entry!==null) {

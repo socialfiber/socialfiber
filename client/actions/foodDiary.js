@@ -1,10 +1,10 @@
 import axios from 'axios';
-import { FETCH_FOOD_DIARY, SUBMIT_DIARY_ENTRY, DELETE_DIARY_ENTRY } from './types';
 import Cookies from 'js-cookie';
+import { FETCH_FOOD_DIARY, SUBMIT_DIARY_ENTRY, DELETE_DIARY_ENTRY } from './types';
 
 export function fetchFoodDiary() {
   const data = {
-    params: { userID: localStorage.getItem('userID') },
+    params: { userID: Cookies.get('userID') },
     headers: { 'x-access-token': Cookies.get('token') }
   }
   return axios.get('/api/diaryEntries/allEntries', data)

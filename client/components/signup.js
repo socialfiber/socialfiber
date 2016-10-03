@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
+import { Link } from 'react-router';
 import { submitSignUp, resetError } from '../actions/auth';
 
 class SignUp extends Component {
@@ -25,6 +26,7 @@ class SignUp extends Component {
           </div>
           <button type="submit" disabled={submitting} >Sign Up</button>
           <p>{this.props.err}</p>
+          <Link to={'/signin'}>Sign In</Link>
         </form>
       </div>
     )
