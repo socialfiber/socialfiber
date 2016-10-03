@@ -33,7 +33,7 @@ class ChatWindow extends Component {
       }
       this.setState({ messages: [message, ...this.state.messages] });
       this.socket.emit('message', body)
-      // console.log("emits: ", body)
+      console.log("emits: ", body)
       e.target.value = '';
     }
   }
