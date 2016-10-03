@@ -15,10 +15,11 @@ class GroupWall extends Component {
 
     renderGroupPosts() {
       return this.props.myGroups.groupPosts.map((post, indx)=> {
+        const shortDate = post.createdAt.substr(0,10);
           return(
             <li className='list-group-item'>
-              {post.createdAt}
-              <strong>{post.username}: </strong>
+              {shortDate}
+              <strong> {post.username}: </strong>
               <span>{post.message}</span>
             </li>
           )
