@@ -12,7 +12,6 @@ class MyGroups extends Component {
   }
 
   render() {
-    console.log(this.props.myGroups)
     if(this.props.myGroups.length > 0) {
       const groups = this.props.myGroups.map((group, idx) =>
         <MyGroupsIndividual key={idx} group={group} />

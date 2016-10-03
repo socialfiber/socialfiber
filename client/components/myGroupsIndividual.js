@@ -14,7 +14,8 @@ class MyGroupsIndividual extends Component {
 
 	groupClick (e) {
 		console.log('group was clicked');
-		console.log('this.props: ',this.props)
+		console.log('this.props inside mygroups individual: ',this.props);
+		this.props.myGroups.postObject = {'group_id': this.props.group.id, 'group_name': this.props.group.name };
 	}
 
 	render(){

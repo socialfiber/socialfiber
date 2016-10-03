@@ -116,12 +116,16 @@ export function fetchGroupPosts(group_id) {
   })
 }
 
-export function postMessages(group_id, group_name, username, message) {
+export function postMessages(message, group_name, groupid) {
+  console.log('message button clicked');
+  console.log('username: ', Cookies.get('username'));
+  console.log('groupid: ', groupid);
+
   const data = {
-    group_id: group_id,
-    group_name: group_name,
-    username: username,
-    message: message
+    group_id: groupid.myGroups.postObject.group_id,
+    group_name: groupid.myGroups.postObject.group_name,
+    username: Cookies.get('username'),
+    message: message.message
   }
 
   const config = {
@@ -130,6 +134,7 @@ export function postMessages(group_id, group_name, username, message) {
 
   return axios.post('/api/posts/postMessage', data, config)
   .then(function(response) {
+    console.log('response: ', response);
     return {
       type: POST_MESSAGES,
       payload: response

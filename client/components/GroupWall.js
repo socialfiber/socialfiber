@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
-import { fetchGroupPosts } from '../actions/groups'
+import { fetchGroupPosts } from '../actions/groups';
 import Messages from './PostMessageBox';
 
 class GroupWall extends Component {
@@ -10,15 +10,14 @@ class GroupWall extends Component {
   //access groupID to pass in as param
 
     componentWillMount() {
-      console.log('this props params id', this.props.params.id);
-      this.props.fetchGroupPosts(this.props.params.id)
+      this.props.fetchGroupPosts(this.props.params.id);
     }
 
     renderGroupPosts() {
       return this.props.myGroups.groupPosts.map((post, indx)=> {
           return(
             <li className='list-group-item'>
-              <strong>{post.username}</strong>
+              <strong>{post.username}: </strong>
               <span>{post.message}</span>
             </li>
           )

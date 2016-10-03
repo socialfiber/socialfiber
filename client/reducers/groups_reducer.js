@@ -14,6 +14,7 @@ export default function(state=INITIAL_STATE, action){
     case FETCH_GROUP_POSTS:
       return {...state, groupPosts: action.payload.data};
     case POST_MESSAGES:
+    console.log('inside post messages in reducer: ', action.payload.data);
       return {...state, postMessages: action.payload.data};
     default:
       return state;

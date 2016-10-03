@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
+import { postMessages } from '../actions/groups';
 
 class Messages extends Component {
 
     render() {
       const { handleSubmit } = this.props;
-      console.log('this props:', this.props);
+      console.log('this props inside postmessagebox:', this.props);
       return (
-        <form>
+        <form onSubmit = {handleSubmit(this.props.postMessages)}>
             <p>Post a Message</p>
             <div>
               <label>Message</label>
@@ -25,4 +26,11 @@ class Messages extends Component {
     form: 'Messages'
   })(Messages);
 
-  export default connect(null)(Messages);
+  const mapStateToProps = (state) => {
+  	console.log('state in postmessagebox: ', state);
+  	return {
+  		myGroups: state.groups
+  	}
+  }
+
+  export default connect(mapStateToProps, { postMessages })(Messages);
