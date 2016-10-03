@@ -1,6 +1,6 @@
 import { FETCH_FRIENDS, FRIENDSHIP_STATUS } from '../actions/types';
 
-const INITIAL_STATE = { myFriends: [], friendRequests: [], friendshipStatus: null }
+const INITIAL_STATE = { myFriends: null, friendRequests: null, friendshipStatus: null }
 
 export default function(state = INITIAL_STATE, action) {
   switch(action.type) {

@@ -16,11 +16,17 @@ class MyFriends extends Component {
   // }
 
   render() {
-    if(this.props.myFriends.length || this.props.friendRequests.length) {
+    if(this.props.myFriends === null && this.props.friendRequests === null) {
+      return (
+        <div>
+          <h3>Loading friends...</h3>
+        </div>
+      )
+    } else if(this.props.myFriends.length || this.props.friendRequests.length) {
       const myFriends = this.props.myFriends.map((friend, idx) => {
         return (
           <li key={idx}>
-            <Friend  url={friend.url} img={friend.img} otherID={friend.user2_id} />
+            <Friend  username={friend.username} img={friend.img} otherID={friend.user2_id} />
             <FriendRequestButton friendshipStatus='friends' otherID={friend.user2_id} />
           </li>
         )
@@ -52,12 +58,6 @@ class MyFriends extends Component {
           <h3>You don't have any friends.</h3>
         </div>
       );
-    } else {
-      return (
-        <div>
-          <h3>Loading friends...</h3>
-        </div>
-      )
     }
   }
 

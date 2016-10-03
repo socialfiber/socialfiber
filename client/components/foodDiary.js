@@ -29,19 +29,21 @@ class FoodDiary extends Component {
           <h1>Food Diary</h1>
           <FoodDiaryEntry />
           <table>
-            <tr>
-              <th>Date</th>
-              <th>qty</th>
-              <th>Food Name</th>
-              <th>Calories (kcal)</th>
-              <th>Carbohydrates (g)</th>
-              <th>Protein (g)</th>
-              <th>Fat (g)</th>
-              <th>Fiber (g)</th>
-              <th>n6 (g)</th>
-              <th>delete</th>
-            </tr>
-            {logs}
+            <tbody>
+              <tr>
+                <th>Date</th>
+                <th>qty</th>
+                <th>Food Name</th>
+                <th>Calories (kcal)</th>
+                <th>Carbohydrates (g)</th>
+                <th>Protein (g)</th>
+                <th>Fat (g)</th>
+                <th>Fiber (g)</th>
+                <th>n6 (g)</th>
+                <th>delete</th>
+              </tr>
+              {logs}
+            </tbody>
           </table>
         </div>
       );

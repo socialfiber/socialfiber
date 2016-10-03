@@ -22,9 +22,9 @@ Users.hasMany(DiaryEntries, { foreignKey: 'user_id' });
 
 sequelize
   .sync()
-  .then((err) => {
+  .then(() => {
     console.log('Diary Entries model synced successfully.');
-}, (err) => {
+  }, (err) => {
     console.log('An error has occurred:', err);
   });
 

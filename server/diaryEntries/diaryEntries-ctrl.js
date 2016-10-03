@@ -103,7 +103,7 @@ const diaryEntries = {
         })
         .catch((err) => {
           res.status(400).send({
-            msg: 'Error creating diary entry.'
+            msg: 'Error searching storage.'
           });
         });
       })
