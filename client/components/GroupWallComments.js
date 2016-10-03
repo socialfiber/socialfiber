@@ -1,10 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import CommentsBox from './CommentsBox';
 
-
-
-class GroupWallMessages extends Component {
+class GroupWallComments extends Component {
 	constructor (props) {
 		super(props);
 
@@ -32,7 +29,7 @@ class GroupWallMessages extends Component {
 					<strong> {this.props.post.username}</strong>: {this.props.post.message}
 				</td>
 				<td>
-					{this.state.showReply && <CommentsBox />}
+					{this.state.showReply && <Comments />}
 				</td>
 			</tr>
 		)

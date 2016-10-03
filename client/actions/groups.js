@@ -168,3 +168,20 @@ export function postComment(message, filler, commentObject){
     console.error(error)
   })
 }
+
+export function fetchComments(group_id) {
+  const data = {
+    params: { group_id: group_id },
+    headers: { 'x-access-token': Cookies.get('token') }
+  }
+  return axios.get('/api/posts/getMessage', data)
+  .then(function(response){
+    return {
+      type: FETCH_GROUP_POSTS,
+      payload: response
+    }
+  })
+  .catch((error) => {
+    console.error(error)
+  })
+}
