@@ -32,11 +32,11 @@ const io = socketIo(server);
 
 io.on('connection', (socket) => {
   console.log("A user has entered the room");
-  socket.on('message', (body) => {
+  socket.on('message', (body, username) => {
     // console.log("recevied: ", body);
     socket.broadcast.emit('message', {
       body,
-      from: socket.id.slice(8)
+      from: username
     });
   });
 });
