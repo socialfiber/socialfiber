@@ -3,9 +3,9 @@ import Cookies from 'js-cookie';
 import { browserHistory } from 'react-router';
 import { FETCH_PROFILE, REDIRECT_PROFILE } from './types';
 
-export function fetchProfile(OTHER_ID) {
+export function fetchProfile(otherID) {
   // if profile id = user id, redirect to user profile
-  if(OTHER_ID === Cookies.get('userID')) {
+  if(otherID === Cookies.get('userID')) {
     browserHistory.push('/userProfile');
     return { type: REDIRECT_PROFILE };
   } else {
@@ -14,7 +14,7 @@ export function fetchProfile(OTHER_ID) {
     const data = {
       headers: { 'x-access-token': Cookies.get('token') }
     }
-    return axios.get('/api/users/browse/'+OTHER_ID, data)
+    return axios.get('/api/users/browse/'+otherID, data)
       .then((response) => {
         return { type: FETCH_PROFILE, payload: response.data }
       })

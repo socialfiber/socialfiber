@@ -59,7 +59,6 @@ const friends = {
 				attributes: ['status']
 			})
 			.then((found) => {
-				console.log("FRIENDS FINDONE", found)
 				if(found && found.status === 'requestee') {
 					Friends.update({
 						status: 'friends'
@@ -73,7 +72,9 @@ const friends = {
 						}]
 					})
 					.then((accepted) => {
-						res.status(201).send();
+						res.status(201).send({
+							status: 'friends'
+						});
 					})
 					.catch((err) => {
 						res.status(400).send({
@@ -81,7 +82,7 @@ const friends = {
 						});
 					});
 				} else if(found && (found.status === 'requestor' || found.status === 'friends'))  {
-					res.status(201).send();
+					res.status(201).send(found);
 				} else {
 					Friends.create({
 						user1_id: req.body.userID,
@@ -94,7 +95,9 @@ const friends = {
 							user2_id: req.body.userID,
 							status: 'requestee'
 						}).then((requestee) => {
-							res.status(201).send();
+							res.status(201).send({
+								status: 'requestor'
+							});
 						})
 					})
 					.catch((err) => {
@@ -137,7 +140,9 @@ const friends = {
 						}
 					})
 					.then((accepted) => {
-						res.status(201).send();
+						res.status(201).send({
+							status: 'friends'
+						});
 					})
 					.catch((err) => {
 						res.status(400).send({
@@ -145,7 +150,7 @@ const friends = {
 						});
 					});
 				} else if(found && found.status === 'requestor') {
-					res.status(201).send();
+					res.status(201).send(found);
 				} else {
 					Friends.create({
 						user1_id: req.body.userID,
@@ -158,7 +163,9 @@ const friends = {
 							user2_id: req.body.userID,
 							status: 'requestee'
 						}).then((requestee) => {
-							res.status(201).send();
+							res.status(201).send({
+								status: 'requestor'
+							});
 						})
 					})
 					.catch((err) => {
@@ -189,7 +196,9 @@ const friends = {
 				}
 			})
 			.then((affectedRows) => {
-				res.status(201).send();
+				res.status(201).send({
+					status: null
+				});
 			})
 			.catch((err) => {
 				res.status(400).send({

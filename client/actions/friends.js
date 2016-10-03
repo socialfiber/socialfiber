@@ -45,7 +45,7 @@ export function sendFriendRequest(otherID) {
   const config = { headers: { 'x-access-token': Cookies.get('token') } }
   return axios.post('/api/friends/friendshipStatus', data, config)
     .then((response) => {
-      return { type: FRIENDSHIP_STATUS, payload: response.data }
+      return { type: FRIENDSHIP_STATUS, payload: response.data.status }
     })
     .catch((err) => {
       console.error(err);
@@ -60,7 +60,7 @@ export function acceptFriendRequest(otherID) {
   const config = { headers: { 'x-access-token': Cookies.get('token') } }
   return axios.put('/api/friends/friendshipStatus', data, config)
     .then((response) => {
-      return { type: FRIENDSHIP_STATUS, payload: response.data }
+      return { type: FRIENDSHIP_STATUS, payload: response.data.status }
     })
     .catch((err) => {
       console.error(err);
@@ -77,7 +77,7 @@ export function deleteFriendRequest(otherID) {
   }
   return axios.delete('/api/friends/friendshipStatus', data)
     .then((response) => {
-      return { type: FRIENDSHIP_STATUS, payload: response.data }
+      return { type: FRIENDSHIP_STATUS, payload: response.data.status }
     })
     .catch((err) => {
       console.error(err);
