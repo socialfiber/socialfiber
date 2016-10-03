@@ -3,15 +3,35 @@ import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { fetchGroupPosts } from '../actions/groups';
 import Messages from './PostMessageBox';
+import Comments from './comments';
 
 class GroupWall extends Component {
+
+  constructor(){
+    super();
+    this.state = {
+      showReply: false
+    }
+  }
+
+  showReplyForm(e){
+    e.preventDefault();
+    console.log('e:', e);
+    this.setState({showReply: !this.state.showReply})
+  }
 
 //fetch current posts on wall
   //access groupID to pass in as param
 
     componentWillMount() {
       this.props.fetchGroupPosts(this.props.params.id);
+      console.log('this props: ', this.props.myGroups.userGroups);
+      console.log('this props: ', this.props.params);
+
     }
+
+
+
 
     renderGroupPosts() {
       return this.props.myGroups.groupPosts.map((post, indx)=> {
@@ -21,6 +41,7 @@ class GroupWall extends Component {
               {shortDate}
               <strong> {post.username}: </strong>
               <span>{post.message}</span>
+              <span><button onClick = {this.showReplyForm.bind(this)}> Reply </button></span>
             </li>
           )
       })
@@ -33,7 +54,9 @@ class GroupWall extends Component {
           <Messages />
           <ul>
           {this.renderGroupPosts()}
+
           </ul>
+          {this.state.showReply && <Comments />}
         </div>
       )
     }
