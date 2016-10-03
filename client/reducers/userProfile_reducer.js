@@ -10,8 +10,11 @@ export default function(state = INITIAL_STATE, action) {
       // console.log("User information has been updated.");
       return;
     case FETCH_MACROS:
-      console.log("in reducer: ", action.payload)
-      return {...state, idealMacros: action.payload.dietaryProfile, actualMacros: action.payload.nutritionTotals[0]};
+      // console.log("in reducer: ", action.payload.nutritionTotals)
+      if(action.payload.nutritionTotals.length > 0) { // If user's food diary is NOT empty
+        return {...state, idealMacros: action.payload.dietaryProfile, actualMacros: action.payload.nutritionTotals[0]};
+      }
+      return {...state, idealMacros: action.payload.dietaryProfile, actualMacros: null}
     default:
       return state;
   }

@@ -26,6 +26,7 @@ class RadarGraph extends Component {
   componentWillMount() {
     this.props.fetchMacros()
     .then(() => {
+      // console.log("actual macros: ", this.props.actualMacros);
       this.setState({
         idealMacros: {
           fat: this.props.idealMacros.fat,
@@ -34,10 +35,11 @@ class RadarGraph extends Component {
           n6: this.props.idealMacros.n6
         },
         actualMacros: {
-          fat: Math.floor(this.props.actualMacros.fat),
-          carb: Math.floor(this.props.actualMacros.carb),
-          prot: Math.floor(this.props.actualMacros.prot),
-          n6: Math.floor(this.props.actualMacros.n6)
+          // If food diary is empty set actual macros to 0
+          fat: this.props.actualMacros ? Math.floor(this.props.actualMacros.fat) : 0,
+          carb: this.props.actualMacros ? Math.floor(this.props.actualMacros.carb) : 0,
+          prot: this.props.actualMacros ? Math.floor(this.props.actualMacros.prot) : 0,
+          n6: this.props.actualMacros ? Math.floor(this.props.actualMacros.n6) : 0
         }
       })
     })
