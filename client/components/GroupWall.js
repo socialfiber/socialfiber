@@ -17,6 +17,7 @@ class GroupWall extends Component {
       return this.props.myGroups.groupPosts.map((post, indx)=> {
           return(
             <li className='list-group-item'>
+              {post.createdAt}
               <strong>{post.username}: </strong>
               <span>{post.message}</span>
             </li>
