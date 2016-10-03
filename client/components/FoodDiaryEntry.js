@@ -6,10 +6,10 @@ import { submitFoodDiaryEntry } from '../actions/foodDiary';
 class FoodDiaryEntry extends Component {
 
   render() {
-    const { handleSubmit } = this.props;
+    const { handleSubmit, submitting } = this.props;
     const today = new Date().toISOString().substr(0,10);
     return (
-      <form onSubmit = {handleSubmit(this.props.submitFoodDiaryEntry)}>
+      <form onSubmit={handleSubmit(this.props.submitFoodDiaryEntry)}>
         <h3>Add Entry</h3>
           <p>Please submit a meal.</p>
           <div>
@@ -20,7 +20,7 @@ class FoodDiaryEntry extends Component {
             <label>Tell us what you ate</label>
             <Field name="food" component="input" type="text" required />
           </div>
-          <button type="submit">Submit</button>
+          <button type="submit" disabled={submitting}>Submit</button>
       </form>
     )
   }
