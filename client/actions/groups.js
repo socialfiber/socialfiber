@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
-import { FETCH_ALL_GROUPS, FETCH_USER_GROUPS, LEAVE_GROUP, JOIN_GROUP, FETCH_GROUP_POSTS, POST_MESSAGE, POST_COMMENT } from './types';
+import { FETCH_ALL_GROUPS, FETCH_USER_GROUPS, LEAVE_GROUP, JOIN_GROUP, FETCH_GROUP_POSTS, POST_MESSAGE, POST_COMMENT, FETCH_COMMENTS } from './types';
 import Cookies from 'js-cookie';
 
 export function fetchAllGroups(){
@@ -169,15 +169,15 @@ export function postComment(message, filler, commentObject){
   })
 }
 
-export function fetchComments(group_id) {
+export function fetchComments(post_id) {
   const data = {
-    params: { group_id: group_id },
+    params: { post_id: post_id },
     headers: { 'x-access-token': Cookies.get('token') }
   }
-  return axios.get('/api/posts/getMessage', data)
+  return axios.get('/api/comments/getComments', data)
   .then(function(response){
     return {
-      type: FETCH_GROUP_POSTS,
+      type: FETCH_COMMENTS,
       payload: response
     }
   })

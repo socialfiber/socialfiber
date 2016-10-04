@@ -25,9 +25,10 @@ class Comments extends Component {
   })(Comments);
 
   const mapStateToProps = (state) => {
+    console.log('state inside comments box', state);
   	return {
   		myGroups: state.groups,
-      groupMessages: state.groupPosts
+      postID: state.groups.postID
   	}
   }
 

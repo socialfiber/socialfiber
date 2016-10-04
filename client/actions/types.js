@@ -23,3 +23,4 @@ export const CHANGE_TAB = 'CHANGE_TAB';
 export const CREATE_ROOM = 'CREATE_ROOM';
 export const POST_MESSAGE = 'POST_MESSAGE';
 export const POST_COMMENT = 'POST_COMMENT';
+export const FETCH_COMMENTS = 'FETCH_COMMENTS';

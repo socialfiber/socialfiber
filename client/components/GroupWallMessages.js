@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import CommentsBox from './CommentsBox';
-
+import { fetchComments } from '../actions/groups';
+import GroupWallComments from './GroupWallComments';
 
 
 class GroupWallMessages extends Component {
@@ -9,9 +10,11 @@ class GroupWallMessages extends Component {
 		super(props);
 
 		this.state = {
-			showReply: false
+			showReply: false,
+			showComments: false
 		}
 	}
+
 
 	showReplyForm(e){
     e.preventDefault();
@@ -19,11 +22,24 @@ class GroupWallMessages extends Component {
 		this.props.myGroups.commentObject = this.props.post;
   }
 
+	showComments(e) {
+		e.preventDefault();
+		this.setState({showComments: !this.state.showComments});
+		this.props.fetchComments(this.props.post.id);
+	}
+
 	render(){
+		console.log('this props my groups comments:', this.props.myGroups.comments);
+			const postComments = this.props.myGroups.comments.map((comment, idx) =>
+				<GroupWallComments key={idx} comment={comment} />
+			);
 		return (
 			<tr>
 				<td>
 					<button onClick = {this.showReplyForm.bind(this)}> Reply </button>
+				</td>
+				<td>
+					<button onClick = {this.showComments.bind(this)}> Show Comments </button>
 				</td>
 				<td>
 	    		{this.props.post.createdAt.substr(0,10)}
@@ -34,6 +50,9 @@ class GroupWallMessages extends Component {
 				<td>
 					{this.state.showReply && <CommentsBox />}
 				</td>
+				<td>
+	    		{this.state.showComments && postComments}
+		    </td>
 			</tr>
 		)
 	}
@@ -48,4 +67,4 @@ const mapStateToProps = (state) => {
 }
 
 
-export default connect(mapStateToProps)(GroupWallMessages);
+export default connect(mapStateToProps, { fetchComments })(GroupWallMessages);

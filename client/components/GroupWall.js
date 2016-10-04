@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
-import { fetchGroupPosts } from '../actions/groups';
+import { fetchGroupPosts, fetchComments } from '../actions/groups';
 import Messages from './PostMessageBox';
 import Comments from './CommentsBox';
 import NavBar from './navbar';
 import GroupWallMessages from './GroupWallMessages';
+import GroupWallComments from './GroupWallComments';
 
 class GroupWall extends Component {
 
@@ -47,8 +48,7 @@ class GroupWall extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    myGroups: state.groups,
-    groupPosts: state.groupPosts
+    myGroups: state.groups
   }
 }
 
