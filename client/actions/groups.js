@@ -143,9 +143,6 @@ export function postMessages(message, filler, groupid) {
 }
 
 export function postComment(message, filler, commentObject){
-  console.log('message inside postcomment action: ', message.message);
-  console.log('filler inside postcomment action: ', Cookies.get('username'));
-  console.log('post_id inside postcomment action: ', commentObject.myGroups.commentObject.id);
 
   const data = {
     post_id: commentObject.myGroups.commentObject.id,

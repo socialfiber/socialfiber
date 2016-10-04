@@ -10,11 +10,9 @@ class GroupWallMessages extends Component {
 		super(props);
 
 		this.state = {
-			showReply: false,
-			showComments: false
+			showReply: false
 		}
 	}
-
 
 	showReplyForm(e){
     e.preventDefault();
@@ -22,24 +20,14 @@ class GroupWallMessages extends Component {
 		this.props.myGroups.commentObject = this.props.post;
   }
 
-	showComments(e) {
-		e.preventDefault();
-		this.setState({showComments: !this.state.showComments});
-		this.props.fetchComments(this.props.post.id);
-	}
-
 	render(){
-		console.log('this props my groups comments:', this.props.myGroups.comments);
-			const postComments = this.props.myGroups.comments.map((comment, idx) =>
-				<GroupWallComments key={idx} comment={comment} />
-			);
+		const postComments = this.props.post.comments.map((comment, idx) =>
+			<GroupWallComments key={idx} comment={comment} />
+		);
 		return (
 			<tr>
 				<td>
 					<button onClick = {this.showReplyForm.bind(this)}> Reply </button>
-				</td>
-				<td>
-					<button onClick = {this.showComments.bind(this)}> Show Comments </button>
 				</td>
 				<td>
 	    		{this.props.post.createdAt.substr(0,10)}
@@ -48,23 +36,20 @@ class GroupWallMessages extends Component {
 					<strong> {this.props.post.username}</strong>: {this.props.post.message}
 				</td>
 				<td>
-					{this.state.showReply && <CommentsBox />}
+					{postComments}
 				</td>
 				<td>
-	    		{this.state.showComments && postComments}
-		    </td>
+					{this.state.showReply && <CommentsBox />}
+				</td>
 			</tr>
 		)
 	}
 }
-
-
 
 const mapStateToProps = (state) => {
 	return {
 		myGroups: state.groups
 	}
 }
-
 
 export default connect(mapStateToProps, { fetchComments })(GroupWallMessages);

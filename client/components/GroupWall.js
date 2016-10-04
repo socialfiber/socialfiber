@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { fetchGroupPosts, fetchComments } from '../actions/groups';
-import Messages from './PostMessageBox';
+import MessageBox from './PostMessageBox';
 import Comments from './CommentsBox';
 import NavBar from './navbar';
 import GroupWallMessages from './GroupWallMessages';
@@ -15,24 +15,33 @@ class GroupWall extends Component {
     }
 
     render() {
+      console.log('this.props.mygroups.groupposts: ', this.props.myGroups.groupPosts);
       if(this.props.myGroups.groupPosts.length > 0) {
         const groupPosts = this.props.myGroups.groupPosts.map((post, idx) =>
           <GroupWallMessages key={idx} post={post} />
+        );
+        const postComments = this.props.myGroups.groupPosts.forEach((wallpost) =>
+          wallpost.comments.map((comment, idx) =>
+            <GroupWallComments key={idx} comment={comment} />
+          )
         );
           return(
               <div>
                 <NavBar />
                 <h1>{this.props.params.groupname}</h1>
-                <Messages />
+                <MessageBox />
                 <ul className='list-group-item'>
-                  {groupPosts}
+                {groupPosts}
+                  {postComments}
                 </ul>
+
               </div>
           );
       } else if(this.props.myGroups.groupPosts.length === 0) {
         return (
           <div>
             <h3>Nobody has posted anything yet.</h3>
+            <MessageBox />
           </div>
         );
       } else {

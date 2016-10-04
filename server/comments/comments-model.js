@@ -21,6 +21,7 @@ const Comments = sequelize.define('comments', {
 
 
 Posts.hasMany(Comments, {foreignKey: 'post_id'});
+Comments.belongsTo(Posts, {foreignKey: 'post_id'});
 
 sequelize
   .sync()
