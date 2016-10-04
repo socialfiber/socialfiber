@@ -15,34 +15,32 @@ class GroupWall extends Component {
     }
 
     render() {
-      console.log('this.props.mygroups.groupposts: ', this.props.myGroups.groupPosts);
       if(this.props.myGroups.groupPosts.length > 0) {
         const groupPosts = this.props.myGroups.groupPosts.map((post, idx) =>
           <GroupWallMessages key={idx} post={post} />
         );
           return(
-              <div>
-                <NavBar />
-                <h1>{this.props.params.groupname}</h1>
-                <MessageBox />
                 <table>
                   <tbody>
+                  <NavBar />
+                  <h1>{this.props.params.groupname}</h1>
+                  <MessageBox />
                     <tr>
                       <th>Username</th>
                       <th>Message</th>
                       <th>Reply</th>
                     </tr>
+                    <tr>
+                      {groupPosts}
+                    </tr>
                   </tbody>
                 </table>
-                <tr>
-                  {groupPosts}
-                </tr>
-              </div>
           );
       } else if(this.props.myGroups.groupPosts.length === 0) {
         return (
           <div>
             <h3>Nobody has posted anything yet.</h3>
+            <h4>Be the first to say hi!</h4>
             <MessageBox />
           </div>
         );

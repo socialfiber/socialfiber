@@ -152,6 +152,40 @@ const groups = {
         });
       })
     }
+  },
+  //Endpoint to retrieve all the users in a group
+  '/api/groups/fetchAllUsers': {
+    'get': (req, res) => {
+			console.log('inside GET at /api/groups/fetchAllUsers');
+      var users = [];
+      Users.findAll({
+        attributes: [
+          'id',
+          'username'
+        ],
+        include: [{
+          model: Groups,
+          through: {
+            where: {
+              groupId: req.query.group_id
+            }
+          }
+        }]
+      })
+      .then( (rows) => {
+        rows.forEach((row) => {
+          if(row.groups.length > 0) {
+            users.push(row);
+            console.log('users:', users);
+          }
+        })
+        res.json(users);
+      })
+      .catch( (err) => {
+        console.log('Error: ', err);
+        res.status(400).send(err.message);
+      });
+		}
   }
 }
 
