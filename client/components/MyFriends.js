@@ -4,8 +4,17 @@ import { fetchFriends } from '../actions/friends';
 import NavBar from './navbar';
 import Friend from './Friend';
 import FriendRequestButton from './FriendRequestButton';
+import { createRoom } from '../actions/chatWindow';
+import { browserHistory } from 'react-router';
 
 class MyFriends extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      chatFlag: false
+    }
+  }
 
   componentWillMount() {
     this.props.fetchFriends();
@@ -14,6 +23,12 @@ class MyFriends extends Component {
   // componentDidUpdate() {
   //   this.props.fetchFriends();
   // }
+
+  handleOnClick(friendObj) {
+    this.setState({ chatFlag: !this.state.chatFlag});
+    this.props.createRoom(friendObj);
+    browserHistory.push('/chat');
+  }
 
   render() {
     if(this.props.myFriends === null && this.props.friendRequests === null) {
@@ -28,6 +43,7 @@ class MyFriends extends Component {
           <li key={idx}>
             <Friend username={friend.user2_username} img={friend.img} otherID={friend.user2_id} />
             <FriendRequestButton friendshipStatus='friends' otherID={friend.user2_id} />
+            <button type="button" onClick={() => this.handleOnClick(friend)}>Chat</button>
           </li>
         )
       })
@@ -70,4 +86,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { fetchFriends })(MyFriends);
+export default connect(mapStateToProps, { fetchFriends, createRoom })(MyFriends);
