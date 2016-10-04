@@ -15,8 +15,6 @@ class NavBar extends Component {
           <ul className="nav navbar-nav">
             <li className="navItem"><Link to='/userprofile'>Home</Link></li>
             <li className="navItem"><Link to='/viewallgroups'> All Groups</Link></li>
-            <li className="navItem"><Link to='/mygroups'> My Groups</Link></li>
-            <li className="navItem"><Link to='/creategroup'> Create a Group</Link></li>
             <li className="navItem"><SignOut /></li>
           </ul>
         </div>

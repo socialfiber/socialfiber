@@ -35,7 +35,9 @@ const friends = {
 			.then((found) => {
 				//could be friend or requestor
 				if(found !== null) {
-					res.status(200).send(found);
+					res.status(200).send({
+						status: found.status
+					});
 				} else {
 					res.status(200).send({
 						status: null
@@ -69,7 +71,8 @@ const friends = {
 						}, {
 							user1_id: req.body.userID,
 							user2_id: req.body.otherID
-						}]
+						}],
+						attributes: ['status']
 					})
 					.then((accepted) => {
 						res.status(201).send({
@@ -82,7 +85,9 @@ const friends = {
 						});
 					});
 				} else if(found && (found.status === 'requestor' || found.status === 'friends'))  {
-					res.status(201).send(found);
+					res.status(201).send({
+						status: found.status
+					});
 				} else {
 					Users.findById(req.body.otherID)
 					.then((otherUser) => {
