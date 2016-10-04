@@ -9,9 +9,8 @@ class Messages extends Component {
       const { handleSubmit } = this.props;
       return (
         <form onSubmit = {handleSubmit(this.props.postMessages)}>
-            <p>Post a Message</p>
+            <h4>Post a Message</h4>
             <div>
-              <label>Message</label>
               <Field name="message" component="input" type="text" required />
             </div>
             <button type="submit">Submit</button>

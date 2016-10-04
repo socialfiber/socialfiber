@@ -38,21 +38,24 @@ class GroupWall extends Component {
                 <NavBar />
                 <h1>{this.props.params.groupname}</h1>
                 <div>
+                  <h4>Current Group Members</h4>
                   {groupUsers}
                 </div>
-                <table>
-                  <tbody>
-                  <MessageBox />
-                    <tr>
-                      <th>Username</th>
-                      <th>Message</th>
-                      <th>Reply</th>
-                    </tr>
-                    <tr>
-                      {groupPosts}
-                    </tr>
-                  </tbody>
-                </table>
+                <div>
+                  <table>
+                    <tbody>
+                    <MessageBox />
+                      <tr>
+                        <th>Username</th>
+                        <th>Message</th>
+                        <th>Reply</th>
+                      </tr>
+                      <tr>
+                        {groupPosts}
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
               </div>
           );
       } else if(this.props.myGroups.groupPosts.length === 0) {
