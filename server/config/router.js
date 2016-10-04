@@ -3,7 +3,6 @@ const users = require('../users/users-ctrl.js');
 const questions = require('../questions/questions-ctrl.js');
 const diaryEntries = require('../diaryEntries/diaryEntries-ctrl.js');
 const groups = require('../groups/groups-ctrl.js');
-const groups_users = require('../groups_users/groups_users-ctrl.js');
 const dietaryProfiles = require('../dietaryProfiles/dietaryProfiles-ctrl.js');
 const posts = require('../posts/posts-ctrl.js');
 const friends = require('../friends/friends-ctrl.js');
@@ -21,7 +20,6 @@ const controllers = [
 	diaryEntries,
 	dummy,
 	groups,
-	groups_users,
 	dietaryProfiles,
 	posts,
 	friends,
