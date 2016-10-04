@@ -1,26 +1,24 @@
-const Posts = require('./posts-model.js');
-const Groups = require('../groups/groups-model.js');
-const Comments = require('../comments/comments-model.js');
+const Comments = require('./comments-model.js');
+const Posts = require('../posts/posts-model.js');
 
-const posts = {
+const comments = {
   //Endpoint to create posts
-  '/api/posts/postMessage': {
+  '/api/comments/postComment': {
     'post': (req, res) => {
-      console.log('inside POST at /api/posts/postMessage');
-      Groups.findOne({
+      console.log('inside POST at /api/comments/postComment');
+      Posts.findOne({
         where: {
-          id: req.body.group_id
+          id: req.body.post_id
         }
       })
-        .then((group) => {
-          Posts.create({
-            group_name: req.body.group_name,
+        .then((post) => {
+          Comments.create({
             username: req.body.username,
             message: req.body.message
           })
-          .then((post) => {
-            group.addPosts(post);
-            group.save();
+          .then((comment) => {
+            post.addComments(comment);
+            post.save();
             res.sendStatus(201);
           })
           .catch((err) => {
@@ -39,22 +37,20 @@ const posts = {
     }
   },
   //Endpoint to retrieve group messages.
-  '/api/posts/getMessage': {
+  '/api/comments/getComments': {
     'get': (req, res) => {
-			console.log('inside GET at /api/posts/getMessage');
+			console.log('inside GET at /api/comments/getComments');
       var messages = [];
-      Posts.findAll({
+      Comments.findAll({
         where: {
-          'group_id': req.query.group_id
+          'post_id': req.query.post_id
         },
         attributes: [
           'id',
-          'group_name',
           'username',
           'message',
           'createdAt'
-        ],
-        include: [Comments]
+        ]
       })
       .then( (rows) => {
         rows.forEach((row) => {
@@ -72,4 +68,4 @@ const posts = {
   }
 }
 
-module.exports = posts;
+module.exports = comments;

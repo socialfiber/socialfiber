@@ -18,6 +18,7 @@ import GroupWall from './components/GroupWall';
 import BrowseProfile from './components/BrowseProfile';
 import ChatWindow from './components/chatWindow';
 
+
 const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
 const store = createStoreWithMiddleware(reducers, window.devToolsExtension ? window.devToolsExtension() : f => f);
 
@@ -44,7 +45,7 @@ ReactDOM.render(
       <Route path='/viewallgroups' onEnter={ensureAuthenticated} component={AllGroups} />
       <Route path='/mygroups' onEnter={ensureAuthenticated} component={MyGroups} />
       <Route path='/creategroup' onEnter={ensureAuthenticated} component={CreateGroup} />
-      <Route path ='/groupwall/:id' onEnter={ensureAuthenticated} component={GroupWall} />
+      <Route path ='/groupwall/:id/:groupname' onEnter={ensureAuthenticated} component={GroupWall} />
       <Route path ='/browseprofile/:id' onEnter={ensureAuthenticated} component={BrowseProfile} />
       <Route path ='/chat' component={ChatWindow} />
     </Router>

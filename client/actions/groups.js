@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
-import { FETCH_ALL_GROUPS, FETCH_USER_GROUPS, LEAVE_GROUP, JOIN_GROUP, FETCH_GROUP_POSTS } from './types';
+import { FETCH_ALL_GROUPS, FETCH_USER_GROUPS, LEAVE_GROUP, JOIN_GROUP, FETCH_GROUP_POSTS, POST_MESSAGE, POST_COMMENT, FETCH_COMMENTS } from './types';
 import Cookies from 'js-cookie';
 
 export function fetchAllGroups(){
@@ -29,7 +29,7 @@ export function fetchAllGroups(){
 export function fetchUserGroups() {
   const data = {
     params: {
-      userID: Cookies.getItem('userID') },
+      user_id: Cookies.get('userID') },
       headers: { 'x-access-token': Cookies.get('token') }
     }
 
@@ -100,17 +100,81 @@ export function leaveGroup(group_id) {
 }
 
 export function fetchGroupPosts(group_id) {
-
   const data = {
     params: { group_id: group_id },
     headers: { 'x-access-token': Cookies.get('token') }
   }
-
-
   return axios.get('/api/posts/getMessage', data)
   .then(function(response){
     return {
       type: FETCH_GROUP_POSTS,
+      payload: response
+    }
+  })
+  .catch((error) => {
+    console.error(error)
+  })
+}
+
+export function postMessages(message, filler, groupid) {
+
+  const data = {
+    group_id: groupid.myGroups.postObject.group_id,
+    group_name: groupid.myGroups.postObject.group_name,
+    username: Cookies.get('username'),
+    message: message.message
+  }
+
+  const config = {
+    headers: { 'x-access-token': Cookies.get('token') }
+  }
+
+  return axios.post('/api/posts/postMessage', data, config)
+  .then(function(response) {
+    console.log('response: ', response);
+    return {
+      type: POST_MESSAGE,
+      payload: response
+    }
+  })
+  .catch((error) => {
+    console.error(error)
+  })
+}
+
+export function postComment(message, filler, commentObject){
+
+  const data = {
+    post_id: commentObject.myGroups.commentObject.id,
+    username: Cookies.get('username'),
+    message: message.message
+  }
+  const config = {
+    headers: { 'x-access-token': Cookies.get('token') }
+  }
+
+  return axios.post('/api/comments/postComment', data, config)
+  .then(function(response){
+    console.log('response: ', response);
+    return {
+      type: POST_COMMENT,
+      payload: response
+    }
+  })
+  .catch((error) => {
+    console.error(error)
+  })
+}
+
+export function fetchComments(post_id) {
+  const data = {
+    params: { post_id: post_id },
+    headers: { 'x-access-token': Cookies.get('token') }
+  }
+  return axios.get('/api/comments/getComments', data)
+  .then(function(response){
+    return {
+      type: FETCH_COMMENTS,
       payload: response
     }
   })
