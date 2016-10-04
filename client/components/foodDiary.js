@@ -17,7 +17,7 @@ class FoodDiary extends Component {
   render() {
     if(this.props.diaryData) {
       const diaryDataByDate = this.props.diaryData.map((set, idx) => {
-        const logsPerDay = set.logs.map((log, idx) => <FoodDiaryLog key={idx} log={log} />)
+        const logsPerDay = set.logs.map((log, idx) => <FoodDiaryLog key={idx} log={log} />);
         return (
           <li key={idx}>
             <h3>{set.date}</h3>
@@ -39,7 +39,7 @@ class FoodDiary extends Component {
             </table>
           </li>
         )
-      })
+      });
       return (
         <div>
           <h1>Food Diary</h1>

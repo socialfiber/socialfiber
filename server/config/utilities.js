@@ -9,7 +9,7 @@ const utilities = {
       iss: 'tml',
       sub: user.id,
       iat: moment().unix(),
-      exp: moment().add(1, 'days').unix()
+      exp: moment().add(7, 'days').unix()
     }
     return jwt.sign(payload, 'secret');
   },

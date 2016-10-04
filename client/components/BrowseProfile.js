@@ -25,7 +25,7 @@ class BrowseProfile extends Component {
         <div>
           <NavBar />
           <ProfilePic />
-          <FriendRequestButton otherID={this.props.params.id} friendshipStatus={this.props.friendshipStatus} />
+          <FriendRequestButton otherID={this.props.params.id} />
           <div>Age: {this.props.profileInfo.age}</div>
           <div>Gender: {this.props.profileInfo.gender}</div>
           <RadarGraph userID={this.props.params.id} />
