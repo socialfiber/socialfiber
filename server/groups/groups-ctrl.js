@@ -176,7 +176,6 @@ const groups = {
         rows.forEach((row) => {
           if(row.groups.length > 0) {
             users.push(row);
-            console.log('users:', users);
           }
         })
         res.json(users);

@@ -1,29 +1,47 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
-import { fetchGroupPosts, fetchComments } from '../actions/groups';
+import { fetchGroupPosts, fetchAllUsers } from '../actions/groups';
 import MessageBox from './PostMessageBox';
 import Comments from './CommentsBox';
 import NavBar from './navbar';
 import GroupWallMessages from './GroupWallMessages';
 import GroupWallComments from './GroupWallComments';
+import GroupUsersList from './GroupUsersList';
 
 class GroupWall extends Component {
 
     componentWillMount() {
       this.props.fetchGroupPosts(this.props.params.id);
+      this.props.fetchAllUsers(this.props.params.id);
+      // .then(()=> {
+      //   this.props.fetchAllUsers(this.props.params.id);
+      // });
     }
 
     render() {
-      if(this.props.myGroups.groupPosts.length > 0) {
+      console.log('this.props.groupUsers::', this.props.groupUsers);
+      // if(this.props.groupUsers) {
+      //   const groupUsers = this.props.groupUsers.map((user, idx) =>
+      //     <GroupUsersList key={idx} user={user} />
+      //   );
+      // }
+      if(this.props.groupUsers) {
+        const groupUsers = this.props.groupUsers.map((user, idx) =>
+          <GroupUsersList key={idx} user={user} />
+        );
         const groupPosts = this.props.myGroups.groupPosts.map((post, idx) =>
           <GroupWallMessages key={idx} post={post} />
         );
           return(
+              <div>
+                <NavBar />
+                <h1>{this.props.params.groupname}</h1>
+                <div>
+                  {groupUsers}
+                </div>
                 <table>
                   <tbody>
-                  <NavBar />
-                  <h1>{this.props.params.groupname}</h1>
                   <MessageBox />
                     <tr>
                       <th>Username</th>
@@ -35,6 +53,7 @@ class GroupWall extends Component {
                     </tr>
                   </tbody>
                 </table>
+              </div>
           );
       } else if(this.props.myGroups.groupPosts.length === 0) {
         return (
@@ -57,8 +76,9 @@ class GroupWall extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    myGroups: state.groups
+    myGroups: state.groups,
+    groupUsers: state.groups.groupUsers
   }
 }
 
-export default connect(mapStateToProps, {fetchGroupPosts})(GroupWall)
+export default connect(mapStateToProps, {fetchGroupPosts, fetchAllUsers})(GroupWall)
