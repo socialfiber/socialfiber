@@ -19,7 +19,6 @@ class MyGroups extends Component {
 
       return (
         <div>
-          <NavBar />
           <h1>My Groups</h1>
           <table>
             <tbody>

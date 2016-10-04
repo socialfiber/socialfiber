@@ -5,6 +5,7 @@ class GroupWallComments extends Component {
 
 	render(){
 		if(this.props.comment){
+			console.log('this props inside group wall comment', this.props);
 			return (
 				<table>
 					<tbody>
