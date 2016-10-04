@@ -19,9 +19,9 @@ export function fetchUserData() {
   })
 }
 
-export function fetchMacros() {
+export function fetchMacros(userID) {
   const data = {
-    params: { userID: Cookies.get('userID') },
+    params: { userID: userID },
     headers: { 'x-access-token': Cookies.get('token') }
   }
   return axios.get('/api/users/getUserData', data)

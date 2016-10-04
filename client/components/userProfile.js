@@ -60,7 +60,7 @@ class UserProfile extends Component {
               <button type="button" onClick={() => this.toggleEditing()}>Edit Info</button>
             </div>
             <ChatWindow />
-            <RadarGraph />
+            <RadarGraph userID={this.props.userData.id} />
             <Tabs />
           </div>
         );
