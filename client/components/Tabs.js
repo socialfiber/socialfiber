@@ -14,8 +14,8 @@ class Tabs extends Component {
             <li onClick={()=>{this.props.changeTab('MyFriends')}}><a href="#">My Friends</a></li>
             <li onClick={()=>{this.props.changeTab('MyGroups')}}><a href="#">My Groups</a></li>
           </ul>
-        </nav>
         <TabContent currentTab={this.props.currentTab} />
+        </nav>
       </div>
     );
   }
