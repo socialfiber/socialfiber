@@ -31,14 +31,19 @@ const server = http.createServer(app);
 const io = socketIo(server);
 
 io.on('connection', (socket) => {
-  console.log("A user has entered the room");
-  socket.on('message', (body, username) => {
-    // console.log("recevied: ", body);
-    socket.broadcast.emit('message', {
-      body,
-      from: username
+
+  socket.on('room', (room) => {
+    socket.join(room);
+  });
+
+  socket.on('message', (message) => {
+    console.log("recevied: ", message);
+    socket.broadcast.to(message.room).emit('message', {
+      body: message.body,
+      from: message.from
     });
   });
+
   // socket.on('disconnect' (username) => {
   //   console.log(username + " has left the room.")
   // })

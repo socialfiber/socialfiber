@@ -17,7 +17,7 @@ const rootReducer = combineReducers({
   groups: GroupsReducer,
   friends: FriendsReducer,
   browse: BrowseReducer,
-  tabs: TabsReducer
+  tabs: TabsReducer,
   chatWindow: ChatWindowReducer
 });
 
