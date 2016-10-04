@@ -26,7 +26,7 @@ sequelize
   .then(() => {
     console.log('Friends model synced successfully.');
   }, (err) => {
-    console.log('An error has occurred:', err);
+    console.error('An error has occurred:', err);
   });
 
 module.exports = Friends;

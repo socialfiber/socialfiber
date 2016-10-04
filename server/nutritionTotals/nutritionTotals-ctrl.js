@@ -25,8 +25,8 @@ const nutritionTotals = {
 						date: input.date
 					}
 				})
-				.then((updated) => {
-					resolve(updated);
+				.then((affectedRows) => {
+					resolve(affectedRows);
 				})
 				.catch((err) => {
 					reject(err);
@@ -61,8 +61,8 @@ const nutritionTotals = {
 						date: input.date
 					}
 				})
-				.then((updated) => {
-					resolve(updated);
+				.then((affectedRows) => {
+					resolve(affectedRows);
 				})
 				.catch((err) => {
 					reject(err);
