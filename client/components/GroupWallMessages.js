@@ -25,23 +25,22 @@ class GroupWallMessages extends Component {
 			<GroupWallComments key={idx} comment={comment} />
 		);
 		return (
-			<tr>
-				<td>
-					<button onClick = {this.showReplyForm.bind(this)}> Reply </button>
-				</td>
-				<td>
-	    		{this.props.post.createdAt.substr(0,10)}
-		    </td>
-				<td>
-					<strong> {this.props.post.username}</strong>: {this.props.post.message}
-				</td>
-				<td>
-					{postComments}
-				</td>
-				<td>
-					{this.state.showReply && <CommentsBox />}
-				</td>
-			</tr>
+			<table>
+				<tbody>
+					<tr>
+						{/* <td>{this.props.post.createdAt.substr(0,10)}</td> */}
+						<td><strong> {this.props.post.username}</strong>: </td>
+						<td>{this.props.post.message}</td>
+						<td><button onClick = {this.showReplyForm.bind(this)}> Reply </button></td>
+						<td>{this.state.showReply && <CommentsBox />}</td>
+				  </tr>
+					<tr>
+     				<td>
+         			{postComments}
+		        </td>
+		      </tr>
+				</tbody>
+			</table>
 		)
 	}
 }

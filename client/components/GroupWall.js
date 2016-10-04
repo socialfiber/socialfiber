@@ -20,21 +20,23 @@ class GroupWall extends Component {
         const groupPosts = this.props.myGroups.groupPosts.map((post, idx) =>
           <GroupWallMessages key={idx} post={post} />
         );
-        const postComments = this.props.myGroups.groupPosts.forEach((wallpost) =>
-          wallpost.comments.map((comment, idx) =>
-            <GroupWallComments key={idx} comment={comment} />
-          )
-        );
           return(
               <div>
                 <NavBar />
                 <h1>{this.props.params.groupname}</h1>
                 <MessageBox />
-                <ul className='list-group-item'>
-                {groupPosts}
-                  {postComments}
-                </ul>
-
+                <table>
+                  <tbody>
+                    <tr>
+                      <th>Username</th>
+                      <th>Message</th>
+                      <th>Reply</th>
+                    </tr>
+                  </tbody>
+                </table>
+                <tr>
+                  {groupPosts}
+                </tr>
               </div>
           );
       } else if(this.props.myGroups.groupPosts.length === 0) {

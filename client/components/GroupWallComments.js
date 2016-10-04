@@ -6,11 +6,15 @@ class GroupWallComments extends Component {
 	render(){
 		if(this.props.comment){
 			return (
-				<tr>
-					<td>
-						<strong> {this.props.comment.username}</strong>: {this.props.comment.message}
-					</td>
-				</tr>
+				<table>
+					<tbody>
+						<tr>
+							{/* <td>{this.props.comment.createdAt.substr(0,10)}</td> */}
+							<td><strong>-- {this.props.comment.username}</strong>: </td>
+							<td>{this.props.comment.message}</td>
+						</tr>
+					</tbody>
+				</table>
 			)
 		} else if(!this.props.comment.message){
 			return (
