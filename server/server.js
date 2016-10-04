@@ -39,6 +39,9 @@ io.on('connection', (socket) => {
       from: username
     });
   });
+  // socket.on('disconnect' (username) => {
+  //   console.log(username + " has left the room.")
+  // })
 });
 
 server.listen(app.get('port'), () => {
