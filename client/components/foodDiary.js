@@ -4,10 +4,7 @@ import { fetchFoodDiary } from '../actions/foodDiary';
 import FoodDiaryLog from './FoodDiaryLog';
 import FoodDiaryEntry from './FoodDiaryEntry';
 
-
-
 class FoodDiary extends Component {
-
 
   componentWillMount() {
     this.props.fetchFoodDiary();
