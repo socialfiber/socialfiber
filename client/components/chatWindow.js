@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import io from 'socket.io-client';
 import Cookies from 'js-cookie';
+import { connect } from 'react-redux';
 // import moment from 'moment';
 
 class ChatWindow extends Component {
@@ -15,7 +16,13 @@ class ChatWindow extends Component {
 
   componentDidMount() {
     // console.log("timestamp: ", moment().format('h:mm:ss a'));
-    this.socket = io('/') // Triggers on connection event on the web server.
+    this.socket = io.connect() // Triggers on connection event on the web server.
+    const room = this.props.roomId;
+
+    this.socket.on('connect', () => {
+      this.socket.emit('room', room);
+    })
+
     this.socket.on('message', (message) => { // Event listener
       this.setState({ messages: [message, ...this.state.messages] });
       this.state.messages.map((message) => {
@@ -30,10 +37,11 @@ class ChatWindow extends Component {
     if(e.keyCode === 13 && body) {
       const message = {
         body,
-        from: Cookies.get('username')
+        from: Cookies.get('username'),
+        room: this.props.roomId
       }
       this.setState({ messages: [message, ...this.state.messages] });
-      this.socket.emit('message', body, message.from);
+      this.socket.emit('message', message);
       console.log("emits: ", message.from + ": " + body);
       e.target.value = '';
     }
@@ -45,12 +53,17 @@ class ChatWindow extends Component {
     });
     return (
       <div>
-        <h3>Live Chat</h3>
-        <input type="text" placeholder="Enter a message..." onKeyUp={this.handleSubmit}/>
+        <input type="text" placeholder="Enter a message..." onKeyUp={this.handleSubmit} />
         {messages}
       </div>
     );
   }
 }
 
-export default ChatWindow;
+function mapStateToProps(state) {
+  return {
+    roomId: state.chatWindow.roomId
+  }
+}
+
+export default connect(mapStateToProps, null)(ChatWindow);
