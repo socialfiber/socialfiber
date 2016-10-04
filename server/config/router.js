@@ -10,6 +10,7 @@ const friends = require('../friends/friends-ctrl.js');
 
 //sample controller template
 const dummy = require('../dummy/dummy-ctrl.js')
+
 const middleware = require('./middleware.js');
 
 const controllers = [

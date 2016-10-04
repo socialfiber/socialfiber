@@ -45,8 +45,8 @@ sequelize
   .sync()
   .then(() => {
     console.log('Storage model synced successfully.');
-}, (err) => {
-    console.log('An error has occurred:', err);
+  }, (err) => {
+    console.error('An error has occurred:', err);
   });
 
 module.exports = Storage;

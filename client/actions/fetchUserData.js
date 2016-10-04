@@ -8,13 +8,13 @@ export function fetchUserData() {
     headers: { 'x-access-token': Cookies.get('token') }
   }
   return axios.get('/api/users/getUserData', data)
-  .then(function(response) {
+  .then((response) => {
     return {
       type: FETCH_USER_DATA,
       payload: response.data.question
     };
   })
-  .catch(function(error) {
+  .catch((error) => {
     console.error(error);
   })
 }

@@ -11,7 +11,6 @@ const utilities = {
       iat: moment().unix(),
       exp: moment().add(1, 'days').unix()
     }
-    console.log("GENERATING TOKEN", payload)
     return jwt.sign(payload, 'secret');
   },
 

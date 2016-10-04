@@ -2,8 +2,8 @@ const auth = require('../config/auth.js');
 const request = require('request');
 const _ = require('underscore');
 
-const appId = auth.nutritionixAuth.appId;
-const appKey = auth.nutritionixAuth.appKey;
+const appId = auth.nutritionix.appId;
+const appKey = auth.nutritionix.appKey;
 
 const Nutritionix = {
 	'search': (input) => {
