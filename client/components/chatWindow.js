@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import io from 'socket.io-client';
 import Cookies from 'js-cookie';
 import { connect } from 'react-redux';
-// import moment from 'moment';
-import Select from 'react-select';
+import { fetchChatHistory, storeChatHistory } from '../actions/chatWindow';
 
 
 class ChatWindow extends Component {
@@ -17,25 +16,18 @@ class ChatWindow extends Component {
   }
 
   componentDidMount() {
-    // console.log("timestamp: ", moment().format('h:mm:ss a'));
     this.socket = io.connect(); // Triggers on connection event on the web server.
     const room = this.props.roomId;
 
     this.socket.on('connect', () => {
       this.socket.emit('room', room);
-    })
-
-    this.socket.on('message', (message) => { // Event listener
-      this.setState({ messages: [message, ...this.state.messages] });
-      // this.state.messages.map((message) => {
-        // console.log("message: ", message)
-      // })
     });
+    this.props.fetchChatHistory()
   }
 
   componentWillUnmount() {
     console.log("Component unmounted");
-    this.socket.emit('disconnect', Cookies.get('username'));
+    this.props.storeChatHistory(this.state.messages, this.props.roomId);
   }
 
   handleSubmit(e) {
@@ -47,17 +39,24 @@ class ChatWindow extends Component {
         from: Cookies.get('username'),
         room: this.props.roomId
       }
-      this.setState({ messages: [message, ...this.state.messages] });
+      const currentMessages = this.state.messages;
+      currentMessages.push(message);
+      this.setState({ messages: currentMessages });
       this.socket.emit('message', message);
       console.log("emits: ", message.from + ": " + body);
       e.target.value = '';
     }
   }
 
+  testFunc() {
+    console.log("It WORKS")
+  }
+
   render() {
     const messages = this.state.messages.map((message, index) => {
       return <li key={index}><b>{message.from}: </b>{message.body}</li>
     });
+
     return (
       <div style={{ margin: 1, border: '1px solid', borderColor: '#cccccc', width: '300px', height: '300px', position: 'absolute', bottom: 0, right: 0, backgroundColor: 'white' }}>
         <div>
@@ -73,7 +72,8 @@ function mapStateToProps(state) {
   return {
     roomId: state.chatWindow.roomId,
     myFriends: state.friends.myFriends
+    // chatHistory: state.
   }
 }
 
-export default connect(mapStateToProps, null)(ChatWindow);
+export default connect(mapStateToProps, { fetchChatHistory, storeChatHistory })(ChatWindow);
