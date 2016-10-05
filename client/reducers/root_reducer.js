@@ -6,7 +6,6 @@ import FoodDiaryReducer from './foodDiary_reducer';
 import GroupsReducer from './groups_reducer';
 import FriendsReducer from './friends_reducer';
 import BrowseReducer from './browse_reducer';
-import TabsReducer from './tabs_reducer';
 import ChatWindowReducer from './chatWindow_reducer';
 
 const rootReducer = combineReducers({
@@ -17,7 +16,6 @@ const rootReducer = combineReducers({
   groups: GroupsReducer,
   friends: FriendsReducer,
   browse: BrowseReducer,
-  tabs: TabsReducer,
   chatWindow: ChatWindowReducer
 });
 

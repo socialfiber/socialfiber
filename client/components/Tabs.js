@@ -1,20 +1,48 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { changeTab } from '../actions/tabs';
 import TabContent from './TabContent';
 
 class Tabs extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      tabsList: [{name:'', component:''}],
+      currentTab: null
+    }
+    this.changeTab.bind(this);
+  }
+
+  componentWillMount() {
+    if(this.props.defaultTab) {
+      this.setState({
+        currentTab: this.props.defaultTab
+      });
+    }
+    if(this.props.tabsList) {
+      this.setState({
+        tabsList: this.props.tabsList
+      });
+    }
+  }
+
+  changeTab(tab) {
+    if(tab !== this.state.currentTab) {
+      this.setState({
+        currentTab: tab
+      });
+    }
+  }
 
   render() {
     return (
       <div>
         <nav>
           <ul>
-            <li onClick={()=>{this.props.changeTab('FoodDiary')}}><a href="#">Food Diary</a></li>
-            <li onClick={()=>{this.props.changeTab('MyFriends')}}><a href="#">My Friends</a></li>
-            <li onClick={()=>{this.props.changeTab('MyGroups')}}><a href="#">My Groups</a></li>
+            <li onClick={()=>this.changeTab('FoodDiary')}>Food Diary</li>
+            <li onClick={()=>this.changeTab('MyFriends')}>My Friends</li>
+            <li onClick={()=>this.changeTab('MyGroups')}>My Groups</li>
           </ul>
-        <TabContent currentTab={this.props.currentTab} />
+          <TabContent currentTab={this.state.currentTab} />
         </nav>
       </div>
     );
@@ -22,10 +50,4 @@ class Tabs extends Component {
 
 }
 
-const mapStateToProps = (state) => {
-  return {
-    currentTab: state.tabs.currentTab
-  }
-}
-
-export default connect(mapStateToProps, { changeTab })(Tabs);
+export default Tabs;

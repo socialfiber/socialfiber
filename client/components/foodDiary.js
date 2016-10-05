@@ -6,7 +6,7 @@ import FoodDiaryEntry from './FoodDiaryEntry';
 
 class FoodDiary extends Component {
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.fetchFoodDiary();
   }
 

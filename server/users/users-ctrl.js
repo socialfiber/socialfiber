@@ -24,13 +24,13 @@ const users = {
           });
         })
         .catch((err) => {
-          res.status(200).send({
-            msg: err
+          res.status(400).send({
+            msg: 'Error updating password to hash.'
           });
         });
       })
       .catch((err) => {
-        res.status(200).send({
+        res.status(400).send({
           msg: 'Error hashing password.'
         });
       });
@@ -46,8 +46,7 @@ const users = {
     Users.findOne({
       where: {
         username: req.body.username
-      },
-      attributes: ['id', 'username', 'password']
+      }
     })
     .then((user) => {
       utils.comparePassword(req.body.password, user.password)
@@ -61,9 +60,14 @@ const users = {
         } else {
           res.status(200).send({
             msg: 'Incorrect Password.'
-          })
+          });
         }
-      })
+      })      
+      .catch((err) => {
+        res.status(400).send({
+          msg: 'Error comparing passwords.'
+        });
+      });
     })
     .catch((err) => {
       res.status(200).send({
@@ -71,9 +75,50 @@ const users = {
       });
     });
   },
+  '/api/users/changePassword': {
+    'post': (req, res) => {
+      console.log('inside POST at /api/users/changePassword');
+      Users.findById(req.body.userID)
+      .then((user) => {
+        utils.comparePassword(req.body.password, user.password)
+        .then((isMatch) => {
+          if(isMatch) {
+             utils.hashPassword(req.body.newPW)
+            .then((hash) => {
+              user.update({ password: hash })
+              .then((updated) => {
+                res.status(201).send({
+                  msg: 'Password successfully updated.'
+                });
+              })
+              .catch((err) => {
+                res.status(400).send({
+                  msg: 'Error updating password to hash.'
+                });
+              });
+            });
+          } else {
+            res.status(200).send({
+              msg: 'Incorrect Password.'
+            });
+          }
+        })
+        .catch((err) => {
+          res.status(400).send({
+            msg: 'Error comparing passwords.'
+          });
+        });
+      })
+      .catch((err) => {
+        res.status(400).send({
+          msg: 'Error getting user data.'
+        });
+      });
+    }
+  },
   '/api/users/getUserData': {
     'get': (req, res) => {
-      console.log('inside GET at /api/users/getUserData', req.headers['x-access-token']);
+      console.log('inside GET at /api/users/getUserData');
       const options = {
         attributes: ['id', 'username', 'IBW', 'cal_min', 'cal_max', 'code'],
         include: [DietaryProfiles, Questions, NutritionTotals, Friends]

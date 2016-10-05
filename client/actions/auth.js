@@ -1,7 +1,6 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import { browserHistory } from 'react-router';
-import { SubmissionError } from 'redux-form';
 import { AUTH_USER, AUTH_ERROR, SIGN_OUT } from './types';
 
 export function resetError() {
@@ -19,17 +18,17 @@ export function submitSignIn(usernameAndPasswordObj) {
         Cookies.set('token', response.data.token);
         Cookies.set('authenticated', true);
         browserHistory.push('/userProfile');
-        return { type: AUTH_USER, payload: response.data };
+        return { type: AUTH_USER, payload: response.data }
       }
     })
     .catch((error) => {
-      return { type: AUTH_ERROR, payload: response.data.msg };
+      return { type: AUTH_ERROR, payload: response.data.msg }
     });
 }
 
 export function submitSignUp(usernameAndPasswordObj) {
   if (usernameAndPasswordObj.password !== usernameAndPasswordObj.confirmPW) {
-    return { type: AUTH_ERROR, payload: 'Passwords do not match' };
+    return { type: AUTH_ERROR, payload: 'Passwords do not match' }
   } else {
     return axios.post('/auth/signup', usernameAndPasswordObj)
       .then((response) => {
@@ -41,11 +40,11 @@ export function submitSignUp(usernameAndPasswordObj) {
           Cookies.set('token', response.data.token);
           Cookies.set('authenticated', true);
           browserHistory.push('/userQuestionnaire');
-          return { type: AUTH_USER, payload: response.data };
+          return { type: AUTH_USER, payload: response.data }
         }
       })
       .catch((error) => {
-        return { type: AUTH_ERROR, payload: response.data.msg };
+        return { type: AUTH_ERROR, payload: response.data.msg }
       });
   }
 }
