@@ -31,9 +31,9 @@ const server = http.createServer(app);
 const io = socketIo(server);
 
 io.on('connection', (socket) => {
-  console.log("You are now connected.")
   socket.on('room', (room) => {
     socket.join(room);
+    console.log("You have joined the room");
   });
 
   socket.on('message', (message) => {
@@ -43,10 +43,6 @@ io.on('connection', (socket) => {
       from: message.from
     });
   });
-
-  socket.on('disconnect', (username) => {
-    console.log(username + " has left the room.")
-  })
 });
 
 server.listen(app.get('port'), () => {
