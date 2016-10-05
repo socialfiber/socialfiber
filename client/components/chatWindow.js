@@ -3,6 +3,8 @@ import io from 'socket.io-client';
 import Cookies from 'js-cookie';
 import { connect } from 'react-redux';
 // import moment from 'moment';
+import Select from 'react-select';
+
 
 class ChatWindow extends Component {
   constructor(props) {
@@ -16,7 +18,7 @@ class ChatWindow extends Component {
 
   componentDidMount() {
     // console.log("timestamp: ", moment().format('h:mm:ss a'));
-    this.socket = io.connect() // Triggers on connection event on the web server.
+    this.socket = io.connect(); // Triggers on connection event on the web server.
     const room = this.props.roomId;
 
     this.socket.on('connect', () => {
@@ -25,10 +27,15 @@ class ChatWindow extends Component {
 
     this.socket.on('message', (message) => { // Event listener
       this.setState({ messages: [message, ...this.state.messages] });
-      this.state.messages.map((message) => {
-        console.log("message: ", message)
-      })
+      // this.state.messages.map((message) => {
+        // console.log("message: ", message)
+      // })
     });
+  }
+
+  componentWillUnmount() {
+    console.log("Component unmounted");
+    this.socket.emit('disconnect', Cookies.get('username'));
   }
 
   handleSubmit(e) {
@@ -49,12 +56,14 @@ class ChatWindow extends Component {
 
   render() {
     const messages = this.state.messages.map((message, index) => {
-      return <li key={index}><b>{message.from}:</b>{message.body}</li>
+      return <li key={index}><b>{message.from}: </b>{message.body}</li>
     });
     return (
-      <div>
-        <input type="text" placeholder="Enter a message..." onKeyUp={this.handleSubmit} />
-        {messages}
+      <div style={{ margin: 1, border: '1px solid', borderColor: '#cccccc', width: '300px', height: '300px', position: 'absolute', bottom: 0, right: 0, backgroundColor: 'white' }}>
+        <div>
+          <div style={{ width: '300px' , height: '280px', overflow: 'scroll' }}>{messages}</div>
+          <input type="text" placeholder="Enter a message..." style={{ position: 'relative', bottom: 0, width: '247px', margin: 1}} onKeyUp={this.handleSubmit} /><button type="button" onClick={this.handleSubmit}>Send</button>
+        </div>
       </div>
     );
   }
@@ -62,7 +71,8 @@ class ChatWindow extends Component {
 
 function mapStateToProps(state) {
   return {
-    roomId: state.chatWindow.roomId
+    roomId: state.chatWindow.roomId,
+    myFriends: state.friends.myFriends
   }
 }
 

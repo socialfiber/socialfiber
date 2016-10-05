@@ -6,6 +6,7 @@ import Friend from './Friend';
 import FriendRequestButton from './FriendRequestButton';
 import { createRoom } from '../actions/chatWindow';
 import { browserHistory } from 'react-router';
+import ChatWindow from './chatWindow';
 
 class MyFriends extends Component {
   constructor(props) {
@@ -24,10 +25,14 @@ class MyFriends extends Component {
   //   this.props.fetchFriends();
   // }
 
-  handleOnClick(friendObj) {
-    this.setState({ chatFlag: !this.state.chatFlag});
+  initiateLiveChat(friendObj) {
+    this.setState({ chatFlag: true });
     this.props.createRoom(friendObj);
-    browserHistory.push('/chat');
+    // browserHistory.push('/chat');
+  }
+
+  endLiveChat() {
+    this.setState({ chatFlag: false });
   }
 
   render() {
@@ -43,7 +48,8 @@ class MyFriends extends Component {
           <li key={idx}>
             <Friend username={friend.user2_username} img={friend.img} otherID={friend.user2_id} />
             <FriendRequestButton friendshipStatus='friends' otherID={friend.user2_id} />
-            <button type="button" onClick={() => this.handleOnClick(friend)}>Chat</button>
+            {/* <button type="button" onClick={() => this.handleOnClick(friend)}>Chat</button> */}
+            {this.state.chatFlag ? <button type="button" onClick={() => this.endLiveChat()}>End Chat</button> : <button type="button" onClick={() => this.initiateLiveChat(friend)}>Chat</button>}
           </li>
         )
       })
@@ -57,15 +63,18 @@ class MyFriends extends Component {
       })
       return (
         <div>
-          <h1>Friends</h1>
-          <h3>Friend Requests</h3>
-          <ul>
-            {friendRequests}
-          </ul>
-          <h3>My Friends</h3>
-          <ul>
-            {myFriends}
-          </ul>
+          <div>
+            <h1>Friends</h1>
+            <h3>Friend Requests</h3>
+            <ul>
+              {friendRequests}
+            </ul>
+            <h3>My Friends</h3>
+            <ul>
+              {myFriends}
+              {this.state.chatFlag ? <ChatWindow /> : ''}
+            </ul>
+          </div>
         </div>
       );
     } else if(!this.props.myFriends.length && !this.props.friendRequests.length) {

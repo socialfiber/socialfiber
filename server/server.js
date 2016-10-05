@@ -31,22 +31,22 @@ const server = http.createServer(app);
 const io = socketIo(server);
 
 io.on('connection', (socket) => {
-
+  console.log("You are now connected.")
   socket.on('room', (room) => {
     socket.join(room);
   });
 
   socket.on('message', (message) => {
-    console.log("recevied: ", message);
+    console.log("received: ", message);
     socket.broadcast.to(message.room).emit('message', {
       body: message.body,
       from: message.from
     });
   });
 
-  // socket.on('disconnect' (username) => {
-  //   console.log(username + " has left the room.")
-  // })
+  socket.on('disconnect', (username) => {
+    console.log(username + " has left the room.")
+  })
 });
 
 server.listen(app.get('port'), () => {
