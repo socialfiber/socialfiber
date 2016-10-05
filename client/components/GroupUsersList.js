@@ -6,7 +6,6 @@ class GroupUsersList extends Component {
 
 	render(){
 		if(this.props.user){
-      console.log('this props user: ', this.props.user);
 			return (
 				<li>
           <Link to = {'browseprofile/' + this.props.user.id}>{this.props.user.username}</Link>

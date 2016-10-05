@@ -6,6 +6,7 @@ const Users = require('../users/users-model.js');
 const Groups = sequelize.define('groups', {
   name: {
     type: Sequelize.STRING,
+    unique: true,
     allowNull: false
   },
   description: {

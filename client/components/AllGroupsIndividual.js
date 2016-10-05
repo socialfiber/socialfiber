@@ -15,7 +15,7 @@ const AllGroupsIndividual = (props) => (
     <table>
       <tbody>
         <tr>
-          <td><button onClick = {() => {props.joinGroup(props.group.id)}}>Join Group</button></td>
+          <td><Link to = {'groupwall/' + props.group.id + '/' + props.group.name}><button onClick = {() => {props.joinGroup(props.group.id); window.location.reload()}}>Join Group</button></Link></td>
           <td><strong><Link to = {'groupwall/' + props.group.id + '/' + props.group.name}>{props.group.name}</Link></strong></td>
           <td>- {props.group.description}</td>
         </tr>

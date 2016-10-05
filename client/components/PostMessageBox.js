@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
-import { postMessages, fetchGroupPosts } from '../actions/groups';
+import { postMessages } from '../actions/groups';
 
 class Messages extends Component {
 
@@ -13,7 +13,7 @@ class Messages extends Component {
             <div>
               <Field name="message" component="input" type="text" required />
             </div>
-            <button type="submit">Submit</button>
+            <button type="submit" onClick={() => window.location.reload()}>Submit</button>
         </form>
       )
     }
@@ -30,4 +30,4 @@ class Messages extends Component {
   	}
   }
 
-  export default connect(mapStateToProps, { postMessages, fetchGroupPosts })(Messages);
+  export default connect(mapStateToProps, { postMessages })(Messages);

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { fetchAllGroups } from '../actions/groups';
 import AllGroupsIndividual from './AllGroupsIndividual';
 import NavBar from './navbar';
-
+import CreateGroup from './CreateGroup';
 
 class AllGroups extends Component {
   componentWillMount() {
@@ -28,6 +28,8 @@ class AllGroups extends Component {
           <ul className='list-group'>
             {this.renderGroups()}
           </ul>
+          <h4>Can't find a group? Start your own!</h4>
+          <CreateGroup />
       </div>
     )
   }

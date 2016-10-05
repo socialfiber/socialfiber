@@ -60,7 +60,6 @@ export function joinGroup(group_id) {
 
   return axios.post('/api/groups/addUser', data, config)
   .then(function(response) {
-    console.log('inside join group')
     var obj = {
       groupId: group_id,
       data: response.data
@@ -116,11 +115,11 @@ export function fetchGroupPosts(group_id) {
   })
 }
 
-export function postMessages(message, filler, groupid) {
+export function postMessages(message, filler, groupObject) {
 
   const data = {
-    group_id: groupid.myGroups.postObject.group_id,
-    group_name: groupid.myGroups.postObject.group_name,
+    group_id: groupObject.myGroups.groupUsers[0].groups[0].id,
+    group_name: groupObject.myGroups.groupUsers[0].groups[0].name,
     username: Cookies.get('username'),
     message: message.message
   }
