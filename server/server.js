@@ -38,9 +38,9 @@ io.on('connection', (socket) => {
 
   socket.on('message', (message) => {
     console.log("received: ", message);
-    socket.broadcast.to(message.room).emit('message', {
+    socket.broadcast.to(message.room_id).emit('message', {
       body: message.body,
-      from: message.from
+      username: message.username
     });
   });
 });
