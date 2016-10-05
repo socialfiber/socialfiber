@@ -9,6 +9,7 @@ import GroupWallMessages from './GroupWallMessages';
 import GroupWallComments from './GroupWallComments';
 import GroupUsersList from './GroupUsersList';
 import Cookies from 'js-cookie';
+import GroupWallMessagesNoReply from './GroupWallMessagesNoReply';
 
 class GroupWall extends Component {
 
@@ -18,6 +19,13 @@ class GroupWall extends Component {
     }
 
     render() {
+      if(this.props.groupUsers === undefined) {
+          return (
+            <div>
+              <h3>Loading posts...</h3>
+            </div>
+          )
+      }
 
       if(this.props.groupUsers) {
         const groupUsers = this.props.groupUsers.map((user, idx) =>
@@ -28,6 +36,10 @@ class GroupWall extends Component {
           <GroupWallMessages key={idx} post={post} />
         );
 
+        const groupPostsNoReply = this.props.myGroups.groupPosts.map((post, idx) =>
+          <GroupWallMessagesNoReply key={idx} post={post} />
+        );
+
         let isGroupMember = false;
 
         for(let key in this.props.groupUsers) {
@@ -36,7 +48,6 @@ class GroupWall extends Component {
           }
         }
         if(this.props.groupUsers.length === 0) {
-          console.log('here');
           return (
             <div>
               <h3>Nobody has joined this group yet.</h3>
@@ -75,17 +86,30 @@ class GroupWall extends Component {
         } else {
           return (
             <div>
-              You aren't a member of this group! Please join.
+              <NavBar />
+              <h1>{this.props.params.groupname}</h1>
+              You aren't a member of this group! Please join to participate in the group.
               <button onClick = {() => {this.props.joinGroup(this.props.params.id)}}>Join Group</button>
+              <div>
+                <h4>Current Group Members</h4>
+                {groupUsers}
+              </div>
+              <div>
+                <table>
+                  <tbody>
+                  <tr>
+                    <th>Username</th>
+                    <th>Message</th>
+                  </tr>
+                  <tr>
+                    {groupPostsNoReply}
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
           );
         }
-      } else {
-        return (
-          <div>
-            <h3>Loading posts...</h3>
-          </div>
-        )
       }
     }
   }
