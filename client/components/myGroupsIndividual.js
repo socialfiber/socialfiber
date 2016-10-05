@@ -12,7 +12,7 @@ class MyGroupsIndividual extends Component {
 				<tbody>
 					<tr>
 						<td>
-							<button onClick={ () => {leaveGroup(this.props.group.id)}}> Leave Group </button>
+							<button onClick={ () => {leaveGroup(this.props.group.id); window.location.reload();}}> Leave Group </button>
 						</td>
 						<div>
 							<strong>

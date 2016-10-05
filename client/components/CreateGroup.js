@@ -19,7 +19,7 @@ class CreateGroup extends Component {
                 <label>Description</label>
                   <Field name='description' component='input' type='text' required/>
               </div>
-                <button type="submit">Submit</button>
+                <button type="submit" onClick={() => window.location.reload()}>Submit</button>
         </form>
       </div>
     )

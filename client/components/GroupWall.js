@@ -52,7 +52,7 @@ class GroupWall extends Component {
             <div>
               <h3>Nobody has joined this group yet.</h3>
               <h4>Be the first one to join this group!</h4>
-              <button onClick = {() => {this.props.joinGroup(this.props.params.id)}}>Join Group</button>
+              <button onClick = {() => {this.props.joinGroup(this.props.params.id); window.location.reload();}}>Join Group</button>
             </div>
           );
         }
