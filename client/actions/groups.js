@@ -60,7 +60,6 @@ export function joinGroup(group_id) {
 
   return axios.post('/api/groups/addUser', data, config)
   .then(function(response) {
-    console.log('inside join group')
     var obj = {
       groupId: group_id,
       data: response.data
