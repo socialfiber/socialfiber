@@ -10,12 +10,14 @@ class ChatWindow extends Component {
     super(props);
 
     this.state = {
-      messages: []
+      messages: [],
+      newMessages: []
     }
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  componentDidMount() {
+  componentWillMount() {
+    console.log("Component Mounted")
     this.socket = io.connect(); // Triggers on connection event on the web server.
     const room = this.props.roomId;
 
@@ -29,12 +31,16 @@ class ChatWindow extends Component {
       this.setState({ messages: currentMessages });
     });
 
-    // this.props.fetchChatHistory(room);
+    this.props.fetchChatHistory(this.props.roomId)
+    .then(() => {
+      this.setState({ messages: this.props.chatHistory });
+    });
   }
 
   componentWillUnmount() {
     console.log("Component unmounted");
-    // this.props.storeChatHistory(this.state.messages, this.props.roomId);
+    this.props.storeChatHistory(this.state.newMessages, this.props.roomId);
+    this.setState({ newMessages: [] }) // Empty out newMessages
   }
 
   handleSubmit(e) {
@@ -46,6 +52,11 @@ class ChatWindow extends Component {
         username: Cookies.get('username'),
         room_id: this.props.roomId
       }
+
+      const newMessages = this.state.newMessages;
+      newMessages.push(message);
+      this.setState({ newMessages: newMessages });
+
       const currentMessages = this.state.messages;
       currentMessages.push(message);
       this.setState({ messages: currentMessages });
@@ -74,8 +85,8 @@ class ChatWindow extends Component {
 function mapStateToProps(state) {
   return {
     roomId: state.chatWindow.roomId,
-    myFriends: state.friends.myFriends
-    // chatHistory: state.
+    myFriends: state.friends.myFriends,
+    chatHistory: state.chatWindow.chatHistory
   }
 }
 
