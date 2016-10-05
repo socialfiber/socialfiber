@@ -9,6 +9,7 @@ class FriendRequestButton extends Component {
       friendshipStatus: null
     }
     this.getStatus.bind(this);
+    this.setStatus.bind(this);
   }
 
   getStatus() {
@@ -18,14 +19,16 @@ class FriendRequestButton extends Component {
         friendshipStatus: response.payload
       });
     });
-  } 
-
-  componentDidMount() {
-    this.getStatus()
   }
 
-  componentDidUpdate() {
-    this.getStatus()
+  setStatus(response) {
+    this.setState({
+      friendshipStatus: response.payload
+    });
+  }
+
+  componentDidMount() {
+    this.getStatus();
   }
   
   render() {
@@ -33,25 +36,61 @@ class FriendRequestButton extends Component {
     if(this.state.friendshipStatus === null) {
       return (
         <div>
-          <button onClick={()=>{sendFriendRequest(this.props.otherID)}}>Send Friend Request</button>
+          <button onClick={() => {
+            sendFriendRequest(this.props.otherID)
+            .then((response) => {
+              this.setStatus(response);
+            })
+          }}>
+          Send Friend Request
+          </button>
         </div>
       );
     } else if(this.state.friendshipStatus === 'requestee') {
       return (
         <div>
-          <button onClick={()=>{acceptFriendRequest(this.props.otherID)}}>Accept Friend Request</button>
+          <button onClick={() => {
+            acceptFriendRequest(this.props.otherID)
+            .then((response) => {
+              this.setStatus(response);
+            });
+          }}>
+          Accept Friend Request
+          </button>
+          <button onClick={() => {
+            deleteFriendRequest(this.props.otherID)
+            .then((response) => {
+              this.setStatus(response);
+            });
+          }}>
+          Reject Friend Request
+          </button>
         </div>
       );
     } else if(this.state.friendshipStatus === 'requestor') {
       return (
         <div>
-          <button onClick={()=>{deleteFriendRequest(this.props.otherID)}}>Cancel Friend Request</button>
+          <button onClick={() => {
+            deleteFriendRequest(this.props.otherID)
+            .then((response) => {
+              this.setStatus(response);
+            });
+          }}>
+          Cancel Friend Request
+          </button>
         </div>
       );
     } else if(this.state.friendshipStatus === 'friends') {
       return (
         <div>
-          <button onClick={()=>{deleteFriendRequest(this.props.otherID)}}>Unfriend</button>
+          <button onClick={() => {
+            deleteFriendRequest(this.props.otherID)
+            .then((response) => {
+              this.setStatus(response);
+            });
+          }}>
+          Unfriend
+          </button>
         </div>
       );
     }

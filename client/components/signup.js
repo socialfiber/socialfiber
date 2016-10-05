@@ -44,4 +44,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { submitSignUp })(SignUp);
+export default connect(mapStateToProps, { submitSignUp, resetError })(SignUp);
