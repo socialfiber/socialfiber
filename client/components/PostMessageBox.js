@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
-import { postMessages, fetchGroupPosts } from '../actions/groups';
+import { postMessages } from '../actions/groups';
 
 class Messages extends Component {
 
@@ -30,4 +30,4 @@ class Messages extends Component {
   	}
   }
 
-  export default connect(mapStateToProps, { postMessages, fetchGroupPosts })(Messages);
+  export default connect(mapStateToProps, { postMessages })(Messages);
