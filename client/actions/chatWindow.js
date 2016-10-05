@@ -10,8 +10,12 @@ export function createRoom(friendObj) {
   }
 }
 
-export function fetchChatHistory() {
-  return axios.get('')
+export function fetchChatHistory(roomId) {
+  const data = {
+    params: { room_id: roomId },
+    headers: { 'x-access-token': Cookies.get('token') }
+  }
+  return axios.get('/api/chats/chathistory', data)
   .then((response) => {
     return {
       type: FETCH_CHAT_HISTORY,
@@ -24,7 +28,13 @@ export function fetchChatHistory() {
 }
 
 export function storeChatHistory(chatHistory, roomId) {
-  axios.post('', chatHistory, roomId)
+  const data = {
+    params: { room_id: roomId, chatHistory: chatHistory }
+  }
+  const config = {
+    headers: { 'x-access-token': Cookies.get('token') }
+  }
+  axios.post('/api/chats/chathistory', data, config)
   .then(() => {
     console.log("Successfully stored chat history.")
     return {
