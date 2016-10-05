@@ -6,7 +6,7 @@ class FriendRequestButton extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      friendshipStatus: null
+      friendshipStatus: undefined
     }
     this.getStatus.bind(this);
     this.setStatus.bind(this);
@@ -27,7 +27,7 @@ class FriendRequestButton extends Component {
     });
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.getStatus();
   }
   
@@ -93,6 +93,13 @@ class FriendRequestButton extends Component {
           </button>
         </div>
       );
+    } else {
+      return (
+        <div>
+          <button>
+          </button>
+        </div>
+      )
     }
 
   }
