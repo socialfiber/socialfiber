@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
-import { fetchGroupPosts, fetchAllUsers, joinGroup } from '../actions/groups';
+import { fetchGroupPosts, fetchAllUsers, joinGroup, leaveGroup } from '../actions/groups';
 import MessageBox from './PostMessageBox';
 import Comments from './CommentsBox';
 import NavBar from './navbar';
@@ -62,6 +62,9 @@ class GroupWall extends Component {
             <div>
               <NavBar />
               <h1>{this.props.params.groupname}</h1>
+              Leave this group!
+              <button onClick = {() => {this.props.leaveGroup(this.props.params.id); window.location.reload();}}>Leave Group</button>
+
               <div>
                 <h4>Current Group Members</h4>
                 {groupUsers}
@@ -89,7 +92,7 @@ class GroupWall extends Component {
               <NavBar />
               <h1>{this.props.params.groupname}</h1>
               You aren't a member of this group! Please join to participate in the group.
-              <button onClick = {() => {this.props.joinGroup(this.props.params.id)}}>Join Group</button>
+              <button onClick = {() => {this.props.joinGroup(this.props.params.id); window.location.reload()}}>Join Group</button>
               <div>
                 <h4>Current Group Members</h4>
                 {groupUsers}
@@ -122,4 +125,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, {fetchGroupPosts, fetchAllUsers, joinGroup})(GroupWall)
+export default connect(mapStateToProps, {fetchGroupPosts, fetchAllUsers, joinGroup, leaveGroup })(GroupWall)

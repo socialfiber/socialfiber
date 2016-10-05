@@ -13,7 +13,7 @@ class Messages extends Component {
             <div>
               <Field name="message" component="input" type="text" required />
             </div>
-            <button type="submit">Submit</button>
+            <button type="submit" onClick={() => window.location.reload()}>Submit</button>
         </form>
       )
     }

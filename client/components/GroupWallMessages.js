@@ -10,8 +10,7 @@ class GroupWallMessages extends Component {
 		super(props);
 
 		this.state = {
-			showReply: false
-		}
+			showReply: false		}
 	}
 
 	showReplyForm(e){
@@ -24,7 +23,7 @@ class GroupWallMessages extends Component {
 		const postComments = this.props.post.comments.map((comment, idx) =>
 			<GroupWallComments key={idx} comment={comment} />
 		);
-		
+
 		return (
 			<table>
 				<tbody>
