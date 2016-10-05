@@ -173,7 +173,9 @@ const friends = {
 						});
 					});
 				} else if(found && found.status === 'requestor') {
-					res.status(201).send(found);
+					res.status(201).send({
+						status: 'requestor'
+					});
 				} else {
 					Users.findById(req.body.otherID)
 					.then((otherUser) => {
