@@ -22,12 +22,19 @@ class ChatWindow extends Component {
     this.socket.on('connect', () => {
       this.socket.emit('room', room);
     });
-    this.props.fetchChatHistory()
+
+    this.socket.on('message', (message) => { // Event listener
+      const currentMessages = this.state.messages;
+      currentMessages.push(message);
+      this.setState({ messages: currentMessages });
+    });
+
+    // this.props.fetchChatHistory(room);
   }
 
   componentWillUnmount() {
     console.log("Component unmounted");
-    this.props.storeChatHistory(this.state.messages, this.props.roomId);
+    // this.props.storeChatHistory(this.state.messages, this.props.roomId);
   }
 
   handleSubmit(e) {
@@ -36,25 +43,21 @@ class ChatWindow extends Component {
     if(e.keyCode === 13 && body) {
       const message = {
         body,
-        from: Cookies.get('username'),
-        room: this.props.roomId
+        username: Cookies.get('username'),
+        room_id: this.props.roomId
       }
       const currentMessages = this.state.messages;
       currentMessages.push(message);
       this.setState({ messages: currentMessages });
       this.socket.emit('message', message);
-      console.log("emits: ", message.from + ": " + body);
+      console.log("emits: ", message.username + ": " + body);
       e.target.value = '';
     }
   }
 
-  testFunc() {
-    console.log("It WORKS")
-  }
-
   render() {
     const messages = this.state.messages.map((message, index) => {
-      return <li key={index}><b>{message.from}: </b>{message.body}</li>
+      return <li key={index}><b>{message.username}: </b>{message.body}</li>
     });
 
     return (
