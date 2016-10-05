@@ -1,29 +1,29 @@
 import React, { Component } from 'react';
-import { fetchFriendshipStatus, sendFriendRequest, acceptFriendRequest, deleteFriendRequest } from '../actions/friends';
+import { fetchGroupStatus, joinGroup, leaveGroup } from '../actions/groups';
 
-class FriendRequestButton extends Component {
+class GroupButton extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      friendshipStatus: undefined
+      groupStatus: undefined
     }
     this.getStatus.bind(this);
     this.setStatus.bind(this);
   }
 
   getStatus() {
-    fetchFriendshipStatus(this.props.otherID)
+    fetchGroupStatus(this.props.userID, groupID)
     .then((response) => {
       this.setState({
-        friendshipStatus: response.payload
+        groupStatus: response.payload
       });
     });
   }
 
   setStatus(response) {
     this.setState({
-      friendshipStatus: response.payload
+      groupStatus: response.payload
     });
   }
 
@@ -33,63 +33,52 @@ class FriendRequestButton extends Component {
   
   render() {
 
-    if(this.state.friendshipStatus === null) {
+    if(this.state.groupStatus === null) {
       return (
         <div>
           <button onClick={() => {
-            sendFriendRequest(this.props.otherID)
+            joinGroup(this.props.groupID)
             .then((response) => {
               this.setStatus(response);
             })
           }}>
-          Send Friend Request
+          Join Group
           </button>
         </div>
       );
-    } else if(this.state.friendshipStatus === 'requestee') {
+    } else if(this.state.groupStatus === 'requested') {
       return (
         <div>
           <button onClick={() => {
-            acceptFriendRequest(this.props.otherID)
+            leaveGroup(this.props.groupID)
             .then((response) => {
               this.setStatus(response);
             });
           }}>
-          Accept Friend Request
-          </button>
-          <button onClick={() => {
-            deleteFriendRequest(this.props.otherID)
-            .then((response) => {
-              this.setStatus(response);
-            });
-          }}>
-          Reject Friend Request
+          Cancel Request
           </button>
         </div>
       );
-    } else if(this.state.friendshipStatus === 'requestor') {
+    } else if(this.state.groupStatus === 'member') {
       return (
         <div>
           <button onClick={() => {
-            deleteFriendRequest(this.props.otherID)
+            leaveGroup(this.props.groupID)
             .then((response) => {
               this.setStatus(response);
             });
           }}>
-          Cancel Friend Request
+          Leave Group
           </button>
         </div>
       );
-    } else if(this.state.friendshipStatus === 'friends') {
+    } else if(this.state.groupStatus === 'owner') {
       return (
         <div>
           <button onClick={() => {
-            deleteFriendRequest(this.props.otherID)
-            .then((response) => {
-              this.setStatus(response);
-            });
+            deleteGroup(this.props.groupID);
           }}>
-          Unfriend
+          Delete Group
           </button>
         </div>
       );
@@ -101,9 +90,9 @@ class FriendRequestButton extends Component {
         </div>
       );
     }
-
+    
   }
 
 }
 
-export default FriendRequestButton;
+export default GroupButton;
