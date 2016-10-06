@@ -2,7 +2,9 @@ const Posts = require('./posts-model.js');
 const Groups = require('../groups/groups-model.js');
 const Comments = require('../comments/comments-model.js');
 
+
 const posts = {
+
   //Endpoint to create posts
   '/api/posts/postMessage': {
     'post': (req, res) => {
@@ -21,28 +23,22 @@ const posts = {
           .then((post) => {
             group.addPosts(post);
             group.save();
-            res.sendStatus(201);
+            res.status(201).send();
           })
           .catch((err) => {
-            console.log('Error: ', err);
-            res.status(400).send({
-              msg: 'Error!'
-            });
+            res.status(400).send();
           })
         })
       .catch((err) => {
-        console.log('Error: ', err);
-        res.status(400).send({
-          msg: 'Error.'
-        });
+        res.status(400).send();
       })
     }
   },
+
   //Endpoint to retrieve group messages.
   '/api/posts/getMessage': {
     'get': (req, res) => {
 			console.log('inside GET at /api/posts/getMessage');
-      var messages = [];
       Posts.findAll({
         where: {
           'group_id': req.query.group_id
@@ -56,20 +52,15 @@ const posts = {
         ],
         include: [Comments]
       })
-      .then( (rows) => {
-        rows.forEach((row) => {
-          if(row) {
-            messages.push(row);
-          }
-        })
-        res.json(messages);
+      .then((messages) => {
+        res.status(200).json(messages);
       })
       .catch( (err) => {
-        console.log('Error: ', err);
-        res.status(400).send(err.message);
+        res.status(400).send();
       });
 		}
   }
+  
 }
 
 module.exports = posts;

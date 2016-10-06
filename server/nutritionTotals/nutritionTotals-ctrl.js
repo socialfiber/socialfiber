@@ -1,6 +1,9 @@
 const NutritionTotals = require('./nutritionTotals-model.js');
 
+
 const nutritionTotals = {
+
+	//increase nutrition total per day per diary addition
 	'increase': (input) => {
 		return new Promise((resolve, reject) => {
 			NutritionTotals.findOrCreate({
@@ -37,6 +40,8 @@ const nutritionTotals = {
 			});
 		});
 	},
+	
+	//decrease nutrition total per day per diary deletion
 	'decrease': (input) => {
 		return new Promise((resolve, reject) => {
 			NutritionTotals.findOne({
@@ -73,6 +78,7 @@ const nutritionTotals = {
 			});
 		});
 	}
+
 }
 
 module.exports = nutritionTotals;

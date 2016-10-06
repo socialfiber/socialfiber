@@ -2,6 +2,7 @@ const Sequelize = require('sequelize');
 const sequelize = require('../config/database');
 const Users = require('../users/users-model');
 
+
 const NutritionTotals = sequelize.define('nutritionTotals', {
   date: {
     type: Sequelize.DATEONLY,

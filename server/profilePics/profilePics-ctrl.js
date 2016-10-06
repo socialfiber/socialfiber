@@ -1,5 +1,6 @@
 const ProfilePics = require('./profilePics-model.js');
 
+
 const profilePics = {
 
 	'/api/profilePics/pic': {
@@ -28,6 +29,7 @@ const profilePics = {
 			res.end('inside DELETE at /api/profilePics/');
 		}
 	}
+	
 }
 
 module.exports = profilePics;

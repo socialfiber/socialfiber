@@ -2,6 +2,7 @@ const Sequelize = require('sequelize');
 const sequelize = require('../config/database');
 const Users = require('../users/users-model.js');
 
+
 const Friends = sequelize.define('friends', {
   user1_username: {
     type: Sequelize.STRING,

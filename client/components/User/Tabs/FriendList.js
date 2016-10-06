@@ -18,12 +18,16 @@ class FriendList extends Component {
   }
 
   initiateLiveChat(friendObj) {
-    this.setState({ chatFlag: true });
+    this.setState({
+      chatFlag: true
+    });
     this.props.createRoom(friendObj);
   }
 
   endLiveChat() {
-    this.setState({ chatFlag: false });
+    this.setState({
+      chatFlag: false
+    });
   }
 
   render() {
@@ -43,8 +47,8 @@ class FriendList extends Component {
           <h3>Friends</h3>
           <ul>
             {friendList}
-            {this.state.chatFlag ? <ChatWindow /> : ''}
           </ul>
+          {this.state.chatFlag ? <ChatWindow /> : ''}
         </div>
       );
     } else if(!this.props.friendList.length) {
