@@ -1,31 +1,42 @@
-//action types
+//Auth
 export const AUTH_USER = 'AUTH_USER';
 export const AUTH_ERROR = 'AUTH_ERROR';
 export const SIGN_OUT = 'SIGN_OUT';
+
+//User Data
 export const SUBMIT_USER_STATS = 'SUBMIT_USER_STATS';
 export const CHANGE_PASSWORD = 'CHANGE_PASSWORD';
 export const FETCH_USER_DATA = 'FETCH_USER_DATA';
-export const FETCH_FOOD_DIARY = 'FETCH_USER_DIARY';
+export const HANDLE_IMG_UPLOAD = 'HANDLE_IMG_UPLOAD';
+export const TOGGLE_EDITING = 'TOGGLE_EDITING';
+
+//Food Diary
+export const FETCH_FOOD_DIARY = 'FETCH_FOOD_DIARY';
 export const SUBMIT_DIARY_ENTRY = 'SUBMIT_DIARY_ENTRY';
 export const DELETE_DIARY_ENTRY = 'DELETE_DIARY_ENTRY';
-export const FETCH_ALL_GROUPS = 'FETCH_ALL_GROUPS';
+export const FETCH_MACROS = 'FETCH_MACROS';
+
+//Groups
 export const FETCH_USER_GROUPS = 'FETCH_USER_GROUPS';
 export const CREATE_NEW_GROUP = 'CREATE_NEW_GROUP';
-export const TOGGLE_EDITING = 'TOGGLE_EDITING';
 export const LEAVE_GROUP = 'LEAVE_GROUP';
 export const JOIN_GROUP = 'JOIN_GROUP';
-export const FETCH_MACROS = 'FETCH_MACROS';
 export const FETCH_GROUP_POSTS = 'FETCH_GROUP_POSTS';
-export const FETCH_FRIENDS = 'FETCH_FRIENDS';
-export const FRIENDSHIP_STATUS = 'FRIENDSHIP_STATUS';
-export const FETCH_PROFILE = 'FETCH_PROFILE';
-export const REDIRECT_PROFILE = 'REDIRECT_PROFILE';
-export const CHANGE_TAB = 'CHANGE_TAB';
-export const CREATE_ROOM = 'CREATE_ROOM';
+export const FETCH_COMMENTS = 'FETCH_COMMENTS';
 export const POST_MESSAGE = 'POST_MESSAGE';
 export const POST_COMMENT = 'POST_COMMENT';
-export const FETCH_COMMENTS = 'FETCH_COMMENTS';
+
+//Friends
+export const FETCH_FRIENDS = 'FETCH_FRIENDS';
+export const FRIENDSHIP_STATUS = 'FRIENDSHIP_STATUS';
+
+//Browse
+export const FETCH_PROFILE = 'FETCH_PROFILE';
+export const REDIRECT_PROFILE = 'REDIRECT_PROFILE';
 export const FETCH_ALL_USERS = 'FETCH_ALL_USERS';
+export const FETCH_ALL_GROUPS = 'FETCH_ALL_GROUPS';
+
+//Chat
+export const CREATE_ROOM = 'CREATE_ROOM';
 export const FETCH_CHAT_HISTORY = 'FETCH_CHAT_HISTORY';
 export const STORE_CHAT_HISTORY = 'STORE_CHAT_HISTORY';
-export const HANDLE_IMG_UPLOAD = 'HANDLE_IMG_UPLOAD';

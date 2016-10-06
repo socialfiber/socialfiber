@@ -1,7 +1,8 @@
+import { FETCH_PROFILE, REDIRECT_PROFILE } from './types';
+import { browserHistory } from 'react-router';
 import axios from 'axios';
 import Cookies from 'js-cookie';
-import { browserHistory } from 'react-router';
-import { FETCH_PROFILE, REDIRECT_PROFILE } from './types';
+
 
 export function fetchProfile(otherID) {
   // if profile id = user id, redirect to user profile

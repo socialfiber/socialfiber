@@ -1,6 +1,7 @@
-import axios from 'axios';
 import { CREATE_ROOM, FETCH_CHAT_HISTORY, STORE_CHAT_HISTORY } from './types';
+import axios from 'axios';
 import Cookies from 'js-cookie';
+
 
 export function createRoom(friendObj) {
   const roomId = [friendObj.user1_id, friendObj.user2_id].sort().join('_');

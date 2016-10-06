@@ -1,6 +1,7 @@
-import HANDLE_IMG_UPLOAD from './types';
+import { HANDLE_IMG_UPLOAD } from './types';
 import axios from 'axios';
 import Cookies from 'js-cookie';
+
 
 export function handleImageUpload(file) {
   const photoReader = new FileReader();
@@ -31,11 +32,11 @@ export function handleImageUpload(file) {
         return { type: HANDLE_IMG_UPLOAD, payload: response.data.link }
       })
       .catch((error) => {
-        console.error(error)
+        console.error(error);
       });
     })
     .catch((error)=> {
-      console.error(error)
+      console.error(error);
     });
   }
 }
