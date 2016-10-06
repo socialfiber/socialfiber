@@ -17,6 +17,7 @@ import CreateGroup from './components/CreateGroup';
 import GroupWall from './components/GroupWall';
 import BrowseProfile from './components/BrowseProfile';
 import ChatWindow from './components/chatWindow';
+import ImageUpload from './components/ImageUpload'
 
 
 const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
@@ -48,6 +49,7 @@ ReactDOM.render(
       <Route path ='/groupwall/:id/:groupname' onEnter={ensureAuthenticated} component={GroupWall} />
       <Route path ='/browseprofile/:id' onEnter={ensureAuthenticated} component={BrowseProfile} />
       <Route path ='/chat' component={ChatWindow} />
+      <Route path ='/uploadImg' component={ImageUpload}/>
     </Router>
   </Provider>
 , document.getElementById('main'));

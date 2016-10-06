@@ -32,7 +32,7 @@ export function fetchUserGroups() {
       user_id: Cookies.get('userID') },
       headers: { 'x-access-token': Cookies.get('token') }
     }
-
+    console.log('inside fetchusergroups')
   return axios.get('/api/groups/getUserGroups', data)
   .then(function(response) {
     return {
@@ -57,9 +57,14 @@ export function joinGroup(group_id) {
     headers: { 'x-access-token' :  Cookies.get('token')}
   }
 
-
+  console.log(data.user_id)
   return axios.post('/api/groups/addUser', data, config)
   .then(function(response) {
+<<<<<<< HEAD
+    console.log('inside join group')
+    console.log('response: ', response)
+=======
+>>>>>>> feature/imgupload
     var obj = {
       groupId: group_id,
       data: response.data
