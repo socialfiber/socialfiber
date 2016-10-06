@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { fetchGroupPosts, fetchAllUsers, joinGroup, leaveGroup } from '../../actions/groups';
 import Cookies from 'js-cookie';
-import NavBar from '../ToolBox/NavBar';
 import MessageBox from './PostMessageBox';
 import Comments from './CommentsBox';
 import GroupWallMessages from './GroupWallMessages';
@@ -63,7 +62,6 @@ class GroupWall extends Component {
         if(isGroupMember) {
           return(
             <div>
-              <NavBar />
               <h1>{this.props.params.groupname}</h1>
               Leave this group!
               <button onClick = {() => {this.props.leaveGroup(this.props.params.id); window.location.reload();}}>Leave Group</button>
@@ -90,7 +88,6 @@ class GroupWall extends Component {
         } else {
           return (
             <div>
-              <NavBar />
               <h1>{this.props.params.groupname}</h1>
               You aren't a member of this group! Please join to participate in the group.
               <button onClick = {() => {this.props.joinGroup(this.props.params.id); window.location.reload()}}>Join Group</button>

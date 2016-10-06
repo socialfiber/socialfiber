@@ -8,6 +8,11 @@ const ProfilePics = sequelize.define('profilePics', {
     type: Sequelize.STRING,
     unique: true,
     allowNull: false
+  },
+  default: {
+    type: Sequelize.BOOLEAN,
+    unique: false,
+    allowNull: true
   }
 });
 

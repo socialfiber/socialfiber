@@ -3,7 +3,6 @@ import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { fetchUserData } from '../../actions/users';
 import NavBar from '../ToolBox/NavBar';
-import SelectComponent from '../ToolBox/SelectComponent';
 import ProfilePic from '../ToolBox/ProfilePic';
 import Tabs from '../ToolBox/Tabs';
 import RadarGraph from '../ToolBox/RadarGraph';
@@ -43,6 +42,11 @@ class UserProfile extends Component {
 
     if(this.props.userData !== null) {
       if(!this.state.editFlag) {
+        const tabsList = [
+          { label: 'Food Diary', component: 'FoodDiary' },
+          { label: 'My Friends', component: 'MyFriends' },
+          { label: 'My Groups', component: 'MyGroups' }
+        ];
         return (
           <div>
             <NavBar />
@@ -58,7 +62,7 @@ class UserProfile extends Component {
             </div>
             {/* <ChatWindow /> */}
             <RadarGraph userID={this.props.userData.id} />
-            <Tabs />
+            <Tabs tabsList={tabsList} defaultTab={'FoodDiary'} />
           </div>
         );
       } else {
