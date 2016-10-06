@@ -1,14 +1,18 @@
 const auth = {
 
-    'nutritionixAuth': {
+    'nutritionix': {
         'appId': process.env.nutritionix_appId,
         'appKey': process.env.nutritionix_appKey
     },
 
-    'facebookAuth': {
-        'clientID': process.env.facebook_clientID,
-        'clientSecret': process.env.facebook_clientSecret,
-        'callbackURL': 'http://localhost:8080/auth/facebook/callback'
+    'jwt' : {
+    	'secret': process.env.jwt_secret
+    },
+
+    'db' : {
+    	'hostname': process.env.db_hostname,
+    	'username': process.env.db_username,
+    	'password': process.env.db_password
     }
 
 }

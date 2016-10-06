@@ -3,13 +3,16 @@ const users = require('../users/users-ctrl.js');
 const questions = require('../questions/questions-ctrl.js');
 const diaryEntries = require('../diaryEntries/diaryEntries-ctrl.js');
 const groups = require('../groups/groups-ctrl.js');
-const groups_users = require('../groups_users/groups_users-ctrl.js');
 const dietaryProfiles = require('../dietaryProfiles/dietaryProfiles-ctrl.js');
 const posts = require('../posts/posts-ctrl.js');
 const friends = require('../friends/friends-ctrl.js');
+const profilePics = require('../profilePics/profilePics-ctrl.js');
+const comments = require('../comments/comments-ctrl.js');
+const chatrooms = require('../chat/chatrooms-ctrl.js');
 
 //sample controller template
 const dummy = require('../dummy/dummy-ctrl.js')
+
 const middleware = require('./middleware.js');
 
 const controllers = [
@@ -18,10 +21,12 @@ const controllers = [
 	diaryEntries,
 	dummy,
 	groups,
-	groups_users,
 	dietaryProfiles,
 	posts,
-	friends
+	friends,
+	profilePics,
+	comments,
+	chatrooms
 ]
 
 for (var controller of controllers) {

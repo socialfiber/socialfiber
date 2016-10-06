@@ -28,11 +28,6 @@ const Questions = sequelize.define('questions', {
     type: Sequelize.BOOLEAN,
     allowNull: false,
     default: false
-  },
-  user_id: {
-    type: Sequelize.INTEGER,
-    allowNull: false,
-    unique: true
   }
 });
 

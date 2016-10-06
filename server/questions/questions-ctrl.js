@@ -6,16 +6,7 @@ const questions = {
   //Endpoint to enter survey data into the database.
   '/api/questions/enterData': {
     'post': (req, res) => {
-      console.log('inside POST at /api/questions/enterData');
-      Questions.create({
-        user_id: req.body.user_id,
-        height: req.body.height,
-        age: req.body.age,
-        weight: req.body.weight,
-        gender: req.body.gender,
-        preg: req.body.preg,
-        lact: req.body.lact
-      })
+      Questions.create(req.body)
       .then((questionnaire) => {
         const dietaryInfo = utils.generateDietaryInfo(req.body);
         Users.update({
@@ -37,6 +28,7 @@ const questions = {
         });
       })
       .catch((err) => {
+        console.log(err)
         res.status(400).send();
       });
     }

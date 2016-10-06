@@ -82,8 +82,7 @@ sequelize
   .then(() => {
     console.log('Dietary Profiles model synced successfully.');
   }, (err) => {
-    console.log('An error has occurred:', err);
-    res.send(err.message);
+    console.error('An error has occurred:', err);
   });
 
 module.exports = DietaryProfiles;

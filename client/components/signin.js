@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { Link } from 'react-router';
-import { submitSignIn } from '../actions/auth';
+import { submitSignIn, resetError } from '../actions/auth';
 
 class SignIn extends Component {
 
@@ -39,4 +39,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { submitSignIn })(SignIn);
+export default connect(mapStateToProps, { submitSignIn, resetError })(SignIn);

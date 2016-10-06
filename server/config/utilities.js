@@ -9,9 +9,8 @@ const utilities = {
       iss: 'tml',
       sub: user.id,
       iat: moment().unix(),
-      exp: moment().add(1, 'days').unix()
+      exp: moment().add(7, 'days').unix()
     }
-    console.log("GENERATING TOKEN", payload)
     return jwt.sign(payload, 'secret');
   },
 

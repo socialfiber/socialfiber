@@ -1,5 +1,6 @@
 const Posts = require('./posts-model.js');
 const Groups = require('../groups/groups-model.js');
+const Comments = require('../comments/comments-model.js');
 
 const posts = {
   //Endpoint to create posts
@@ -52,7 +53,8 @@ const posts = {
           'username',
           'message',
           'createdAt'
-        ]
+        ],
+        include: [Comments]
       })
       .then( (rows) => {
         rows.forEach((row) => {

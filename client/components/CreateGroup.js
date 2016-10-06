@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
-import { createNewGroup } from '../actions/createNewGroup';
-import NavBar from './navbar';
+import { createNewGroup } from '../actions/groups';
 
 
 class CreateGroup extends Component {
@@ -11,9 +10,8 @@ class CreateGroup extends Component {
     const { handleSubmit } = this.props;
     return (
       <div>
-        <NavBar />
         <form onSubmit={ handleSubmit(this.props.createNewGroup) }>
-          <h3>Create a Group Based on Your Dietary Interests</h3>
+          <h4>Create a Group Based on Your Dietary Interests</h4>
             <p>You may choose a topic such as "paleo" or "vegetarian"</p>
               <div>
                 <label>Name</label>
@@ -21,7 +19,7 @@ class CreateGroup extends Component {
                 <label>Description</label>
                   <Field name='description' component='input' type='text' required/>
               </div>
-                <button type="submit">Submit</button>
+                <button type="submit" onClick={() => window.location.reload()}>Submit</button>
         </form>
       </div>
     )

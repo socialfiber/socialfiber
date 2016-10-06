@@ -10,31 +10,26 @@ class MyGroups extends Component {
   componentWillMount() {
     this.props.fetchUserGroups();
   }
-  // componentDidUpdate() {
-  //   this.props.fetchUserGroups();
-  // }
 
   render() {
-    console.log(this.props.myGroups)
     if(this.props.myGroups.length > 0) {
       const groups = this.props.myGroups.map((group, idx) =>
         <MyGroupsIndividual key={idx} group={group} />
       );
 
-    //  <Link to= {pathname: '/groupwall/:'+ group.id}>
-
-
-
       return (
         <div>
-          <NavBar />
           <h1>My Groups</h1>
           <table>
-            <tr>
-              <th>Name</th>
-              <th>Description</th>
-            </tr>
-            {groups}
+            <tbody>
+              <tr>
+                <th>Name</th>
+                <th>Description</th>
+              </tr>
+              <tr>
+                {groups}
+              </tr>
+            </tbody>
           </table>
         </div>
       );

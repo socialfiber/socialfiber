@@ -3,14 +3,10 @@ import { connect } from 'react-redux';
 import { fetchFoodDiary } from '../actions/foodDiary';
 import FoodDiaryLog from './FoodDiaryLog';
 import FoodDiaryEntry from './FoodDiaryEntry';
-import NavBar from './navbar';
-
-
 
 class FoodDiary extends Component {
 
-
-  componentWillMount() {
+  componentDidMount() {
     this.props.fetchFoodDiary();
   }
 
@@ -20,31 +16,37 @@ class FoodDiary extends Component {
 
   render() {
     if(this.props.diaryData) {
-      const logs = this.props.diaryData.map((log, idx) =>
-        <FoodDiaryLog key={idx} log={log} />
-      );
+      const diaryDataByDate = this.props.diaryData.map((set, idx) => {
+        const logsPerDay = set.logs.map((log, idx) => <FoodDiaryLog key={idx} log={log} />);
+        return (
+          <li key={idx}>
+            <h3>{set.date}</h3>
+            <table>
+              <tbody>
+                <tr>
+                  <th>qty</th>
+                  <th>Food Name</th>
+                  <th>Calories (kcal)</th>
+                  <th>Carbohydrates (g)</th>
+                  <th>Protein (g)</th>
+                  <th>Fat (g)</th>
+                  <th>Fiber (g)</th>
+                  <th>n6 (g)</th>
+                  <th>delete</th>
+                </tr>
+                {logsPerDay}
+              </tbody>
+            </table>
+          </li>
+        )
+      });
       return (
         <div>
-        <NavBar />
           <h1>Food Diary</h1>
           <FoodDiaryEntry />
-          <table>
-            <tbody>
-              <tr>
-                <th>Date</th>
-                <th>qty</th>
-                <th>Food Name</th>
-                <th>Calories (kcal)</th>
-                <th>Carbohydrates (g)</th>
-                <th>Protein (g)</th>
-                <th>Fat (g)</th>
-                <th>Fiber (g)</th>
-                <th>n6 (g)</th>
-                <th>delete</th>
-              </tr>
-              {logs}
-            </tbody>
-          </table>
+          <ul>
+            {diaryDataByDate}
+          </ul>
         </div>
       );
     } else {

@@ -3,6 +3,8 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const path = require('path');
 const moment = require('moment');
+const http = require('http');
+const socketIo = require('socket.io');
 
 const app = express();
 const database = require('./config/database.js');
@@ -25,7 +27,25 @@ app.post('/auth/signin', users.signin);
 
 app.set('port', process.env.PORT || 8080);
 
-app.listen(app.get('port'), () => {
+const server = http.createServer(app);
+const io = socketIo(server);
+
+io.on('connection', (socket) => {
+  socket.on('room', (room) => {
+    socket.join(room);
+    console.log("You have joined the room");
+  });
+
+  socket.on('message', (message) => {
+    console.log("received: ", message);
+    socket.broadcast.to(message.room_id).emit('message', {
+      body: message.body,
+      username: message.username
+    });
+  });
+});
+
+server.listen(app.get('port'), () => {
   //database.ensureSchema();
   console.log(`[${moment().format('h:mm:ss a')}] Server is now listening on port ${app.get('port')}`);
 });

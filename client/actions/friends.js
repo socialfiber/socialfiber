@@ -40,6 +40,7 @@ export function fetchFriendshipStatus(otherID) {
 export function sendFriendRequest(otherID) {
   const data = {
     userID: Cookies.get('userID'),
+    username: Cookies.get('username'),
     otherID: otherID
   }
   const config = { headers: { 'x-access-token': Cookies.get('token') } }
@@ -55,6 +56,7 @@ export function sendFriendRequest(otherID) {
 export function acceptFriendRequest(otherID) {
   const data = {
     userID: Cookies.get('userID'),
+    username: Cookies.get('username'),
     otherID: otherID
   }
   const config = { headers: { 'x-access-token': Cookies.get('token') } }

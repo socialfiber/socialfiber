@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { fetchAllGroups } from '../actions/groups';
 import AllGroupsIndividual from './AllGroupsIndividual';
 import NavBar from './navbar';
-
+import CreateGroup from './CreateGroup';
 
 class AllGroups extends Component {
   componentWillMount() {
@@ -12,15 +12,13 @@ class AllGroups extends Component {
 
   renderGroups(){
     return this.props.groups.allGroups.map((group, idx)=> {
-        return (
-            <li className='list-group-item' key={idx}>
-
-              <AllGroupsIndividual group={group}/>
-            </li>
-          )
+      return (
+          <ul className='list-group-item' key={idx}>
+            <AllGroupsIndividual group={group}/>
+          </ul>
+      )
     })
   }
-
 
   render(){
     return(
@@ -30,12 +28,12 @@ class AllGroups extends Component {
           <ul className='list-group'>
             {this.renderGroups()}
           </ul>
+          <h4>Can't find a group? Start your own!</h4>
+          <CreateGroup />
       </div>
     )
   }
-
 }
-
 
 function mapStateToProps(state) {
   return {

@@ -3,10 +3,17 @@ const sequelize = require('../config/database');
 const Users = require('../users/users-model.js');
 
 const Friends = sequelize.define('friends', {
+  user1_username: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  user2_username: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
   status: {
     type: Sequelize.STRING,
-    allowNull: true,
-    default: null
+    allowNull: false
   }
 });
 
@@ -19,7 +26,7 @@ sequelize
   .then(() => {
     console.log('Friends model synced successfully.');
   }, (err) => {
-    console.log('An error has occurred:', err);
+    console.error('An error has occurred:', err);
   });
 
 module.exports = Friends;

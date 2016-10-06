@@ -1,5 +1,6 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import _ from 'underscore';
 import { FETCH_FOOD_DIARY, SUBMIT_DIARY_ENTRY, DELETE_DIARY_ENTRY } from './types';
 
 export function fetchFoodDiary() {
@@ -9,7 +10,16 @@ export function fetchFoodDiary() {
   }
   return axios.get('/api/diaryEntries/allEntries', data)
     .then((response) => {
-      return { type: FETCH_FOOD_DIARY, payload: response.data }
+      const groupedEntries = _.groupBy(response.data, 'date')
+      const groupedEntriesArray = [];
+      for(var date in groupedEntries) {
+        groupedEntriesArray.push({
+          date: date.substr(0,10),
+          logs: groupedEntries[date]
+        });
+      }
+      _.sortBy(groupedEntriesArray, 'date');
+      return { type: FETCH_FOOD_DIARY, payload: groupedEntriesArray }
     })
     .catch((err) => {
       console.error(err);
