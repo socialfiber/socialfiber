@@ -1,16 +1,12 @@
-import HANDLE_IMG_UPLOAD from './types';
+import { HANDLE_IMG_UPLOAD } from './types';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
 
-export function handleImageUpload(file){
-  const photoReader = new FileReader()
-  photoReader.readAsDataURL(file.image[0])
-  photoReader.onload = () => {
-    console.log('started')
-  }
+export function handleImageUpload(file) {
+  const photoReader = new FileReader();
+  photoReader.readAsDataURL(file.image[0]);
   photoReader.onloadend = () => {
-    console.log('DONE', photoReader.result.slice(22))
     const data = {
       image: photoReader.result.slice(22),
       type: 'base64'
@@ -22,15 +18,25 @@ export function handleImageUpload(file){
       }
     }
     return axios.post('https://api.imgur.com/3/image', data, config)
-    .then((response)=>{
+    .then((response) => {
       console.log(response.data.data.link)
-      return {
-        type: HANDLE_IMG_UPLOAD,
-        payload: response.data.link
+      const data = {
+        userID: Cookies.get('userID'),
+        url: response.data.data.link
       }
+      const config = {
+        headers : { 'x-access-token': Cookies.get('token') }
+      }
+      axios.post('/api/profilePics/pic', data, config)
+      .then((response) => {
+        return { type: HANDLE_IMG_UPLOAD, payload: response.data.link }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
     })
     .catch((error)=> {
-      console.error(error)
-    })
+      console.error(error);
+    });
   }
 }

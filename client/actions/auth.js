@@ -1,7 +1,8 @@
+import { AUTH_USER, AUTH_ERROR, SIGN_OUT } from './types';
+import { browserHistory } from 'react-router';
 import axios from 'axios';
 import Cookies from 'js-cookie';
-import { browserHistory } from 'react-router';
-import { AUTH_USER, AUTH_ERROR, SIGN_OUT } from './types';
+
 
 export function resetError() {
   return { type: AUTH_ERROR, payload: '' }
@@ -28,7 +29,7 @@ export function submitSignIn(usernameAndPasswordObj) {
 
 export function submitSignUp(usernameAndPasswordObj) {
   if (usernameAndPasswordObj.password !== usernameAndPasswordObj.confirmPW) {
-    return { type: AUTH_ERROR, payload: 'Passwords do not match' }
+    return { type: AUTH_ERROR, payload: 'Passwords do not match.' }
   } else {
     return axios.post('/auth/signup', usernameAndPasswordObj)
       .then((response) => {
@@ -39,7 +40,7 @@ export function submitSignUp(usernameAndPasswordObj) {
           Cookies.set('username', response.data.user.username);
           Cookies.set('token', response.data.token);
           Cookies.set('authenticated', true);
-          browserHistory.push('/userQuestionnaire');
+          browserHistory.push('/questionnaire');
           return { type: AUTH_USER, payload: response.data }
         }
       })

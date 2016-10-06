@@ -1,7 +1,8 @@
+import { FETCH_FOOD_DIARY, SUBMIT_DIARY_ENTRY, DELETE_DIARY_ENTRY } from './types';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import _ from 'underscore';
-import { FETCH_FOOD_DIARY, SUBMIT_DIARY_ENTRY, DELETE_DIARY_ENTRY } from './types';
+
 
 export function fetchFoodDiary() {
   const data = {

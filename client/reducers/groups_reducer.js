@@ -1,13 +1,25 @@
 import { FETCH_ALL_GROUPS, FETCH_USER_GROUPS, LEAVE_GROUP, JOIN_GROUP, FETCH_GROUP_POSTS, POST_MESSAGE, POST_COMMENT, FETCH_COMMENTS, FETCH_ALL_USERS, CREATE_NEW_GROUP } from '../actions/types';
-const INITIAL_STATE = {allGroups:[], userGroups: [], leaveGroupResp: '', groupId: null, joinGroupResp: '', groupPosts:[], postMessages:[], postComment:[], comments:[], newGroup: null }
+
+const INITIAL_STATE = {
+  allGroups: [],
+  userGroups: [],
+  leaveGroupResp: '',
+  groupId: null,
+  joinGroupResp: '',
+  groupPosts: [],
+  postMessages: [],
+  postComment: [],
+  comments: [],
+  newGroup: null
+}
 
 export default function(state=INITIAL_STATE, action){
   switch(action.type) {
     case FETCH_ALL_GROUPS:
-      return {...state, allGroups: action.payload.data};
+      console.log('inside reducer', action.payload)
+      return {...state, allGroups: action.payload};
     case FETCH_USER_GROUPS:
-      console.log('inside reducer')
-      return {...state, userGroups: action.payload.data};
+      return {...state, userGroups: action.payload};
     case LEAVE_GROUP:
       return {...state, leaveGroupResp: action.payload};
     case JOIN_GROUP:

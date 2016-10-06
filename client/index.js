@@ -1,27 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Cookies from 'js-cookie';
-import { Router, Route, browserHistory, IndexRoute } from 'react-router';
-import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import { Router, Route, browserHistory, IndexRoute } from 'react-router';
 import ReduxPromise from 'redux-promise';
 import reducers from './reducers/root_reducer';
-import SignUp from './components/Signup';
-import SignIn from './components/Signin';
-import Questionnaire from './components/Questionnaire';
-import UserProfile from './components/UserProfile';
-import SplashPg from './components/Splashpg';
-import MyGroups from './components/MyGroups';
-import AllGroups from './components/AllGroups';
-import CreateGroup from './components/CreateGroup';
-import GroupWall from './components/GroupWall';
-import BrowseProfile from './components/BrowseProfile';
-import ChatWindow from './components/chatWindow';
-import ImageUpload from './components/ImageUpload'
+import Cookies from 'js-cookie';
+import SplashPg from './components/Public/SplashPg';
+import SignUp from './components/Public/SignUp';
+import SignIn from './components/Public/SignIn';
+import Questionnaire from './components/User/Edit/Questionnaire';
+import UserProfile from './components/User/UserProfile';
+import AllGroups from './components/Browse/AllGroups';
+import GroupWall from './components/Groups/GroupWall';
+import BrowseProfile from './components/User/BrowseProfile';
 
 
 const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
 const store = createStoreWithMiddleware(reducers, window.devToolsExtension ? window.devToolsExtension() : f => f);
+
 
 const isAuthenticated = () => {
   return Cookies.get('token') && Cookies.get('authenticated');
@@ -35,21 +32,18 @@ const skipIfAuthenticated = (nextState, replace) => {
   if(isAuthenticated()) { replace('/userprofile'); }
 }
 
+
 ReactDOM.render(
   <Provider store={store}>
     <Router history={browserHistory}>
-      <Route path='/' component={SplashPg} />
+      <Route path='/' onEnter={skipIfAuthenticated} component={SplashPg} />
     	<Route path='/signup' onEnter={skipIfAuthenticated} component={SignUp} />
     	<Route path='/signin' onEnter={skipIfAuthenticated} component={SignIn} />
-    	<Route path='/userquestionnaire' onEnter={ensureAuthenticated} component={Questionnaire} />
+    	<Route path='/questionnaire' onEnter={ensureAuthenticated} component={Questionnaire} />
       <Route path='/userprofile' onEnter={ensureAuthenticated} component={UserProfile} />
       <Route path='/viewallgroups' onEnter={ensureAuthenticated} component={AllGroups} />
-      <Route path='/mygroups' onEnter={ensureAuthenticated} component={MyGroups} />
-      <Route path='/creategroup' onEnter={ensureAuthenticated} component={CreateGroup} />
       <Route path ='/groupwall/:id/:groupname' onEnter={ensureAuthenticated} component={GroupWall} />
       <Route path ='/browseprofile/:id' onEnter={ensureAuthenticated} component={BrowseProfile} />
-      <Route path ='/chat' component={ChatWindow} />
-      <Route path ='/uploadImg' component={ImageUpload}/>
     </Router>
   </Provider>
 , document.getElementById('main'));
