@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
-import { FETCH_ALL_GROUPS, FETCH_USER_GROUPS, LEAVE_GROUP, JOIN_GROUP, FETCH_GROUP_POSTS, POST_MESSAGE, POST_COMMENT, FETCH_COMMENTS, FETCH_ALL_USERS } from './types';
+import { FETCH_ALL_GROUPS, FETCH_USER_GROUPS, LEAVE_GROUP, JOIN_GROUP, FETCH_GROUP_POSTS, POST_MESSAGE, POST_COMMENT, FETCH_COMMENTS, FETCH_ALL_USERS, CREATE_NEW_GROUP } from './types';
 import Cookies from 'js-cookie';
 
 export function fetchAllGroups(){
@@ -197,4 +197,27 @@ export function fetchAllUsers(group_id) {
   .catch((error) => {
     console.error(error)
   })
+}
+
+export function createNewGroup(newGroupObj){
+  newGroupObj.userID =  Cookies.get('userID');
+
+  const data = newGroupObj;
+
+  const config = {
+    headers: {
+      'x-access-token': Cookies.get('token')
+    }
+  }
+
+  return axios.post('/api/groups/createGroups', data, config)
+    .then((response) => {
+      console.log('resp in create new group action',  response.data)
+      Cookies.set('group_id', response.data.group.id);
+      Cookies.set('groupName', response.data.group.name);
+      return { type : CREATE_NEW_GROUP, payload: response.data }
+    })
+    .catch(() => {
+      console.error(error)
+    });
 }

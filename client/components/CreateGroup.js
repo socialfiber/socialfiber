@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
-import { createNewGroup } from '../actions/createNewGroup';
+import { createNewGroup } from '../actions/groups';
 
 
 class CreateGroup extends Component {
