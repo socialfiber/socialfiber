@@ -8,7 +8,7 @@ import { submitSignIn, resetError } from '../../actions/auth';
 class SignIn extends Component {
 
   render() {
-    const { handleSubmit } = this.props;
+    const { handleSubmit, submitting } = this.props;
     return (
       <div>
         <form onSubmit={handleSubmit(this.props.submitSignIn)}>
@@ -20,7 +20,7 @@ class SignIn extends Component {
             <label>Password</label>
             <Field name="password" component="input" type="password" />
           </div>
-          <button type="submit">Sign In</button>
+          <button type="submit" disabled={submitting} >Sign In</button>
           <p>{this.props.err}</p>
           <Link to={'/signup'}>Sign up now!</Link>
         </form>

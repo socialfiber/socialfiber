@@ -17,7 +17,7 @@ class Questionnaire extends Component {
 
   render() {
 
-    const { handleSubmit } = this.props;
+    const { handleSubmit, submitting } = this.props;
     const pregnantOptions = [{value: true, label: 'true'}, {value: false, label: 'false'}];
     const lactatingOptions = [{value: true, label: 'true'}, {value: false, label: 'false'}];
     const femaleQuestions = () => {
@@ -59,7 +59,7 @@ class Questionnaire extends Component {
               <Field name="gender" component={GenderSelect} genderState={this} />
             </div>
             {femaleQuestions()}
-            <button type="submit">Submit</button>
+            <button type="submit" disabled={submitting} >Submit</button>
         </form>
       </div>
     );

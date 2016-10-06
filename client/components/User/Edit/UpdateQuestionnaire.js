@@ -53,10 +53,11 @@ class UpdateQuestionnaire extends Component {
             <Field name="weight" component="input" type="number" min="70" placeholder={this.props.userData.weight} required />
           </div>
           {femaleQuestions()}
-          <button type="submit">Submit</button>
+          <button type="submit" disabled={submitting} >Submit</button>
         </form>
       </div>
     );
+    
   }
 
 }

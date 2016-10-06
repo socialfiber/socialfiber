@@ -6,14 +6,14 @@ import { postMessages } from '../../actions/groups';
 class Messages extends Component {
 
   render() {
-    const { handleSubmit } = this.props;
+    const { handleSubmit, submitting } = this.props;
     return (
       <form onSubmit = {handleSubmit(this.props.postMessages)}>
           <h4>Post a Message</h4>
           <div>
             <Field name="message" component="input" type="text" required />
           </div>
-          <button type="submit" onClick={() => window.location.reload()}>Submit</button>
+          <button type="submit" disabled={submitting} onClick={() => window.location.reload()}>Submit</button>
       </form>
     );
   }
