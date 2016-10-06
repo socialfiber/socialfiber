@@ -49,6 +49,7 @@ export function joinGroup(group_id) {
     headers: { 'x-access-token' :  Cookies.get('token')}
   }
   return axios.post('/api/groups/addUser', data, config)
+<<<<<<< b3319adc0a602083d63b731626968d7bb7219f7b
     .then((response) => {
       const obj = {
         groupId: group_id,
