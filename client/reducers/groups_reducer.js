@@ -6,6 +6,7 @@ export default function(state=INITIAL_STATE, action){
     case FETCH_ALL_GROUPS:
       return {...state, allGroups: action.payload.data};
     case FETCH_USER_GROUPS:
+      console.log('inside reducer')
       return {...state, userGroups: action.payload.data};
     case LEAVE_GROUP:
       return {...state, leaveGroupResp: action.payload};
