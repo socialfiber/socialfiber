@@ -1,11 +1,12 @@
 const Friends = require('./friends-model.js');
 const Users = require('../users/users-model.js');
 
+
 const friends = {
+
+	//browse friends
 	'/api/friends/myFriends': {
-		//browse friends
 		'get': (req, res) => {
-			console.log('inside GET at /api/friends/myFriends');
 			Friends.findAll({
 				where: {
 					user1_id: req.query.userID
@@ -18,13 +19,13 @@ const friends = {
 				res.status(400).send({
 					msg: 'Error fetching friends.'
 				});
-			})
+			});
 		}
 	},
+
+	//get friendship status
 	'/api/friends/friendshipStatus': {
-		//get friendship status
 		'get': (req, res) => {
-			console.log('inside GET at /api/friends/friendshipStatus');
 			Friends.findOne({
 				where: {
 					user1_id: req.query.userID,
@@ -45,14 +46,11 @@ const friends = {
 				}
 			})
 			.catch((err) => {
-				res.status(400).send({
-					msg: 'Error fetching friendship status.'
-				});
+				res.status(400).send();
 			});
 		},
 		//send friend request
 		'post': (req, res) => {
-			console.log('inside POST at /api/friends/friendshipStatus');
 			Friends.findOne({
 				where: {
 					user1_id: req.body.userID,
@@ -61,6 +59,7 @@ const friends = {
 				attributes: ['status']
 			})
 			.then((found) => {
+				//establish friendship if friend request received before sending
 				if(found && found.status === 'requestee') {
 					Friends.update({
 						status: 'friends'
@@ -80,14 +79,14 @@ const friends = {
 						});
 					})
 					.catch((err) => {
-						res.status(400).send({
-							msg: 'Error updating friend request.'
-						});
+						res.status(400).send();
 					});
+				//do nothing if already requested or already friends
 				} else if(found && (found.status === 'requestor' || found.status === 'friends'))  {
 					res.status(201).send({
 						status: found.status
 					});
+				//establish friend request
 				} else {
 					Users.findById(req.body.otherID)
 					.then((otherUser) => {
@@ -112,28 +111,20 @@ const friends = {
 								});
 							})
 							.catch((err) => {
-								res.status(400).send({
-									msg: 'Error creating requestee.'
-								});
+								res.status(400).send();
 							});
 						})
 						.catch((err) => {
-							res.status(400).send({
-								msg: 'Error creating requestor.'
-							});
+							res.status(400).send();
 						});
 					})
 					.catch((err) => {
-						res.status(400).send({
-							msg: 'Error finding friend to add.'
-						});
+						res.status(400).send();
 					});
 				}
 			})
 			.catch((err) => {
-				res.status(400).send({
-					msg: 'Error checking friend request.'
-				});
+				res.status(400).send();
 			});
 			
 		},
@@ -148,6 +139,7 @@ const friends = {
 				attributes: ['status']
 			})
 			.then((found) => {
+				//accept if requested or already friends
 				if(found && (found.status === 'requestee' || found.status === 'friends')) {
 					Friends.update({
 						status: 'friends'
@@ -168,14 +160,14 @@ const friends = {
 						});
 					})
 					.catch((err) => {
-						res.status(400).send({
-							msg: 'Error accepting friend request.'
-						});
+						res.status(400).send();
 					});
+				//do nothing if requesting
 				} else if(found && found.status === 'requestor') {
 					res.status(201).send({
 						status: 'requestor'
 					});
+				//send request if request received was cancelled
 				} else {
 					Users.findById(req.body.otherID)
 					.then((otherUser) => {
@@ -200,31 +192,23 @@ const friends = {
 								});
 							})
 							.catch((err) => {
-								res.status(400).send({
-									msg: 'Error creating requestee.'
-								});
+								res.status(400).send();
 							});
 						})
 						.catch((err) => {
-							res.status(400).send({
-								msg: 'Error creating requestor.'
-							});
+							res.status(400).send();
 						});
 					})
 					.catch((err) => {
-						res.status(400).send({
-							msg: 'Error finding friend to add.'
-						});
+						res.status(400).send();
 					});
 				}
 			})
 			.catch((err) => {
-				res.status(400).send({
-					msg: 'Error checking friend request.'
-				});
+				res.status(400).send();
 			});
 		},
-		//delete friend and friendship request
+		//delete friend or friend request
 		'delete': (req, res) => {
 			console.log('inside DELETE at /api/friends/friendshipStatus');
 			Friends.destroy({
@@ -244,12 +228,11 @@ const friends = {
 				});
 			})
 			.catch((err) => {
-				res.status(400).send({
-					msg: 'Error deleting friendship.'
-				});
+				res.status(400).send();
 			});
 		}
 	}
+
 }
 
 module.exports = friends;

@@ -1,4 +1,5 @@
-module.exports = {
+const webpack_config = {
+
   entry: './client/index.js',
 
   output: {
@@ -16,4 +17,7 @@ module.exports = {
       }
     ]
   }
+
 }
+
+module.exports = webpack_config

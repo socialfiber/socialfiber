@@ -11,7 +11,7 @@ export function fetchFriends() {
   return axios.get('/api/friends/myFriends', data)
     .then((response) => {
       const payload = {
-        myFriends: response.data.filter((friend) => { return friend.status === 'friends' }),
+        friendList: response.data.filter((friend) => { return friend.status === 'friends' }),
         friendRequests: response.data.filter((friend) => { return friend.status === 'requestee' })
       }
       return { type: FETCH_FRIENDS, payload: payload }

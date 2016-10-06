@@ -5,7 +5,10 @@ const _ = require('underscore');
 const appId = auth.nutritionix.appId;
 const appKey = auth.nutritionix.appKey;
 
+
 const Nutritionix = {
+
+	//search API
 	'search': (input) => {
 		const url = 'https://trackapi.nutritionix.com/v2/natural/nutrients';
 		const headers = {
@@ -42,6 +45,7 @@ const Nutritionix = {
 			});
 		});
 	}
+	
 }
 
 module.exports = Nutritionix;

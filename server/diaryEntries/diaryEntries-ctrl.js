@@ -3,9 +3,12 @@ const Storage = require('../nutritionix/nutritionixStorage-model.js');
 const nutritionix = require('../nutritionix/nutritionix-ctrl.js');
 const nutritionTotals = require('../nutritionTotals/nutritionTotals-ctrl.js');
 
+
 const diaryEntries = {
-	'/api/diaryEntries/allEntries': {
-		'get': (req, res) => {
+
+  //get all diary entries
+  '/api/diaryEntries/allEntries': {
+    'get': (req, res) => {
       const getDiaryEntry = DiaryEntries.findAll({
         where: {
           user_id: req.query.userID
@@ -23,14 +26,16 @@ const diaryEntries = {
           msg: 'Error fetching diary entries.'
         });
       });
-		}
+    }
   },
+
+  //single diary entries
   '/api/diaryEntries/singleEntry': {
     'post': (req, res) => {
       nutritionix.search(req.body.food)
       .then((data) => {
         if(data.message) {
-          res.status(400).send({
+          res.status(200).send({
             msg: `No results found for ${req.body.food}.`
           });
         } else {
@@ -52,27 +57,23 @@ const diaryEntries = {
               n6: +(data.n6*req.body.qty).toFixed(4)
             })
             .then((increased) => {
-              res.status(201).send();
-            })
-            .catch((err) => {
-              res.status(400).send({
-                msg: 'Error increasing nutrition totals.'
+              res.status(201).send({
+                msg: 'Entry successfully added.'
               });
             })
+            .catch((err) => {
+              res.status(400).send();
+            });
           })
           .catch((err) => {
-            res.status(400).send({
-              msg: 'Error creating diary entry.'
-            });
+            res.status(400).send();
           });
         }
       })
       .catch((err) => {
-        res.status(400).send({
-          msg: 'Error searching API.'
-        });
+        res.status().send();
       });
-		},
+    },
     'delete': (req, res) => {
       DiaryEntries.destroy({
         where: {
@@ -93,27 +94,24 @@ const diaryEntries = {
             n6: +(data.n6*req.query.qty).toFixed(4)
           })
           .then((decreased) => {
-            res.status(201).send();
+            res.status(201).send({
+              msg: 'Entry successfully deleted.'
+            });
           })
           .catch((err) => {
-            res.status(400).send({
-              msg: 'Error decreasing nutrition totals.'
-            });
+            res.status(400).send();
           });
         })
         .catch((err) => {
-          res.status(400).send({
-            msg: 'Error searching storage.'
-          });
+          res.status(400).send();
         });
       })
       .catch((err) => {
-        res.status(400).send({
-          msg: 'Error deleting diary entry.'
-        });
+        res.status(400).send();
       });
     }
   }
+
 }
 
 module.exports = diaryEntries;

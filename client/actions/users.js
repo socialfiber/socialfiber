@@ -18,7 +18,7 @@ export function submitChangePassword(passwordObj) {
     const config = {
       headers: { 'x-access-token': Cookies.get('token') }
     }
-    return axios.post('/api/users/changePassword', passwordObj, config)
+    return axios.put('/api/users/changePassword', passwordObj, config)
       .then((response) => {
         return { type: CHANGE_PASSWORD, payload: response.data.msg }
       })
@@ -35,10 +35,7 @@ export function fetchUserData() {
   }
   return axios.get('/api/users/getUserData', data)
   .then((response) => {
-    return {
-      type: FETCH_USER_DATA,
-      payload: response.data.question
-    };
+    return { type: FETCH_USER_DATA, payload: response.data.question };
   })
   .catch((error) => {
     console.error(error);
@@ -53,14 +50,11 @@ export function fetchMacros(userID) {
   return axios.get('/api/users/getUserData', data)
   .then((response) => {
     // console.log("Macros:  ", response.data);
-    return {
-      type: FETCH_MACROS,
-      payload: response.data
-    }
+    return { type: FETCH_MACROS, payload: response.data }
   })
   .catch((error) => {
-    console.error(error)
-  })
+    console.error(error);
+  });
 }
 
 export function updateUserData(userStatsObj) {
@@ -72,9 +66,9 @@ export function updateUserData(userStatsObj) {
   const config = {
     headers: { 'x-access-token': Cookies.get('token') }
   }
-  return axios.post('/api/questions/updateData', userStatsObj, config)
+  return axios.put('/api/questions/submitData', userStatsObj, config)
   .then((response) => {
-    return { type: UPDATE_USER_DATA };
+    return { type: UPDATE_USER_DATA, payload: response.data.msg };
   })
   .catch(function(error) {
     console.error(error);
@@ -91,10 +85,10 @@ export function submitUserStats(userStatsObj) {
   const config = {
     headers: { 'x-access-token': Cookies.get('token') }
   }
-  return axios.post('/api/questions/enterData', data, config)
+  return axios.post('/api/questions/submitData', data, config)
     .then((response) => {
       browserHistory.push('/userProfile');
-      return { type: SUBMIT_USER_STATS }
+      return { type: SUBMIT_USER_STATS, payload: response.data.msg }
     }).catch((error) => {
       console.error(error);
     });

@@ -1,6 +1,9 @@
 const Dummy = require('./dummy-model.js');
 
+
 const dummy = {
+
+	//set endpoint and all REST operations per endpoint
 	'/dummy_endpoint': {
 		'get': (req, res) => {
 			console.log('inside GET at /dummy_endpoint');
@@ -19,6 +22,7 @@ const dummy = {
 			res.end('inside DELETE at /dummy_endpoint');
 		}
 	}
+
 }
 
 module.exports = dummy;

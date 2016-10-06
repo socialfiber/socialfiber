@@ -2,6 +2,7 @@ const Sequelize = require('sequelize');
 const sequelize = require('../config/database');
 const Users = require('../users/users-model');
 
+
 const Questions = sequelize.define('questions', {
   height: {
     type: Sequelize.INTEGER,

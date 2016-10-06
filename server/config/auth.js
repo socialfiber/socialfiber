@@ -6,13 +6,19 @@ const auth = {
     },
 
     'jwt' : {
-    	'secret': process.env.jwt_secret
+        'secret': process.env.jwt_secret
     },
 
     'db' : {
-    	'hostname': process.env.db_hostname,
-    	'username': process.env.db_username,
-    	'password': process.env.db_password
+        'hostname': process.env.db_hostname,
+        'username': process.env.db_username,
+        'password': process.env.db_password,
+        'database': process.env.db_database
+    },
+
+    'imgur' : {
+        'clientId': process.env.imgur_clientId,
+        'clientSecret': process.env.imgur_clientSecret
     }
 
 }

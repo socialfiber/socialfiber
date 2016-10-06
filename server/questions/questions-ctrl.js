@@ -2,10 +2,11 @@ const Questions = require('./questions-model.js');
 const Users = require('../users/users-model.js');
 const utils = require('../config/utilities.js');
 
+
 const questions = {
 
   //Endpoint to enter user questionnaire data into the database.
-  '/api/questions/enterData': {
+  '/api/questions/submitData': {
     'post': (req, res) => {
       Questions.create(req.body)
       .then((questionnaire) => {
@@ -22,7 +23,9 @@ const questions = {
           }
         })
         .then((updated) => {
-          res.status(201).send();
+          res.status(201).send({
+            msg: 'Info successfully submitted.'
+          });
         })
         .catch((err) => {
           res.status(400).send();
@@ -32,12 +35,8 @@ const questions = {
         console.log(err)
         res.status(400).send();
       });
-    }
-  },
-
-  //Endpoint to update user questionnaire in the database.
-  '/api/questions/updateData': {
-    'post': (req, res) => {
+    },
+    'put': (req, res) => {
       Questions.update(
         {
           height: req.body.height,
@@ -67,7 +66,9 @@ const questions = {
           }
         })
         .then((updated) => {
-          res.status(201).send();
+          res.status(201).send({
+            msg: 'Info successfully updated.'
+          });
         })
         .catch((err) => {
           res.status(400).send();

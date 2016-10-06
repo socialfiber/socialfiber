@@ -19,8 +19,8 @@ export function fetchProfile(otherID) {
       .then((response) => {
         return { type: FETCH_PROFILE, payload: response.data }
       })
-      .catch((err) => {
-        console.error(err);
+      .catch((error) => {
+        console.error(error);
       });
   }
 }

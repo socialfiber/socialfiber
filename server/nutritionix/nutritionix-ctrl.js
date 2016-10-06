@@ -2,6 +2,8 @@ const Nutritionix = require('./nutritionix-model.js');
 const Storage = require('./nutritionixStorage-model.js');
 
 const nutritionix = {
+
+	//search cache before pinging API
 	'search': (input) => {
 		return new Promise((resolve, reject) => {
 			Storage.findOne({
@@ -24,7 +26,7 @@ const nutritionix = {
 							})
 							.catch((err) => {
 								reject(err);
-							})
+							});
 						}
 					})
 					.catch((err) => {
@@ -37,6 +39,7 @@ const nutritionix = {
 			});
 		});
 	}
+
 }
 
 module.exports = nutritionix;

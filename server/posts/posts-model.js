@@ -24,12 +24,11 @@ const Posts = sequelize.define('posts', {
   }
 });
 
-
 Groups.hasMany(Posts, {foreignKey: 'group_id'});
 
 sequelize
   .sync()
-  .then((err) => {
+  .then(() => {
     console.log('Posts model synced successfully.');
   }, (err) => {
     console.log('An error has occurred:', err);

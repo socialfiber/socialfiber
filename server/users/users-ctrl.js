@@ -5,9 +5,10 @@ const NutritionTotals = require('../nutritionTotals/nutritionTotals-model.js');
 const Friends = require('../friends/friends-model.js');
 const utils = require('../config/utilities.js');
 
+
 const users = {
+
   'signup': (req, res) => {
-    console.log('inside POST at /auth/signup');
     Users.create({
       username: req.body.username,
       password: req.body.password
@@ -41,8 +42,8 @@ const users = {
       });
     });
   },
+
   'signin': (req, res) => {
-    console.log('inside POST at /auth/signin');
     Users.findOne({
       where: {
         username: req.body.username
@@ -75,9 +76,9 @@ const users = {
       });
     });
   },
+
   '/api/users/changePassword': {
-    'post': (req, res) => {
-      console.log('inside POST at /api/users/changePassword');
+    'put': (req, res) => {
       Users.findById(req.body.userID)
       .then((user) => {
         utils.comparePassword(req.body.password, user.password)
@@ -111,14 +112,14 @@ const users = {
       })
       .catch((err) => {
         res.status(400).send({
-          msg: 'Error getting user data.'
+          msg: 'Error changing password.'
         });
       });
     }
   },
+
   '/api/users/getUserData': {
     'get': (req, res) => {
-      console.log('inside GET at /api/users/getUserData');
       const options = {
         attributes: ['id', 'username', 'IBW', 'cal_min', 'cal_max', 'code'],
         include: [DietaryProfiles, Questions, NutritionTotals, Friends]
@@ -134,12 +135,12 @@ const users = {
       });
     }
   },
+
   '/api/users/browse/:id': {
     'get': (req, res) => {
-      console.log('inside GET at /api/users/browse/:id');
       const options = {
         attributes: ['username', 'privacy'],
-        include: [DietaryProfiles, NutritionTotals, Friends]
+        include: [DietaryProfiles, Questions, NutritionTotals, Friends]
       }
       Users.findById(req.params.id, options)
       .then((userData) => {
@@ -152,6 +153,7 @@ const users = {
       });
     }
   }
+  
 }
 
 module.exports = users;

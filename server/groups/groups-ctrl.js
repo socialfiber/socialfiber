@@ -1,7 +1,10 @@
 const Groups = require('./groups-model.js');
 const Users = require('../users/users-model.js');
+const _ = require('underscore');
+
 
 const groups = {
+  
   //Endpoint to create groups
   '/api/groups/createGroups': {
     'post': (req, res) => {
@@ -10,20 +13,18 @@ const groups = {
         name: req.body.name,
         description: req.body.description
       })
-        .then((group) => {
-          console.log('New group has been created.', group);
-          res.status(201).send({
-            group: group
-          });
-        })
-        .catch((err) => {
-          console.log('Error: ', err);
-          res.status(400).send({
-            msg: 'Please fill in all fields.'
-          });
+      .then((group) => {
+        res.status(201).send({
+          group: group
         });
+      })
+      .catch((err) => {
+        console.log('Error: ', err);
+        res.status(400).send();
+      });
     }
   },
+
   //Endpoint to add users to groups
   '/api/groups/addUser': {
     'post': (req, res) => {
@@ -40,32 +41,24 @@ const groups = {
             }
           })
           .then((user) => {
-            console.log('user in groups ctrl: ', user)
-            console.log('group in groups ctrl: ', group)
             group.addUsers(user);
             group.save();
             res.sendStatus(201);
           })
           .catch((err) => {
-            console.log('Error: ', err);
-            res.status(400).send({
-              msg: 'Error adding user to the group!'
-            });
-          })
+            res.status(400).send();
+          });
         })
       .catch((err) => {
-        console.log('Error: ', err);
-        res.status(400).send({
-          msg: 'Error adding user to the group.'
-        });
-      })
+        res.status(400).send();
+      });
     }
   },
+
   //Endpoint to retrieve user groups based on user id.
   '/api/groups/getUserGroups': {
     'get': (req, res) => {
 			console.log('inside GET at /api/groups/getUserGroups');
-      var userGroups = [];
       Groups.findAll({
         attributes: [
           'id',
@@ -81,24 +74,19 @@ const groups = {
           }
         }]
       })
-      .then( (rows) => {
-        rows.forEach((row) => {
-          if(row.users.length > 0) {
-            userGroups.push(row);
-          }
-        })
-        res.json(userGroups);
+      .then((userGroups) => {
+        res.status(200).json(userGroups);
       })
       .catch( (err) => {
-        console.log('Error: ', err);
         res.status(400).send(err.message);
       });
 		}
   },
+
+  //browse all groups
   '/api/groups/getAllGroups': {
     'get': (req, res) => {
 			console.log('inside GET at /api/groups/getAllGroups');
-      var allGroups = [];
       Groups.findAll({
         attributes: [
           'id',
@@ -106,18 +94,15 @@ const groups = {
           'description'
         ]
       })
-      .then( (groups) => {
-        groups.forEach((group) => {
-            allGroups.push(group.dataValues);
-        })
-        res.json(allGroups);
+      .then((groups) => {
+        res.status(200).json(groups);
       })
-      .catch( (err) => {
-        console.log('Error: ', err);
+      .catch((err) => {
         res.status(400).send(err.message);
       });
 		}
   },
+
   //Endpoint to leave groups
   '/api/groups/leaveGroup': {
     'post': (req, res) => {
@@ -136,28 +121,22 @@ const groups = {
           .then((user) => {
             group.removeUser(user);
             group.save();
-            res.sendStatus(201);
+            res.status(201).send();
           })
           .catch((err) => {
-            console.log('Error: ', err);
-            res.status(400).send({
-              msg: 'Error removing user to the group!'
-            });
+            res.status(400).send();
           })
         })
       .catch((err) => {
-        console.log('Error: ', err);
-        res.status(400).send({
-          msg: 'Error removing user to the group.'
-        });
+        res.status(400).send();
       })
     }
   },
+
   //Endpoint to retrieve all the users in a group
   '/api/groups/fetchAllUsers': {
     'get': (req, res) => {
 			console.log('inside GET at /api/groups/fetchAllUsers');
-      var users = [];
       Users.findAll({
         attributes: [
           'id',
@@ -172,20 +151,16 @@ const groups = {
           }
         }]
       })
-      .then( (rows) => {
-        rows.forEach((row) => {
-          if(row.groups.length > 0) {
-            users.push(row);
-          }
-        })
-        res.json(users);
+      .then((users) => {
+        users = users.filter((user) => user.groups.length > 0);
+        res.status(200).json(users);
       })
-      .catch( (err) => {
-        console.log('Error: ', err);
-        res.status(400).send(err.message);
+      .catch((err) => {
+        res.status(400).send();
       });
 		}
   }
+
 }
 
 module.exports = groups;
