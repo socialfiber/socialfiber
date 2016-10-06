@@ -3,6 +3,7 @@ import { FETCH_ALL_GROUPS, FETCH_USER_GROUPS, LEAVE_GROUP, JOIN_GROUP, FETCH_GRO
 const INITIAL_STATE = {
   allGroups: [],
   userGroups: [],
+  groupUsers: [],
   leaveGroupResp: '',
   groupId: null,
   joinGroupResp: '',
@@ -16,26 +17,25 @@ const INITIAL_STATE = {
 export default function(state=INITIAL_STATE, action){
   switch(action.type) {
     case FETCH_ALL_GROUPS:
-      console.log('inside reducer', action.payload)
-      return {...state, allGroups: action.payload};
+      return { ...state, allGroups: action.payload };
     case FETCH_USER_GROUPS:
-      return {...state, userGroups: action.payload};
+      return { ...state, userGroups: action.payload };
     case LEAVE_GROUP:
-      return {...state, leaveGroupResp: action.payload};
+      return { ...state, leaveGroupResp: action.payload };
     case JOIN_GROUP:
-      return {...state, groupId: action.payload.groupId, joinGroupResp: action.payload.data};
+      return { ...state, groupId: action.payload.groupId, joinGroupResp: action.payload.data};
     case FETCH_GROUP_POSTS:
-      return {...state, groupPosts: action.payload.data};
+      return { ...state, groupPosts: action.payload };
     case POST_MESSAGE:
-      return {...state, postMessages: action.payload.data};
+      return { ...state, postMessages: action.payload };
     case POST_COMMENT:
-      return {...state, postComment: action.payload.data};
+      return { ...state, postComment: action.payload };
     case FETCH_COMMENTS:
-      return {...state, comments: action.payload.data};
+      return { ...state, comments: action.payload };
     case FETCH_ALL_USERS:
-      return {...state, groupUsers: action.payload.data};
+      return { ...state, groupUsers: action.payload };
     case CREATE_NEW_GROUP:
-      return {...state, newGroup: action.payload};
+      return { ...state, newGroup: action.payload };
     default:
       return state;
   }

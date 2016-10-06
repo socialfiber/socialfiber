@@ -1,5 +1,6 @@
 const Groups = require('./groups-model.js');
 const Users = require('../users/users-model.js');
+const _ = require('underscore');
 
 
 const groups = {
@@ -151,6 +152,7 @@ const groups = {
         }]
       })
       .then((users) => {
+        users = users.filter((user) => user.groups.length > 0);
         res.status(200).json(users);
       })
       .catch((err) => {
