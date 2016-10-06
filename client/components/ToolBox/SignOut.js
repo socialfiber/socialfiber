@@ -10,7 +10,7 @@ class SignOut extends Component {
     	<div>
     		<button onClick={this.props.submitSignOut}>Sign Out</button>
     	</div>
-    )
+    );
   }
 
 }

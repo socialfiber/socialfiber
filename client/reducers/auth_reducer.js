@@ -1,6 +1,11 @@
 import { AUTH_USER, AUTH_ERROR, SIGN_OUT } from '../actions/types';
 
-const INITIAL_STATE = { currentUser: undefined, authenticated: false, token: undefined, err: '' }
+const INITIAL_STATE = {
+  currentUser: undefined,
+  authenticated: false,
+  token: undefined,
+  err: ''
+}
 
 export default function(state = INITIAL_STATE, action) {
   switch(action.type) {

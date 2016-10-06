@@ -26,7 +26,7 @@ class SignUp extends Component {
           </div>
           <button type="submit" disabled={submitting} >Sign Up</button>
           <p>{this.props.err}</p>
-          <Link to={'/signin'}>Sign In</Link>
+          <Link to={'/signin'} >Sign In</Link>
         </form>
       </div>
     );

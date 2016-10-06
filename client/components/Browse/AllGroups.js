@@ -25,6 +25,7 @@ class AllGroups extends Component {
         <NavBar />
         <h1>Find a Group</h1>
         <h4>Can't find a group? Start your own!</h4>
+        <CreateGroup />
         <table>
           <tbody>
             <tr>
@@ -34,7 +35,6 @@ class AllGroups extends Component {
             {groupsList}
           </tbody>
         </table>
-        <CreateGroup />
       </div>
     );
   }

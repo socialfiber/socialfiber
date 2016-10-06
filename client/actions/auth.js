@@ -29,7 +29,7 @@ export function submitSignIn(usernameAndPasswordObj) {
 
 export function submitSignUp(usernameAndPasswordObj) {
   if (usernameAndPasswordObj.password !== usernameAndPasswordObj.confirmPW) {
-    return { type: AUTH_ERROR, payload: 'Passwords do not match' }
+    return { type: AUTH_ERROR, payload: 'Passwords do not match.' }
   } else {
     return axios.post('/auth/signup', usernameAndPasswordObj)
       .then((response) => {
