@@ -7,6 +7,7 @@ import GroupsReducer from './groups_reducer';
 import FriendsReducer from './friends_reducer';
 import BrowseReducer from './browse_reducer';
 import ChatWindowReducer from './chatWindow_reducer';
+import ImgUploadReducer from './image_upload_reducer';
 
 const rootReducer = combineReducers({
   auth: AuthReducer,
@@ -16,7 +17,10 @@ const rootReducer = combineReducers({
   groups: GroupsReducer,
   friends: FriendsReducer,
   browse: BrowseReducer,
-  chatWindow: ChatWindowReducer
+
+  tabs: TabsReducer,
+  chatWindow: ChatWindowReducer,
+  img: ImgUploadReducer
 });
 
 export default rootReducer;
