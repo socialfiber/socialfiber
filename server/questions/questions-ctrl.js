@@ -3,7 +3,8 @@ const Users = require('../users/users-model.js');
 const utils = require('../config/utilities.js');
 
 const questions = {
-  //Endpoint to enter survey data into the database.
+
+  //Endpoint to enter user questionnaire data into the database.
   '/api/questions/enterData': {
     'post': (req, res) => {
       Questions.create(req.body)
@@ -33,10 +34,10 @@ const questions = {
       });
     }
   },
-  //Endpoint to update user data in the database.
+
+  //Endpoint to update user questionnaire in the database.
   '/api/questions/updateData': {
     'post': (req, res) => {
-      console.log("inside POST at /api/questions/updateData");
       Questions.update(
         {
           height: req.body.height,
@@ -77,6 +78,7 @@ const questions = {
       });
     }
   }
+  
 }
 
 module.exports = questions;

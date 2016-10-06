@@ -15,7 +15,10 @@ export function submitChangePassword(passwordObj) {
     return { type: CHANGE_PASSWORD, payload: 'New password must be different than current.' };
   } else {
     passwordObj.userID = Cookies.get('userID');
-    return axios.post('/api/users/changePassword', passwordObj)
+    const config = {
+      headers: { 'x-access-token': Cookies.get('token') }
+    }
+    return axios.post('/api/users/changePassword', passwordObj, config)
       .then((response) => {
         return { type: CHANGE_PASSWORD, payload: response.data.msg }
       })
@@ -62,20 +65,16 @@ export function fetchMacros(userID) {
 
 export function updateUserData(userStatsObj) {
   userStatsObj.user_id = Cookies.get('userID');
-  userStatsObj.gender = userStatsObj.gender.value;
-  userStatsObj.preg = userStatsObj.preg.value;
-  userStatsObj.lact = userStatsObj.lact.value;
+  userStatsObj.gender = Cookies.get('userGender');
+  userStatsObj.preg = userStatsObj.preg ? userStatsObj.preg.value : false
+  userStatsObj.lact = userStatsObj.lact ? userStatsObj.lact.value : false
   userStatsObj.height = userStatsObj.ft*12+userStatsObj.in;
-  console.log("userStatsObj: ", userStatsObj);
   const config = {
     headers: { 'x-access-token': Cookies.get('token') }
   }
   return axios.post('/api/questions/updateData', userStatsObj, config)
-  .then(() => {
-    console.log("POST request completed");
-    return {
-      type: UPDATE_USER_DATA,
-    };
+  .then((response) => {
+    return { type: UPDATE_USER_DATA };
   })
   .catch(function(error) {
     console.error(error);
@@ -88,7 +87,6 @@ export function submitUserStats(userStatsObj) {
   userStatsObj.gender = userStatsObj.gender.value;
   userStatsObj.preg = userStatsObj.preg ? userStatsObj.preg.value : false
   userStatsObj.lact = userStatsObj.lact ? userStatsObj.lact.value : false
-
   const data = userStatsObj;
   const config = {
     headers: { 'x-access-token': Cookies.get('token') }
@@ -96,8 +94,8 @@ export function submitUserStats(userStatsObj) {
   return axios.post('/api/questions/enterData', data, config)
     .then((response) => {
       browserHistory.push('/userProfile');
-      return { type: 'SUBMIT_USER_STATS' }
+      return { type: SUBMIT_USER_STATS }
     }).catch((error) => {
-      console.log(error);
-    })
+      console.error(error);
+    });
 }

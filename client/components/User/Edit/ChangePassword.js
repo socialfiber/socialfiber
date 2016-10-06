@@ -10,7 +10,6 @@ class ChangePassword extends Component {
     const { handleSubmit, submitting } = this.props;
     return (
       <div>
-        <h3>Change Password</h3>
         <form onSubmit={handleSubmit(this.props.submitChangePassword)} >
           <div>
             <label>Password</label>

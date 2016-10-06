@@ -7,7 +7,7 @@ class Tabs extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      tabsList: [{name:'', component:''}],
+      tabsList: [],
       currentTab: null
     }
     this.changeTab.bind(this);
@@ -17,6 +17,10 @@ class Tabs extends Component {
     if(this.props.defaultTab) {
       this.setState({
         currentTab: this.props.defaultTab
+      });
+    } else {
+      this.setState({
+        currentTab: null
       });
     }
     if(this.props.tabsList) {

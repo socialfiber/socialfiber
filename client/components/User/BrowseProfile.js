@@ -34,6 +34,7 @@ class BrowseProfile extends Component {
     } else {
       return (
         <div>
+          <NavBar />
           <h3>Loading profile...</h3>
         </div>
       );

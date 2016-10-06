@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { handleImageUpload } from '../actions/handleImageUpload'
+import { handleImageUpload } from '../../actions/handleImageUpload'
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 
@@ -12,10 +12,10 @@ class ImageUpload extends Component {
       <div>
         <form onSubmit={ handleSubmit(this.props.handleImageUpload) }>
           <div className='fileUpload'>
-            <label>Upload a picture</label>
+            <label>Upload an image.</label>
             <Field name='image' component='input' type='file' accept='image/*' />
           </div>
-          <button type='submit' disabled={submitting}>submit</button>
+          <button type='submit' disabled={submitting} >submit</button>
         </form>
       </div>
     );
