@@ -15,7 +15,7 @@ class UpdateQuestionnaire extends Component {
   render() {
 
     Cookies.set('userGender', this.props.userData.gender);
-    const { handleSubmit } = this.props;
+    const { handleSubmit, submitting } = this.props;
     const pregnantOptions = [{value: true, label: 'true'}, {value: false, label: 'false'}];
     const lactatingOptions = [{value: true, label: 'true'}, {value: false, label: 'false'}];
     const femaleQuestions = () => {
@@ -37,7 +37,6 @@ class UpdateQuestionnaire extends Component {
 
     return (
       <div>
-        <h3>Update Info</h3>
         <form onSubmit={handleSubmit(this.props.updateUserData)}>
           <div>
             <label>Age</label>

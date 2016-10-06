@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ChangePassword from './ChangePassword';
 import UpdateQuestionnaire from './UpdateQuestionnaire';
+import ImageUpload from '../../ToolBox/ImageUpload';
 
 
 class UpdateUserData extends Component {
@@ -10,9 +11,13 @@ class UpdateUserData extends Component {
 
     return (
       <div>
-        <h3>Update Profile</h3>
+        <h1>Update Profile</h1>
+        <h3>Change Password</h3>
         <ChangePassword />
+        <h3>Update Info</h3>
         <UpdateQuestionnaire />
+        <h3>Upload a profile picture.</h3>
+        <ImageUpload />
       </div>
     );
 

@@ -22,8 +22,8 @@ export function fetchFoodDiary() {
       _.sortBy(groupedEntriesArray, 'date');
       return { type: FETCH_FOOD_DIARY, payload: groupedEntriesArray }
     })
-    .catch((err) => {
-      console.error(err);
+    .catch((error) => {
+      console.error(error);
     });
 }
 
@@ -37,8 +37,8 @@ export function submitFoodDiaryEntry(foodDiaryEntryObj) {
     .then((response) => {
       return { type: SUBMIT_DIARY_ENTRY }
     })
-    .catch((err) => {
-      console.error(err);
+    .catch((error) => {
+      console.error(error);
     });
 }
 
@@ -52,7 +52,7 @@ export function deleteFoodDiaryEntry(foodDiaryEntryObj) {
     .then((response) => {
       return { type: DELETE_DIARY_ENTRY }
     })
-    .catch((err) => {
-      console.error(err);
+    .catch((error) => {
+      console.error(error);
     });
 }
