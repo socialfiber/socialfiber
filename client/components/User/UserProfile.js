@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
-import { fetchUserData, updateUserData } from '../../actions/users';
+import { fetchUserData } from '../../actions/users';
 import NavBar from '../ToolBox/NavBar';
 import SelectComponent from '../ToolBox/SelectComponent';
 import ProfilePic from '../ToolBox/ProfilePic';
 import Tabs from '../ToolBox/Tabs';
 import RadarGraph from '../ToolBox/RadarGraph';
 import ChatWindow from './Tabs/ChatWindow';
+import UpdateUserData from './Edit/UpdateUserData';
 
 
 class UserProfile extends Component {
@@ -40,21 +41,18 @@ class UserProfile extends Component {
 
   render() {
 
-    const { handleSubmit } = this.props;
-    const genderOptions = [{value: 'male', label: 'male'}, {value: 'female', label: 'female'}];
-    const pregnantOptions = [{value: true, label: 'true'}, {value: false, label: 'false'}];
-    const lactatingOptions = [{value: true, label: 'true'}, {value: false, label: 'false'}];
-
     if(this.props.userData !== null) {
       if(!this.state.editFlag) {
         return (
           <div>
             <NavBar />
             <ProfilePic />
-            <div>Age: {this.props.userData.age}</div>
-            <div>Gender: {this.props.userData.gender}</div>
-            <div>Height: {Math.floor(this.props.userData.height/12)}ft {this.props.userData.height %12}in</div>
-            <div>Weight: {this.props.userData.weight}</div>
+            <ul>
+              <li>Age: {this.props.userData.age}</li>
+              <li>Gender: {this.props.userData.gender}</li>
+              <li>Height: {Math.floor(this.props.userData.height/12)}ft {this.props.userData.height%12}in</li>
+              <li>Weight: {this.props.userData.weight}</li>
+            </ul>
             <div>
               <button type="button" onClick={() => this.toggleEditing()}>Edit Info</button>
             </div>
@@ -67,60 +65,28 @@ class UserProfile extends Component {
         return (
           <div>
             <NavBar />
-            <div>
-              <h3>Edit User Info</h3>
-            </div>
-            <form onSubmit={handleSubmit(this.props.updateUserData)}>
-              <div>
-                <label>Age</label>
-                <Field name="age" component="input" type="number" min="0" placeholder={this.props.userData.age} required />
-              </div>
-              <div>
-                <label>Height (ft & in)</label>
-                <Field name="ft" component="input" type="number" min = "0" max="8" placeholder={Math.floor(this.props.userData.height / 12)} required />
-                <Field name="in" component="input" type="number" min="0" max="11" placeholder={this.props.userData.height % 12} />
-              </div>
-              <div>
-                <label>Weight</label>
-                <Field name="weight" component="input" type="number" min="0" placeholder={this.props.userData.weight} required />
-              </div>
-              <div>
-                <label>Gender</label>
-                <Field name="gender" component={SelectComponent} options={genderOptions} placeholder={this.props.userData.gender} />
-              </div>
-              <div>
-                <label>Are you currently pregnant?</label>
-                <Field name="preg" component={SelectComponent} options={pregnantOptions} placeholder={this.props.userData.preg} />
-              </div>
-              <div>
-                <label>Are you currently lactating?</label>
-                <Field name="lact" component={SelectComponent} options={lactatingOptions} placeholder={this.props.userData.lact} />
-              </div>
-              <button type="submit">Submit</button>
-              <button type="button" onClick={() => this.toggleEditing()}>Return</button>
-            </form>
+            <UpdateUserData />
+            <button type="button" onClick={() => this.toggleEditing()}>Return</button>
           </div>
         );
       }
     } else {
       return (
         <div>
+          <NavBar />
           <h3>Loading your profile...</h3>
         </div>
-      )
+      );
     }
+    
   }
 
 }
 
-UserProfile = reduxForm({
-  form: 'userProfileForm'
-})(UserProfile);
-
-function mapStateToProps(state) {
+const mapStateToProps = (state) => {
   return {
     userData: state.userProfile.userData,
   }
 }
 
-export default connect(mapStateToProps, { fetchUserData, updateUserData })(UserProfile);
+export default connect(mapStateToProps, { fetchUserData })(UserProfile);
