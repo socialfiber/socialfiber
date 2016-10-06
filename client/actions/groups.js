@@ -59,12 +59,7 @@ export function joinGroup(group_id) {
 
   console.log(data.user_id)
   return axios.post('/api/groups/addUser', data, config)
-  .then(function(response) {
-<<<<<<< HEAD
-    console.log('inside join group')
-    console.log('response: ', response)
-=======
->>>>>>> feature/imgupload
+  .then((response) => {
     var obj = {
       groupId: group_id,
       data: response.data
@@ -80,7 +75,6 @@ export function joinGroup(group_id) {
 }
 
 export function leaveGroup(group_id) {
-
 
   const data = {
     user_id: Cookies.get('userID'),

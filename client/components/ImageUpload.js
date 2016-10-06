@@ -5,13 +5,10 @@ import { Field, reduxForm } from 'redux-form';
 
 class ImageUpload extends Component {
 
-
-
-
-    render(){
-      //let photoReader = new FileReader()
-      const { handleSubmit, submitting } = this.props;
-      return(
+  render() {
+    const { handleSubmit, submitting } = this.props;
+    return(
+      <div>
         <form onSubmit={ handleSubmit(this.props.handleImageUpload) }>
           <div className='fileUpload'>
             <label>Upload a profile picture</label>
@@ -19,12 +16,14 @@ class ImageUpload extends Component {
           </div>
           <button type='submit' disabled={submitting}>submit</button>
         </form>
-      )
-    }
- }
+      </div>
+    );
+  }
 
- ImageUpload = reduxForm({
-   form: 'ImageUploadForm'
- })(ImageUpload);
+}
 
- export default connect(null, { handleImageUpload })(ImageUpload);
+ImageUpload = reduxForm({
+  form: 'ImageUploadForm'
+})(ImageUpload);
+
+export default connect(null, { handleImageUpload })(ImageUpload);
