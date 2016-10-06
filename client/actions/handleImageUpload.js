@@ -2,29 +2,35 @@ import HANDLE_IMG_UPLOAD from './types';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
+
 export function handleImageUpload(file){
-  const CLOUDINARY_UPLOAD_PRESET = 'l7mlj2bt'
-  const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/tmlthesis/image/upload'
-  const data = {
-    params: {
-      
+  const photoReader = new FileReader()
+  photoReader.readAsDataURL(file.image[0])
+  photoReader.onload = () => {
+    console.log('started')
+  }
+  photoReader.onloadend = () => {
+    console.log('DONE', photoReader.result.slice(22))
+    const data = {
+      image: photoReader.result.slice(22),
+      type: 'base64'
     }
-  };
-
-
-
-  //refactor to post to server
-    //when posted to server, take res URL and store in DB for user
-    //render pic on component mounting
-  return axios.post('/server/endpt', file)
-    .then((response)=> {
-      console.log(response)
+    const config = {
+      headers : {
+        Authorization: 'Client-ID 9d052d270eaeaec',
+        Accept: 'application/json'
+      }
+    }
+    return axios.post('https://api.imgur.com/3/image', data, config)
+    .then((response)=>{
+      console.log(response.data.data.link)
       return {
         type: HANDLE_IMG_UPLOAD,
-        payload: response
-      };
+        payload: response.data.link
+      }
     })
-    .catch((error) => {
-      console.error(error);
+    .catch((error)=> {
+      console.error(error)
     })
+  }
 }

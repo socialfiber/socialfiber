@@ -1,31 +1,30 @@
 import React, { Component } from 'react';
-import Dropzone from 'react-dropzone';
 import { handleImageUpload } from '../actions/handleImageUpload'
 import { connect } from 'react-redux';
+import { Field, reduxForm } from 'redux-form';
 
-const CLOUDINARY_UPLOAD_PRESET = 'l7mlj2bt'
-const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/tmlthesis/upload'
-
- class ImageUpload extends Component {
+class ImageUpload extends Component {
 
 
-    onImageDrop(files){
-      handleImageUpload(files)
-    }
+
 
     render(){
+      //let photoReader = new FileReader()
+      const { handleSubmit, submitting } = this.props;
       return(
-        <Dropzone multiple={false} accept='image/*' onDrop={this.onImageDrop.bind(this)}>
-          <p>Drag and drop an image or select a file to upload.</p>
-        </Dropzone>
-          )
+        <form onSubmit={ handleSubmit(this.props.handleImageUpload) }>
+          <div className='fileUpload'>
+            <label>Upload a profile picture</label>
+            <Field name='image' component='input' type='file' accept='image/*' />
+          </div>
+          <button type='submit' disabled={submitting}>submit</button>
+        </form>
+      )
     }
  }
 
-const mapStateToProps = (state) => {
-  return {
-    image: state.img.uploadedFileURL
-  }
-};
+ ImageUpload = reduxForm({
+   form: 'ImageUploadForm'
+ })(ImageUpload);
 
-export default connect(mapStateToProps, { handleImageUpload } )(ImageUpload)
+ export default connect(null, { handleImageUpload })(ImageUpload);
