@@ -4,22 +4,20 @@ import {Link} from 'react-router';
 
 
 class SplashPg extends Component {
-
 	render() {
 		return (
-			<div className = 'splashpg-div'>
-				<nav className="navbar">
-					<ul className="nav navbar-nav">
-						<li className="navItem"><Link to='/signin'>Sign In</Link></li>
-						<li className="navItem"><Link to='/signup'>Sign Up</Link></li>
-					</ul>
-				</nav>
-				<h1>welcome</h1>
-				<img src ='https://images.unsplash.com/photo-1473631706567-f3724ae047b5?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&s=2b42cea7ba5c5603fed6b0e241c0cd14'></img>
+			<div className='splashpg-div'>
+			<nav className='signin-nav'>
+			    <li className="navItem splashpg"><div className="signinlinkdiv"><Link className="signin" to='/signin'> Sign In</Link></div></li>
+			    <li className="navItem splashpg"><div className="signuplinkdiv"><Link className="signup" to='/signup'> Sign Up</Link></div></li>
+			</nav>
+			<div className="jumbotron">
+				<h1 className='header-splashpg'>social fiber.</h1>
+				<p className='oneliner'>live healthy, with friends</p>
+			</div>
 			</div>
 		);
 	}
-
 }
 
 export default SplashPg;
