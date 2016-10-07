@@ -71,6 +71,7 @@ const groups = {
         }]
       })
       .then((userGroups) => {
+        console.log(userGroups)
         res.status(200).json(userGroups);
       })
       .catch( (err) => {

@@ -13,7 +13,7 @@ class GroupButton extends Component {
   }
 
   getStatus() {
-    fetchGroupStatus(this.props.userID, groupID)
+    fetchGroupStatus(this.props.groupID)
     .then((response) => {
       this.setState({
         groupStatus: response.payload
@@ -33,7 +33,7 @@ class GroupButton extends Component {
   
   render() {
 
-    if(this.state.groupStatus === null) {
+    if(this.state.groupStatus === false) {
       return (
         <div>
           <button onClick={() => {
@@ -59,7 +59,7 @@ class GroupButton extends Component {
           </button>
         </div>
       );
-    } else if(this.state.groupStatus === 'member') {
+    } else if(this.state.groupStatus === true) {
       return (
         <div>
           <button onClick={() => {
