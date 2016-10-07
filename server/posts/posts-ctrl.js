@@ -9,29 +9,26 @@ const posts = {
   '/api/posts/postMessage': {
     'post': (req, res) => {
       console.log('inside POST at /api/posts/postMessage');
-      Groups.findOne({
-        where: {
-          id: req.body.group_id
-        }
-      })
-        .then((group) => {
-          Posts.create({
-            group_name: req.body.group_name,
-            username: req.body.username,
-            message: req.body.message
-          })
-          .then((post) => {
-            group.addPosts(post);
-            group.save();
-            res.status(201).send();
-          })
-          .catch((err) => {
-            res.status(400).send();
-          })
+      Groups.findById(req.body.groupID)
+      .then((group) => {
+        Posts.create({
+          group_name: req.body.groupName,
+          username: req.body.username,
+          message: req.body.message
         })
+        .then((post) => {
+          console.log("POST1111",post)
+          group.addPosts(post);
+          group.save();
+          res.status(201).send();
+        })
+        .catch((err) => {
+          res.status(400).send();
+        });
+      })
       .catch((err) => {
         res.status(400).send();
-      })
+      });
     }
   },
 
@@ -41,7 +38,7 @@ const posts = {
 			console.log('inside GET at /api/posts/getMessage');
       Posts.findAll({
         where: {
-          'group_id': req.query.group_id
+          'group_id': req.query.groupID
         },
         attributes: [
           'id',

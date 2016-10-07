@@ -35,6 +35,7 @@ export const FETCH_PROFILE = 'FETCH_PROFILE';
 export const REDIRECT_PROFILE = 'REDIRECT_PROFILE';
 export const FETCH_ALL_USERS = 'FETCH_ALL_USERS';
 export const FETCH_ALL_GROUPS = 'FETCH_ALL_GROUPS';
+export const LEAVE_PAGE = 'LEAVE_PAGE';
 
 //Chat
 export const CREATE_ROOM = 'CREATE_ROOM';

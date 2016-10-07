@@ -29,15 +29,11 @@ const groups = {
   '/api/groups/addUser': {
     'post': (req, res) => {
       console.log('inside POST at /api/groups/addUser');
-        Groups.findOne({
-          where: {
-            id: req.body.group_id
-          }
-        })
+        Groups.findById(req.body.groupID)
         .then((group) => {
           Users.findOne({
             where: {
-              id: req.body.user_id
+              id: req.body.userID
             }
           })
           .then((user) => {
@@ -56,9 +52,9 @@ const groups = {
   },
 
   //Endpoint to retrieve user groups based on user id.
-  '/api/groups/getUserGroups': {
+  '/api/groups/userGroups': {
     'get': (req, res) => {
-      console.log('inside GET at /api/groups/getUserGroups');
+      console.log('inside GET at /api/groups/userGroups');
       Groups.findAll({
         attributes: [
           'id',
@@ -69,7 +65,7 @@ const groups = {
           model: Users,
           through: {
             where: {
-              userId: req.query.user_id
+              userId: req.query.userID
             }
           }
         }]
@@ -84,9 +80,9 @@ const groups = {
   },
 
   //browse all groups
-  '/api/groups/getAllGroups': {
+  '/api/groups/allGroups': {
     'get': (req, res) => {
-      console.log('inside GET at /api/groups/getAllGroups');
+      console.log('inside GET at /api/groups/allGroups');
       Groups.findAll({
         attributes: [
           'id',
@@ -107,15 +103,11 @@ const groups = {
   '/api/groups/leaveGroup': {
     'post': (req, res) => {
       console.log('inside POST at /api/groups/leaveGroup');
-      Groups.findOne({
-        where: {
-          id: req.body.group_id
-        }
-      })
+      Groups.findById(req.body.groupID)
       .then((group) => {
         Users.findOne({
           where: {
-            id: req.body.user_id
+            id: req.body.userID
           }
         })
         .then((user) => {
@@ -134,9 +126,9 @@ const groups = {
   },
 
   //Endpoint to retrieve all the users in a group
-  '/api/groups/fetchGroupUsers': {
+  '/api/groups/groupUsers': {
     'get': (req, res) => {
-      console.log('inside GET at /api/groups/fetchGroupUsers');
+      console.log('inside GET at /api/groups/groupUsers');
       Users.findAll({
         attributes: [
           'id',
@@ -146,7 +138,7 @@ const groups = {
           model: Groups,
           through: {
             where: {
-              groupId: req.query.group_id
+              groupId: req.query.groupID
             }
           }
         }]
@@ -154,6 +146,37 @@ const groups = {
       .then((users) => {
         users = users.filter((user) => user.groups.length > 0);
         res.status(200).json(users);
+      })
+      .catch((err) => {
+        res.status(400).send();
+      });
+    }
+  },
+
+    //Endpoint to retrieve user group status
+  '/api/groups/groupStatus': {
+    'get': (req, res) => {
+      console.log('inside GET at /api/groups/groupStatus');
+      Users.findAll({
+        attributes: [
+          'id',
+          'username'
+        ],
+        include: [{
+          model: Groups,
+          through: {
+            where: {
+              groupId: req.query.groupID
+            }
+          }
+        }]
+      })
+      .then((users) => {
+        users = users.filter((user) => user.groups.length > 0);
+        const status = _.findWhere(users, {id: +req.query.userID}) ? true : false;
+        res.status(200).send({
+          status: status
+        });
       })
       .catch((err) => {
         res.status(400).send();

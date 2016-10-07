@@ -9,7 +9,7 @@ const comments = {
       console.log('inside GET at /api/comments/getComments');
       Comments.findAll({
         where: {
-          'post_id': req.query.post_id
+          'group_id': req.query.groupID
         },
         attributes: [
           'id',
@@ -31,11 +31,7 @@ const comments = {
   '/api/comments/postComment': {
     'post': (req, res) => {
       console.log('inside POST at /api/comments/postComment');
-      Posts.findOne({
-        where: {
-          id: req.body.post_id
-        }
-      })
+      Posts.findById(req.body.postID)
       .then((post) => {
         Comments.create({
           username: req.body.username,

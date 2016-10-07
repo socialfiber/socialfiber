@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchGroupUsers, joinGroup, leaveGroup } from '../../actions/groups';
+import { fetchGroupUsers, joinGroup, leaveGroup, leavePage } from '../../actions/groups';
 import NavBar from '../ToolBox/NavBar';
 import Tabs from '../ToolBox/Tabs';
 
@@ -9,6 +9,10 @@ class GroupPage extends Component {
 
   componentWillMount() {
     this.props.fetchGroupUsers(this.props.params.id);
+  }
+
+  componentWillUnmount() {
+    this.props.leavePage();
   }
 
   render() {
@@ -61,4 +65,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { fetchGroupUsers, joinGroup, leaveGroup })(GroupPage);
+export default connect(mapStateToProps, { fetchGroupUsers, joinGroup, leaveGroup, leavePage })(GroupPage);

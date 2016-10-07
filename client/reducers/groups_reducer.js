@@ -1,4 +1,4 @@
-import { FETCH_USER_GROUPS, FETCH_GROUP_USERS, FETCH_GROUP_POSTS, FETCH_GROUP_COMMENTS, CREATE_NEW_GROUP, JOIN_GROUP, LEAVE_GROUP, POST_GROUP_MESSAGE, POST_GROUP_COMMENT } from '../actions/types';
+import { FETCH_USER_GROUPS, FETCH_GROUP_USERS, FETCH_GROUP_POSTS, FETCH_GROUP_COMMENTS, CREATE_NEW_GROUP, JOIN_GROUP, LEAVE_GROUP, POST_GROUP_MESSAGE, POST_GROUP_COMMENT, LEAVE_PAGE } from '../actions/types';
 
 const INITIAL_STATE = {
   userGroups: [],
@@ -29,6 +29,8 @@ export default function(state=INITIAL_STATE, action){
       return { ...state }
     case POST_GROUP_COMMENT:
       return { ...state }
+    case LEAVE_PAGE:
+      return INITIAL_STATE
     default:
       return state;
   }
