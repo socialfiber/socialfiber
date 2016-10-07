@@ -72,6 +72,7 @@ html, body, #main{
 
 .splashpg-div{
   height: 100%;
+  width: 100%;
   background-image: url(./assets/orangetree.jpeg);
   background-repeat: no-repeat;
     background-position: center center;
@@ -118,3 +119,18 @@ html, body, #main{
 }
 
 /*splash page style*/
+
+.container, .creategroup {
+  width: 100%;
+  text-align: center;
+}
+
+
+.creategroupbutton {
+  background-color: #C6AC8F;
+  width: 60%;
+}
+
+.choose-topic{
+  color: #355834;
+}
