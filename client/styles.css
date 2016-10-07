@@ -187,3 +187,22 @@ span, .fr-btn {
 .all-groups-headers, .individual-groups-headers {
   width: 300px;
 }
+
+.container-centered {
+  text-align: center;
+}
+
+.all-groups-headers-join, .individual-groups-headers-join {
+  width: 20%;
+}
+
+.all-groups-table-body {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.center {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}

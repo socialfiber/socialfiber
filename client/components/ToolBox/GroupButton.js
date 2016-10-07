@@ -38,14 +38,17 @@ class GroupButton extends Component {
     if(this.state.groupStatus === false) {
       return (
         <div>
-          <RaisedButton onClick={() => {
+          <RaisedButton
+            backgroundColor="#667761"
+            labelColor="#E3E7D3"
+            label="Join Group"
+            fullWidth={true}
+            onClick={() => {
             joinGroup(this.props.groupID)
             .then((response) => {
               this.setStatus(true);
             })
-          }}>
-          Join Group
-          </RaisedButton>
+          }} />
         </div>
       );
     // } else if(this.state.groupStatus === 'requested') {
@@ -64,14 +67,16 @@ class GroupButton extends Component {
     } else if(this.state.groupStatus === true) {
       return (
         <div>
-          <RaisedButton onClick={() => {
+          <RaisedButton
+            backgroundColor="#C6AC8F"
+            labelColor="#E3E7D3"
+            label="Leave Group"
+            onClick={() => {
             leaveGroup(this.props.groupID)
             .then((response) => {
               this.setStatus(false);
             });
-          }}>
-          Leave Group
-          </RaisedButton>
+          }} />
         </div>
       );
     // } else if(this.state.groupStatus === 'owner') {
@@ -87,7 +92,9 @@ class GroupButton extends Component {
     } else {
       return (
         <div>
-          <RaisedButton>
+          <RaisedButton
+            backgroundColor="#667761"
+            labelColor="#E3E7D3">
           </RaisedButton>
         </div>
       );

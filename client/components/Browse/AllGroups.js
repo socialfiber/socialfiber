@@ -16,7 +16,7 @@ class AllGroups extends Component {
 
     this.state = {
       showCheckboxes: false,
-      enableSelectAll: false
+      enableSelectAll: false,
     };
   }
 
@@ -31,7 +31,7 @@ class AllGroups extends Component {
       return (
         <div>
           <NavBar />
-          <h3>Loading groups...</h3>
+          <h3 className="center">Loading groups...</h3>
         </div>
       );
     }
@@ -42,14 +42,14 @@ class AllGroups extends Component {
     });
     return (
       <MuiThemeProvider muiTheme={getMuiTheme()}>
-        <div>
+        <div className="container-centered">
           <NavBar />
-          <h1>Find a Group</h1>
-          <h4>Can't find a group? Start your own!</h4>
-          <CreateGroup />
+          <h1 className="center">Find a Group</h1>
+          <br></br>
           <Table className="all-groups-table">
             <TableBody
-              displayRowCheckbox={this.state.showCheckboxes}>
+              displayRowCheckbox={this.state.showCheckboxes}
+              className="all-groups-table-body container-centered">
               <TableHeader
                 adjustForCheckbox={this.state.showCheckboxes}
                 displaySelectAll={this.state.showCheckboxes}
@@ -57,7 +57,7 @@ class AllGroups extends Component {
                 <TableRow>
                   <TableHeaderColumn className="all-groups-headers">Name</TableHeaderColumn>
                   <TableHeaderColumn className="all-groups-headers">Description</TableHeaderColumn>
-                  <TableHeaderColumn className="all-groups-headers">Join</TableHeaderColumn>
+                  <TableHeaderColumn className="all-groups-headers-join">Join</TableHeaderColumn>
                 </TableRow>
               </TableHeader>
               <TableRow>
@@ -65,6 +65,9 @@ class AllGroups extends Component {
               </TableRow>
             </TableBody>
           </Table>
+          <br></br>
+          <h4>Can't find a group? Start your own!</h4>
+          <CreateGroup />
         </div>
       </MuiThemeProvider>
     );
