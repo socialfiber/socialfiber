@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchAllUsers } from '../../actions/users';
 import NavBar from '../ToolBox/NavBar';
+import ProfilePic from '../ToolBox/ProfilePic';
 import IndividualUser from '../ToolBox/IndividualUser';
 import FriendRequestButton from '../ToolBox/FriendRequestButton';
 
@@ -25,6 +26,7 @@ class AllUsers extends Component {
       const usersList = this.props.users.map((user, idx) => {
         return (
           <li key={idx} >
+            <ProfilePic userID={user.id} />
             <IndividualUser username={user.username} img={user.img} otherID={user.id} />
             <FriendRequestButton otherID={user.id} />
           </li>

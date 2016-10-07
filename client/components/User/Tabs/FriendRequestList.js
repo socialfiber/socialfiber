@@ -1,6 +1,7 @@
 import React from 'react';
 import IndividualUser from '../../ToolBox/IndividualUser';
 import FriendRequestButton from '../../ToolBox/FriendRequestButton';
+import ProfilePic from '../../ToolBox/ProfilePic';
 
 
 const FriendRequestList = (props) => {
@@ -9,6 +10,7 @@ const FriendRequestList = (props) => {
     const friendRequests = props.friendRequests.map((friend, idx) => {
       return (
         <li key={idx}>
+          <ProfilePic userID={friend.user2_id} />
           <IndividualUser username={friend.user2_username} img={friend.img} otherID={friend.user2_id} />
           <FriendRequestButton otherID={friend.user2_id} />
         </li>

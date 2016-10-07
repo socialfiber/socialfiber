@@ -45,7 +45,7 @@ class UserProfile extends Component {
         return (
           <div>
             <NavBar />
-            <ProfilePic />
+            <ProfilePic userID={this.props.userData.id} />
             <ul>
               <li>Age: {this.props.userData.age}</li>
               <li>Gender: {this.props.userData.gender}</li>
