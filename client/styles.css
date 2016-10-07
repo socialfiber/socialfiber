@@ -122,6 +122,7 @@ html, body, #main{
 /* -------------------- Splash Page -------------------- */
 
 .container, .creategroup {
+  font-family: 'Lato', sans-serif;
   width: 100%;
   text-align: center;
 }
