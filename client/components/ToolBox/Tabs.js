@@ -39,14 +39,17 @@ class Tabs extends Component {
   }
 
   render() {
-
+    
+    const tabsList = this.state.tabsList.map((tab, idx) => {
+      return (
+        <li key={idx} onClick={()=>this.changeTab(tab.component)}>{tab.label}</li>
+      );
+    });
     return (
       <div>
         <nav>
           <ul>
-            <li onClick={()=>this.changeTab('FoodDiary')}>Food Diary</li>
-            <li onClick={()=>this.changeTab('MyFriends')}>My Friends</li>
-            <li onClick={()=>this.changeTab('MyGroups')}>My Groups</li>
+            {tabsList}
           </ul>
           <TabContent currentTab={this.state.currentTab} />
         </nav>

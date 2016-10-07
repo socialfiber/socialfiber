@@ -1,26 +1,54 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
+import IndividualUser from '../ToolBox/IndividualUser';
+import FriendRequestButton from '../ToolBox/FriendRequestButton';
 
 
 class GroupUsersList extends Component {
 
+	constructor(props) {
+		super(props);
+		this.state = {
+		}
+	}
+
 	render() {
-		if(this.props.user) {
+		
+		if(this.props.groupUsers.length) {
+			console.log(this.props.groupUsers);
+			const groupUsers = this.props.groupUsers.map((user, idx) => {
+				return (
+					<li key={idx} >
+						<IndividualUser username={user.username} otherID={user.id} />
+						<FriendRequestButton otherID={user.id} />
+					</li>
+				)
+			});
 			return (
-				<li>
-					<Link to = {'browseprofile/' + this.props.user.id}>{this.props.user.username}</Link>
-				</li>
+				<div>
+					<ul>
+						{groupUsers}
+					</ul>
+				</div>
 			);
-		} else if(!this.props.user){
+		} else if(!this.props.groupUsers.length) {
 			return (
-				<tr>
-					<td>There are no other users in this group.</td>
-				</tr>
+				<div>
+					<h3>Nobody has joined this group yet.</h3>
+          <h4>Be the first one to join this group!</h4>
+				</div>
 			);
 		}
+
 	}
 
 }
 
-export default connect(null)(GroupUsersList);
+const mapStateToProps = (state) => {
+	return {
+		groupUsers: state.groups.groupUsers
+	}
+}
+
+export default connect(mapStateToProps, null)(GroupUsersList);

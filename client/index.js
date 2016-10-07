@@ -12,7 +12,7 @@ import SignIn from './components/Public/SignIn';
 import Questionnaire from './components/User/Edit/Questionnaire';
 import UserProfile from './components/User/UserProfile';
 import AllGroups from './components/Browse/AllGroups';
-import GroupWall from './components/Groups/GroupWall';
+import GroupPage from './components/Groups/GroupPage';
 import BrowseProfile from './components/User/BrowseProfile';
 
 
@@ -42,7 +42,7 @@ ReactDOM.render(
     	<Route path='/questionnaire' onEnter={ensureAuthenticated} component={Questionnaire} />
       <Route path='/userprofile' onEnter={ensureAuthenticated} component={UserProfile} />
       <Route path='/viewallgroups' onEnter={ensureAuthenticated} component={AllGroups} />
-      <Route path ='/groupwall/:id/:groupname' onEnter={ensureAuthenticated} component={GroupWall} />
+      <Route path ='/groupwall/:id/:groupname' onEnter={ensureAuthenticated} component={GroupPage} />
       <Route path ='/browseprofile/:id' onEnter={ensureAuthenticated} component={BrowseProfile} />
     </Router>
   </Provider>

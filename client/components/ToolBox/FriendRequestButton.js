@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { fetchFriendshipStatus, sendFriendRequest, acceptFriendRequest, deleteFriendRequest } from '../../actions/friends';
+import Cookies from 'js-cookie';
+
 
 class FriendRequestButton extends Component {
 
@@ -13,12 +15,14 @@ class FriendRequestButton extends Component {
   }
 
   getStatus() {
-    fetchFriendshipStatus(this.props.otherID)
-    .then((response) => {
-      this.setState({
-        friendshipStatus: response.payload
+    if(+Cookies.get('userID') !== this.props.otherID) {
+      fetchFriendshipStatus(this.props.otherID)
+      .then((response) => {
+        this.setState({
+          friendshipStatus: response.payload
+        });
       });
-    });
+    }
   }
 
   setStatus(response) {
@@ -94,12 +98,7 @@ class FriendRequestButton extends Component {
         </div>
       );
     } else {
-      return (
-        <div>
-          <button>
-          </button>
-        </div>
-      );
+      return null;
     }
 
   }
