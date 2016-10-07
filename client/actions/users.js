@@ -6,6 +6,7 @@ import Cookies from 'js-cookie';
 
 export function fetchAllUsers() {
   const data = {
+    params: { userID: Cookies.get('userID')},
     headers: { 'x-access-token': Cookies.get('token') }
   }
   return axios.get('/api/users/getAllUsers', data)
@@ -120,5 +121,3 @@ export function fetchProfilePic(userID) {
 export function resetError() {
   return { type: CHANGE_PASSWORD, payload: '' }
 }
-
-

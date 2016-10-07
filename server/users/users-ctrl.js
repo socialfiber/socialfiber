@@ -64,7 +64,7 @@ const users = {
             msg: 'Incorrect Password.'
           });
         }
-      })      
+      })
       .catch((err) => {
         res.status(400).send({
           msg: 'Error comparing passwords.'
@@ -158,7 +158,12 @@ const users = {
   '/api/users/getAllUsers': {
     'get': (req, res) => {
       Users.findAll({
-        attributes: ['id', 'username']
+        attributes: ['id', 'username'],
+        where: {
+          id: {
+            $ne: req.query.userID
+          }
+        }
       })
       .then((users) => {
         res.status(200).json(users);
@@ -170,7 +175,7 @@ const users = {
       });
     }
   }
-  
+
 }
 
 module.exports = users;
