@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { fetchGroupStatus, joinGroup, leaveGroup } from '../../actions/groups';
+import RaisedButton from 'material-ui/RaisedButton';
+
 
 class GroupButton extends Component {
 
@@ -30,67 +32,67 @@ class GroupButton extends Component {
   componentWillMount() {
     this.getStatus();
   }
-  
+
   render() {
 
     if(this.state.groupStatus === false) {
       return (
         <div>
-          <button onClick={() => {
+          <RaisedButton onClick={() => {
             joinGroup(this.props.groupID)
             .then((response) => {
               this.setStatus(true);
             })
           }}>
           Join Group
-          </button>
+          </RaisedButton>
         </div>
       );
     // } else if(this.state.groupStatus === 'requested') {
     //   return (
     //     <div>
-    //       <button onClick={() => {
+    //       <RaisedButton onClick={() => {
     //         leaveGroup(this.props.groupID)
     //         .then((response) => {
     //           this.setStatus(false);
     //         });
     //       }}>
     //       Cancel Request
-    //       </button>
+    //       </RaisedButton>
     //     </div>
     //   );
     } else if(this.state.groupStatus === true) {
       return (
         <div>
-          <button onClick={() => {
+          <RaisedButton onClick={() => {
             leaveGroup(this.props.groupID)
             .then((response) => {
               this.setStatus(false);
             });
           }}>
           Leave Group
-          </button>
+          </RaisedButton>
         </div>
       );
     // } else if(this.state.groupStatus === 'owner') {
     //   return (
     //     <div>
-    //       <button onClick={() => {
+    //       <RaisedButton onClick={() => {
     //         deleteGroup(this.props.groupID);
     //       }}>
     //       Delete Group
-    //       </button>
+    //       </RaisedButton>
     //     </div>
     //   );
     } else {
       return (
         <div>
-          <button>
-          </button>
+          <RaisedButton>
+          </RaisedButton>
         </div>
       );
     }
-    
+
   }
 
 }

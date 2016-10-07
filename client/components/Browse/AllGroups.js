@@ -47,7 +47,7 @@ class AllGroups extends Component {
           <h1>Find a Group</h1>
           <h4>Can't find a group? Start your own!</h4>
           <CreateGroup />
-          <Table>
+          <Table className="all-groups-table">
             <TableBody
               displayRowCheckbox={this.state.showCheckboxes}>
               <TableHeader
@@ -55,11 +55,14 @@ class AllGroups extends Component {
                 displaySelectAll={this.state.showCheckboxes}
                 enableSelectAll={this.state.enableSelectAll}>
                 <TableRow>
-                  <TableHeaderColumn>Name</TableHeaderColumn>
-                  <TableHeaderColumn>Description</TableHeaderColumn>
+                  <TableHeaderColumn className="all-groups-headers">Name</TableHeaderColumn>
+                  <TableHeaderColumn className="all-groups-headers">Description</TableHeaderColumn>
+                  <TableHeaderColumn className="all-groups-headers">Join</TableHeaderColumn>
                 </TableRow>
               </TableHeader>
+              <TableRow>
                 {groupsList}
+              </TableRow>
             </TableBody>
           </Table>
         </div>

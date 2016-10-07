@@ -176,4 +176,14 @@ span, .fr-btn {
 
 .username-div {
   margin-bottom: 10px;
+
+/*all groups style*/
+
+.all-groups-table {
+  width: 100%;
+  table-layout: auto;
+}
+
+.all-groups-headers, .individual-groups-headers {
+  width: 300px;
 }
