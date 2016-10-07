@@ -7,7 +7,9 @@ import { submitChangePassword, resetError } from '../../../actions/users';
 class ChangePassword extends Component {
 
   render() {
+
     const { handleSubmit, submitting } = this.props;
+    
     return (
       <div>
         <form onSubmit={handleSubmit(this.props.submitChangePassword)} >
@@ -28,6 +30,7 @@ class ChangePassword extends Component {
         </form>
       </div>
     );
+    
   }
 
 }

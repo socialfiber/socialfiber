@@ -7,12 +7,6 @@ import FriendRequestButton from '../ToolBox/FriendRequestButton';
 
 class GroupUsersList extends Component {
 
-	constructor(props) {
-		super(props);
-		this.state = {
-		}
-	}
-
 	render() {
 		
 		if(this.props.groupUsers.length) {
@@ -22,7 +16,7 @@ class GroupUsersList extends Component {
 						<IndividualUser username={user.username} otherID={user.id} />
 						<FriendRequestButton otherID={user.id} />
 					</li>
-				)
+				);
 			});
 			return (
 				<div>
@@ -38,6 +32,8 @@ class GroupUsersList extends Component {
           <h4>Be the first one to join this group!</h4>
 				</div>
 			);
+		} else {
+			return null;
 		}
 
 	}

@@ -6,10 +6,10 @@ import GroupWallComments from './GroupWallComments';
 
 class GroupWallMessagesNoReply extends Component {
 
-	render(){
-		const postComments = this.props.post.comments.map((comment, idx) =>
-			<GroupWallComments key={idx} comment={comment} />
-		);
+	render() {
+
+		const postComments = this.props.post.comments.map((comment, idx) => <GroupWallComments key={idx} comment={comment} />);
+
 		return (
 			<table>
 				<tbody>
@@ -26,6 +26,7 @@ class GroupWallMessagesNoReply extends Component {
 				</tbody>
 			</table>
 		);
+
 	}
 	
 }

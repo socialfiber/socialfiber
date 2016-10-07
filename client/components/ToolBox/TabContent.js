@@ -9,9 +9,7 @@ import GroupUsersList from '../Groups/GroupUsersList';
 const TabContent = (props) => {
   
   if(props.currentTab === null) {
-    return (
-      <div>Please Select Tab</div>
-    )
+    return null;
   } else if(props.currentTab === 'FoodDiary') {
     return (
       <FoodDiary />

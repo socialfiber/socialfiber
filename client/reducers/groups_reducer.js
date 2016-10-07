@@ -1,41 +1,36 @@
-import { FETCH_ALL_GROUPS, FETCH_USER_GROUPS, LEAVE_GROUP, JOIN_GROUP, FETCH_GROUP_POSTS, POST_MESSAGE, POST_COMMENT, FETCH_COMMENTS, FETCH_ALL_USERS, CREATE_NEW_GROUP } from '../actions/types';
+import { FETCH_USER_GROUPS, FETCH_GROUP_USERS, FETCH_GROUP_POSTS, FETCH_GROUP_COMMENTS, CREATE_NEW_GROUP, JOIN_GROUP, LEAVE_GROUP, POST_GROUP_MESSAGE, POST_GROUP_COMMENT, LEAVE_PAGE } from '../actions/types';
 
 const INITIAL_STATE = {
-  allGroups: [],
   userGroups: [],
   groupUsers: [],
-  leaveGroupResp: '',
-  groupId: null,
-  joinGroupResp: '',
+  membership: null,
   groupPosts: [],
   postMessages: [],
-  postComment: [],
-  comments: [],
-  newGroup: null
+  postComments: []
 }
 
 export default function(state=INITIAL_STATE, action){
   switch(action.type) {
-    case FETCH_ALL_GROUPS:
-      return { ...state, allGroups: action.payload };
     case FETCH_USER_GROUPS:
       return { ...state, userGroups: action.payload };
-    case LEAVE_GROUP:
-      return { ...state, leaveGroupResp: action.payload };
-    case JOIN_GROUP:
-      return { ...state, groupId: action.payload.groupId, joinGroupResp: action.payload.data};
+    case FETCH_GROUP_USERS:
+      return { ...state, groupUsers: action.payload.groupUsers, membership: action.payload.membership };
     case FETCH_GROUP_POSTS:
       return { ...state, groupPosts: action.payload };
-    case POST_MESSAGE:
-      return { ...state, postMessages: action.payload };
-    case POST_COMMENT:
-      return { ...state, postComment: action.payload };
-    case FETCH_COMMENTS:
+    case FETCH_GROUP_COMMENTS:
       return { ...state, comments: action.payload };
-    case FETCH_ALL_USERS:
-      return { ...state, groupUsers: action.payload };
     case CREATE_NEW_GROUP:
-      return { ...state, newGroup: action.payload };
+     return { ...state }
+    case JOIN_GROUP:
+      return { ...state }
+    case LEAVE_GROUP:
+      return { ...state, membership: null };
+    case POST_GROUP_MESSAGE:
+      return { ...state }
+    case POST_GROUP_COMMENT:
+      return { ...state }
+    case LEAVE_PAGE:
+      return INITIAL_STATE
     default:
       return state;
   }

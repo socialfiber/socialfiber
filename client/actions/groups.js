@@ -1,19 +1,17 @@
-import { FETCH_ALL_GROUPS, FETCH_USER_GROUPS, LEAVE_GROUP, JOIN_GROUP, FETCH_GROUP_POSTS, POST_MESSAGE, POST_COMMENT, FETCH_COMMENTS, FETCH_ALL_USERS, CREATE_NEW_GROUP } from './types';
+import { FETCH_ALL_GROUPS, FETCH_USER_GROUPS, FETCH_GROUP_USERS, FETCH_GROUP_POSTS, FETCH_GROUP_COMMENTS, CREATE_NEW_GROUP, JOIN_GROUP, LEAVE_GROUP, POST_GROUP_MESSAGE, POST_GROUP_COMMENT, LEAVE_PAGE } from '../actions/types';
 import { browserHistory } from 'react-router';
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import _ from 'underscore';
 
 
 export function fetchAllGroups() {
   const data = {
-    params: {
-      userID: Cookies.get('userID')
-    },
     headers: {
       'x-access-token': Cookies.get('token')
     }
   }
-  return axios.get('/api/groups/getAllGroups', data)
+  return axios.get('/api/groups/allGroups', data)
     .then((response) => {
       return { type: FETCH_ALL_GROUPS, payload: response.data }
     })
@@ -25,15 +23,14 @@ export function fetchAllGroups() {
 export function fetchUserGroups() {
   const data = {
     params: {
-      user_id: Cookies.get('userID')
+      userID: Cookies.get('userID')
     },
     headers: {
       'x-access-token': Cookies.get('token')
     }
   }
-  return axios.get('/api/groups/getUserGroups', data)
+  return axios.get('/api/groups/userGroups', data)
     .then((response) => {
-      console.log(response)
       return { type: FETCH_USER_GROUPS, payload: response.data }
     })
     .catch((error) => {
@@ -41,47 +38,62 @@ export function fetchUserGroups() {
     });
 }
 
-export function joinGroup(group_id) {
+export function fetchGroupStatus(groupID) {
   const data = {
-    group_id: group_id,
-    user_id: Cookies.get('userID')
+    params: {
+      userID: Cookies.get('userID'),
+      groupID: groupID
+    },
+    headers: {
+      'x-access-token': Cookies.get('token')
+    }
+  }
+  return axios.get('/api/groups/groupStatus', data)
+    .then((response) => {
+      return { type: GROUP_STATUS, payload: response.data }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
+
+export function joinGroup(groupID) {
+  const data = {
+    groupID: groupID,
+    userID: Cookies.get('userID')
   }
   const config = {
     headers: { 'x-access-token' :  Cookies.get('token')}
   }
   return axios.post('/api/groups/addUser', data, config)
     .then((response) => {
-      const obj = {
-        groupId: group_id,
-        data: response.data
-      };
-      return { type: JOIN_GROUP, payload: obj }
+      return { type: JOIN_GROUP }
     })
     .catch((error) => {
       console.error(error);
     });
 }
 
-export function leaveGroup(group_id) {
+export function leaveGroup(groupID) {
   const data = {
-    user_id: Cookies.get('userID'),
-    group_id: group_id
+    userID: Cookies.get('userID'),
+    groupID: groupID
   };
   const config = {
     headers: { 'x-access-token': Cookies.get('token') }
   }
   return axios.post('/api/groups/leaveGroup', data, config)
     .then((response) => {
-      return { type: LEAVE_GROUP, payload: response }
+      return { type: LEAVE_GROUP }
     })
     .catch((error) => {
       console.error(error);
     });
 }
 
-export function fetchGroupPosts(group_id) {
+export function fetchGroupPosts(groupID) {
   const data = {
-    params: { group_id: group_id },
+    params: { groupID: groupID },
     headers: { 'x-access-token': Cookies.get('token') }
   }
   return axios.get('/api/posts/getMessage', data)
@@ -93,10 +105,10 @@ export function fetchGroupPosts(group_id) {
     });
 }
 
-export function postMessages(message, filler, groupObject) {
+export function postMessage(message) {
   const data = {
-    group_id: groupObject.myGroups.groupUsers[0].groups[0].id,
-    group_name: groupObject.myGroups.groupUsers[0].groups[0].name,
+    groupID: Cookies.get('groupID'),
+    groupName: Cookies.get('groupName'),
     username: Cookies.get('username'),
     message: message.message
   }
@@ -105,16 +117,16 @@ export function postMessages(message, filler, groupObject) {
   }
   return axios.post('/api/posts/postMessage', data, config)
     .then((response) => {
-      return { type: POST_MESSAGE, payload: response.data }
+      return { type: POST_GROUP_MESSAGE }
     })
     .catch((error) => {
       console.error(error);
     });
 }
 
-export function postComment(message, filler, commentObject){
+export function postComment(message, filler, commentObject) {
   const data = {
-    post_id: commentObject.myGroups.commentObject.id,
+    postID: commentObject.myGroups.commentObject.id,
     username: Cookies.get('username'),
     message: message.message
   }
@@ -123,42 +135,49 @@ export function postComment(message, filler, commentObject){
   }
   return axios.post('/api/comments/postComment', data, config)
     .then((response) => {
-      return { type: POST_COMMENT, payload: response.data }
+      return { type: POST_GROUP_COMMENT }
     })
     .catch((error) => {
       console.error(error);
     });
 }
 
-export function fetchComments(post_id) {
+export function fetchComments(groupID) {
   const data = {
-    params: { post_id: post_id },
+    params: { groupID: groupID },
     headers: { 'x-access-token': Cookies.get('token') }
   }
   return axios.get('/api/comments/getComments', data)
     .then((response) => {
-      return { type: FETCH_COMMENTS, payload: response.data }
+      return { type: FETCH_GROUP_COMMENTS, payload: response.data }
     })
     .catch((error) => {
       console.error(error);
     });
 }
 
-export function fetchAllUsers(group_id) {
+export function fetchGroupUsers(groupObj) {
   const data = {
-    params: { group_id: group_id },
+    params: { groupID: groupObj.groupID },
     headers: { 'x-access-token': Cookies.get('token') }
   }
-  return axios.get('/api/groups/fetchAllUsers', data)
+  return axios.get('/api/groups/groupUsers', data)
     .then((response) => {
-      return { type: FETCH_ALL_USERS, payload: response.data }
+      const membership = _.findWhere(response.data, {id: +Cookies.get('userID')}) ? true : false;
+      const data = {
+        groupUsers: response.data,
+        membership: membership
+      }
+      Cookies.set('groupID', groupObj.groupID);
+      Cookies.set('groupName', groupObj.groupName);
+      return { type: FETCH_GROUP_USERS, payload: data }
     })
     .catch((error) => {
       console.error(error);
     });
 }
 
-export function createNewGroup(newGroupObj){
+export function createNewGroup(newGroupObj) {
   newGroupObj.userID =  Cookies.get('userID');
   const data = newGroupObj;
   const config = {
@@ -168,11 +187,15 @@ export function createNewGroup(newGroupObj){
   }
   return axios.post('/api/groups/createGroups', data, config)
     .then((response) => {
-      Cookies.set('group_id', response.data.group.id);
-      Cookies.set('groupName', response.data.group.name);
       return { type : CREATE_NEW_GROUP, payload: response.data }
     })
     .catch((error) => {
       console.error(error);
     });
+}
+
+export function leavePage() {
+  Cookies.remove('groupID');
+  Cookies.remove('groupName');
+  return { type: LEAVE_PAGE }
 }

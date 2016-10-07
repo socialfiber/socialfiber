@@ -3,8 +3,9 @@ import React from 'react';
 
 const GroupWallComments = (props) => {
 
-	if(props.comment) {
-		return (
+	return (
+
+		<div>
 			<table>
 				<tbody>
 					<tr>
@@ -14,14 +15,9 @@ const GroupWallComments = (props) => {
 					</tr>
 				</tbody>
 			</table>
-		);
-	} else if(!props.comment.message) {
-		return (
-			<tr>
-				<td>There are no comments. Please reply to add a comment.</td>
-			</tr>
-		);
-	}
+		</div>
+		
+	);
 
 }
 

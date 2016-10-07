@@ -17,7 +17,8 @@ class NavBar extends Component {
         <div>
           <ul className="nav navbar-nav">
             <li className="navItem"><Link to='/userprofile'>Home</Link></li>
-            <li className="navItem"><Link to='/viewallgroups'> All Groups</Link></li>
+            <li className="navItem"><Link to='/viewallgroups'>All Groups</Link></li>
+            <li className="navItem"><Link to='/viewallusers'>All Users</Link></li>
             <li className="navItem"><SignOut /></li>
           </ul>
         </div>

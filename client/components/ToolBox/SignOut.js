@@ -6,11 +6,13 @@ import { submitSignOut } from '../../actions/auth'
 class SignOut extends Component {
 
   render() {
+
     return (
     	<div>
     		<button onClick={this.props.submitSignOut}>Sign Out</button>
     	</div>
     );
+    
   }
 
 }

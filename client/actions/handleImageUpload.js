@@ -29,11 +29,11 @@ export function handleImageUpload(file) {
       }
       axios.post('/api/profilePics/pic', data, config)
       .then((response) => {
-        return { type: HANDLE_IMG_UPLOAD, payload: 'Successfully uploaded image.' }
+        return { type: HANDLE_IMG_UPLOAD, payload: 'Successfully stored image.' }
       })
       .catch((error) => {
         console.error(error);
-        return { type: HANDLE_IMG_UPLOAD, payload: 'Error uploading image.' }
+        return { type: HANDLE_IMG_UPLOAD, payload: 'Error storing image.' }
       });
     })
     .catch((error)=> {
