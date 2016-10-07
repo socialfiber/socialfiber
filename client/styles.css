@@ -1,5 +1,6 @@
 html, body, #main{
   height: 100%;
+    font-family: 'Lato', sans-serif;
 }
 
 .container {
@@ -66,3 +67,54 @@ html, body, #main{
     display: block;
     margin-top: 10px;
 }
+
+/*splash page style*/
+
+.splashpg-div{
+  height: 100%;
+  background-image: url(./assets/orangetree.jpeg);
+  background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.signin, .signup {
+  color: white;
+}
+
+.navitem, .splashpg {
+  display: inline-block;
+  text-align: right;
+  margin-right: 1px;
+  margin-top: 10px;
+  margin-left: 10px;
+  color: white;
+}
+
+
+.jumbotron, .banner{
+  background-color: transparent;
+  height: 100%;
+  color: white;
+  margin-top: 18%;
+  vertical-align: middle;
+  text-align: center;
+  width: 100%;
+}
+
+.oneliner {
+  text-align: center;
+}
+
+
+.header-splashpg {
+  position: block;
+  font-size: 4em;
+  text-align: center;
+}
+
+/*splash page style*/
