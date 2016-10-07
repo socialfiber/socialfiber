@@ -27,7 +27,7 @@ class SignIn extends Component {
                         <FlatButton type="submit" disabled={submitting} className="btn btn-lg btn-primary btn-block" >Sign In</FlatButton>
                       </form>
                   </div>
-                  <Link to={'/signup'} className="text-center new-account">Sign up now!</Link>
+                  <Link to={'/signup'} className="text-center new-account">Create an Account</Link>
               </div>
           </div>
       </div>
