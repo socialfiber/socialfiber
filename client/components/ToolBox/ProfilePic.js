@@ -25,7 +25,7 @@ class ProfilePic extends Component {
     if(this.state.url === null) {
       return (
         <div>
-          <img src="../../assets/profile-icon-9.png"></img>
+          <img src="../../assets/profile-icon-9.png" style={{ width: "200px", height: "200px" }}></img>
         </div>
       );
     } else if(this.state.url) {
@@ -37,10 +37,9 @@ class ProfilePic extends Component {
     } else {
       return null;
     }
-   
+
 
   }
-
 }
 
 export default ProfilePic;
