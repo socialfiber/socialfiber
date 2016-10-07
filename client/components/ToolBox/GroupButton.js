@@ -21,9 +21,9 @@ class GroupButton extends Component {
     });
   }
 
-  setStatus(response) {
+  setStatus(status) {
     this.setState({
-      groupStatus: response.payload
+      groupStatus: status
     });
   }
 
@@ -39,49 +39,49 @@ class GroupButton extends Component {
           <button onClick={() => {
             joinGroup(this.props.groupID)
             .then((response) => {
-              this.setStatus(response);
+              this.setStatus(true);
             })
           }}>
           Join Group
           </button>
         </div>
       );
-    } else if(this.state.groupStatus === 'requested') {
-      return (
-        <div>
-          <button onClick={() => {
-            leaveGroup(this.props.groupID)
-            .then((response) => {
-              this.setStatus(response);
-            });
-          }}>
-          Cancel Request
-          </button>
-        </div>
-      );
+    // } else if(this.state.groupStatus === 'requested') {
+    //   return (
+    //     <div>
+    //       <button onClick={() => {
+    //         leaveGroup(this.props.groupID)
+    //         .then((response) => {
+    //           this.setStatus(false);
+    //         });
+    //       }}>
+    //       Cancel Request
+    //       </button>
+    //     </div>
+    //   );
     } else if(this.state.groupStatus === true) {
       return (
         <div>
           <button onClick={() => {
             leaveGroup(this.props.groupID)
             .then((response) => {
-              this.setStatus(response);
+              this.setStatus(false);
             });
           }}>
           Leave Group
           </button>
         </div>
       );
-    } else if(this.state.groupStatus === 'owner') {
-      return (
-        <div>
-          <button onClick={() => {
-            deleteGroup(this.props.groupID);
-          }}>
-          Delete Group
-          </button>
-        </div>
-      );
+    // } else if(this.state.groupStatus === 'owner') {
+    //   return (
+    //     <div>
+    //       <button onClick={() => {
+    //         deleteGroup(this.props.groupID);
+    //       }}>
+    //       Delete Group
+    //       </button>
+    //     </div>
+    //   );
     } else {
       return (
         <div>
