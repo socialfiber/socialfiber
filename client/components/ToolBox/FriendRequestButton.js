@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { fetchFriendshipStatus, sendFriendRequest, acceptFriendRequest, deleteFriendRequest } from '../../actions/friends';
 import Cookies from 'js-cookie';
+import RaisedButton from 'material-ui/RaisedButton';
 
 
 class FriendRequestButton extends Component {
@@ -34,67 +35,67 @@ class FriendRequestButton extends Component {
   componentDidMount() {
     this.getStatus();
   }
-  
+
   render() {
 
     if(this.state.friendshipStatus === null) {
       return (
         <div>
-          <button onClick={() => {
+          <RaisedButton onClick={() => {
             sendFriendRequest(this.props.otherID)
             .then((response) => {
               this.setStatus(response);
             })
           }}>
-          Send Friend Request
-          </button>
+          <span className="fr-btn" >Send Friend Request</span>
+          </RaisedButton>
         </div>
       );
     } else if(this.state.friendshipStatus === 'requestee') {
       return (
         <div>
-          <button onClick={() => {
+          <RaisedButton onClick={() => {
             acceptFriendRequest(this.props.otherID)
             .then((response) => {
               this.setStatus(response);
             });
           }}>
           Accept Friend Request
-          </button>
-          <button onClick={() => {
+          </RaisedButton>
+          <RaisedButton onClick={() => {
             deleteFriendRequest(this.props.otherID)
             .then((response) => {
               this.setStatus(response);
             });
           }}>
           Reject Friend Request
-          </button>
+          </RaisedButton>
         </div>
       );
     } else if(this.state.friendshipStatus === 'requestor') {
       return (
         <div>
-          <button onClick={() => {
+          <RaisedButton onClick={() => {
             deleteFriendRequest(this.props.otherID)
             .then((response) => {
               this.setStatus(response);
             });
           }}>
           Cancel Friend Request
-          </button>
+          </RaisedButton>
         </div>
       );
     } else if(this.state.friendshipStatus === 'friends') {
       return (
         <div>
-          <button onClick={() => {
+          <RaisedButton onClick={() => {
             deleteFriendRequest(this.props.otherID)
             .then((response) => {
               this.setStatus(response);
             });
           }}>
           Unfriend
-          </button>
+          </RaisedButton>
         </div>
       );
     } else {

@@ -4,10 +4,13 @@ import { fetchAllUsers } from '../../actions/users';
 import NavBar from '../ToolBox/NavBar';
 import IndividualUser from '../ToolBox/IndividualUser';
 import FriendRequestButton from '../ToolBox/FriendRequestButton';
+import ProfilePic from '../ToolBox/ProfilePic';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 
 class AllUsers extends Component {
-  
+
   componentWillMount() {
     this.props.fetchAllUsers();
   }
@@ -24,16 +27,21 @@ class AllUsers extends Component {
     } else {
       const usersList = this.props.users.map((user, idx) => {
         return (
-          <li key={idx} >
-            <IndividualUser username={user.username} img={user.img} otherID={user.id} />
-            <FriendRequestButton otherID={user.id} />
-          </li>
+          <MuiThemeProvider muiTheme={getMuiTheme()}>
+            <li key={idx} className="list-group-item user-block col-lg-4 col-centered">
+              <div className="bottom-align-text">
+                <ProfilePic />
+                <IndividualUser username={user.username} img={user.img} otherID={user.id} />
+                <FriendRequestButton otherID={user.id} />
+              </div>
+            </li>
+          </MuiThemeProvider>
         );
       });
       return (
         <div>
           <NavBar />
-          <ul>
+          <ul className="list-group container container-centered">
             {usersList}
           </ul>
         </div>

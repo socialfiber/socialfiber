@@ -15,22 +15,23 @@ html, body, #main{
   background-size: cover;
 }
 
+/* -------------------- Sign In & Sign Up -------------------- */
+
 .text-line {
   width: 300px !important;
 }
 
-.form-signin {
+.form-signin-signup {
     max-width: 330px;
     padding: 15px;
     margin: 0 auto;
 }
 
-.form-signin .form-signin-heading, .form-signin {
+.form-signin-signup .form-signin-signup-heading, .form-signin-signup {
     margin-bottom: 10px;
 }
 
-
-.form-signin .form-control {
+.form-signin-signup .form-control {
     position: relative;
     font-size: 16px;
     height: auto;
@@ -40,17 +41,17 @@ html, body, #main{
     box-sizing: border-box;
 }
 
-.form-signin .form-control:focus {
+.form-signin-signup .form-control:focus {
     z-index: 2;
 }
 
-.form-signin input[type="text"] {
+.form-signin-signup input[type="text"] {
     margin-bottom: -1px;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
 }
 
-.form-signin input[type="password"] {
+.form-signin-signup input[type="password"] {
     margin-bottom: 10px;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
@@ -65,4 +66,46 @@ html, body, #main{
 .new-account {
     display: block;
     margin-top: 10px;
+}
+
+.main-btn {
+  margin-top: 20px !important;
+}
+
+/* -------------------- All Users -------------------- */
+
+.user-block {
+  text-align: center;
+  height: 300px;
+  width: 230px;
+  margin: 30px;
+}
+
+span, .fr-btn {
+  text-align: center;
+  padding: 0 10px;
+}
+
+.container-centered {
+  text-align: center;
+}
+
+.col-centered {
+  display:inline-block;
+  float: none;
+}
+
+.bottom-align-text {
+  position: absolute;
+  bottom: 25px;
+  left: 0;
+  right: 0;
+}
+
+.all-users-name {
+  font-size: 18px;
+}
+
+.username-div {
+  margin-bottom: 10px;
 }

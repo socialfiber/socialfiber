@@ -4,9 +4,9 @@ import { Link } from 'react-router';
 
 const IndividualUser = (props) => {
   return (
-    <div>
+    <div className="username-div">
       <img src={props.img}></img>
-      <Link to={`/browseprofile/${props.otherID}`}>{props.username}</Link>
+      <Link className="all-users-name" to={`/browseprofile/${props.otherID}`}>{props.username}</Link>
     </div>
   );
 }

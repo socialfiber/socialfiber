@@ -4,7 +4,7 @@ const ProfilePic = (props) => {
 
     return (
       <div>
-        <img src="../../assets/profile-icon-9.png"></img>
+        <img src="../../assets/profile-icon-9.png" style={{ width: "200px", height: "200px" }}></img>
       </div>
     );
 
