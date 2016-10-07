@@ -121,6 +121,7 @@ html, body, #main{
 /*splash page style*/
 
 .container, .creategroup {
+  font-family: 'Lato', sans-serif;
   width: 100%;
   text-align: center;
 }
