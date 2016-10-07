@@ -19,8 +19,8 @@ class GroupUsersList extends Component {
 			console.log(this.props.groupUsers);
 			const groupUsers = this.props.groupUsers.map((user, idx) => {
 				return (
-					<li>
-						<IndividualUser key={idx} username={user.username} otherID={user.id} />
+					<li key={idx} >
+						<IndividualUser username={user.username} otherID={user.id} />
 						<FriendRequestButton otherID={user.id} />
 					</li>
 				)

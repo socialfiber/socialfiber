@@ -15,12 +15,14 @@ class FriendRequestButton extends Component {
   }
 
   getStatus() {
-    fetchFriendshipStatus(this.props.otherID)
-    .then((response) => {
-      this.setState({
-        friendshipStatus: response.payload
+    if(+Cookies.get('userID') !== this.props.otherID) {
+      fetchFriendshipStatus(this.props.otherID)
+      .then((response) => {
+        this.setState({
+          friendshipStatus: response.payload
+        });
       });
-    });
+    }
   }
 
   setStatus(response) {
@@ -35,12 +37,7 @@ class FriendRequestButton extends Component {
   
   render() {
 
-    if(Cookies.get('userID') === this.props.otherID) {
-      return (
-        <div>
-        </div>
-      );
-    } else if(this.state.friendshipStatus === null) {
+    if(this.state.friendshipStatus === null) {
       return (
         <div>
           <button onClick={() => {
@@ -101,12 +98,7 @@ class FriendRequestButton extends Component {
         </div>
       );
     } else {
-      return (
-        <div>
-          <button>
-          </button>
-        </div>
-      );
+      return null;
     }
 
   }
