@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { fetchGroupStatus, joinGroup, leaveGroup } from '../../actions/groups';
+import RaisedButton from 'material-ui/RaisedButton';
+
 
 class GroupButton extends Component {
 
@@ -30,67 +32,75 @@ class GroupButton extends Component {
   componentWillMount() {
     this.getStatus();
   }
-  
+
   render() {
 
     if(this.state.groupStatus === false) {
       return (
         <div>
-          <button onClick={() => {
+          <RaisedButton
+            backgroundColor="#667761"
+            labelColor="#E3E7D3"
+            label="Join Group"
+            fullWidth={true}
+            onClick={() => {
             joinGroup(this.props.groupID)
             .then((response) => {
               this.setStatus(true);
             })
-          }}>
-          Join Group
-          </button>
+          }} />
         </div>
       );
     // } else if(this.state.groupStatus === 'requested') {
     //   return (
     //     <div>
-    //       <button onClick={() => {
+    //       <RaisedButton onClick={() => {
     //         leaveGroup(this.props.groupID)
     //         .then((response) => {
     //           this.setStatus(false);
     //         });
     //       }}>
     //       Cancel Request
-    //       </button>
+    //       </RaisedButton>
     //     </div>
     //   );
     } else if(this.state.groupStatus === true) {
       return (
         <div>
-          <button onClick={() => {
+          <RaisedButton
+            backgroundColor="#C6AC8F"
+            labelColor="#E3E7D3"
+            label="Leave Group"
+            fullWidth={true}
+            onClick={() => {
             leaveGroup(this.props.groupID)
             .then((response) => {
               this.setStatus(false);
             });
-          }}>
-          Leave Group
-          </button>
+          }} />
         </div>
       );
     // } else if(this.state.groupStatus === 'owner') {
     //   return (
     //     <div>
-    //       <button onClick={() => {
+    //       <RaisedButton onClick={() => {
     //         deleteGroup(this.props.groupID);
     //       }}>
     //       Delete Group
-    //       </button>
+    //       </RaisedButton>
     //     </div>
     //   );
     } else {
       return (
         <div>
-          <button>
-          </button>
+          <RaisedButton
+            backgroundColor="#667761"
+            labelColor="#E3E7D3">
+          </RaisedButton>
         </div>
       );
     }
-    
+
   }
 
 }

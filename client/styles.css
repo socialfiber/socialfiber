@@ -130,6 +130,8 @@ html, body, #main{
 .creategroupbutton {
   background-color: #C6AC8F;
   width: 60%;
+  margin-bottom: 10px;
+  color: #E3E7D3;
 }
 
 .choose-topic{
@@ -176,4 +178,32 @@ span, .fr-btn {
 
 .username-div {
   margin-bottom: 10px;
+}
+
+/* -------------------- All Groups -------------------- */
+
+.all-groups-table {
+  width: 100%;
+  table-layout: auto;
+  display: inline;
+}
+
+.all-groups-headers, .individual-groups-headers {
+  width: 250px;
+  word-wrap:break-word;
+}
+
+.container-centered {
+  text-align: center;
+}
+
+.all-groups-table-body {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.center {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
 }

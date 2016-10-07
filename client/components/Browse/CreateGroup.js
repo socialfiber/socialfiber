@@ -20,17 +20,15 @@ class CreateGroup extends Component {
           <div className="row">
             <div className="col-sm-6 col-md-4 col-md-offset-4">
               <form onSubmit={ handleSubmit(this.props.createNewGroup) }>
-                <h4>Create a Group Based on Your Dietary Interests</h4>
-                <p className="choose-topic">You may choose a topic such as "paleo" or "vegetarian"</p>
+                <h5>Create a group based on your dietary interests.</h5>
+                <h5 className="choose-topic">You may choose a topic such as "paleo" or "vegetarian"</h5>
                 <div>
-                  <label>Name</label>
-                  <Field name='name' component={TextField} type='text' required/>
+                  <Field name='name' component={TextField} type='text' floatingLabelText="Name" required/>
                 </div>
                 <div>
-                  <label>Description</label>
-                  <Field name='description' component={TextField} type='text' required/>
+                  <Field name='description' component={TextField} type='text' floatingLabelText="Description" required/>
                 </div>
-                <button className="creategroupbutton btn btn-secondary" type="submit" disabled={submitting}>Create Group</button>
+                <button className="creategroupbutton btn btn-secondary" type="submit" disabled={submitting}>CREATE GROUP</button>
               </form>
         </div>
         </div>
