@@ -28,6 +28,7 @@ class GroupPage extends Component {
 
       return (
         <div>
+          <NavBar />
           <h1>{this.props.params.groupname}</h1>
           //if member show tabsList && leaveGroup
           <div>
