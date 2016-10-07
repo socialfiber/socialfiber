@@ -5,7 +5,6 @@ import NavBar from '../ToolBox/NavBar';
 import ProfilePic from '../ToolBox/ProfilePic';
 import IndividualUser from '../ToolBox/IndividualUser';
 import FriendRequestButton from '../ToolBox/FriendRequestButton';
-import ProfilePic from '../ToolBox/ProfilePic';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
@@ -42,7 +41,6 @@ class AllUsers extends Component {
       return (
         <div>
           <NavBar />
-          <h1>Find a User</h1>
           <ul className="list-group container container-centered">
             {usersList}
           </ul>
