@@ -4,10 +4,23 @@ import { fetchAllGroups } from '../../actions/groups';
 import NavBar from '../ToolBox/NavBar';
 import CreateGroup from './CreateGroup';
 import IndividualGroup from '../ToolBox/IndividualGroup';
+import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 
 class AllGroups extends Component {
-  
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      showCheckboxes: false,
+      enableSelectAll: false
+    };
+  }
+
+
   componentWillMount() {
     this.props.fetchAllGroups();
   }
@@ -28,21 +41,29 @@ class AllGroups extends Component {
       );
     });
     return (
-      <div>
-        <NavBar />
-        <h1>Find a Group</h1>
-        <h4>Can't find a group? Start your own!</h4>
-        <CreateGroup />
-        <table>
-          <tbody>
-            <tr>
-              <th>Name</th>
-              <th>Description</th>
-            </tr>
-            {groupsList}
-          </tbody>
-        </table>
-      </div>
+      <MuiThemeProvider muiTheme={getMuiTheme()}>
+        <div>
+          <NavBar />
+          <h1>Find a Group</h1>
+          <h4>Can't find a group? Start your own!</h4>
+          <CreateGroup />
+          <Table>
+            <TableBody
+              displayRowCheckbox={this.state.showCheckboxes}>
+              <TableHeader
+                adjustForCheckbox={this.state.showCheckboxes}
+                displaySelectAll={this.state.showCheckboxes}
+                enableSelectAll={this.state.enableSelectAll}>
+                <TableRow>
+                  <TableHeaderColumn>Name</TableHeaderColumn>
+                  <TableHeaderColumn>Description</TableHeaderColumn>
+                </TableRow>
+              </TableHeader>
+                {groupsList}
+            </TableBody>
+          </Table>
+        </div>
+      </MuiThemeProvider>
     );
   }
 
