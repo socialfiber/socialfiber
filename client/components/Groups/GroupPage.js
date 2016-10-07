@@ -4,46 +4,50 @@ import { fetchGroupPosts, fetchAllUsers, joinGroup, leaveGroup  } from '../../ac
 import Cookies from 'js-cookie';
 import NavBar from '../ToolBox/NavBar';
 import Tabs from '../ToolBox/Tabs';
+import _ from 'underscore';
 
 
 class GroupPage extends Component {
 
-    componentWillMount() {
-      this.props.fetchGroupPosts(this.props.params.id);
-      this.props.fetchAllUsers(this.props.params.id);
-    }
+  componentWillMount() {
+    this.props.fetchGroupPosts(this.props.params.id);
+    this.props.fetchAllUsers(this.props.params.id);
+  }
 
-    render() {
+  render() {
 
-      const tabsList = [
-        { label: 'Wall', component: 'GroupWall' },
-        { label: 'Members', component: 'GroupUsersList' }
-      ];
-      let isGroupMember = false;
-      for(let key in this.props.groupUsers) {
-        if(this.props.groupUsers[key].id === +Cookies.get('userID')) {
-          isGroupMember = true;
-        }
-      }
+    const tabsList = [
+      { label: 'Wall', component: 'GroupWall' },
+      { label: 'Members', component: 'GroupUsersList' }
+    ];
+    const isGroupMember = _.findWhere(this.props.groupUsers, {id: +Cookies.get('userID')}) ? true : false;
 
+    if(isGroupMember) {
       return (
         <div>
+          <NavBar />
           <h1>{this.props.params.groupname}</h1>
-          //if member show tabsList && leaveGroup
           <div>
           Leave this group!
-          <button onClick = {() => {this.props.leaveGroup(this.props.params.id); window.location.reload();}}>Leave Group</button>
-          </div>
-          //if not member show joinGroup
-          <div>
-          You aren't a member of this group! Please join to participate in the group.
-          <button onClick = {() => {this.props.joinGroup(this.props.params.id); window.location.reload()}}>Join Group</button>
+          <button onClick = {() => {this.props.leaveGroup(this.props.params.id).then(()=>window.location.reload())}} >Leave Group</button>
           </div>
           <Tabs tabsList={tabsList} defaultTab={'GroupWall'} />
         </div>
+      )
+    } else {
+      return (
+        <div>
+          <NavBar />
+          <h1>{this.props.params.groupname}</h1>
+          <div>
+          You aren't a member of this group! Please join to participate in the group.
+          <button onClick = {() => {this.props.joinGroup(this.props.params.id).then(()=>window.location.reload())}} >Join Group</button>
+          </div>
+        </div>
       );
-
     }
+
+  }
 
 }
 

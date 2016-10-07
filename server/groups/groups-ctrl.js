@@ -43,7 +43,7 @@ const groups = {
           .then((user) => {
             group.addUsers(user);
             group.save();
-            res.sendStatus(201);
+            res.status(201).send();
           })
           .catch((err) => {
             res.status(400).send();

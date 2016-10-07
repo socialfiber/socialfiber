@@ -16,7 +16,6 @@ class GroupUsersList extends Component {
 	render() {
 		
 		if(this.props.groupUsers.length) {
-			console.log(this.props.groupUsers);
 			const groupUsers = this.props.groupUsers.map((user, idx) => {
 				return (
 					<li key={idx} >

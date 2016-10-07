@@ -33,6 +33,7 @@ export function fetchUserGroups() {
   }
   return axios.get('/api/groups/getUserGroups', data)
     .then((response) => {
+      console.log(response)
       return { type: FETCH_USER_GROUPS, payload: response.data }
     })
     .catch((error) => {
@@ -150,7 +151,6 @@ export function fetchAllUsers(group_id) {
   }
   return axios.get('/api/groups/fetchAllUsers', data)
     .then((response) => {
-      console.log(response.data)
       return { type: FETCH_ALL_USERS, payload: response.data }
     })
     .catch((error) => {
