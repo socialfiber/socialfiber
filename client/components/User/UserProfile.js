@@ -17,6 +17,7 @@ class UserProfile extends Component {
     this.state = {
       editFlag: false
     }
+    this.toggleEditing.bind(this);
   }
 
   componentWillMount() {
@@ -24,18 +25,12 @@ class UserProfile extends Component {
   }
 
   componentDidUpdate() {
-    if(this.props.submitSucceeded === true) {
-      this.props.fetchUserData()
-      .then(() => {
-        this.toggleEditing();
-        this.props.reset();
-      });
-    }
   }
 
   toggleEditing() {
-    // console.log("Toggling editing");
-    this.setState({ editFlag: (!this.state.editFlag) });
+    this.setState({
+      editFlag: !this.state.editFlag
+    });
   }
 
   render() {
@@ -62,7 +57,7 @@ class UserProfile extends Component {
             </div>
             {/* <ChatWindow /> */}
             <RadarGraph userID={this.props.userData.id} />
-            <Tabs tabsList={tabsList} defaultTab={'FoodDiary'} />
+            <Tabs tabsList={tabsList} />
           </div>
         );
       } else {

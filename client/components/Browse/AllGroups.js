@@ -13,14 +13,13 @@ class AllGroups extends Component {
   }
 
   render() {
-    console.log(this.props.groups.allGroups)
+
     const groupsList = this.props.groups.allGroups.map((group, idx) => {
-        return (
-            <IndividualGroup key={idx} group={group}/>
-        );
+      return (
+          <IndividualGroup key={idx} group={group}/>
+      );
     });
-    console.log('groupsList',groupsList)
-    return(
+    return (
       <div>
         <NavBar />
         <h1>Find a Group</h1>

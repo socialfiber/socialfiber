@@ -42,7 +42,7 @@ ReactDOM.render(
     	<Route path='/questionnaire' onEnter={ensureAuthenticated} component={Questionnaire} />
       <Route path='/userprofile' onEnter={ensureAuthenticated} component={UserProfile} />
       <Route path='/viewallgroups' onEnter={ensureAuthenticated} component={AllGroups} />
-      <Route path ='/groupwall/:id/:groupname' onEnter={ensureAuthenticated} component={GroupPage} />
+      <Route path ='/grouppage/:id/:groupname' onEnter={ensureAuthenticated} component={GroupPage} />
       <Route path ='/browseprofile/:id' onEnter={ensureAuthenticated} component={BrowseProfile} />
     </Router>
   </Provider>

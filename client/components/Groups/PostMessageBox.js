@@ -3,9 +3,11 @@ import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { postMessages } from '../../actions/groups';
 
+
 class Messages extends Component {
 
   render() {
+
     const { handleSubmit, submitting } = this.props;
     return (
       <form onSubmit = {handleSubmit(this.props.postMessages)}>
@@ -16,6 +18,7 @@ class Messages extends Component {
           <button type="submit" disabled={submitting} onClick={() => window.location.reload()}>Submit</button>
       </form>
     );
+
   }
 
 }
@@ -24,10 +27,4 @@ Messages = reduxForm({
   form: 'Messages'
 })(Messages);
 
-const mapStateToProps = (state) => {
-	return {
-		myGroups: state.groups
-	}
-}
-
-export default connect(mapStateToProps, { postMessages })(Messages);
+export default connect(null, { postMessages })(Messages);

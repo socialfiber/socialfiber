@@ -58,7 +58,7 @@ const groups = {
   //Endpoint to retrieve user groups based on user id.
   '/api/groups/getUserGroups': {
     'get': (req, res) => {
-			console.log('inside GET at /api/groups/getUserGroups');
+      console.log('inside GET at /api/groups/getUserGroups');
       Groups.findAll({
         attributes: [
           'id',
@@ -80,13 +80,13 @@ const groups = {
       .catch( (err) => {
         res.status(400).send(err.message);
       });
-		}
+    }
   },
 
   //browse all groups
   '/api/groups/getAllGroups': {
     'get': (req, res) => {
-			console.log('inside GET at /api/groups/getAllGroups');
+      console.log('inside GET at /api/groups/getAllGroups');
       Groups.findAll({
         attributes: [
           'id',
@@ -98,45 +98,45 @@ const groups = {
         res.status(200).json(groups);
       })
       .catch((err) => {
-        res.status(400).send(err.message);
+        res.status(400).send();
       });
-		}
+    }
   },
 
   //Endpoint to leave groups
   '/api/groups/leaveGroup': {
     'post': (req, res) => {
       console.log('inside POST at /api/groups/leaveGroup');
-        Groups.findOne({
+      Groups.findOne({
+        where: {
+          id: req.body.group_id
+        }
+      })
+      .then((group) => {
+        Users.findOne({
           where: {
-            id: req.body.group_id
+            id: req.body.user_id
           }
         })
-        .then((group) => {
-          Users.findOne({
-            where: {
-              id: req.body.user_id
-            }
-          })
-          .then((user) => {
-            group.removeUser(user);
-            group.save();
-            res.status(201).send();
-          })
-          .catch((err) => {
-            res.status(400).send();
-          })
+        .then((user) => {
+          group.removeUser(user);
+          group.save();
+          res.status(201).send();
         })
+        .catch((err) => {
+          res.status(400).send();
+        })
+      })
       .catch((err) => {
         res.status(400).send();
-      })
+      });
     }
   },
 
   //Endpoint to retrieve all the users in a group
-  '/api/groups/fetchAllUsers': {
+  '/api/groups/fetchGroupUsers': {
     'get': (req, res) => {
-			console.log('inside GET at /api/groups/fetchAllUsers');
+      console.log('inside GET at /api/groups/fetchGroupUsers');
       Users.findAll({
         attributes: [
           'id',
@@ -158,7 +158,7 @@ const groups = {
       .catch((err) => {
         res.status(400).send();
       });
-		}
+    }
   }
 
 }

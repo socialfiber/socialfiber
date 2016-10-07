@@ -11,7 +11,7 @@ class SignIn extends Component {
     const { handleSubmit, submitting } = this.props;
     return (
       <div>
-        <form onSubmit={handleSubmit(this.props.submitSignIn)}>
+        <form onSubmit={ handleSubmit(this.props.submitSignIn) }>
           <div>
             <label>Username</label>
             <Field name="username" component="input" type="text" />
