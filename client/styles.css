@@ -16,9 +16,11 @@ html, body, #main{
     background-size: cover;
 }
 
+.signin, .signup {
+  color: white;
+}
 
-.navitem, .splashpg, .signinlink {
-/*  position: block;*/
+.navitem, .splashpg {
   display: inline-block;
   text-align: right;
   margin-right: 1px;
@@ -27,15 +29,24 @@ html, body, #main{
   color: white;
 }
 
-.jumbotron, .oneliner  {
+
+.jumbotron, .banner{
   background-color: transparent;
-  height: 50%;
+  height: 100%;
   color: white;
+  margin-top: 18%;
+  vertical-align: middle;
   text-align: center;
+  width: 100%;
+}
+
+.oneliner {
+  text-align: center
 }
 
 
 .header-splashpg {
   position: block;
+  font-size: 4em;
   text-align: center;
 }

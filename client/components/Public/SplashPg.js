@@ -7,9 +7,9 @@ class SplashPg extends Component {
 	render() {
 		return (
 			<div className='splashpg-div'>
-			<nav>
-			    <li className="navItem splashpg"><Link className='signinlink' to='/signin'> Sign In</Link></li>
-			    <li className="navItem splashpg"><Link className='signinlink' to='/signup'> Sign Up</Link></li>
+			<nav className='signin-nav'>
+			    <li className="navItem splashpg"><div className="signinlinkdiv"><Link className="signin" to='/signin'> Sign In</Link></div></li>
+			    <li className="navItem splashpg"><div className="signuplinkdiv"><Link className="signup" to='/signup'> Sign Up</Link></div></li>
 			</nav>
 			<div className="jumbotron">
 				<h1 className='header-splashpg'>social fiber.</h1>
