@@ -33,6 +33,7 @@ class AllUsers extends Component {
       return (
         <div>
           <NavBar />
+          <h1>Find a User</h1>
           <ul>
             {usersList}
           </ul>

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { submitFoodDiaryEntry } from '../../../actions/foodDiary';
 
+
 class FoodDiaryEntry extends Component {
 
   render() {

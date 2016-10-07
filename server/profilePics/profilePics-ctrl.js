@@ -5,7 +5,7 @@ const profilePics = {
 
 	'/api/profilePics/pic': {
 		'get': (req, res) => {
-			console.log('inside GET at /api/profilePics/');
+			//req.query.userID
 			res.status(200).send();
 		},
 		'post': (req, res) => {
