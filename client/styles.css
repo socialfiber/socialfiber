@@ -3,6 +3,7 @@ html, body, #main{
   font-family: 'Lato', sans-serif;
 }
 
+/*splash page style*/
 
 .splashpg-div{
   height: 100%;
@@ -41,7 +42,7 @@ html, body, #main{
 }
 
 .oneliner {
-  text-align: center
+  text-align: center;
 }
 
 
@@ -50,3 +51,5 @@ html, body, #main{
   font-size: 4em;
   text-align: center;
 }
+
+/*splash page style*/
