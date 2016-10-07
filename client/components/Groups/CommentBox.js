@@ -4,7 +4,7 @@ import { Field, reduxForm } from 'redux-form';
 import { postComment } from '../../actions/groups';
 
 
-class Comments extends Component {
+class CommentBox extends Component {
 
   render() {
 
@@ -26,9 +26,9 @@ class Comments extends Component {
 
 }
 
-Comments = reduxForm({
-  form: 'Comments'
-})(Comments);
+CommentBox = reduxForm({
+  form: 'CommentBoxForm'
+})(CommentBox);
 
 const mapStateToProps = (state) => {
 	return {
@@ -36,4 +36,4 @@ const mapStateToProps = (state) => {
 	}
 }
 
-export default connect(mapStateToProps, { postComment })(Comments);
+export default connect(mapStateToProps, { postComment })(CommentBox);

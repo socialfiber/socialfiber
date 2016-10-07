@@ -105,7 +105,7 @@ export function fetchGroupPosts(groupID) {
     });
 }
 
-export function postMessages(message, filler, groupObject) {
+export function postMessage(message, filler, groupObject) {
   const data = {
     groupID: groupObject.myGroups.groupUsers[0].groups[0].id,
     groupName: groupObject.myGroups.groupUsers[0].groups[0].name,
@@ -115,6 +115,7 @@ export function postMessages(message, filler, groupObject) {
   const config = {
     headers: { 'x-access-token': Cookies.get('token') }
   }
+  console.log("POSTING MESSAGE", data)
   return axios.post('/api/posts/postMessage', data, config)
     .then((response) => {
       return { type: POST_GROUP_MESSAGE }
@@ -124,7 +125,7 @@ export function postMessages(message, filler, groupObject) {
     });
 }
 
-export function postComment(message, filler, commentObject){
+export function postComment(message, filler, commentObject) {
   const data = {
     postID: commentObject.myGroups.commentObject.id,
     username: Cookies.get('username'),
@@ -176,7 +177,7 @@ export function fetchGroupUsers(groupID) {
     });
 }
 
-export function createNewGroup(newGroupObj){
+export function createNewGroup(newGroupObj) {
   newGroupObj.userID =  Cookies.get('userID');
   const data = newGroupObj;
   const config = {
@@ -194,5 +195,6 @@ export function createNewGroup(newGroupObj){
 }
 
 export function leavePage() {
+  Cookies.remove('groupID');
   return { type: LEAVE_PAGE }
 }

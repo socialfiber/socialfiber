@@ -1,21 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
-import { postMessages } from '../../actions/groups';
+import { postMessage } from '../../actions/groups';
 
 
-class Messages extends Component {
+class MessageBox extends Component {
 
   render() {
 
     const { handleSubmit, submitting } = this.props;
     return (
-      <form onSubmit = {handleSubmit(this.props.postMessages)}>
+      <form onSubmit = {handleSubmit(this.props.postMessage)}>
           <h4>Post a Message</h4>
           <div>
             <Field name="message" component="input" type="text" required />
           </div>
-          <button type="submit" disabled={submitting} onClick={() => window.location.reload()}>Submit</button>
+          <button type="submit" disabled={submitting} >Submit</button>
       </form>
     );
 
@@ -23,8 +23,8 @@ class Messages extends Component {
 
 }
 
-Messages = reduxForm({
-  form: 'Messages'
-})(Messages);
+MessageBox = reduxForm({
+  form: 'MessageBox'
+})(MessageBox);
 
-export default connect(null, { postMessages })(Messages);
+export default connect(null, { postMessage })(MessageBox);

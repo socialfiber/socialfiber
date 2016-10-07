@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { fetchGroupPosts } from '../../actions/groups';
 import Cookies from 'js-cookie';
-import MessageBox from './PostMessageBox';
-import Comments from './CommentsBox';
+import MessageBox from './MessageBox';
+import CommentBox from './CommentBox';
 import GroupWallMessages from './GroupWallMessages';
 import GroupWallComments from './GroupWallComments';
 import GroupUsersList from './GroupUsersList';
@@ -39,4 +39,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, {fetchGroupPosts })(GroupWall);
+export default connect(mapStateToProps, { fetchGroupPosts })(GroupWall);

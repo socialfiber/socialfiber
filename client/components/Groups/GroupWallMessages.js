@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchComments } from '../../actions/groups';
 import GroupWallComments from './GroupWallComments';
-import CommentsBox from './CommentsBox';
+import CommentBox from './CommentBox';
 
 
 class GroupWallMessages extends Component {
@@ -35,7 +35,7 @@ class GroupWallMessages extends Component {
 						<div><strong>{this.props.post.username}</strong>:</div>
 						<div>{this.props.post.message}</div>
 						<button onClick={this.showReplyForm}>Reply</button>
-						{this.state.showReply && <CommentsBox />}
+						{this.state.showReply && <CommentBox />}
 					</li>
 					<li>
 						{postComments}
