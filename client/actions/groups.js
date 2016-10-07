@@ -105,17 +105,16 @@ export function fetchGroupPosts(groupID) {
     });
 }
 
-export function postMessage(message, filler, groupObject) {
+export function postMessage(message) {
   const data = {
-    groupID: groupObject.myGroups.groupUsers[0].groups[0].id,
-    groupName: groupObject.myGroups.groupUsers[0].groups[0].name,
+    groupID: Cookies.get('groupID'),
+    groupName: Cookies.get('groupName'),
     username: Cookies.get('username'),
     message: message.message
   }
   const config = {
     headers: { 'x-access-token': Cookies.get('token') }
   }
-  console.log("POSTING MESSAGE", data)
   return axios.post('/api/posts/postMessage', data, config)
     .then((response) => {
       return { type: POST_GROUP_MESSAGE }
@@ -157,9 +156,9 @@ export function fetchComments(groupID) {
     });
 }
 
-export function fetchGroupUsers(groupID) {
+export function fetchGroupUsers(groupObj) {
   const data = {
-    params: { groupID: groupID },
+    params: { groupID: groupObj.groupID },
     headers: { 'x-access-token': Cookies.get('token') }
   }
   return axios.get('/api/groups/groupUsers', data)
@@ -169,7 +168,8 @@ export function fetchGroupUsers(groupID) {
         groupUsers: response.data,
         membership: membership
       }
-      Cookies.set('groupID', groupID);
+      Cookies.set('groupID', groupObj.groupID);
+      Cookies.set('groupName', groupObj.groupName);
       return { type: FETCH_GROUP_USERS, payload: data }
     })
     .catch((error) => {
@@ -196,5 +196,6 @@ export function createNewGroup(newGroupObj) {
 
 export function leavePage() {
   Cookies.remove('groupID');
+  Cookies.remove('groupName');
   return { type: LEAVE_PAGE }
 }

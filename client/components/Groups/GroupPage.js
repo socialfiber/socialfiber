@@ -8,7 +8,10 @@ import Tabs from '../ToolBox/Tabs';
 class GroupPage extends Component {
 
   componentWillMount() {
-    this.props.fetchGroupUsers(this.props.params.id);
+    this.props.fetchGroupUsers({
+      groupID: this.props.params.id,
+      groupName: this.props.params.groupname
+    });
   }
 
   componentWillUnmount() {
