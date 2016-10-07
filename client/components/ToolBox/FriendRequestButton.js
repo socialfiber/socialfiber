@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { fetchFriendshipStatus, sendFriendRequest, acceptFriendRequest, deleteFriendRequest } from '../../actions/friends';
+import Cookies from 'js-cookie';
+
 
 class FriendRequestButton extends Component {
 
@@ -33,7 +35,12 @@ class FriendRequestButton extends Component {
   
   render() {
 
-    if(this.state.friendshipStatus === null) {
+    if(Cookies.get('userID') === this.props.otherID) {
+      return (
+        <div>
+        </div>
+      );
+    } else if(this.state.friendshipStatus === null) {
       return (
         <div>
           <button onClick={() => {
