@@ -7,9 +7,6 @@ import _ from 'underscore';
 
 export function fetchAllGroups() {
   const data = {
-    params: {
-      userID: Cookies.get('userID')
-    },
     headers: {
       'x-access-token': Cookies.get('token')
     }

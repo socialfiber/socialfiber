@@ -1,7 +1,6 @@
-import { FETCH_ALL_GROUPS, FETCH_USER_GROUPS, FETCH_GROUP_USERS, FETCH_GROUP_POSTS, FETCH_GROUP_COMMENTS, CREATE_NEW_GROUP, JOIN_GROUP, LEAVE_GROUP, POST_GROUP_MESSAGE, POST_GROUP_COMMENT } from '../actions/types';
+import { FETCH_USER_GROUPS, FETCH_GROUP_USERS, FETCH_GROUP_POSTS, FETCH_GROUP_COMMENTS, CREATE_NEW_GROUP, JOIN_GROUP, LEAVE_GROUP, POST_GROUP_MESSAGE, POST_GROUP_COMMENT } from '../actions/types';
 
 const INITIAL_STATE = {
-  allGroups: [],
   userGroups: [],
   groupUsers: [],
   membership: null,
@@ -12,8 +11,6 @@ const INITIAL_STATE = {
 
 export default function(state=INITIAL_STATE, action){
   switch(action.type) {
-    case FETCH_ALL_GROUPS:
-      return { ...state, allGroups: action.payload };
     case FETCH_USER_GROUPS:
       return { ...state, userGroups: action.payload };
     case FETCH_GROUP_USERS:
@@ -31,7 +28,7 @@ export default function(state=INITIAL_STATE, action){
     case POST_GROUP_MESSAGE:
       return { ...state }
     case POST_GROUP_COMMENT:
-      return state;
+      return { ...state }
     default:
       return state;
   }

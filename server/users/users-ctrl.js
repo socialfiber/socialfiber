@@ -152,6 +152,22 @@ const users = {
         });
       });
     }
+  },
+
+  '/api/users/getAllUsers': {
+    'get': (req, res) => {
+      Users.findAll({
+        attributes: ['id', 'username']
+      })
+      .then((users) => {
+        res.status(200).json(users);
+      })
+      .catch((err) => {
+        res.status(400).send({
+          msg: 'Error getting user data.'
+        });
+      });
+    }
   }
   
 }
