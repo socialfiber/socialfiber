@@ -21,13 +21,13 @@ class SignIn extends Component {
           <div className="row">
               <div className="col-sm-6 col-md-4 col-md-offset-4">
                   <div className="account-wall">
-                      <form onSubmit={handleSubmit(this.props.submitSignIn)} className="form-signin">
+                      <form onSubmit={handleSubmit(this.props.submitSignIn)} className="form-signin-signup">
                         <Field name="username" component={TextField} type="text" floatingLabelText="Username" className="text-line" />
                         <Field name="password" component={TextField} type="password" floatingLabelText="Password" className="text-line" />
-                        <FlatButton type="submit" disabled={submitting} className="btn btn-lg btn-primary btn-block" >Sign In</FlatButton>
+                        <FlatButton type="submit" disabled={submitting} className="btn btn-lg btn-primary btn-block main-btn">Sign In</FlatButton>
+                        <Link to={'/signup'} className="text-center new-account">Create an Account</Link>
                       </form>
                   </div>
-                  <Link to={'/signup'} className="text-center new-account">Create an Account</Link>
               </div>
           </div>
       </div>

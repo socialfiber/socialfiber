@@ -14,6 +14,7 @@ class ChatWindow extends Component {
       newMessages: []
     }
     this.handleSubmit = this.handleSubmit.bind(this);
+    // this.handleOnClick = this.handleOnClick.bind(this);
   }
 
   componentWillMount() {
@@ -66,6 +67,28 @@ class ChatWindow extends Component {
     }
   }
 
+  handleOnClick(e) {
+    const body = e.target.value;
+    if(body) {
+      const message = {
+        body,
+        username: Cookies.get('username'),
+        room_id: this.props.roomId
+      }
+
+      const newMessages = this.state.newMessages;
+      newMessages.push(message);
+      this.setState({ newMessages: newMessages });
+
+      const currentMessages = this.state.messages;
+      currentMessages.push(message);
+      this.setState({ messages: currentMessages });
+      this.socket.emit('message', message);
+      console.log("emits: ", message.username + ": " + body);
+      e.target.value = '';
+    }
+  }
+
   render() {
     const messages = this.state.messages.map((message, index) => {
       return <li key={index}><b>{message.username}: </b>{message.body}</li>
@@ -75,7 +98,7 @@ class ChatWindow extends Component {
       <div style={{ margin: 1, border: '1px solid', borderColor: '#cccccc', width: '300px', height: '300px', position: 'absolute', bottom: 0, right: 0, backgroundColor: 'white' }}>
         <div>
           <div style={{ width: '300px' , height: '280px', overflow: 'scroll' }}>{messages}</div>
-          <input type="text" placeholder="Enter a message..." style={{ position: 'relative', bottom: 0, width: '247px', margin: 1}} onKeyUp={this.handleSubmit} /><button type="button" onClick={this.handleSubmit}>Send</button>
+          <input type="text" placeholder="Enter a message..." style={{ position: 'relative', bottom: 0, width: '247px', margin: 1}} onKeyUp={this.handleSubmit} /><button type="button" onClick={() => this.handleOnClick(event)}>Send</button>
         </div>
       </div>
     );
