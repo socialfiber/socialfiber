@@ -71,6 +71,7 @@ class GroupButton extends Component {
             backgroundColor="#C6AC8F"
             labelColor="#E3E7D3"
             label="Leave Group"
+            fullWidth={true}
             onClick={() => {
             leaveGroup(this.props.groupID)
             .then((response) => {

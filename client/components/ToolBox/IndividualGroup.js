@@ -13,7 +13,7 @@ const IndividualGroup = (props) => {
 			<TableRow>
 				<TableRowColumn className="individual-groups-headers"><strong><Link to={`/grouppage/${props.group.id}/${props.group.name}`}>{props.group.name}</Link></strong></TableRowColumn>
 				<TableRowColumn className="individual-groups-headers">{props.group.description}</TableRowColumn>
-				<TableRowColumn className="individual-groups-headers-join"><GroupButton groupID={props.group.id} /></TableRowColumn>
+				<TableRowColumn className="individual-groups-headers"><GroupButton groupID={props.group.id} /></TableRowColumn>
 			</TableRow>
 		</MuiThemeProvider>
 	);

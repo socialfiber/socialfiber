@@ -57,7 +57,7 @@ class AllGroups extends Component {
                 <TableRow>
                   <TableHeaderColumn className="all-groups-headers">Name</TableHeaderColumn>
                   <TableHeaderColumn className="all-groups-headers">Description</TableHeaderColumn>
-                  <TableHeaderColumn className="all-groups-headers-join">Join</TableHeaderColumn>
+                  <TableHeaderColumn className="all-groups-headers"></TableHeaderColumn>
                 </TableRow>
               </TableHeader>
               <TableRow>

@@ -130,6 +130,8 @@ html, body, #main{
 .creategroupbutton {
   background-color: #C6AC8F;
   width: 60%;
+  margin-bottom: 10px;
+  color: #E3E7D3;
 }
 
 .choose-topic{
@@ -182,18 +184,16 @@ span, .fr-btn {
 .all-groups-table {
   width: 100%;
   table-layout: auto;
+  display: inline;
 }
 
 .all-groups-headers, .individual-groups-headers {
-  width: 300px;
+  width: 250px;
+  word-wrap:break-word;
 }
 
 .container-centered {
   text-align: center;
-}
-
-.all-groups-headers-join, .individual-groups-headers-join {
-  width: 20%;
 }
 
 .all-groups-table-body {
