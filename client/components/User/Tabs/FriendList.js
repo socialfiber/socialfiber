@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { createRoom } from '../../../actions/chatWindow';
 import IndividualUser from '../../ToolBox/IndividualUser';
 import FriendRequestButton from '../../ToolBox/FriendRequestButton';
+import ProfilePic from '../../ToolBox/ProfilePic';
 import ChatWindow from './ChatWindow';
 
 
@@ -35,6 +36,7 @@ class FriendList extends Component {
       const friendList = this.props.friendList.map((friend, idx) => {
         return (
           <li key={idx}>
+            <ProfilePic userID={friend.user2_id} />
             <IndividualUser username={friend.user2_username} img={friend.img} otherID={friend.user2_id} />
             <FriendRequestButton otherID={friend.user2_id} />
             {/* <button type="button" onClick={() => this.handleOnClick(friend)}>Chat</button> */}

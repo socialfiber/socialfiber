@@ -1,4 +1,4 @@
-import { FETCH_ALL_GROUPS, FETCH_USER_GROUPS, FETCH_GROUP_USERS, FETCH_GROUP_POSTS, FETCH_GROUP_COMMENTS, CREATE_NEW_GROUP, JOIN_GROUP, LEAVE_GROUP, POST_GROUP_MESSAGE, POST_GROUP_COMMENT, LEAVE_PAGE } from '../actions/types';
+import { FETCH_ALL_GROUPS, FETCH_USER_GROUPS, FETCH_GROUP_USERS, FETCH_GROUP_POSTS, FETCH_GROUP_COMMENTS, CREATE_NEW_GROUP, JOIN_GROUP, LEAVE_GROUP, POST_GROUP_MESSAGE, POST_GROUP_COMMENT, GROUP_STATUS, LEAVE_PAGE } from '../actions/types';
 import { browserHistory } from 'react-router';
 import axios from 'axios';
 import Cookies from 'js-cookie';
@@ -31,6 +31,7 @@ export function fetchUserGroups() {
   }
   return axios.get('/api/groups/userGroups', data)
     .then((response) => {
+      console.log(response.data)
       return { type: FETCH_USER_GROUPS, payload: response.data }
     })
     .catch((error) => {
@@ -50,7 +51,7 @@ export function fetchGroupStatus(groupID) {
   }
   return axios.get('/api/groups/groupStatus', data)
     .then((response) => {
-      return { type: GROUP_STATUS, payload: response.data }
+      return { type: GROUP_STATUS, payload: response.data.status }
     })
     .catch((error) => {
       console.error(error);

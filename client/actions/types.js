@@ -5,6 +5,7 @@ export const SIGN_OUT = 'SIGN_OUT';
 
 //User Data
 export const FETCH_USER_DATA = 'FETCH_USER_DATA';
+export const FETCH_PROFILE_PIC = 'FETCH_USER_DATA';
 export const SUBMIT_USER_STATS = 'SUBMIT_USER_STATS';
 export const CHANGE_PASSWORD = 'CHANGE_PASSWORD';
 export const HANDLE_IMG_UPLOAD = 'HANDLE_IMG_UPLOAD';

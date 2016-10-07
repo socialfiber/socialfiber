@@ -71,6 +71,7 @@ const groups = {
         }]
       })
       .then((userGroups) => {
+        userGroups = userGroups.filter((group) => group.users.length);
         res.status(200).json(userGroups);
       })
       .catch( (err) => {
@@ -144,7 +145,7 @@ const groups = {
         }]
       })
       .then((users) => {
-        users = users.filter((user) => user.groups.length > 0);
+        users = users.filter((user) => user.groups.length);
         res.status(200).json(users);
       })
       .catch((err) => {

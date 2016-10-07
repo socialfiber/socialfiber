@@ -16,6 +16,7 @@ class GroupButton extends Component {
   getStatus() {
     fetchGroupStatus(this.props.userID, groupID)
     .then((response) => {
+      console.log(response)
       this.setState({
         groupStatus: response.payload
       });
@@ -69,10 +70,7 @@ class GroupButton extends Component {
         </div>
       );
     } else {
-      return (
-        <div>
-        </div>
-      );
+      return null;
     }
     
   }

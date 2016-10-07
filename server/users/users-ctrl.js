@@ -3,6 +3,7 @@ const Questions = require('../questions/questions-model.js');
 const DietaryProfiles = require('../dietaryProfiles/dietaryProfiles-model.js');
 const NutritionTotals = require('../nutritionTotals/nutritionTotals-model.js');
 const Friends = require('../friends/friends-model.js');
+const ProfilePics = require('../profilePics/profilePics-model.js');
 const utils = require('../config/utilities.js');
 
 
@@ -122,7 +123,7 @@ const users = {
     'get': (req, res) => {
       const options = {
         attributes: ['id', 'username', 'IBW', 'cal_min', 'cal_max', 'code'],
-        include: [DietaryProfiles, Questions, NutritionTotals, Friends]
+        include: [DietaryProfiles, Questions, NutritionTotals, Friends, ProfilePics]
       }
       Users.findById(req.query.userID, options)
       .then((userData) => {
@@ -140,7 +141,7 @@ const users = {
     'get': (req, res) => {
       const options = {
         attributes: ['username', 'privacy'],
-        include: [DietaryProfiles, Questions, NutritionTotals, Friends]
+        include: [DietaryProfiles, Questions, NutritionTotals, Friends, ProfilePics]
       }
       Users.findById(req.params.id, options)
       .then((userData) => {

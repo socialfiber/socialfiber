@@ -12,7 +12,7 @@ const ProfilePics = sequelize.define('profilePics', {
   default: {
     type: Sequelize.BOOLEAN,
     unique: false,
-    allowNull: true
+    allowNull: false
   }
 });
 

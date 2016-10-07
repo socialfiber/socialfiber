@@ -29,6 +29,7 @@ export function fetchFoodDiary() {
 
 export function submitFoodDiaryEntry(foodDiaryEntryObj) {
   foodDiaryEntryObj.userID = Cookies.get('userID');
+  foodDiaryEntryObj.food = foodDiaryEntryObj.food.split(' ').slice(0,4).join(' ');
   const data = foodDiaryEntryObj;
   const config = {
     headers: { 'x-access-token': Cookies.get('token') }

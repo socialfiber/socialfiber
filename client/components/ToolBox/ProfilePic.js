@@ -1,12 +1,45 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { fetchProfilePic } from '../../actions/users';
 
-const ProfilePic = (props) => {
 
-    return (
-      <div>
-        <img src="../../assets/profile-icon-9.png"></img>
-      </div>
-    );
+class ProfilePic extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      url: undefined
+    }
+  }
+
+  componentWillMount() {
+    fetchProfilePic(this.props.userID)
+    .then((response) => {
+      this.setState({
+        url: response.payload.url
+      });
+    });
+  }
+
+  render() {
+
+    if(this.state.url === null) {
+      return (
+        <div>
+          <img src="../../assets/profile-icon-9.png"></img>
+        </div>
+      );
+    } else if(this.state.url) {
+      return (
+        <div>
+          <img src={this.state.url} ></img>
+        </div>
+      );
+    } else {
+      return null;
+    }
+   
+
+  }
 
 }
 
