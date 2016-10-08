@@ -18,7 +18,7 @@ class FoodDiary extends Component {
   }
 
   render() {
-    
+
     const foodDiaryEntry = Cookies.get('userID') === Cookies.get('currentProfileID') ? <FoodDiaryEntry /> : null;
 
     if(this.props.diaryData) {
@@ -27,8 +27,8 @@ class FoodDiary extends Component {
         const logsPerDay = set.logs.map((log, idx) => <FoodDiaryLog key={idx} log={log} />);
         const date = set.date
         return (
-          <li key={idx}>
-            <h3>{date}</h3>
+          <li className="foodDiaryLogList" key={idx}>
+            <h3 className='date'>{date}</h3>
             <table>
               <tbody>
                 <tr>
