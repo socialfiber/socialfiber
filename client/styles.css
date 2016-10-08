@@ -455,3 +455,11 @@ strong {
 .diaryInput-p {
   color: #355834;
 }
+
+.foodDiaryLogtr {
+  margin: 10px;
+}
+
+.foodDiaryLogList {
+  list-style-type: none;
+}
