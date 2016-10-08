@@ -1,4 +1,4 @@
-import { FETCH_ALL_USERS, FETCH_USER_DATA, CHANGE_PASSWORD, UPDATE_USER_DATA, FETCH_PROFILE_PIC, REDIRECT_PROFILE, LEAVE_PAGE } from './types';
+import { FETCH_ALL_USERS, FETCH_USER_DATA, SUBMIT_USER_STATS, CHANGE_PASSWORD, UPDATE_USER_DATA, FETCH_PROFILE_PIC, REDIRECT_PROFILE, LEAVE_PAGE } from './types';
 import { browserHistory } from 'react-router';
 import axios from 'axios';
 import Cookies from 'js-cookie';

@@ -83,6 +83,9 @@ class RadarGraph extends Component {
 
   render() {
 
+    const scaleToMax = Math.round(Math.max(this.state.idealMacros.fat, this.state.idealMacros.prot, this.state.idealMacros.fib, this.state.idealMacros.carb, this.state.actualMacros.fat, this.state.actualMacros.prot, this.state.actualMacros.fib, this.state.actualMacros.carb)/10) || 13;
+    const totalMacros = this.state.actualMacros.fat+this.state.actualMacros.prot+this.state.actualMacros.carb+this.state.actualMacros.n6 || 1;
+
     var height, width;
     switch(this.props.size) {
       case 'small':
@@ -101,7 +104,7 @@ class RadarGraph extends Component {
     if(this.props.type === 'amount') {
 
       const data = {
-        labels: ["Fats", "Protein", "Fiber", "Carbs", "N-6"],
+        labels: ["Fats (g)", "Protein (g)", "Fiber (g)", "Carbs (g)", "n-6 (g)"],
         datasets: [
           {
             label: "Ideal",
@@ -129,7 +132,7 @@ class RadarGraph extends Component {
         },
         scaleShowLabels: false,
         scaleOverride: true,
-        scaleSteps: 13,
+        scaleSteps: scaleToMax,
         scaleStepWidth: 10,
         pointDot : false
       }
@@ -142,10 +145,8 @@ class RadarGraph extends Component {
 
     } else if(this.props.type === 'ratio') {
 
-      const totalMacros = this.state.actualMacros.fat+this.state.actualMacros.prot+this.state.actualMacros.carb+this.state.actualMacros.n6 || 1;
-
       const data = {
-        labels: ["Fats %", "Protein %", "Carbs %", "N-6 %"],
+        labels: ["Fats %", "Protein %", "Carbs %", "n-6 %"],
         datasets: [
           {
             label: "Min %",

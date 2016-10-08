@@ -47,6 +47,7 @@ class BrowseProfile extends Component {
       return (
         <div>
           <NavBar />
+          <h3>{this.props.userProfile.username}</h3>
           <ProfilePic userID={this.props.params.id} />
           <FriendRequestButton otherID={this.props.params.id} />
           <div>Age: {this.props.userProfile.userData.age}</div>
