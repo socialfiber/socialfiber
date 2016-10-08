@@ -135,3 +135,73 @@ html, body, #main{
 .choose-topic{
   color: #355834;
 }
+
+/*select component style*/
+.selectComponent-style {
+  color: white;
+}
+
+/*questionnaire style*/
+
+
+.container, .questionnaire {
+  background-image: url('./assets/blueberrytree.jpeg');
+  height: 100%;
+  width:100%;
+  background-color: #FFFFFF;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  color: white;
+}
+
+.inner-div-questionnaire {
+  position: block;
+  margin-top: 30%;
+  background: transparent;
+  vertical-align: center;
+}
+
+.questionnaire-form {
+  width:100%;
+  background-color: transparent;
+}
+
+.questionnaire-h1 {
+  text-align: center;
+  width: 100%;
+  margin-top: 10%;
+  padding: 20px;*/
+  border: solid;
+  border-width: thin;
+  font-size: 75px;
+  color: white;
+  background-color: transparent;
+}
+
+
+.questionnaire-inputs {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  color: black;
+  border: none;
+  background-color: transparent;
+}
+
+
+.containerquestionnaire, label {
+  margin-right:15px;
+  background-color: transparent;
+  font-size: 15px;
+  font-weight: 100;
+  color: white;
+}
+
+.submitquestionnaire {
+  background-color: #3D436B;
+  color: white;
+}
