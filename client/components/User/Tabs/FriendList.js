@@ -6,17 +6,17 @@ import FriendRequestButton from '../../ToolBox/FriendRequestButton';
 import ProfilePic from '../../ToolBox/ProfilePic';
 import ChatWindow from './ChatWindow';
 import Cookies from 'js-cookie';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 
 class FriendList extends Component {
-  
+
   constructor(props) {
     super(props);
     this.state = {
       chatFlag: false
     }
-    this.initiateLiveChat = this.initiateLiveChat.bind(this);
-    this.endLiveChat = this.endLiveChat.bind(this);
   }
 
   initiateLiveChat(friendObj) {
@@ -39,13 +39,15 @@ class FriendList extends Component {
     if(this.props.friendList.length) {
       const friendList = this.props.friendList.map((friend, idx) => {
         return (
-          <li key={idx}>
-            <ProfilePic userID={friend.user2_id} />
-            <IndividualUser username={friend.user2_username} img={friend.img} otherID={friend.user2_id} />
-            <FriendRequestButton otherID={friend.user2_id} />
-            {/* <button type="button" onClick={() => this.handleOnClick(friend)}>Chat</button> */}
-            {this.state.chatFlag ? <button type="button" onClick={() => this.endLiveChat()}>End Chat</button> : <button type="button" onClick={() => this.initiateLiveChat(friend)}>Chat</button>}
-          </li>
+          <MuiThemeProvider muiTheme={getMuiTheme()}>
+            <li key={idx}>
+              <ProfilePic userID={friend.user2_id} />
+              <IndividualUser username={friend.user2_username} img={friend.img} otherID={friend.user2_id} />
+              <FriendRequestButton otherID={friend.user2_id} />
+              {/* <button type="button" onClick={() => this.handleOnClick(friend)}>Chat</button> */}
+              {this.state.chatFlag ? <button type="button" onClick={() => this.endLiveChat()}>End Chat</button> : <button type="button" onClick={() => this.initiateLiveChat(friend)}>Chat</button>}
+            </li>
+          </MuiThemeProvider>
         );
       });
       return (
@@ -64,7 +66,7 @@ class FriendList extends Component {
         </div>
       );
     }
-    
+
   }
 
 }

@@ -43,7 +43,7 @@ class UserProfile extends Component {
   render() {
 
     if(this.props.userProfile.userData !== null) {
-      
+
       if(!this.state.editFlag) {
 
         const tabsList = [
@@ -65,7 +65,6 @@ class UserProfile extends Component {
             <div>
               <button type="button" onClick={() => this.toggleEditing()}>Edit Info</button>
             </div>
-            {/* <ChatWindow /> */}
             <RadarGraph type={'amount'} size={'large'} />
             <Tabs tabsList={tabsList} />
           </div>
@@ -92,7 +91,7 @@ class UserProfile extends Component {
       );
 
     }
-    
+
   }
 
 }

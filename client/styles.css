@@ -98,7 +98,7 @@ html, body, #main{
 }
 
 
-.jumbotron, .banner{
+.jumbotron, .banner {
   background-color: transparent;
   height: 100%;
   color: white;
@@ -181,6 +181,10 @@ span, .fr-btn {
   margin-bottom: 10px;
 }
 
+.list-group-item:last-child {
+  margin-bottom: 30px;
+}
+
 /* -------------------- All Groups -------------------- */
 
 .all-groups-table {
@@ -213,8 +217,7 @@ span, .fr-btn {
   color: white;
 }
 
-/*questionnaire style*/
-
+/* -------------------- User Questionnaire -------------------- */
 
 .container, .questionnaire {
   background-image: url('./assets/blueberrytree.jpeg');
@@ -276,4 +279,12 @@ span, .fr-btn {
 .submitquestionnaire {
   background-color: #3D436B;
   color: white;
+}
+
+/* -------------------- Group Page -------------------- */
+
+.group-page-header {
+  width: 100%;
+  text-align: center;
+  background-color: lightgrey;
 }

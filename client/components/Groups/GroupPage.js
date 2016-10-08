@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { fetchGroupUsers, joinGroup, leaveGroup, leavePage } from '../../actions/groups';
 import NavBar from '../ToolBox/NavBar';
 import Tabs from '../ToolBox/Tabs';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 
 class GroupPage extends Component {
@@ -14,6 +16,10 @@ class GroupPage extends Component {
       groupID: this.props.params.id,
       groupName: this.props.params.groupname
     });
+  }
+
+  componentDidMount() {
+    console.log("componentDidMount")
   }
 
   componentWillUnmount() {
@@ -42,15 +48,19 @@ class GroupPage extends Component {
     } else if(this.props.membership) {
 
       return (
-        <div>
-          <NavBar />
-          <h1>{this.props.params.groupname}</h1>
+        <MuiThemeProvider muiTheme={getMuiTheme()}>
           <div>
-            <p>Leave this group!</p>
-            <button onClick={() => {this.props.leaveGroup(this.props.params.id).then(()=>window.location.reload())}} >Leave Group</button>
+            <NavBar />
+            <div className="group-page-header">
+              <h1>{this.props.params.groupname}</h1>
+              <div>
+                <p>Leave this group!</p>
+                <button onClick = {() => {this.props.leaveGroup(this.props.params.id).then(()=>window.location.reload())}}>Leave Group</button>
+              </div>
+            </div>
+            <Tabs tabsList={tabsList} defaultTab={'GroupWall'} />
           </div>
-          <Tabs tabsList={tabsList} defaultTab={'GroupWall'} />
-        </div>
+        </MuiThemeProvider>
       );
 
     } else if(!this.props.membership) {

@@ -39,23 +39,23 @@ class Tabs extends Component {
   }
 
   render() {
-    
+
     const tabsList = this.state.tabsList.map((tab, idx) => {
       return (
-        <li key={idx} onClick={()=>this.changeTab(tab.component)}>{tab.label}</li>
+        <li role="presentation" key={idx} onClick={()=>this.changeTab(tab.component)}><a data-toggle="tab" href={"#" + tab.label}>{tab.label}</a></li>
       );
     });
     return (
       <div>
         <nav>
-          <ul>
+          <ul className="nav nav-tabs nav-justified" role="tablist">
             {tabsList}
           </ul>
           <TabContent currentTab={this.state.currentTab} />
         </nav>
       </div>
     );
-    
+
   }
 
 }
