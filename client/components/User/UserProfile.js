@@ -55,6 +55,7 @@ class UserProfile extends Component {
         return (
           <div>
             <NavBar />
+            <h3>{this.props.userProfile.username}</h3>
             <ProfilePic userID={this.props.userProfile.userData.user_id} />
             <ul>
               <li>Age: {this.props.userProfile.userData.age}</li>
@@ -75,6 +76,7 @@ class UserProfile extends Component {
         return (
           <div>
             <NavBar />
+            <h3>{this.props.userProfile.username}</h3>
             <UpdateUserData />
             <button type="button" onClick={() => this.toggleEditing()}>Return</button>
           </div>

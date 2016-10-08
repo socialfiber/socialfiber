@@ -17,7 +17,6 @@ const posts = {
           message: req.body.message
         })
         .then((post) => {
-          console.log("POST1111",post)
           group.addPosts(post);
           group.save();
           res.status(201).send();
