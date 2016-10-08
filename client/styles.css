@@ -283,6 +283,16 @@ span, .fr-btn {
   width: 50px;
 }
 
+-/* -------------------- Group Page -------------------- */
+
+ .group-page-header {
+   width: 100%;
+   text-align: center;
+   background-color: lightgrey;
+ }
+
+
+
 /*<---- main nav ---->*/
 .homelink {
   color: white;
