@@ -25,6 +25,8 @@ class AllGroups extends Component {
 
   render() {
 
+    console.log("AllGroups: ", this.props.groups);
+
     if(this.props.groups === null) {
 
       return (

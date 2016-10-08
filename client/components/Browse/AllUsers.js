@@ -30,25 +30,25 @@ class AllUsers extends Component {
 
       const usersList = this.props.users.map((user, idx) => {
         return (
-          <MuiThemeProvider muiTheme={getMuiTheme()}>
-            <li key={idx} className="list-group-item user-block col-lg-4 col-centered">
-              <div className="bottom-align-text">
-                <ProfilePic userID={user.id} />
-                <IndividualUser username={user.username} img={user.img} otherID={user.id} />
-                <FriendRequestButton otherID={user.id} />
-              </div>
-            </li>
-          </MuiThemeProvider>
+          <li key={idx} className="list-group-item user-block col-lg-4 col-centered">
+            <div className="bottom-align-text">
+              <ProfilePic userID={user.id} />
+              <IndividualUser username={user.username} img={user.img} otherID={user.id} />
+              <FriendRequestButton otherID={user.id} />
+            </div>
+          </li>
         );
       });
 
       return (
-        <div>
-          <NavBar />
-          <ul className="list-group container container-centered">
-            {usersList}
-          </ul>
-        </div>
+        <MuiThemeProvider muiTheme={getMuiTheme()}>
+          <div>
+            <NavBar />
+            <ul className="list-group container container-centered">
+              {usersList}
+            </ul>
+          </div>
+        </MuiThemeProvider>
       );
 
     }
