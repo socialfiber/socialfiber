@@ -7,9 +7,9 @@ const GroupWallComments = (props) => {
 		<div>
 			<table>
 				<tbody>
-					<tr>
+					<tr className="list-group-item">
 						{/* <tr>{props.comment.createdAt.substr(0,10)}</tr> */}
-						<td><strong>-- {props.comment.username}</strong>: </td>
+						<td><strong>{props.comment.username}</strong>: </td>
 						<td>{props.comment.message}</td>
 					</tr>
 				</tbody>

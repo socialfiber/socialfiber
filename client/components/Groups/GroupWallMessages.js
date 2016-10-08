@@ -3,7 +3,9 @@ import { connect } from 'react-redux';
 import { fetchComments } from '../../actions/groups';
 import GroupWallComments from './GroupWallComments';
 import CommentBox from './CommentBox';
-
+import RaisedButton from 'material-ui/RaisedButton';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 class GroupWallMessages extends Component {
 
@@ -28,24 +30,25 @@ class GroupWallMessages extends Component {
 		const postComments = this.props.post.comments.map((comment, idx) => <GroupWallComments key={idx} comment={comment} />);
 
 		return (
-			<div>
-				<ul>
-					<li>
-						{/* <div>{this.props.post.createdAt.substr(0,10)}</div> */}
-						<div><strong>{this.props.post.username}</strong>:</div>
-						<div>{this.props.post.message}</div>
-						<button onClick={this.showReplyForm}>Reply</button>
-						{this.state.showReply && <CommentBox />}
-					</li>
-					<li>
-						{postComments}
-					</li>
-				</ul>
-			</div>
+			<MuiThemeProvider muiTheme={getMuiTheme()}>
+				<div>
+					<ul className="list-unstyled">
+						<li className="list-group-item" style={{marginBottom:'5px'}}>
+							{/* <div>{this.props.post.createdAt.substr(0,10)}</div> */}
+							<div><strong>{this.props.post.username}</strong>: {this.props.post.message}</div>
+							{this.state.showReply && <CommentBox />}
+							<li>
+								{postComments}
+							</li>
+						</li>
+						<div style={{textAlign:'right'}}><RaisedButton onClick={this.showReplyForm} label="Reply"/></div>
+					</ul>
+				</div>
+			</MuiThemeProvider>
 		);
 
 	}
-	
+
 }
 
 const mapStateToProps = (state) => {
