@@ -385,3 +385,16 @@ li.dropdown {
   position:absolute;
   float: top;
 }
+
+/* -------------------- Group Messages -------------------- */
+.group-comments {
+  margin-left: 10px;
+}
+
+.container-message {
+  text-align: center;
+}
+
+.message-form {
+  margin-bottom: 10px;
+}

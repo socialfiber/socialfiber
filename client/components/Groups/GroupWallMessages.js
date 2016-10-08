@@ -31,17 +31,17 @@ class GroupWallMessages extends Component {
 
 		return (
 			<MuiThemeProvider muiTheme={getMuiTheme()}>
-				<div>
+				<div className="container">
 					<ul className="list-unstyled">
 						<li className="list-group-item" style={{marginBottom:'5px'}}>
 							{/* <div>{this.props.post.createdAt.substr(0,10)}</div> */}
 							<div><strong>{this.props.post.username}</strong>: {this.props.post.message}</div>
-							{this.state.showReply && <CommentBox />}
-							<li>
+							<li className="group-comments">
 								{postComments}
 							</li>
+							{this.state.showReply && <CommentBox />}
 						</li>
-						<div style={{textAlign:'right'}}><RaisedButton onClick={this.showReplyForm} label="Reply"/></div>
+						<div style={{textAlign:'center'}}><RaisedButton onClick={this.showReplyForm} label="Reply"/></div>
 					</ul>
 				</div>
 			</MuiThemeProvider>
