@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchGroupUsers, joinGroup, leaveGroup, leavePage } from '../../actions/groups';
+import Cookies from 'js-cookie';
 import NavBar from '../ToolBox/NavBar';
 import Tabs from '../ToolBox/Tabs';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
@@ -10,7 +11,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 class GroupPage extends Component {
 
   componentWillMount() {
-    Cookies.set('groupID', groupObj.this.props.params.id);
+    Cookies.set('groupID', this.props.params.id);
     Cookies.set('groupName', this.props.params.groupname);
     this.props.fetchGroupUsers({
       groupID: this.props.params.id,

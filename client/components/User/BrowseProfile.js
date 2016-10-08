@@ -23,14 +23,27 @@ class BrowseProfile extends Component {
   }
 
   render() {
-    //if friends or public, fetch all data,
-    //if private, fetch selected data
+
     if(this.props.userProfile.userData !== null) {
+
+      console.log(this.props.userProfile.username);
       const tabsList = [
         { label: 'Food Diary', component: 'FoodDiary' },
         { label: 'Friends', component: 'MyFriends' },
         { label: 'Groups', component: 'MyGroups' }
       ];
+      const showTabs = () => {
+        if(this.props.friendshipStatus === 'friends') {
+          return (
+            <Tabs tabsList={tabsList} />
+          );
+        } else {
+          return (
+            <h4>`You must be friends to see {this.props.userProfile.username}'s profile.`</h4>
+          );
+        }
+      }
+
       return (
         <div>
           <NavBar />
@@ -39,16 +52,19 @@ class BrowseProfile extends Component {
           <div>Age: {this.props.userProfile.userData.age}</div>
           <div>Gender: {this.props.userProfile.userData.gender}</div>
           <RadarGraph type={'amount'} size={'large'} />
-          <Tabs tabsList={tabsList} />
+          {showTabs()}
         </div>
       );
+
     } else {
+
       return (
         <div>
           <NavBar />
           <h3>Loading profile...</h3>
         </div>
       );
+
     }
   }
 
