@@ -1,16 +1,33 @@
-import React, { Component } from 'react';
+  import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
-import { submitFoodDiaryEntry } from '../../../actions/foodDiary';
+import { submitFoodDiaryEntry, fetchFoodDiary, fetchMacros } from '../../../actions/foodDiary';
 
 
 class FoodDiaryEntry extends Component {
 
+  constructor(props) {
+    super(props);
+    this.submitEntry.bind(this);
+  }
+
+  submitEntry(e) {
+    submitFoodDiaryEntry(e)
+    .then(() => {
+      fetchFoodDiary()
+      .then(() => {
+        fetchMacros();
+      });
+    });
+  }
+
   render() {
+
     const { handleSubmit, submitting } = this.props;
     const today = new Date().toISOString().substr(0,10);
+
     return (
-      <form onSubmit={handleSubmit(this.props.submitFoodDiaryEntry)}>
+      <form onSubmit={ handleSubmit(this.submitEntry) } >
         <h3>Add Entry</h3>
         <p>Please submit a meal.</p>
         <div>
@@ -21,15 +38,23 @@ class FoodDiaryEntry extends Component {
           <label>Tell us what you ate</label>
           <Field name="food" component="input" type="text" required />
         </div>
-          <button type="submit" disabled={submitting}>Submit</button>
+        <button type="submit" disabled={submitting} >Submit</button>
       </form>
-    )
+    );
+
   }
 
 }
 
 FoodDiaryEntry = reduxForm({
-  form: 'FoodDiaryEntry'
+  form: 'FoodDiaryEntryForm'
 })(FoodDiaryEntry);
 
-export default connect(null, { submitFoodDiaryEntry })(FoodDiaryEntry);
+const mapStateToProps = (state) => {
+  return {
+    diaryData: state.foodDiary.logs,
+    actualMacros: state.userProfile.actualMacros
+  }
+}
+
+export default connect(mapStateToProps, { submitFoodDiaryEntry, fetchFoodDiary, fetchMacros })(FoodDiaryEntry);

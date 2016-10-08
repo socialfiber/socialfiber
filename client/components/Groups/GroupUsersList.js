@@ -10,6 +10,7 @@ class GroupUsersList extends Component {
 	render() {
 		
 		if(this.props.groupUsers.length) {
+
 			const groupUsers = this.props.groupUsers.map((user, idx) => {
 				return (
 					<li key={idx} >
@@ -18,6 +19,7 @@ class GroupUsersList extends Component {
 					</li>
 				);
 			});
+
 			return (
 				<div>
 					<ul>
@@ -25,15 +27,20 @@ class GroupUsersList extends Component {
 					</ul>
 				</div>
 			);
+
 		} else if(!this.props.groupUsers.length) {
+
 			return (
 				<div>
 					<h3>Nobody has joined this group yet.</h3>
           <h4>Be the first one to join this group!</h4>
 				</div>
 			);
+
 		} else {
+
 			return null;
+			
 		}
 
 	}

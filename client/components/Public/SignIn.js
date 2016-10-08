@@ -17,11 +17,11 @@ class SignIn extends Component {
     return (
 
       <MuiThemeProvider muiTheme={getMuiTheme()}>
-       <div className="container">
+        <div className="container">
           <div className="row">
               <div className="col-sm-6 col-md-4 col-md-offset-4">
                   <div className="account-wall">
-                      <form onSubmit={handleSubmit(this.props.submitSignIn)} className="form-signin-signup">
+                      <form onSubmit={ handleSubmit(this.props.submitSignIn) } className="form-signin-signup">
                         <Field name="username" component={TextField} type="text" floatingLabelText="Username" className="text-line" />
                         <Field name="password" component={TextField} type="password" floatingLabelText="Password" className="text-line" />
                         <FlatButton type="submit" disabled={submitting} className="btn btn-lg btn-primary btn-block main-btn">Sign In</FlatButton>
@@ -30,7 +30,7 @@ class SignIn extends Component {
                   </div>
               </div>
           </div>
-      </div>
+        </div>
       </MuiThemeProvider>
     );
   }

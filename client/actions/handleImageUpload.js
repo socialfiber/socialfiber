@@ -19,7 +19,6 @@ export function handleImageUpload(file) {
     }
     return axios.post('https://api.imgur.com/3/image', data, config)
     .then((response) => {
-      console.log(response.data.data.link)
       const data = {
         userID: Cookies.get('userID'),
         url: response.data.data.link

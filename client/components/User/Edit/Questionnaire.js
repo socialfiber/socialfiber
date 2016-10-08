@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { submitUserStats } from '../../../actions/users';
 import GenderSelect from './GenderSelect';
+import NavBar from '../../ToolBox/NavBar';
 import SelectComponent from '../../ToolBox/SelectComponent';
 import { AutoComplete as MUIAutoComplete } from 'material-ui';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';

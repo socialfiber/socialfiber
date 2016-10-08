@@ -18,19 +18,22 @@ class AllUsers extends Component {
   render() {
 
     if(this.props.users === null) {
+
       return (
         <div>
           <NavBar />
           <h3>Loading users...</h3>
         </div>
       );
+
     } else {
+
       const usersList = this.props.users.map((user, idx) => {
         return (
           <MuiThemeProvider muiTheme={getMuiTheme()}>
             <li key={idx} className="list-group-item user-block col-lg-4 col-centered">
               <div className="bottom-align-text">
-                <ProfilePic />
+                <ProfilePic userID={user.id} />
                 <IndividualUser username={user.username} img={user.img} otherID={user.id} />
                 <FriendRequestButton otherID={user.id} />
               </div>
@@ -38,6 +41,7 @@ class AllUsers extends Component {
           </MuiThemeProvider>
         );
       });
+
       return (
         <div>
           <NavBar />
@@ -46,6 +50,7 @@ class AllUsers extends Component {
           </ul>
         </div>
       );
+
     }
 
   }

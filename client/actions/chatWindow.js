@@ -4,14 +4,13 @@ import Cookies from 'js-cookie';
 
 
 export function createRoom(friendObj) {
-  const roomId = [friendObj.user1_id, friendObj.user2_id].sort().join('_');
-  console.log("In createRoom: ", roomId);
-  return { type: CREATE_ROOM, payload: roomId }
+  const roomID = [friendObj.user1_id, friendObj.user2_id].sort().join('_');
+  return { type: CREATE_ROOM, payload: roomID }
 }
 
-export function fetchChatHistory(roomId) {
+export function fetchChatHistory(roomID) {
   const data = {
-    params: { room_id: roomId },
+    params: { room_id: roomID },
     headers: { 'x-access-token': Cookies.get('token') }
   }
   return axios.get('/api/chats/chathistory', data)
@@ -23,9 +22,9 @@ export function fetchChatHistory(roomId) {
   });
 }
 
-export function storeChatHistory(messages, roomId) {
+export function storeChatHistory(messages, roomID) {
   const data = {
-    room_id: roomId,
+    room_id: roomID,
     messages: messages
   }
   const config = {
@@ -33,7 +32,6 @@ export function storeChatHistory(messages, roomId) {
   }
   return axios.post('/api/chats/chathistory', data, config)
   .then((response) => {
-    console.log("Successfully stored chat history.")
     return { type: STORE_CHAT_HISTORY }
   })
   .catch((error) => {

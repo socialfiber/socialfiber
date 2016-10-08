@@ -14,6 +14,7 @@ class CreateGroup extends Component {
   render() {
 
     const { handleSubmit, submitting } = this.props;
+
     return (
       <MuiThemeProvider muiTheme={getMuiTheme()}>
         <div className="container create group">
@@ -30,9 +31,9 @@ class CreateGroup extends Component {
                 </div>
                 <button className="creategroupbutton btn btn-secondary" type="submit" disabled={submitting}>CREATE GROUP</button>
               </form>
+            </div>
+          </div>
         </div>
-        </div>
-      </div>
       </MuiThemeProvider>
     );
 

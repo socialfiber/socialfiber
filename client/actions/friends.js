@@ -1,23 +1,23 @@
-import { FETCH_FRIENDS, FRIENDSHIP_STATUS } from './types';
+import { FETCH_FRIENDS, FRIENDSHIP_STATUS, LEAVE_TAB } from './types';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
 
 export function fetchFriends() {
   const data = {
-    params: { userID: Cookies.get('userID') },
+    params: { userID: Cookies.get('currentProfileID') },
     headers: { 'x-access-token': Cookies.get('token') }
   }
   return axios.get('/api/friends/myFriends', data)
     .then((response) => {
       const payload = {
         friendList: response.data.filter((friend) => { return friend.status === 'friends' }),
-        friendRequests: response.data.filter((friend) => { return friend.status === 'requestee' })
+        friendRequests: Cookies.get('userID') === Cookies.get('currentProfileID') ? response.data.filter((friend) => { return friend.status === 'requestee' }) : []
       }
       return { type: FETCH_FRIENDS, payload: payload }
     })
-    .catch((err) => {
-      console.error(err);
+    .catch((error) => {
+      console.error(error);
     });
 }
 
@@ -33,8 +33,8 @@ export function fetchFriendshipStatus(otherID) {
     .then((response) => {
       return { type: FRIENDSHIP_STATUS, payload: response.data.status }
     })
-    .catch((err) => {
-      console.error(err);
+    .catch((error) => {
+      console.error(error);
     });
 }
 
@@ -49,8 +49,8 @@ export function sendFriendRequest(otherID) {
     .then((response) => {
       return { type: FRIENDSHIP_STATUS, payload: response.data.status }
     })
-    .catch((err) => {
-      console.error(err);
+    .catch((error) => {
+      console.error(error);
     });
 }
 
@@ -65,8 +65,8 @@ export function acceptFriendRequest(otherID) {
     .then((response) => {
       return { type: FRIENDSHIP_STATUS, payload: response.data.status }
     })
-    .catch((err) => {
-      console.error(err);
+    .catch((error) => {
+      console.error(error);
     });
 }
 
@@ -82,7 +82,11 @@ export function deleteFriendRequest(otherID) {
     .then((response) => {
       return { type: FRIENDSHIP_STATUS, payload: response.data.status }
     })
-    .catch((err) => {
-      console.error(err);
+    .catch((error) => {
+      console.error(error);
     });
+}
+
+export function leaveTab() {
+  return { type: LEAVE_TAB }
 }

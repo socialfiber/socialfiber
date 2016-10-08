@@ -5,6 +5,7 @@ import IndividualUser from '../../ToolBox/IndividualUser';
 import FriendRequestButton from '../../ToolBox/FriendRequestButton';
 import ProfilePic from '../../ToolBox/ProfilePic';
 import ChatWindow from './ChatWindow';
+import Cookies from 'js-cookie';
 
 
 class FriendList extends Component {
@@ -32,6 +33,9 @@ class FriendList extends Component {
   }
 
   render() {
+
+    const noFriends = Cookies.get('userID') === Cookies.get('currentProfileID') ? <h3>You don't have any friends.</h3> : <h3>User doesn't have any friends.</h3>;
+
     if(this.props.friendList.length) {
       const friendList = this.props.friendList.map((friend, idx) => {
         return (
@@ -56,10 +60,11 @@ class FriendList extends Component {
     } else if(!this.props.friendList.length) {
       return (
         <div>
-          <h3>You don't have any friends.</h3>
+          {noFriends}
         </div>
       );
     }
+    
   }
 
 }

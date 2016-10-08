@@ -1,7 +1,8 @@
-import { FETCH_ALL_USERS, FETCH_USER_DATA, FETCH_MACROS, CHANGE_PASSWORD, UPDATE_USER_DATA, FETCH_IDEAL_MACROS, FETCH_ACTUAL_MACROS, FETCH_PROFILE_PIC } from './types';
+import { FETCH_ALL_USERS, FETCH_USER_DATA, CHANGE_PASSWORD, UPDATE_USER_DATA, FETCH_PROFILE_PIC, REDIRECT_PROFILE, LEAVE_PAGE } from './types';
 import { browserHistory } from 'react-router';
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import _ from 'underscore';
 
 
 export function fetchAllUsers() {
@@ -9,12 +10,12 @@ export function fetchAllUsers() {
     headers: { 'x-access-token': Cookies.get('token') }
   }
   return axios.get('/api/users/getAllUsers', data)
-  .then((response) => {
-    return { type: FETCH_ALL_USERS, payload: response.data };
-  })
-  .catch((error) => {
-    console.error(error);
-  });
+    .then((response) => {
+      return { type: FETCH_ALL_USERS, payload: response.data };
+    })
+    .catch((error) => {
+      console.error(error);
+    });
 }
 
 export function fetchUserData() {
@@ -23,13 +24,45 @@ export function fetchUserData() {
     headers: { 'x-access-token': Cookies.get('token') }
   }
   return axios.get('/api/users/getUserData', data)
-  .then((response) => {
-    return { type: FETCH_USER_DATA, payload: response.data.question };
-  })
-  .catch((error) => {
-    console.error(error);
-  })
+    .then((response) => {
+      if(response.data.question === null) {
+        browserHistory.push('/questionnaire');
+        return { type: REDIRECT_PROFILE };
+      } else {
+        for(var total in response.data.nutritionTotals) {
+          response.data.nutritionTotals[total].date = response.data.nutritionTotals[total].date.substr(0,10);
+        }
+        response.data.nutritionTotals = _.sortBy(response.data.nutritionTotals, 'date');
+        return { type: FETCH_USER_DATA, payload: response.data };
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
 }
+
+export function fetchProfile(otherID) {
+  if(otherID === Cookies.get('userID')) {
+    browserHistory.push('/userProfile');
+    return { type: REDIRECT_PROFILE };
+  } else {
+    const data = {
+      headers: { 'x-access-token': Cookies.get('token') }
+    }
+    return axios.get('/api/users/browse/'+otherID, data)
+      .then((response) => {
+        for(var total in response.data.nutritionTotals) {
+          response.data.nutritionTotals[total].date = response.data.nutritionTotals[total].date.substr(0,10);
+        }
+        response.data.nutritionTotals = _.sortBy(response.data.nutritionTotals, 'date');
+        return { type: FETCH_USER_DATA, payload: response.data }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+}
+
 
 export function submitUserStats(userStatsObj) {
   userStatsObj.user_id = Cookies.get('userID');
@@ -60,17 +93,17 @@ export function updateUserData(userStatsObj) {
     headers: { 'x-access-token': Cookies.get('token') }
   }
   return axios.put('/api/questions/submitData', userStatsObj, config)
-  .then((response) => {
-    return { type: UPDATE_USER_DATA, payload: response.data.msg };
-  })
-  .catch(function(error) {
-    console.error(error);
-  });
+    .then((response) => {
+      return { type: UPDATE_USER_DATA, payload: response.data.msg };
+    })
+    .catch(function(error) {
+      console.error(error);
+    });
 }
 
 export function submitChangePassword(passwordObj) {
   if (passwordObj.password !== passwordObj.confirmPW) {
-    return { type: CHANGE_PASSWORD, payload: 'Passwords do not match' };
+    return { type: CHANGE_PASSWORD, payload: 'Passwords do not match.' };
   } else if (passwordObj.password === passwordObj.newPW) {
     return { type: CHANGE_PASSWORD, payload: 'New password must be different than current.' };
   } else {
@@ -88,37 +121,25 @@ export function submitChangePassword(passwordObj) {
   }
 }
 
-export function fetchMacros(userID) {
-  const data = {
-    params: { userID: userID },
-    headers: { 'x-access-token': Cookies.get('token') }
-  }
-  return axios.get('/api/users/getUserData', data)
-  .then((response) => {
-    // console.log("Macros:  ", response.data);
-    return { type: FETCH_MACROS, payload: response.data }
-  })
-  .catch((error) => {
-    console.error(error);
-  });
-}
-
 export function fetchProfilePic(userID) {
   const data = {
     params: { userID: userID },
     headers: { 'x-access-token': Cookies.get('token') }
   }
   return axios.get('/api/profilePics/pic', data)
-  .then((response) => {
-    return { type: FETCH_PROFILE_PIC, payload: response.data }
-  })
-  .catch((error) => {
-    console.error(error);
-  });
+    .then((response) => {
+      return { type: FETCH_PROFILE_PIC, payload: response.data }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
 }
 
 export function resetError() {
   return { type: CHANGE_PASSWORD, payload: '' }
 }
 
+export function leavePage() {
+  return { type: LEAVE_PAGE }
+}
 

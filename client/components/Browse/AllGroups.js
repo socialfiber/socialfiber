@@ -13,7 +13,6 @@ class AllGroups extends Component {
 
   constructor(props) {
     super(props);
-
     this.state = {
       showCheckboxes: false,
       enableSelectAll: false,
@@ -28,49 +27,52 @@ class AllGroups extends Component {
   render() {
 
     if(this.props.groups === null) {
+
       return (
         <div>
           <NavBar />
           <h3 className="center">Loading groups...</h3>
         </div>
       );
-    }
-    const groupsList = this.props.groups.map((group, idx) => {
+
+    } else {
+
+      const groupsList = this.props.groups.map((group, idx) => <IndividualGroup key={idx} group={group}/>);
+
       return (
-          <IndividualGroup key={idx} group={group}/>
-      );
-    });
-    return (
-      <MuiThemeProvider muiTheme={getMuiTheme()}>
-        <div className="container-centered">
-          <NavBar />
-          <h1 className="center">Find a Group</h1>
-          <br></br>
-          <Table className="all-groups-table">
-            <TableBody
-              displayRowCheckbox={this.state.showCheckboxes}
-              className="all-groups-table-body container-centered">
-              <TableHeader
-                adjustForCheckbox={this.state.showCheckboxes}
-                displaySelectAll={this.state.showCheckboxes}
-                enableSelectAll={this.state.enableSelectAll}>
+        <MuiThemeProvider muiTheme={getMuiTheme()}>
+          <div className="container-centered">
+            <NavBar />
+            <h1 className="center">Find a Group</h1>
+            <br></br>
+            <Table className="all-groups-table">
+              <TableBody
+                displayRowCheckbox={this.state.showCheckboxes}
+                className="all-groups-table-body container-centered">
+                <TableHeader
+                  adjustForCheckbox={this.state.showCheckboxes}
+                  displaySelectAll={this.state.showCheckboxes}
+                  enableSelectAll={this.state.enableSelectAll}>
+                  <TableRow>
+                    <TableHeaderColumn className="all-groups-headers">Name</TableHeaderColumn>
+                    <TableHeaderColumn className="all-groups-headers">Description</TableHeaderColumn>
+                    <TableHeaderColumn className="all-groups-headers"></TableHeaderColumn>
+                  </TableRow>
+                </TableHeader>
                 <TableRow>
-                  <TableHeaderColumn className="all-groups-headers">Name</TableHeaderColumn>
-                  <TableHeaderColumn className="all-groups-headers">Description</TableHeaderColumn>
-                  <TableHeaderColumn className="all-groups-headers"></TableHeaderColumn>
+                  {groupsList}
                 </TableRow>
-              </TableHeader>
-              <TableRow>
-                {groupsList}
-              </TableRow>
-            </TableBody>
-          </Table>
-          <br></br>
-          <h4>Can't find a group? Start your own!</h4>
-          <CreateGroup />
-        </div>
-      </MuiThemeProvider>
-    );
+              </TableBody>
+            </Table>
+            <br></br>
+            <h4>Can't find a group? Start your own!</h4>
+            <CreateGroup />
+          </div>
+        </MuiThemeProvider>
+      );
+
+    }
+
   }
 
 }

@@ -4,7 +4,6 @@ import React from 'react';
 const GroupWallComments = (props) => {
 
 	return (
-
 		<div>
 			<table>
 				<tbody>
@@ -16,7 +15,6 @@ const GroupWallComments = (props) => {
 				</tbody>
 			</table>
 		</div>
-		
 	);
 
 }

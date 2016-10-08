@@ -8,6 +8,8 @@ import Tabs from '../ToolBox/Tabs';
 class GroupPage extends Component {
 
   componentWillMount() {
+    Cookies.set('groupID', groupObj.this.props.params.id);
+    Cookies.set('groupName', this.props.params.groupname);
     this.props.fetchGroupUsers({
       groupID: this.props.params.id,
       groupName: this.props.params.groupname
@@ -15,6 +17,8 @@ class GroupPage extends Component {
   }
 
   componentWillUnmount() {
+    Cookies.remove('groupID');
+    Cookies.remove('groupName');
     this.props.leavePage();
   }
 
@@ -26,6 +30,7 @@ class GroupPage extends Component {
     ];
 
     if(this.props.membership === null) {
+
       return (
         <div>
           <NavBar />
@@ -33,26 +38,30 @@ class GroupPage extends Component {
           <h3>Loading group page...</h3>
         </div>
       );
+
     } else if(this.props.membership) {
+
       return (
         <div>
           <NavBar />
           <h1>{this.props.params.groupname}</h1>
           <div>
             <p>Leave this group!</p>
-            <button onClick = {() => {this.props.leaveGroup(this.props.params.id).then(()=>window.location.reload())}} >Leave Group</button>
+            <button onClick={() => {this.props.leaveGroup(this.props.params.id).then(()=>window.location.reload())}} >Leave Group</button>
           </div>
           <Tabs tabsList={tabsList} defaultTab={'GroupWall'} />
         </div>
-      )
+      );
+
     } else if(!this.props.membership) {
+
       return (
         <div>
           <NavBar />
           <h1>{this.props.params.groupname}</h1>
           <div>
             <p>You aren't a member of this group! Please join to participate in the group.</p>
-            <button onClick = {() => {this.props.joinGroup(this.props.params.id).then(()=>window.location.reload())}} >Join Group</button>
+            <button onClick={() => {this.props.joinGroup(this.props.params.id).then(()=>window.location.reload())}} >Join Group</button>
           </div>
         </div>
       );
