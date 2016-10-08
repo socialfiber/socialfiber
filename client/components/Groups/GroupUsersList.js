@@ -3,17 +3,19 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import IndividualUser from '../ToolBox/IndividualUser';
 import FriendRequestButton from '../ToolBox/FriendRequestButton';
+import ProfilePic from '../ToolBox/ProfilePic';
 
 
 class GroupUsersList extends Component {
 
 	render() {
-		
+
 		if(this.props.groupUsers.length) {
 
 			const groupUsers = this.props.groupUsers.map((user, idx) => {
 				return (
-					<li key={idx} >
+					<li key={idx} className="list-group-item user-block col-lg-4 col-centered">
+						<ProfilePic userID={user.id} />
 						<IndividualUser username={user.username} otherID={user.id} />
 						<FriendRequestButton otherID={user.id} />
 					</li>
@@ -40,7 +42,7 @@ class GroupUsersList extends Component {
 		} else {
 
 			return null;
-			
+
 		}
 
 	}

@@ -27,7 +27,7 @@ class GroupWall extends Component {
         <MessageBox />
         {groupPosts}
       </div>
-    );      
+    );
 
   }
 

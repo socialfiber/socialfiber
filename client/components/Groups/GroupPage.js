@@ -6,7 +6,7 @@ import NavBar from '../ToolBox/NavBar';
 import Tabs from '../ToolBox/Tabs';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-
+import RaisedButton from 'material-ui/RaisedButton';
 
 class GroupPage extends Component {
 
@@ -47,19 +47,20 @@ class GroupPage extends Component {
       );
 
     } else if(this.props.membership) {
-
       return (
         <MuiThemeProvider muiTheme={getMuiTheme()}>
           <div>
             <NavBar />
             <div className="group-page-header">
-              <h1>{this.props.params.groupname}</h1>
-              <div>
-                <p>Leave this group!</p>
-                <button onClick = {() => {this.props.leaveGroup(this.props.params.id).then(()=>window.location.reload())}}>Leave Group</button>
-              </div>
+                <h1>{this.props.params.groupname}</h1>
             </div>
-            <Tabs tabsList={tabsList} defaultTab={'GroupWall'} />
+            <Tabs style={{backgroundColor: 'white'}} tabsList={tabsList} defaultTab={'GroupWall'} />
+            <RaisedButton
+              className="leave-group-button"
+              backgroundColor="#D8A154"
+              labelColor="#FFFFFF"
+              onClick = {() => {this.props.leaveGroup(this.props.params.id).then(()=>window.location.reload())}}
+              label="Leave Group" />
           </div>
         </MuiThemeProvider>
       );
@@ -67,14 +68,19 @@ class GroupPage extends Component {
     } else if(!this.props.membership) {
 
       return (
-        <div>
-          <NavBar />
-          <h1>{this.props.params.groupname}</h1>
+        <MuiThemeProvider muiTheme={getMuiTheme()}>
           <div>
-            <p>You aren't a member of this group! Please join to participate in the group.</p>
-            <button onClick={() => {this.props.joinGroup(this.props.params.id).then(()=>window.location.reload())}} >Join Group</button>
+            <NavBar />
+            <div className="group-page-header">
+            <h1>{this.props.params.groupname}</h1>
+              <p>You aren't a member of this group! Please join to participate in the group.</p>
+              <RaisedButton
+                className="join-group-button"
+                onClick={() => {this.props.joinGroup(this.props.params.id).then(()=>window.location.reload())}}
+                label="Join Group" />
+            </div>
           </div>
-        </div>
+        </MuiThemeProvider>
       );
     }
 

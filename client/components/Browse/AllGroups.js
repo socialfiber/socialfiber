@@ -11,14 +11,6 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 class AllGroups extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      showCheckboxes: false,
-      enableSelectAll: false,
-    };
-  }
-
   componentWillMount() {
     this.props.fetchAllGroups();
   }
@@ -38,29 +30,24 @@ class AllGroups extends Component {
 
       const groupsList = this.props.groups.map((group, idx) => <IndividualGroup key={idx} group={group}/>);
 
-      return (
-        <MuiThemeProvider muiTheme={getMuiTheme()}>
-          <div className="container-centered">
-            <NavBar />
-            <h1 className="center">Find a Group</h1>
-            <br></br>
-            <Table className="all-groups-table">
-              <TableBody
-                displayRowCheckbox={this.state.showCheckboxes}
-                className="all-groups-table-body container-centered">
-                <TableHeader
-                  adjustForCheckbox={this.state.showCheckboxes}
-                  displaySelectAll={this.state.showCheckboxes}
-                  enableSelectAll={this.state.enableSelectAll}>
-                  <TableRow>
-                    <TableHeaderColumn className="all-groups-headers">Name</TableHeaderColumn>
-                    <TableHeaderColumn className="all-groups-headers">Description</TableHeaderColumn>
-                    <TableHeaderColumn className="all-groups-headers"></TableHeaderColumn>
-                  </TableRow>
-                </TableHeader>
+    return (
+      <MuiThemeProvider muiTheme={getMuiTheme()}>
+        <div className="container-centered">
+          <NavBar />
+          <h1 className="center">Find a Group</h1>
+          <br></br>
+          <Table className="all-groups-table">
+            <TableBody
+              displayRowCheckbox={false}
+              className="all-groups-table-body container-centered">
+              <TableHeader
+                adjustForCheckbox={false}
+                displaySelectAll={false}
+                enableSelectAll={false}>
                 <TableRow>
                   {groupsList}
                 </TableRow>
+                </TableHeader>
               </TableBody>
             </Table>
             <br></br>
@@ -69,11 +56,8 @@ class AllGroups extends Component {
           </div>
         </MuiThemeProvider>
       );
-
     }
-
   }
-
 }
 
 const mapStateToProps = (state) => {

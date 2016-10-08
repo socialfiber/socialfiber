@@ -216,7 +216,6 @@ span, .fr-btn {
 
 /*questionnaire style*/
 
-
 .questionnaire {
   background-image: url('./assets/blueberrytree.jpeg');
   height: 100%;
@@ -282,14 +281,6 @@ span, .fr-btn {
 .ft, .in{
   width: 50px;
 }
-
--/* -------------------- Group Page -------------------- */
-
- .group-page-header {
-   width: 100%;
-   text-align: center;
-   background-color: lightgrey;
- }
 
 
 
@@ -384,4 +375,66 @@ li.dropdown {
   left: 40%;
   position:absolute;
   float: top;
+}
+
+
+/* -------------------- Group Page Header -------------------- */
+
+.group-page-header {
+  width: 100%;
+  text-align: center;
+  color: #233B44;
+  display: inline-block;
+}
+
+.leave-group-button {
+  float: right;
+  color: black;
+  margin-bottom: 5px;
+  margin-right: 5px;
+}
+
+.join-group-button {
+  margin-bottom: 5px;
+}
+
+/* -------------------- Group Messages -------------------- */
+.group-message {
+  width: 1000px;
+  background-color: #E3E7D3;
+  margin: 0 auto;
+}
+
+.group-comments {
+  margin-left: 20px;
+}
+
+.message-form {
+  text-align: center;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  background-color: white;
+}
+
+#messagebox-header {
+  text-align: center;
+}
+
+.commentbox {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+strong {
+  font-weight: 600;
+}
+
+.page-tab {
+  background-color: white;
+}
+
+.page-tab > li > a:hover{
+  background-color: #233B44;
+  color: white;
 }
