@@ -601,3 +601,12 @@ strong {
   position: absolute;
   right: 0;
 }
+
+/* -------------------- My Group -------------------- */
+.my-groups {
+  text-align: center;
+}
+
+.my-groups-table {
+  display: inline;
+}

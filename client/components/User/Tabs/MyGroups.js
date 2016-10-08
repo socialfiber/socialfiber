@@ -10,7 +10,7 @@ class MyGroups extends Component {
   componentWillMount() {
     this.props.fetchUserGroups();
   }
-  
+
   componentWillUnmount() {
     this.props.leaveTab();
   }
@@ -30,14 +30,14 @@ class MyGroups extends Component {
         <IndividualGroup key={idx} group={group} />
       );
       return (
-        <div>
+        <div className="my-groups">
           <h1>My Groups</h1>
-          <table>
+          <table className="my-groups-table">
             <tbody>
-              <tr>
+              {/* <tr>
                 <th>Name</th>
                 <th>Description</th>
-              </tr>
+              </tr> */}
               {groupsList}
             </tbody>
           </table>
