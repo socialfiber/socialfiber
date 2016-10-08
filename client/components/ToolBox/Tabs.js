@@ -48,7 +48,7 @@ class Tabs extends Component {
     return (
       <div>
         <nav>
-          <ul className="nav nav-tabs nav-justified" role="tablist">
+          <ul className="nav nav-tabs nav-justified page-tab" role="tablist">
             {tabsList}
           </ul>
           <TabContent currentTab={this.state.currentTab} />

@@ -53,12 +53,14 @@ class GroupPage extends Component {
             <NavBar />
             <div className="group-page-header">
                 <h1>{this.props.params.groupname}</h1>
-                <RaisedButton
-                  className="leave-group-button"
-                  onClick = {() => {this.props.leaveGroup(this.props.params.id).then(()=>window.location.reload())}}
-                  label="Leave Group" />
             </div>
-            <Tabs tabsList={tabsList} defaultTab={'GroupWall'} />
+            <Tabs style={{backgroundColor: 'white'}} tabsList={tabsList} defaultTab={'GroupWall'} />
+            <RaisedButton
+              className="leave-group-button"
+              backgroundColor="#D8A154"
+              labelColor="#FFFFFF"
+              onClick = {() => {this.props.leaveGroup(this.props.params.id).then(()=>window.location.reload())}}
+              label="Leave Group" />
           </div>
         </MuiThemeProvider>
       );

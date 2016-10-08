@@ -23,7 +23,7 @@ class GroupWall extends Component {
     const groupPostsNoReply = this.props.groupPosts.map((post, idx) => <GroupWallMessagesNoReply key={idx} post={post} />);
 
     return(
-      <div className="testgroup">
+      <div>
         <MessageBox />
         {groupPosts}
       </div>

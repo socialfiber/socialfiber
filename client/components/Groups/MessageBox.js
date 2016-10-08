@@ -16,7 +16,7 @@ class MessageBox extends Component {
     const { handleSubmit, submitting } = this.props;
     const styles = {
       underlineStyle: {
-        borderColor: blueGrey700,
+        borderColor: blueGrey700
       },
       floatingLabelStyle: {
         color: blueGrey700,
@@ -38,6 +38,7 @@ class MessageBox extends Component {
                 multiLine={true}
                 floatingLabelText="Enter your message"
                 type="text"
+                underlineStyle={styles.underlineStyle}
                 underlineFocusStyle={styles.underlineStyle}
                 floatingLabelStyle={styles.floatingLabelStyle}
                 floatingLabelFocusStyle={styles.floatingLabelFocusStyle}

@@ -4,7 +4,7 @@ const _ = require('underscore');
 
 
 const groups = {
-  
+
   //Endpoint to create groups
   '/api/groups/createGroups': {
     'post': (req, res) => {

@@ -281,13 +281,6 @@ span, .fr-btn {
 .ft, .in{
   width: 50px;
 }
-/* -------------------- Group Page -------------------- */
-
- .group-page-header {
-   width: 100%;
-   text-align: center;
-   background-color: lightgrey;
- }
 
 
 
@@ -434,4 +427,13 @@ li.dropdown {
 
 strong {
   font-weight: bold;
+}
+
+.page-tab {
+  background-color: white;
+}
+
+.page-tab > li > a:hover{
+  background-color: #233B44;
+  color: white;
 }
