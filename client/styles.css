@@ -230,6 +230,7 @@ span, .fr-btn {
   -o-background-size: cover;
   background-size: cover;
   color: white;
+  overflow: hidden;
 }
 
 .inner-div-questionnaire {
@@ -436,7 +437,13 @@ li.dropdown {
   font-size: 100px;
   padding: 15px;
 }
+.radarGraphTable {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 
 .radarGraphAmount, .radarGraphPercentage {
-  display: inline-grid;
+  display: inline-block;
 }
