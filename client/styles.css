@@ -210,9 +210,9 @@ span, .fr-btn {
   margin-right: auto;
 }
 /*select component style*/
-.selectComponent-style {
+/*.selectComponent-style {
   color: white;
-}
+}*/
 
 /*questionnaire style*/
 
@@ -266,7 +266,7 @@ span, .fr-btn {
 }
 
 
-.containerquestionnaire, label {
+.containerquestionnaire {
   margin-right:15px;
   background-color: transparent;
   font-size: 15px;
