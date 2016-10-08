@@ -354,6 +354,10 @@ li.dropdown {
   top: 10px;
   right: 10px;
 }
+.signout-button {
+  background-color: #D8A154;
+  color: white;
+}
 
 .signout-button {
   background-color: #D8A154;
