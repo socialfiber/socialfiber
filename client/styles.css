@@ -153,9 +153,23 @@ html, body, #main{
   margin: 30px;
 }
 
+.user-block-top {
+
+}
+
 span, .fr-btn {
   text-align: center;
   padding: 0 10px;
+}
+
+span, .accept-fr-btn {
+  text-align: center;
+  padding: 0 10px 2px 10px;
+}
+
+span, .reject-fr-btn {
+  text-align: center;
+  padding: 0 12px;
 }
 
 .container-centered {
@@ -387,12 +401,75 @@ li.dropdown {
 }
 
 /* -------------------- Group Page Header -------------------- */
+/* -------------------- Profile Pic -------------------- */
 
-.group-page-header {
+.img-circle {
+  border: 15px solid white;
+  border-radius: 50%;
+}
+
+/* -------------------- Profile Page -------------------- */
+
+.user-container {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.user-profile-block {
+  position: relative;
+  height: 500px;
+  width: 100%;
+  margin: 0;
+}
+
+.user-profile-block-right {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 500px;
+  margin: 0 60px;
+  overflow: auto;
+}
+
+.user-profile-block-left {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 500px;
+  margin: 0 5px;
+  padding-left: 40px;
+  overflow: auto;
+}
+
+.user-info {
+  position: absolute;
+  bottom: 120px;
+  right: 0;
+  left: 0;
+}
+
+.user-info-list-item {
+  position: relative;
+  display: block;
+  padding: 0 15px;
+  margin: 0;
+}
+
+.user-profile-nav {
+  float: none;
+}
+
+.user-profile-nav li{
+  float: none;
+}
+
+/* -------------------- My Friends -------------------- */
+
+.friend-list-buttons {
+  position: relative;
   width: 100%;
   text-align: center;
   color: #233B44;
-  display: inline-block;
 }
 
 .leave-group-button {
@@ -502,4 +579,24 @@ strong {
 
 .radarGraphAmount, .radarGraphPercentage {
   display: inline-block;
+}
+
+.friend-list-button-left {
+  position: absolute;
+  left: 0;
+}
+
+.friend-list-button-right {
+  position: absolute;
+  right: 0;
+}
+
+.my-friends-container {
+  width: 100%;
+  position: relative;
+}
+
+.chat-window {
+  position: absolute;
+  right: 0;
 }
