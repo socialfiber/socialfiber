@@ -19,7 +19,6 @@ class AllGroups extends Component {
     };
   }
 
-
   componentWillMount() {
     this.props.fetchAllGroups();
   }
