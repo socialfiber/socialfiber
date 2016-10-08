@@ -467,18 +467,19 @@ li.dropdown {
 
 .friend-list-buttons {
   position: relative;
+}
+
+.group-page-header {
   width: 100%;
   text-align: center;
   color: #233B44;
 }
-
 .leave-group-button {
   float: right;
   color: black;
   margin-bottom: 5px;
   margin-right: 5px;
 }
-
 .join-group-button {
   margin-bottom: 5px;
 }
@@ -579,6 +580,89 @@ strong {
 
 .radarGraphAmount, .radarGraphPercentage {
   display: inline-block;
+}
+
+/* -------------------- Profile Pic -------------------- */
+
+.img-circle {
+  border: 15px solid white;
+  border-radius: 50%;
+}
+
+/* -------------------- Profile Page -------------------- */
+
+.user-container {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.user-profile-block {
+  position: relative;
+  height: 500px;
+  width: 100%;
+  margin: 0;
+}
+
+.user-profile-block-right {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 500px;
+  margin: 0 60px;
+  overflow: auto;
+}
+
+.user-profile-block-left {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 500px;
+  margin: 0 5px;
+  padding-left: 40px;
+  overflow: auto;
+}
+
+.user-info {
+  position: absolute;
+  bottom: 120px;
+  right: 0;
+  left: 0;
+}
+
+.user-info-list-item {
+  position: relative;
+  display: block;
+  padding: 0 15px;
+  margin: 0;
+}
+
+.user-profile-nav {
+  float: none;
+}
+
+.user-profile-nav li{
+  float: none;
+}
+
+/* -------------------- My Friends -------------------- */
+
+.friend-list-buttons {
+  position: relative;
+  width: 100%;
+  text-align: center;
+  color: #233B44;
+  display: inline-block;
+}
+
+.leave-group-button {
+  float: right;
+  color: black;
+  margin-bottom: 5px;
+  margin-right: 5px;
+}
+
+.join-group-button {
+  margin-bottom: 5px;
 }
 
 .friend-list-button-left {
