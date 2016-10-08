@@ -13,8 +13,14 @@ import { TextField } from 'redux-form-material-ui';
 
 class SignUp extends Component {
 
+  componentWillUnmount() {
+    resetError();
+  }
+
   render() {
+
     const { handleSubmit, submitting } = this.props;
+
     return (
       <MuiThemeProvider muiTheme={getMuiTheme()}>
         <div className="container">
@@ -39,6 +45,7 @@ class SignUp extends Component {
         </div>
       </MuiThemeProvider>
     );
+    
   }
 
 }

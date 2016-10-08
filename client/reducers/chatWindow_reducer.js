@@ -1,6 +1,9 @@
 import { CREATE_ROOM, FETCH_CHAT_HISTORY } from '../actions/types';
 
-const INITIAL_STATE = { roomId: null, chatHistory: [] };
+const INITIAL_STATE = {
+  roomId: null,
+  chatHistory: []
+};
 
 export default function(state = INITIAL_STATE, action) {
   switch(action.type) {

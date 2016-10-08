@@ -1,6 +1,10 @@
 import { FETCH_USER_DATA, UPDATE_USER_DATA, FETCH_MACROS, LEAVE_PAGE } from '../actions/types';
 
-const INITIAL_STATE = { userData: null, idealMacros: null, actualMacros: null }
+const INITIAL_STATE = {
+  userData: null,
+  idealMacros: null,
+  actualMacros: null
+}
 
 export default function(state = INITIAL_STATE, action) {
   switch(action.type) {

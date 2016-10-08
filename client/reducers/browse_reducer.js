@@ -1,6 +1,9 @@
 import { FETCH_ALL_GROUPS, FETCH_ALL_USERS } from '../actions/types';
 
-const INITIAL_STATE = { allGroups: null, allUsers: null }
+const INITIAL_STATE = {
+  allGroups: null,
+  allUsers: null
+}
 
 export default function(state = INITIAL_STATE, action) {
   switch(action.type) {

@@ -9,30 +9,26 @@ const INITIAL_STATE = {
   postComments: []
 }
 
-export default function(state=INITIAL_STATE, action){
+export default function(state = INITIAL_STATE, action){
   switch(action.type) {
     case FETCH_USER_GROUPS:
-      return { ...state, userGroups: action.payload };
+      return { ...state, userGroups: action.payload }
     case FETCH_GROUP_USERS:
-      return { ...state, groupUsers: action.payload.groupUsers, membership: action.payload.membership };
+      return { ...state, groupUsers: action.payload.groupUsers, membership: action.payload.membership }
     case FETCH_GROUP_POSTS:
-      return { ...state, groupPosts: action.payload };
+      return { ...state, groupPosts: action.payload }
     case FETCH_GROUP_COMMENTS:
-      return { ...state, comments: action.payload };
-    case CREATE_NEW_GROUP:
-     return { ...state }
-    case JOIN_GROUP:
-      return { ...state }
+      return { ...state, comments: action.payload }
     case LEAVE_GROUP:
-      return { ...state, membership: null };
-    case POST_GROUP_MESSAGE:
-      return { ...state }
-    case POST_GROUP_COMMENT:
-      return { ...state }
+      return { ...state, membership: null }
     case LEAVE_PAGE:
-      return INITIAL_STATE
     case LEAVE_TAB:
       return INITIAL_STATE
+    case CREATE_NEW_GROUP:
+    case JOIN_GROUP:
+    case POST_GROUP_MESSAGE:
+    case POST_GROUP_COMMENT:
+      return { ...state }
     default:
       return state;
   }
