@@ -4,7 +4,11 @@ import { Field, reduxForm } from 'redux-form';
 import { submitUserStats } from '../../../actions/users';
 import GenderSelect from './GenderSelect';
 import SelectComponent from '../../ToolBox/SelectComponent';
-
+import { AutoComplete as MUIAutoComplete } from 'material-ui';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import FlatButton from 'material-ui/FlatButton';
+import { TextField } from 'redux-form-material-ui';
 
 class Questionnaire extends Component {
 
@@ -38,30 +42,39 @@ class Questionnaire extends Component {
     }
 
     return (
-      <div>
-        <form onSubmit={handleSubmit(this.props.submitUserStats)}>
-          <h1>Tell us a little bit about yourself...</h1>
-            <div>
-              <label>Age</label>
-              <Field name="age" component="input" type="number" min="13" required />
+      <MuiThemeProvider muiTheme={getMuiTheme()}>
+        <div className="container questionnaire">
+          <div className="row">
+            <h1 className="questionnaire-h1">Tell us a little bit about yourself...</h1>
+            <p>social fiber calculates RDA-based nutrient recommendations for each individual</p>
+              <div className="col-sm-6 col-md-4 col-md-offset-4">
+              <div className='inner-div-questionnaire'>
+                <form className="questionnaire-form" onSubmit={handleSubmit(this.props.submitUserStats)}>
+                  <div className="questionnaire-inputs">
+                    <label>Age</label>
+                    <Field name="age" component="input" type="number" min="13" required />
+                  </div>
+                  <div className="questionnaire-inputs">
+                    <label>Height (ft & in)</label>
+                    <Field className='input' name="ft" component="input" type="number" min="4" max="8" required />
+                    <Field name="in" component="input" type="number" min="0" max="11" />
+                  </div>
+                  <div className="questionnaire-inputs">
+                    <label>Weight</label>
+                    <Field name="weight" component="input" type="number" min="70" required />
+                  </div>
+                  <div className="questionnaire-inputs">
+                    <label>Gender</label>
+                    <Field name="gender" component={GenderSelect} genderState={this} />
+                  </div>
+                  {femaleQuestions()}
+                  <button className='submitquestionnaire btn btn-secondary' type="submit" disabled={submitting} >Submit</button>
+                </form>
+              </div>
             </div>
-            <div>
-              <label>Height (ft & in)</label>
-              <Field name="ft" component="input" type="number" min="4" max="8" required />
-              <Field name="in" component="input" type="number" min="0" max="11" />
-            </div>
-            <div>
-              <label>Weight</label>
-              <Field name="weight" component="input" type="number" min="70" required />
-            </div>
-            <div>
-              <label>Gender</label>
-              <Field name="gender" component={GenderSelect} genderState={this} />
-            </div>
-            {femaleQuestions()}
-            <button type="submit" disabled={submitting} >Submit</button>
-        </form>
-      </div>
+          </div>
+        </div>
+        </MuiThemeProvider>
     );
 
   }

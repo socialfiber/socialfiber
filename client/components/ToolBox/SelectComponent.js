@@ -5,8 +5,8 @@ import Select from 'react-select';
 const SelectComponent = (props) => {
 
 	return (
-		<div>
-			<Select
+		<div className='selectComponent-div'>
+			<Select 
 				options={props.options}
 				{...props.input}
 				onBlur={() => {
@@ -15,7 +15,7 @@ const SelectComponent = (props) => {
 			/>
 		</div>
 	);
-	
+
 }
 
 export default SelectComponent;
