@@ -3,7 +3,7 @@ import { fetchProfilePic } from '../../actions/users';
 
 
 class ProfilePic extends Component {
-  
+
   constructor(props) {
     super(props);
     this.state = {
