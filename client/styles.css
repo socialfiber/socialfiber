@@ -98,7 +98,7 @@ html, body, #main{
 }
 
 
-.jumbotron, .banner{
+.jumbotron, .banner {
   background-color: transparent;
   height: 100%;
   color: white;
@@ -176,4 +176,16 @@ span, .fr-btn {
 
 .username-div {
   margin-bottom: 10px;
+}
+
+.list-group-item:last-child {
+  margin-bottom: 30px;
+}
+
+/* -------------------- Group Page -------------------- */
+
+.group-page-header {
+  width: 100%;
+  text-align: center;
+  background-color: lightgrey;
 }

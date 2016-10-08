@@ -7,7 +7,7 @@ import IndividualGroup from '../ToolBox/IndividualGroup';
 
 
 class AllGroups extends Component {
-  
+
   componentWillMount() {
     this.props.fetchAllGroups();
   }
