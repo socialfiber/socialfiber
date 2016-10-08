@@ -264,6 +264,14 @@ span, .fr-btn {
   background-color: transparent;
 }
 
+.inputs {
+  width: 1px
+}
+
+.q-label {
+  color: white;
+  padding: 10px;
+}
 
 .containerquestionnaire {
   margin-right:15px;
@@ -279,7 +287,7 @@ span, .fr-btn {
 }
 
 .ft, .in{
-  width: 50px;
+  width: 20px;
 }
 
 
