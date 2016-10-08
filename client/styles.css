@@ -377,7 +377,6 @@ li.dropdown {
   float: top;
 }
 
-
 /* -------------------- Group Page Header -------------------- */
 
 .group-page-header {
@@ -438,6 +437,7 @@ strong {
   background-color: #233B44;
   color: white;
 }
+
 /*<---- food diary entry ---->*/
 .diaryInputForm {
   text-align: center;
