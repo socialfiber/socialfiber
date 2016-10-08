@@ -19,10 +19,6 @@ class GroupPage extends Component {
     });
   }
 
-  componentDidMount() {
-    console.log("componentDidMount")
-  }
-
   componentWillUnmount() {
     Cookies.remove('groupID');
     Cookies.remove('groupName');
@@ -30,6 +26,8 @@ class GroupPage extends Component {
   }
 
   render() {
+
+    console.log("GroupsPage: ", this.props);
 
     const tabsList = [
       { label: 'Wall', component: 'GroupWall' },
@@ -52,7 +50,11 @@ class GroupPage extends Component {
           <div>
             <NavBar />
             <div className="group-page-header">
-                <h1>{this.props.params.groupname}</h1>
+              <h1>{this.props.params.groupname}</h1>
+              <div>
+                <h3>Leave this group!</h3>
+                <button onClick = {() => {this.props.leaveGroup(this.props.params.id).then(()=>window.location.reload())}}>Leave Group</button>
+              </div>
             </div>
             <Tabs style={{backgroundColor: 'white'}} tabsList={tabsList} defaultTab={'GroupWall'} />
             <RaisedButton

@@ -8,6 +8,7 @@ import ChatWindow from './ChatWindow';
 import Cookies from 'js-cookie';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import RaisedButton from 'material-ui/RaisedButton';
 
 
 class FriendList extends Component {
@@ -39,25 +40,31 @@ class FriendList extends Component {
     if(this.props.friendList.length) {
       const friendList = this.props.friendList.map((friend, idx) => {
         return (
-          <MuiThemeProvider muiTheme={getMuiTheme()}>
-            <li key={idx}>
-              <ProfilePic userID={friend.user2_id} />
-              <IndividualUser username={friend.user2_username} img={friend.img} otherID={friend.user2_id} />
-              <FriendRequestButton otherID={friend.user2_id} />
-              {/* <button type="button" onClick={() => this.handleOnClick(friend)}>Chat</button> */}
-              {this.state.chatFlag ? <button type="button" onClick={() => this.endLiveChat()}>End Chat</button> : <button type="button" onClick={() => this.initiateLiveChat(friend)}>Chat</button>}
-            </li>
-          </MuiThemeProvider>
+          <li key={idx} className="list-group-item user-block col-lg-4 col-centered">
+            <ProfilePic userID={friend.user2_id} />
+            <IndividualUser username={friend.user2_username} img={friend.img} otherID={friend.user2_id} />
+            <div className="friend-list-buttons">
+              <div className="friend-list-button-left">
+                {this.state.chatFlag ? <RaisedButton type="button" onClick={() => this.endLiveChat()}>End Chat</RaisedButton> : <RaisedButton type="button" onClick={() => this.initiateLiveChat(friend)}>Chat</RaisedButton>}
+              </div>
+              <div className="friend-list-button-right">
+                <FriendRequestButton otherID={friend.user2_id}/>
+              </div>
+            </div>
+          </li>
         );
       });
       return (
-        <div>
-          <h3>Friends</h3>
-          <ul>
-            {friendList}
-          </ul>
-          {this.state.chatFlag ? <ChatWindow /> : ''}
-        </div>
+        <MuiThemeProvider muiTheme={getMuiTheme()}>
+          <div className="my-friends-container">
+            <ul>
+              {friendList}
+            </ul>
+            <div className="chat-window">
+              {this.state.chatFlag ? <ChatWindow /> : ''}
+            </div>
+          </div>
+        </MuiThemeProvider>
       );
     } else if(!this.props.friendList.length) {
       return (
