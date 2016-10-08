@@ -33,7 +33,7 @@ class GroupWallMessages extends Component {
 			<MuiThemeProvider muiTheme={getMuiTheme()}>
 				<div>
 					<ul className="list-unstyled">
-						<li className="list-group-item" style={{marginBottom:'5px'}}>
+						<li className="list-group-item group-message" style={{marginBottom:'5px'}}>
 							{/* <div>{this.props.post.createdAt.substr(0,10)}</div> */}
 							<div><strong>{this.props.post.username}</strong>: {this.props.post.message}</div>
 							<li className="group-comments">

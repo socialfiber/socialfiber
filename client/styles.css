@@ -386,17 +386,20 @@ li.dropdown {
 }
 
 /* -------------------- Group Messages -------------------- */
+.group-message {
+  border-bottom-style: none;
+  border-right-style: none;
+  border-left-style: none;
+}
+
 .group-comments {
   margin-left: 10px;
 }
 
 .message-form {
-  margin-bottom: 10px;
-}
-
-.message-form {
   text-align: center;
   margin: 0 auto;
+  margin-bottom: 10px;
 }
 
 #messagebox-header {
