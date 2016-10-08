@@ -37,6 +37,7 @@ class CommentBox extends Component {
                   multiLine={true}
                   floatingLabelText="Reply"
                   type="text"
+                  underlineStyle={styles.underlineStyle}
                   underlineFocusStyle={styles.underlineStyle}
                   floatingLabelStyle={styles.floatingLabelStyle}
                   floatingLabelFocusStyle={styles.floatingLabelFocusStyle}

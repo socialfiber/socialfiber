@@ -42,8 +42,8 @@ class GroupWallMessages extends Component {
 							<div>
 								{this.state.showReply && <CommentBox />}
 							</div>
+							<div style={{textAlign:'center'}}><RaisedButton onClick={this.showReplyForm} label="Reply"/></div>
 						</li>
-						<div style={{textAlign:'center'}}><RaisedButton onClick={this.showReplyForm} label="Reply"/></div>
 					</ul>
 				</div>
 			</MuiThemeProvider>
