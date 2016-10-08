@@ -309,6 +309,10 @@ span, .fr-btn {
     text-decoration: none;
 }
 
+a.home{
+  color: white;
+}
+
 
 .home:hover, .dropdown:hover .dropbtn {
     position: block;
