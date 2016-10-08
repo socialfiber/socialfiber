@@ -45,8 +45,13 @@ class FoodDiary extends Component {
                 {logsPerDay}
               </tbody>
             </table>
-              <RadarGraph className="radarGraphAmount" type={'amount'} size={'small'} date={date} />
-              <RadarGraph className="radarGraphPercentage" type={'ratio'} size={'small'} date={date} />
+            <div className="radarGraphDiv">
+              <table className="radarGraphTable"><tr>
+                <th><RadarGraph className="radarGraphAmount" type={'amount'} size={'small'} date={date} /></th>
+                <th><RadarGraph className="radarGraphPercentage" type={'ratio'} size={'small'} date={date} /></th>
+              </tr>
+              </table>
+            </div>
           </li>
         );
       });
