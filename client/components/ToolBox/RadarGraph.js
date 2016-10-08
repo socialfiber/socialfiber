@@ -72,6 +72,7 @@ class RadarGraph extends Component {
   }
 
   render() {
+    
     var height, width;
     switch(this.props.size) {
       case 'small':
