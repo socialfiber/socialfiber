@@ -13,9 +13,34 @@ class RadarGraph extends Component {
       idealMacros: null,
       actualMacros: null
     }
+    this.updateMacros.bind(this);
   }
 
   componentWillMount() {
+    this.updateMacros();
+  }
+
+  // componentWillReceiveProps(nextProps) {
+  //   console.log("componentWillReceiveProps", nextProps)
+  //   this.updateMacros();
+  // }
+
+  // componentDidUpdate (nextProps, nextState) {
+  //   console.log('componentDidUpdate', nextProps, nextState)
+  // }
+
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   return true;
+  // }
+
+  componentWillUnmount() {
+    this.setState({
+      idealMacros: null,
+      actualMacros: null
+    })
+  }
+
+  updateMacros() {
     this.setState({
       idealMacros: this.props.idealMacros || {
         fat: 0,
@@ -54,13 +79,6 @@ class RadarGraph extends Component {
         }
       })
     // }
-  }
-
-  componentWillUnmount() {
-    this.setState({
-      idealMacros: null,
-      actualMacros: null
-    })
   }
 
   render() {
@@ -148,7 +166,7 @@ class RadarGraph extends Component {
             fillColor: "rgba(0,220,0,0.5)",
             strokeColor: "rgba(0,220,0,0.5)",
             pointColor: "rgba(0,220,0,0.5)",
-            data: [(this.state.actualMacros.fat/totalMacros).toFixed(2), (this.state.actualMacros.prot/totalMacros).toFixed(2), (this.state.actualMacros.carb/totalMacros).toFixed(2), (this.state.actualMacros.n6/totalMacros).toFixed(2)]
+            data: [(this.state.actualMacros.fat/totalMacros*100).toFixed(2), (this.state.actualMacros.prot/totalMacros*100).toFixed(2), (this.state.actualMacros.carb/totalMacros*100).toFixed(2), (this.state.actualMacros.n6/totalMacros*100).toFixed(2)]
           }
         ]
       }

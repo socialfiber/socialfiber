@@ -1,4 +1,4 @@
-import { FETCH_ALL_USERS, FETCH_USER_DATA, FETCH_MACROS, CHANGE_PASSWORD, UPDATE_USER_DATA, FETCH_IDEAL_MACROS, FETCH_ACTUAL_MACROS, FETCH_PROFILE_PIC, REDIRECT_PROFILE, LEAVE_PAGE } from './types';
+import { FETCH_ALL_USERS, FETCH_USER_DATA, CHANGE_PASSWORD, UPDATE_USER_DATA, FETCH_PROFILE_PIC, REDIRECT_PROFILE, LEAVE_PAGE } from './types';
 import { browserHistory } from 'react-router';
 import axios from 'axios';
 import Cookies from 'js-cookie';
@@ -119,20 +119,6 @@ export function submitChangePassword(passwordObj) {
         console.error(error);
       });
   }
-}
-
-export function fetchMacros(userID) {
-  const data = {
-    params: { userID: userID },
-    headers: { 'x-access-token': Cookies.get('token') }
-  }
-  return axios.get('/api/users/getUserData', data)
-    .then((response) => {
-      return { type: FETCH_MACROS, payload: response.data }
-    })
-    .catch((error) => {
-      console.error(error);
-    });
 }
 
 export function fetchProfilePic(userID) {

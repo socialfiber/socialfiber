@@ -17,7 +17,7 @@ class MyGroups extends Component {
 
   render() {
 
-    const noGroups = Cookies.get('currentProfileID') !== Cookies.get('currentProfileID') ? <h3>You haven't joined any groups.</h3> : <h3>User has not joined any groups.</h3>;
+    const noGroups = Cookies.get('userID') === Cookies.get('currentProfileID') ? <h3>You haven't joined any groups.</h3> : <h3>User has not joined any groups.</h3>;
 
     if(this.props.myGroups === null) {
       return (

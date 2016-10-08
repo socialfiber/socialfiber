@@ -1,4 +1,4 @@
-import { FETCH_FOOD_DIARY, SUBMIT_DIARY_ENTRY, DELETE_DIARY_ENTRY, LEAVE_TAB } from './types';
+import { FETCH_FOOD_DIARY, FETCH_MACROS, SUBMIT_DIARY_ENTRY, DELETE_DIARY_ENTRY, LEAVE_TAB } from './types';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import _ from 'underscore';
@@ -21,6 +21,20 @@ export function fetchFoodDiary() {
       }
       _.sortBy(groupedEntriesArray, 'date');
       return { type: FETCH_FOOD_DIARY, payload: groupedEntriesArray }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
+
+export function fetchMacros() {
+  const data = {
+    params: { userID: Cookies.get('currentProfileID') },
+    headers: { 'x-access-token': Cookies.get('token') }
+  }
+  return axios.get('/api/users/getUserData', data)
+    .then((response) => {
+      return { type: FETCH_MACROS, payload: response.data.nutritionTotals }
     })
     .catch((error) => {
       console.error(error);

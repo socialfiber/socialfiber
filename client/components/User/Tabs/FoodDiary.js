@@ -13,19 +13,16 @@ class FoodDiary extends Component {
     this.props.fetchFoodDiary();
   }
 
-  // componentDidUpdate() {
-  //   this.props.fetchFoodDiary();
-  // }
-
   componentWillUnmount() {
     this.props.leaveTab();
   }
 
   render() {
     
-    const foodDiaryEntry = Cookies.get('currentProfileID') !== Cookies.get('currentProfileID') ? <FoodDiaryEntry /> : null;
+    const foodDiaryEntry = Cookies.get('userID') === Cookies.get('currentProfileID') ? <FoodDiaryEntry /> : null;
 
     if(this.props.diaryData) {
+
       const diaryDataByDate = this.props.diaryData.map((set, idx) => {
         const logsPerDay = set.logs.map((log, idx) => <FoodDiaryLog key={idx} log={log} />);
         const date = set.date
@@ -51,8 +48,9 @@ class FoodDiary extends Component {
             <RadarGraph type={'amount'} size={'small'} date={date} />
             <RadarGraph type={'ratio'} size={'small'} date={date} />
           </li>
-        )
+        );
       });
+
       return (
         <div>
           <h1>Food Diary</h1>
@@ -62,12 +60,15 @@ class FoodDiary extends Component {
           </ul>
         </div>
       );
+
     } else {
+
       return (
         <div>
           <h3>Loading your food diary...</h3>
         </div>
       );
+
     }
 
   }
@@ -79,6 +80,5 @@ const mapStateToProps = (state) => {
     diaryData: state.foodDiary.logs
   }
 }
-
 
 export default connect(mapStateToProps, { fetchFoodDiary, leaveTab })(FoodDiary);

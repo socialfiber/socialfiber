@@ -19,10 +19,7 @@ class MyFriends extends Component {
   componentWillMount() {
     this.props.fetchFriends();
   }
-
-  // componentDidUpdate() {
-  //   this.props.fetchFriends();
-  // }
+  
   componentWillUnmount() {
     this.props.leaveTab();
   }
@@ -30,18 +27,22 @@ class MyFriends extends Component {
   render() {
 
     if(this.props.friendList === null && this.props.friendRequests === null) {
+
       return (
         <div>
           <h3>Loading friends...</h3>
         </div>
       );
+
     } else {
+
       return (
         <div>
           <FriendRequestList friendRequests={this.props.friendRequests} />
           <FriendList friendList={this.props.friendList} />
         </div>
       );
+
     }  
 
   }

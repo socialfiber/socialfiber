@@ -34,7 +34,7 @@ class FriendList extends Component {
 
   render() {
 
-    const noFriends = Cookies.get('currentProfileID') !== Cookies.get('currentProfileID') ? <h3>You don't have any friends.</h3> : <h3>User doesn't have any friends.</h3>;
+    const noFriends = Cookies.get('userID') === Cookies.get('currentProfileID') ? <h3>You don't have any friends.</h3> : <h3>User doesn't have any friends.</h3>;
 
     if(this.props.friendList.length) {
       const friendList = this.props.friendList.map((friend, idx) => {
