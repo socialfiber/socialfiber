@@ -45,7 +45,7 @@ class ProfilePic extends Component {
     }
 
   }
-  
+
 }
 
 export default ProfilePic;

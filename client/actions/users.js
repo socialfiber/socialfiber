@@ -7,6 +7,7 @@ import _ from 'underscore';
 
 export function fetchAllUsers() {
   const data = {
+    params: { userID: Cookies.get('userID')},
     headers: { 'x-access-token': Cookies.get('token') }
   }
   return axios.get('/api/users/getAllUsers', data)
@@ -142,4 +143,3 @@ export function resetError() {
 export function leavePage() {
   return { type: LEAVE_PAGE }
 }
-
