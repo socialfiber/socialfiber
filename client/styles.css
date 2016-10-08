@@ -385,3 +385,22 @@ li.dropdown {
   position:absolute;
   float: top;
 }
+
+
+/*<---- food diary entry ---->*/
+.diaryInputForm {
+  text-align: center;
+}
+
+.diaryInputDiv {
+  width: 85%
+  margin: 50px;
+}
+
+.diaryInputLabel {
+  margin: 10px;
+}
+
+.diaryInput-p {
+  color: #355834;
+}
