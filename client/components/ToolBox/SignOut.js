@@ -9,7 +9,7 @@ class SignOut extends Component {
 
     return (
     	<div>
-    		<button className="signout-button btn btn-secondary" onClick={this.props.submitSignOut}>Sign Out</button>
+    		<button className='signout-button btn btn-secondary' onClick={this.props.submitSignOut}>Sign Out</button>
     	</div>
     );
 

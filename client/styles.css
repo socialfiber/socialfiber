@@ -314,6 +314,7 @@ a.home{
 }
 
 
+
 .home:hover, .dropdown:hover .dropbtn {
     position: block;
     background-color: transparent;
@@ -364,4 +365,6 @@ li.dropdown {
   color: white;
   top: 10px;
   left: 40%;
+  position:absolute;
+  float: top;
 }
