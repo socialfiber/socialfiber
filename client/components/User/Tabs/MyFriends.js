@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
-import { fetchFriends } from '../../../actions/friends';
+import { fetchFriends, leaveTab } from '../../../actions/friends';
 import { createRoom } from '../../../actions/chatWindow';
 import NavBar from '../../ToolBox/NavBar';
 import FriendRequestList from './FriendRequestList';
@@ -23,6 +23,9 @@ class MyFriends extends Component {
   // componentDidUpdate() {
   //   this.props.fetchFriends();
   // }
+  componentWillUnmount() {
+    this.props.leaveTab();
+  }
 
   render() {
 
@@ -52,4 +55,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { fetchFriends, createRoom })(MyFriends);
+export default connect(mapStateToProps, { fetchFriends, createRoom, leaveTab })(MyFriends);

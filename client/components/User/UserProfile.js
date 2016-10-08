@@ -8,6 +8,7 @@ import Tabs from '../ToolBox/Tabs';
 import RadarGraph from '../ToolBox/RadarGraph';
 import ChatWindow from './Tabs/ChatWindow';
 import UpdateUserData from './Edit/UpdateUserData';
+import Cookies from 'js-cookie';
 
 
 class UserProfile extends Component {
@@ -21,6 +22,7 @@ class UserProfile extends Component {
   }
 
   componentWillMount() {
+    Cookies.set('currentProfileID', Cookies.get('userID'));
     this.props.fetchUserData();
   }
 
@@ -34,6 +36,7 @@ class UserProfile extends Component {
   }
 
   componentWillUnmount() {
+    Cookies.remove('currentProfileID');
     this.props.leavePage();
   }
 

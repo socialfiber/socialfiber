@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchUserGroups } from '../../../actions/groups';
+import { fetchUserGroups, leaveTab } from '../../../actions/groups';
 import IndividualGroup from '../../ToolBox/IndividualGroup';
+import Cookies from 'js-Cookie';
 
 
 class MyGroups extends Component {
@@ -9,9 +10,22 @@ class MyGroups extends Component {
   componentWillMount() {
     this.props.fetchUserGroups();
   }
+  
+  componentWillUnmount() {
+    this.props.leaveTab();
+  }
 
   render() {
-    if(this.props.myGroups.length > 0) {
+
+    const noGroups = Cookies.get('currentProfileID') !== Cookies.get('currentProfileID') ? <h3>You haven't joined any groups.</h3> : <h3>User has not joined any groups.</h3>;
+
+    if(this.props.myGroups === null) {
+      return (
+        <div>
+          <h3>Loading groups...</h3>
+        </div>
+      );
+    } else if(this.props.myGroups.length > 0) {
       const groupsList = this.props.myGroups.map((group, idx) =>
         <IndividualGroup key={idx} group={group} />
       );
@@ -32,13 +46,7 @@ class MyGroups extends Component {
     } else if(this.props.myGroups.length === 0) {
       return (
         <div>
-          <h3>You haven't joined any groups.</h3>
-        </div>
-      );
-    } else {
-      return (
-        <div>
-          <h3>Loading groups...</h3>
+          {noGroups}
         </div>
       );
     }
@@ -52,4 +60,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { fetchUserGroups })(MyGroups);
+export default connect(mapStateToProps, { fetchUserGroups, leaveTab })(MyGroups);

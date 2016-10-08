@@ -1,4 +1,4 @@
-import { FETCH_FOOD_DIARY, SUBMIT_DIARY_ENTRY, DELETE_DIARY_ENTRY } from './types';
+import { FETCH_FOOD_DIARY, SUBMIT_DIARY_ENTRY, DELETE_DIARY_ENTRY, LEAVE_TAB } from './types';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import _ from 'underscore';
@@ -6,7 +6,7 @@ import _ from 'underscore';
 
 export function fetchFoodDiary() {
   const data = {
-    params: { userID: Cookies.get('userID') },
+    params: { userID: Cookies.get('currentProfileID') },
     headers: { 'x-access-token': Cookies.get('token') }
   }
   return axios.get('/api/diaryEntries/allEntries', data)
@@ -56,4 +56,8 @@ export function deleteFoodDiaryEntry(foodDiaryEntryObj) {
     .catch((error) => {
       console.error(error);
     });
+}
+
+export function leaveTab() {
+  return { type: LEAVE_TAB }
 }

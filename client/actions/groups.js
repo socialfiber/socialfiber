@@ -1,4 +1,4 @@
-import { FETCH_ALL_GROUPS, FETCH_USER_GROUPS, FETCH_GROUP_USERS, FETCH_GROUP_POSTS, FETCH_GROUP_COMMENTS, CREATE_NEW_GROUP, JOIN_GROUP, LEAVE_GROUP, POST_GROUP_MESSAGE, POST_GROUP_COMMENT, GROUP_STATUS, LEAVE_PAGE } from '../actions/types';
+import { FETCH_ALL_GROUPS, FETCH_USER_GROUPS, FETCH_GROUP_USERS, FETCH_GROUP_POSTS, FETCH_GROUP_COMMENTS, CREATE_NEW_GROUP, JOIN_GROUP, LEAVE_GROUP, POST_GROUP_MESSAGE, POST_GROUP_COMMENT, GROUP_STATUS, LEAVE_PAGE, LEAVE_TAB } from '../actions/types';
 import { browserHistory } from 'react-router';
 import axios from 'axios';
 import Cookies from 'js-cookie';
@@ -23,7 +23,7 @@ export function fetchAllGroups() {
 export function fetchUserGroups() {
   const data = {
     params: {
-      userID: Cookies.get('userID')
+      userID: Cookies.get('currentProfileID')
     },
     headers: {
       'x-access-token': Cookies.get('token')
@@ -199,4 +199,8 @@ export function leavePage() {
   Cookies.remove('groupID');
   Cookies.remove('groupName');
   return { type: LEAVE_PAGE }
+}
+
+export function leaveTab() {
+  return { type: LEAVE_TAB }
 }

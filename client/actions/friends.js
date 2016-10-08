@@ -1,18 +1,18 @@
-import { FETCH_FRIENDS, FRIENDSHIP_STATUS } from './types';
+import { FETCH_FRIENDS, FRIENDSHIP_STATUS, LEAVE_TAB } from './types';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
 
 export function fetchFriends() {
   const data = {
-    params: { userID: Cookies.get('userID') },
+    params: { userID: Cookies.get('currentProfileID') },
     headers: { 'x-access-token': Cookies.get('token') }
   }
   return axios.get('/api/friends/myFriends', data)
     .then((response) => {
       const payload = {
         friendList: response.data.filter((friend) => { return friend.status === 'friends' }),
-        friendRequests: response.data.filter((friend) => { return friend.status === 'requestee' })
+        friendRequests: Cookies.get('userID') === Cookies.get('currentProfileID') ? response.data.filter((friend) => { return friend.status === 'requestee' }) : []
       }
       return { type: FETCH_FRIENDS, payload: payload }
     })
@@ -85,4 +85,8 @@ export function deleteFriendRequest(otherID) {
     .catch((err) => {
       console.error(err);
     });
+}
+
+export function leaveTab() {
+  return { type: LEAVE_TAB }
 }
