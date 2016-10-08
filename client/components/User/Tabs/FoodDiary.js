@@ -29,18 +29,18 @@ class FoodDiary extends Component {
         return (
           <li className="foodDiaryLogList" key={idx}>
             <h3 className='date'>{date}</h3>
-            <table>
+            <table className='table foodDiaryLogTable'>
               <tbody>
                 <tr>
-                  <th>qty</th>
-                  <th>Food Name</th>
-                  <th>Calories (kcal)</th>
-                  <th>Carbohydrates (g)</th>
-                  <th>Protein (g)</th>
-                  <th>Fat (g)</th>
-                  <th>Fiber (g)</th>
-                  <th>n6 (g)</th>
-                  <th>delete</th>
+                  <th className="fdth">qty</th>
+                  <th className="fdth">Food Name</th>
+                  <th className="fdth">Calories (kcal)</th>
+                  <th className="fdth">Carbohydrates (g)</th>
+                  <th className="fdth">Protein (g)</th>
+                  <th className="fdth">Fat (g)</th>
+                  <th className="fdth">Fiber (g)</th>
+                  <th className="fdth">n6 (g)</th>
+                  <th className="fdth">delete</th>
                 </tr>
                 {logsPerDay}
               </tbody>

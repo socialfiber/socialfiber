@@ -456,10 +456,20 @@ strong {
   color: #355834;
 }
 
-.foodDiaryLogtr {
-  margin: 10px;
+.foodDiaryLogTable {
+  text-align: center;
 }
 
 .foodDiaryLogList {
   list-style-type: none;
+  width: 90%;
+}
+
+.fdth {
+  font-weight: bold;
+  font-size: medium;
+}
+
+.fdltd {
+  color: #355834;
 }
