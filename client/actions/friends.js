@@ -16,8 +16,8 @@ export function fetchFriends() {
       }
       return { type: FETCH_FRIENDS, payload: payload }
     })
-    .catch((err) => {
-      console.error(err);
+    .catch((error) => {
+      console.error(error);
     });
 }
 
@@ -33,8 +33,8 @@ export function fetchFriendshipStatus(otherID) {
     .then((response) => {
       return { type: FRIENDSHIP_STATUS, payload: response.data.status }
     })
-    .catch((err) => {
-      console.error(err);
+    .catch((error) => {
+      console.error(error);
     });
 }
 
@@ -49,8 +49,8 @@ export function sendFriendRequest(otherID) {
     .then((response) => {
       return { type: FRIENDSHIP_STATUS, payload: response.data.status }
     })
-    .catch((err) => {
-      console.error(err);
+    .catch((error) => {
+      console.error(error);
     });
 }
 
@@ -65,8 +65,8 @@ export function acceptFriendRequest(otherID) {
     .then((response) => {
       return { type: FRIENDSHIP_STATUS, payload: response.data.status }
     })
-    .catch((err) => {
-      console.error(err);
+    .catch((error) => {
+      console.error(error);
     });
 }
 
@@ -82,8 +82,8 @@ export function deleteFriendRequest(otherID) {
     .then((response) => {
       return { type: FRIENDSHIP_STATUS, payload: response.data.status }
     })
-    .catch((err) => {
-      console.error(err);
+    .catch((error) => {
+      console.error(error);
     });
 }
 

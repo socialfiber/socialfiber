@@ -41,14 +41,17 @@ class UserProfile extends Component {
   }
 
   render() {
-    console.log(this.props.userProfile)
+
     if(this.props.userProfile.userData !== null) {
+      
       if(!this.state.editFlag) {
+
         const tabsList = [
           { label: 'Food Diary', component: 'FoodDiary' },
           { label: 'My Friends', component: 'MyFriends' },
           { label: 'My Groups', component: 'MyGroups' }
         ];
+
         return (
           <div>
             <NavBar />
@@ -67,7 +70,9 @@ class UserProfile extends Component {
             <Tabs tabsList={tabsList} />
           </div>
         );
+
       } else {
+
         return (
           <div>
             <NavBar />
@@ -75,14 +80,17 @@ class UserProfile extends Component {
             <button type="button" onClick={() => this.toggleEditing()}>Return</button>
           </div>
         );
+
       }
     } else {
+
       return (
         <div>
           <NavBar />
           <h3>Loading your profile...</h3>
         </div>
       );
+
     }
     
   }

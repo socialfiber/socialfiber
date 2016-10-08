@@ -169,8 +169,6 @@ export function fetchGroupUsers(groupObj) {
         groupUsers: response.data,
         membership: membership
       }
-      Cookies.set('groupID', groupObj.groupID);
-      Cookies.set('groupName', groupObj.groupName);
       return { type: FETCH_GROUP_USERS, payload: data }
     })
     .catch((error) => {
@@ -196,8 +194,6 @@ export function createNewGroup(newGroupObj) {
 }
 
 export function leavePage() {
-  Cookies.remove('groupID');
-  Cookies.remove('groupName');
   return { type: LEAVE_PAGE }
 }
 

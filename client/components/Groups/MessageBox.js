@@ -9,6 +9,7 @@ class MessageBox extends Component {
   render() {
 
     const { handleSubmit, submitting } = this.props;
+    
     return (
       <form onSubmit = { handleSubmit(this.props.postMessage) }>
           <h4>Post a Message</h4>

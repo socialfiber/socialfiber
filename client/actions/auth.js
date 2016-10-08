@@ -23,6 +23,7 @@ export function submitSignIn(usernameAndPasswordObj) {
       }
     })
     .catch((error) => {
+      console.error(error);
       return { type: AUTH_ERROR, payload: response.data.msg }
     });
 }
@@ -45,6 +46,7 @@ export function submitSignUp(usernameAndPasswordObj) {
         }
       })
       .catch((error) => {
+        console.error(error);
         return { type: AUTH_ERROR, payload: response.data.msg }
       });
   }

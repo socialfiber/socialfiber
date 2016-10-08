@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchUserGroups, leaveTab } from '../../../actions/groups';
 import IndividualGroup from '../../ToolBox/IndividualGroup';
-import Cookies from 'js-Cookie';
+import Cookies from 'js-cookie';
 
 
 class MyGroups extends Component {

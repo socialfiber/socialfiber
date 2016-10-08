@@ -5,7 +5,7 @@ import IndividualUser from '../../ToolBox/IndividualUser';
 import FriendRequestButton from '../../ToolBox/FriendRequestButton';
 import ProfilePic from '../../ToolBox/ProfilePic';
 import ChatWindow from './ChatWindow';
-import Cookies from 'js-Cookie';
+import Cookies from 'js-cookie';
 
 
 class FriendList extends Component {
