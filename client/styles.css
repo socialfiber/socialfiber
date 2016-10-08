@@ -82,13 +82,14 @@ html, body, #main{
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+  overflow: hidden;
 }
 
 .signin, .signup {
   color: white;
 }
 
-.navitem, .splashpg {
+.splashpg {
   display: inline-block;
   text-align: right;
   margin-right: 1px;
@@ -98,7 +99,7 @@ html, body, #main{
 }
 
 
-.jumbotron, .banner {
+.jumbotron, .banner{
   background-color: transparent;
   height: 100%;
   color: white;
@@ -181,10 +182,6 @@ span, .fr-btn {
   margin-bottom: 10px;
 }
 
-.list-group-item:last-child {
-  margin-bottom: 30px;
-}
-
 /* -------------------- All Groups -------------------- */
 
 .all-groups-table {
@@ -217,9 +214,10 @@ span, .fr-btn {
   color: white;
 }
 
-/* -------------------- User Questionnaire -------------------- */
+/*questionnaire style*/
 
-.container, .questionnaire {
+
+.questionnaire {
   background-image: url('./assets/blueberrytree.jpeg');
   height: 100%;
   width:100%;
@@ -281,10 +279,85 @@ span, .fr-btn {
   color: white;
 }
 
-/* -------------------- Group Page -------------------- */
+.ft, .in{
+  width: 50px;
+}
 
-.group-page-header {
-  width: 100%;
-  text-align: center;
-  background-color: lightgrey;
+/*<---- main nav ---->*/
+
+.nav {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      background-color: #233B44;
+      width: 100%;
+      height: 10%;
+      color: white;
+}
+
+.navItem {
+  float: left;
+  color: white;
+}
+
+
+.home, .dropbtn {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 20px 16px;
+    text-decoration: none;
+}
+
+
+.home:hover, .dropdown:hover .dropbtn {
+    position: block;
+    background-color: transparent;
+}
+
+li.dropdown {
+  height: 100%;
+  padding-top: 20px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+.dropdown-content li {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content li:hover {
+  background-color: #f1f1f1
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+
+.signoutbutton-item {
+  position:fixed;
+  top: 10px;
+  right: 10px;
+}
+
+.signout-button {
+  background-color: #D8A154;
+  color: white;
+}
+
+.navheader {
+  position: absolute;
+  color: white;
+  top: 10px;
+  left: 40%;
 }

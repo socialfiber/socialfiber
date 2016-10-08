@@ -16,12 +16,18 @@ class NavBar extends Component {
       <nav className="navbar">
         <div>
           <ul className="nav navbar-nav">
-            <li className="navItem"><Link to='/userprofile'>Home</Link></li>
-            <li className="navItem"><Link to='/viewallgroups'>All Groups</Link></li>
-            <li className="navItem"><Link to='/viewallusers'>All Users</Link></li>
-            <li className="navItem"><SignOut /></li>
+            <li className="home navItem"><Link to='/userprofile'>Home</Link></li>
+            <li className="dropdown">
+              <a href="#" className="dropbtn">Browse</a>
+              <div className="dropdown-content">
+                <li className="dropdown-item navItem"><Link to='/viewallgroups'>All Groups</Link></li>
+                <li className="dropdown-item navItem"><Link to='/viewallusers'>All Users</Link></li>
+              </div>
+            </li>
           </ul>
         </div>
+        <div className="signoutbutton-item"><SignOut /></div>
+        <h1 className='navheader'>social fiber.</h1>
       </nav>
     );
 
