@@ -45,15 +45,15 @@ class FoodDiary extends Component {
                 {logsPerDay}
               </tbody>
             </table>
-            <RadarGraph type={'amount'} size={'small'} date={date} />
-            <RadarGraph type={'ratio'} size={'small'} date={date} />
+              <RadarGraph className="radarGraphAmount" type={'amount'} size={'small'} date={date} />
+              <RadarGraph className="radarGraphPercentage" type={'ratio'} size={'small'} date={date} />
           </li>
         );
       });
 
       return (
         <div>
-          <h1>Food Diary</h1>
+          <h1 className="foodDiaryHeader">Food Diary</h1>
           {foodDiaryEntry}
           <ul>
             {diaryDataByDate}

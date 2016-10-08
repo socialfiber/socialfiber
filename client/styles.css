@@ -476,3 +476,13 @@ strong {
 .fdltd {
   color: #355834;
 }
+
+.foodDiaryHeader {
+  text-align: center;
+  font-size: 100px;
+  padding: 15px;
+}
+
+.radarGraphAmount, .radarGraphPercentage {
+  display: inline-grid;
+}
