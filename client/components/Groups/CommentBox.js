@@ -16,9 +16,9 @@ class CommentBox extends Component {
     return (
       <MuiThemeProvider muiTheme={getMuiTheme()}>
         <div>
-          <form onSubmit = {handleSubmit(this.props.postComment)}>
+          <form className="commentbox" onSubmit = {handleSubmit(this.props.postComment)}>
               <div>
-                <Field name="message" component={TextField} multiLine={true} floatingLabelText="Reply" type="text" required />
+                <Field name="message" component={TextField} multiLine={true} floatingLabelText="Reply" type="text" style={{textAlign: 'left'}} required />
               </div>
               <RaisedButton type="submit" disabled={submitting} label="Submit" />
           </form>

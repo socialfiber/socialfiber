@@ -31,7 +31,7 @@ class GroupWallMessages extends Component {
 
 		return (
 			<MuiThemeProvider muiTheme={getMuiTheme()}>
-				<div className="container">
+				<div>
 					<ul className="list-unstyled">
 						<li className="list-group-item" style={{marginBottom:'5px'}}>
 							{/* <div>{this.props.post.createdAt.substr(0,10)}</div> */}
@@ -39,7 +39,9 @@ class GroupWallMessages extends Component {
 							<li className="group-comments">
 								{postComments}
 							</li>
-							{this.state.showReply && <CommentBox />}
+							<div>
+								{this.state.showReply && <CommentBox />}
+							</div>
 						</li>
 						<div style={{textAlign:'center'}}><RaisedButton onClick={this.showReplyForm} label="Reply"/></div>
 					</ul>

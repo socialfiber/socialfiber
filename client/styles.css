@@ -216,7 +216,6 @@ span, .fr-btn {
 
 /*questionnaire style*/
 
-
 .questionnaire {
   background-image: url('./assets/blueberrytree.jpeg');
   height: 100%;
@@ -391,10 +390,19 @@ li.dropdown {
   margin-left: 10px;
 }
 
-.container-message {
-  text-align: center;
+.message-form {
+  margin-bottom: 10px;
 }
 
 .message-form {
-  margin-bottom: 10px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+#messagebox-header {
+  text-align: center;
+}
+
+.commentbox {
+  text-align: center;
 }
