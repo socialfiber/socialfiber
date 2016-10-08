@@ -33,18 +33,20 @@ class FoodDiaryEntry extends Component {
 
     return (
       <MuiThemeProvider muiTheme={getMuiTheme()}>
-        <form onSubmit={ handleSubmit(this.submitEntry) } >
+        <form className="diaryInputForm" onSubmit={ handleSubmit(this.submitEntry) } >
           <h3>Add Entry</h3>
-          <p>Please submit a meal.</p>
-          <div>
-            <label>Date</label>
-            <Field name="date" component="input" type="date" max={today} required />
-            <label>qty/srv</label>
-            <Field name="qty" component="input" type="number" min="1" required />
-            <label>Tell us what you ate</label>
-            <Field name="food" component="input" type="text" required />
+          <p className="diaryInput-p">Please submit a meal.</p>
+          <div className="diaryInputDiv">
+            <label className="diaryInputLabel">Date</label>
+            <Field name="date" component={TextField} type="date" max={today} required />
+            <label className="diaryInputLabel">qty/srv</label>
+            <Field name="qty" component={TextField} type="number" min="1" required />
+            <label className="diaryInputLabel">Tell us what you ate</label>
+            <Field name="food" component={TextField} type="text" required />
           </div>
-          <button type="submit" disabled={submitting} >Submit</button>
+          <FlatButton
+            backgroundColor="transparent"
+            labelColor="#E3E7D3" label="Submit" type="submit" disabled={submitting} />
         </form>
       </MuiThemeProvider>
         );

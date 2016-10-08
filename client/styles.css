@@ -438,3 +438,20 @@ strong {
   background-color: #233B44;
   color: white;
 }
+/*<---- food diary entry ---->*/
+.diaryInputForm {
+  text-align: center;
+}
+
+.diaryInputDiv {
+  width: 85%
+  margin: 50px;
+}
+
+.diaryInputLabel {
+  margin: 10px;
+}
+
+.diaryInput-p {
+  color: #355834;
+}
