@@ -16,7 +16,7 @@ class NavBar extends Component {
       <nav className="navbar">
         <div>
           <ul className="nav navbar-nav">
-            <li className="home navItem"><Link to='/userprofile'>Home</Link></li>
+            <li className="home navItem"><Link className="homelink" to='/userprofile'>Home</Link></li>
             <li className="dropdown">
               <a href="#" className="dropbtn">Browse</a>
               <div className="dropdown-content">

@@ -284,6 +284,9 @@ span, .fr-btn {
 }
 
 /*<---- main nav ---->*/
+.homelink {
+  color: white;
+}
 
 .nav {
       list-style-type: none;
