@@ -54,16 +54,16 @@ class Questionnaire extends Component {
                 <form className="questionnaire-form" onSubmit={handleSubmit(this.props.submitUserStats)}>
                   <div className="questionnaire-inputs">
                     <label>Age</label>
-                    <Field name="age" component="input" type="number" min="13" required />
+                    <Field name="age" component={TextField} type="number" min="13" required />
                   </div>
                   <div className="questionnaire-inputs">
                     <label>Height (ft & in)</label>
-                    <Field className='input' name="ft" component="input" type="number" min="4" max="8" required />
-                    <Field name="in" component="input" type="number" min="0" max="11" />
+                    <Field className='input' name="ft" component={TextField} type="number" min="4" max="8" required />
+                    <Field name="in" component={TextField} type="number" min="0" max="11" />
                   </div>
                   <div className="questionnaire-inputs">
                     <label>Weight</label>
-                    <Field name="weight" component="input" type="number" min="70" required />
+                    <Field name="weight" component={TextField} type="number" min="70" required />
                   </div>
                   <div className="questionnaire-inputs">
                     <label>Gender</label>
