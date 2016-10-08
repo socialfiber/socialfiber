@@ -8,12 +8,25 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import FlatButton from 'material-ui/FlatButton';
 import { TextField } from 'redux-form-material-ui';
+import {blueGrey700} from 'material-ui/styles/colors';
 
 
 class SignIn extends Component {
 
   render() {
     const { handleSubmit, submitting } = this.props;
+    const styles = {
+      underlineStyle: {
+        borderColor: blueGrey700,
+      },
+      floatingLabelStyle: {
+        color: blueGrey700,
+      },
+      floatingLabelFocusStyle: {
+        color: blueGrey700,
+      },
+    };
+
     return (
 
       <MuiThemeProvider muiTheme={getMuiTheme()}>
@@ -22,9 +35,30 @@ class SignIn extends Component {
               <div className="col-sm-6 col-md-4 col-md-offset-4">
                   <div className="account-wall">
                       <form onSubmit={ handleSubmit(this.props.submitSignIn) } className="form-signin-signup">
-                        <Field name="username" component={TextField} type="text" floatingLabelText="Username" className="text-line" />
-                        <Field name="password" component={TextField} type="password" floatingLabelText="Password" className="text-line" />
-                        <FlatButton type="submit" disabled={submitting} className="btn btn-lg btn-primary btn-block main-btn">Sign In</FlatButton>
+                        <Field
+                          name="username"
+                          component={TextField}
+                          type="text"
+                          floatingLabelText="Username"
+                          className="text-line"
+                          underlineFocusStyle={styles.underlineStyle}
+                          floatingLabelStyle={styles.floatingLabelStyle}
+                          floatingLabelFocusStyle={styles.floatingLabelFocusStyle} />
+                        <Field
+                          name="password"
+                          component={TextField}
+                          type="password"
+                          floatingLabelText="Password"
+                          className="text-line"
+                          underlineFocusStyle={styles.underlineStyle}
+                          floatingLabelStyle={styles.floatingLabelStyle}
+                          floatingLabelFocusStyle={styles.floatingLabelFocusStyle}/>
+                        <FlatButton
+                          type="submit"
+                          disabled={submitting}
+                          className="btn btn-lg btn-primary btn-block main-btn"
+                          label="Sign in"
+                          labelColor="#455A64"/>
                         <Link to={'/signup'} className="text-center new-account">Create an Account</Link>
                       </form>
                   </div>
