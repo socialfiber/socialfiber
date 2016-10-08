@@ -49,7 +49,7 @@ class RadarGraph extends Component {
   }
 
   updateMacros() {
-    if(this.props.date === undefined && this.props.actualMacros !== null && this.props.actualMacros.length) {
+    if(this.props.date === undefined && this.props.actualMacros.length) {
       const macroAverage = {};
       for(var total of this.props.actualMacros) {
         macroAverage.fat = macroAverage.fat ? macroAverage.fat+total.fat : total.fat;
@@ -64,7 +64,7 @@ class RadarGraph extends Component {
       this.setState({
         actualMacros: macroAverage
       });
-    } else if(this.props.date && this.state.actualMacros !== null) {
+    } else if(this.props.date) {
       this.setState({
         actualMacros: _.findWhere(this.props.actualMacros, {date: this.props.date})
       });
@@ -72,8 +72,6 @@ class RadarGraph extends Component {
   }
 
   render() {
-    
-
     var height, width;
     switch(this.props.size) {
       case 'small':
@@ -91,7 +89,7 @@ class RadarGraph extends Component {
 
     if(this.props.type === 'amount') {
 
-      const scaleToMax = Math.round(Math.max(this.state.idealMacros.fat, this.state.idealMacros.prot, this.state.idealMacros.fib, this.state.idealMacros.carb, this.state.actualMacros.fat, this.state.actualMacros.prot, this.state.actualMacros.fib, this.state.actualMacros.carb)/10) || 13;
+      const scaleToMax = Math.round(Math.max(this.props.idealMacros.fat, this.props.idealMacros.prot, this.props.idealMacros.fib, this.props.idealMacros.carb, this.state.actualMacros.fat, this.state.actualMacros.prot, this.state.actualMacros.fib, this.state.actualMacros.carb)/10) || 13;
       const data = {
         labels: ["Fats (g)", "Protein (g)", "Fiber (g)", "Carbs (g)", "n-6 (g)"],
         datasets: [
@@ -111,6 +109,7 @@ class RadarGraph extends Component {
           }
         ]
       }
+
       const chartOptions = {
         scale: {
           reverse: true,
