@@ -139,10 +139,7 @@ export function fetchProfilePic(userID) {
 export function resetError() {
   return { type: CHANGE_PASSWORD, payload: '' }
 }
-<<<<<<< HEAD
 
 export function leavePage() {
   return { type: LEAVE_PAGE }
 }
-=======
->>>>>>> 2fa5171feacf742c5166debb2a49997d2ab7f924
