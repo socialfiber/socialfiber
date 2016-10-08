@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
-import { fetchUserData } from '../../actions/users';
+import { fetchUserData, leavePage } from '../../actions/users';
 import NavBar from '../ToolBox/NavBar';
 import ProfilePic from '../ToolBox/ProfilePic';
 import Tabs from '../ToolBox/Tabs';
@@ -33,9 +33,13 @@ class UserProfile extends Component {
     });
   }
 
-  render() {
+  componentWillUnmount() {
+    this.props.leavePage();
+  }
 
-    if(this.props.userData !== null) {
+  render() {
+    console.log(this.props.userProfile)
+    if(this.props.userProfile.userData !== null) {
       if(!this.state.editFlag) {
         const tabsList = [
           { label: 'Food Diary', component: 'FoodDiary' },
@@ -45,18 +49,18 @@ class UserProfile extends Component {
         return (
           <div>
             <NavBar />
-            <ProfilePic userID={this.props.userData.id} />
+            <ProfilePic userID={this.props.userProfile.userData.user_id} />
             <ul>
-              <li>Age: {this.props.userData.age}</li>
-              <li>Gender: {this.props.userData.gender}</li>
-              <li>Height: {Math.floor(this.props.userData.height/12)}ft {this.props.userData.height%12}in</li>
-              <li>Weight: {this.props.userData.weight}</li>
+              <li>Age: {this.props.userProfile.userData.age}</li>
+              <li>Gender: {this.props.userProfile.userData.gender}</li>
+              <li>Height: {Math.floor(this.props.userProfile.userData.height/12)}ft {this.props.userProfile.userData.height%12}in</li>
+              <li>Weight: {this.props.userProfile.userData.weight}</li>
             </ul>
             <div>
               <button type="button" onClick={() => this.toggleEditing()}>Edit Info</button>
             </div>
             {/* <ChatWindow /> */}
-            <RadarGraph userID={this.props.userData.id} />
+            <RadarGraph type={'amount'} size={'large'} />
             <Tabs tabsList={tabsList} />
           </div>
         );
@@ -84,8 +88,8 @@ class UserProfile extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    userData: state.userProfile.userData,
+    userProfile: state.userProfile
   }
 }
 
-export default connect(mapStateToProps, { fetchUserData })(UserProfile);
+export default connect(mapStateToProps, { fetchUserData, leavePage })(UserProfile);

@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { fetchFoodDiary } from '../../../actions/foodDiary';
 import FoodDiaryLog from './FoodDiaryLog';
 import FoodDiaryEntry from './FoodDiaryEntry';
+import RadarGraph from '../../ToolBox/RadarGraph';
+import Cookies from 'js-cookie'
 
 
 class FoodDiary extends Component {
@@ -20,9 +22,10 @@ class FoodDiary extends Component {
     if(this.props.diaryData) {
       const diaryDataByDate = this.props.diaryData.map((set, idx) => {
         const logsPerDay = set.logs.map((log, idx) => <FoodDiaryLog key={idx} log={log} />);
+        const date = set.date
         return (
           <li key={idx}>
-            <h3>{set.date}</h3>
+            <h3>{date}</h3>
             <table>
               <tbody>
                 <tr>
@@ -39,6 +42,8 @@ class FoodDiary extends Component {
                 {logsPerDay}
               </tbody>
             </table>
+            <RadarGraph type={'amount'} size={'small'} date={date} />
+            <RadarGraph type={'ratio'} size={'small'} date={date} />
           </li>
         )
       });

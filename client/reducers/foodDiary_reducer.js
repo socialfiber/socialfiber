@@ -1,6 +1,5 @@
 import { FETCH_FOOD_DIARY, SUBMIT_DIARY_ENTRY, DELETE_DIARY_ENTRY } from '../actions/types';
 
-
 const INITIAL_STATE = {logs: []}
 
 export default function(state = INITIAL_STATE, action) {

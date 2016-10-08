@@ -123,7 +123,7 @@ const users = {
     'get': (req, res) => {
       const options = {
         attributes: ['id', 'username', 'IBW', 'cal_min', 'cal_max', 'code'],
-        include: [DietaryProfiles, Questions, NutritionTotals, Friends, ProfilePics]
+        include: [DietaryProfiles, Questions, NutritionTotals]
       }
       Users.findById(req.query.userID, options)
       .then((userData) => {
@@ -141,7 +141,7 @@ const users = {
     'get': (req, res) => {
       const options = {
         attributes: ['username', 'privacy'],
-        include: [DietaryProfiles, Questions, NutritionTotals, Friends, ProfilePics]
+        include: [DietaryProfiles, Questions, NutritionTotals]
       }
       Users.findById(req.params.id, options)
       .then((userData) => {

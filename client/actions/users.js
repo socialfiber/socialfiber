@@ -1,7 +1,8 @@
-import { FETCH_ALL_USERS, FETCH_USER_DATA, FETCH_MACROS, CHANGE_PASSWORD, UPDATE_USER_DATA, FETCH_IDEAL_MACROS, FETCH_ACTUAL_MACROS, FETCH_PROFILE_PIC } from './types';
+import { FETCH_ALL_USERS, FETCH_USER_DATA, FETCH_MACROS, CHANGE_PASSWORD, UPDATE_USER_DATA, FETCH_IDEAL_MACROS, FETCH_ACTUAL_MACROS, FETCH_PROFILE_PIC, REDIRECT_PROFILE, LEAVE_PAGE } from './types';
 import { browserHistory } from 'react-router';
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import _ from 'underscore';
 
 
 export function fetchAllUsers() {
@@ -24,12 +25,39 @@ export function fetchUserData() {
   }
   return axios.get('/api/users/getUserData', data)
   .then((response) => {
-    return { type: FETCH_USER_DATA, payload: response.data.question };
+    for(var total in response.data.nutritionTotals) {
+      response.data.nutritionTotals[total].date = response.data.nutritionTotals[total].date.substr(0,10);
+    }
+    response.data.nutritionTotals = _.sortBy(response.data.nutritionTotals, 'date');
+    return { type: FETCH_USER_DATA, payload: response.data };
   })
   .catch((error) => {
     console.error(error);
   })
 }
+
+export function fetchProfile(otherID) {
+  if(otherID === Cookies.get('userID')) {
+    browserHistory.push('/userProfile');
+    return { type: REDIRECT_PROFILE };
+  } else {
+    const data = {
+      headers: { 'x-access-token': Cookies.get('token') }
+    }
+    return axios.get('/api/users/browse/'+otherID, data)
+      .then((response) => {
+        for(var total in response.data.nutritionTotals) {
+          response.data.nutritionTotals[total].date = response.data.nutritionTotals[total].date.substr(0,10);
+        }
+        response.data.nutritionTotals = _.sortBy(response.data.nutritionTotals, 'date');
+        return { type: FETCH_USER_DATA, payload: response.data }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+}
+
 
 export function submitUserStats(userStatsObj) {
   userStatsObj.user_id = Cookies.get('userID');
@@ -121,4 +149,7 @@ export function resetError() {
   return { type: CHANGE_PASSWORD, payload: '' }
 }
 
+export function leavePage() {
+  return { type: LEAVE_PAGE }
+}
 
