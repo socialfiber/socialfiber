@@ -3,6 +3,9 @@ import { connect } from 'react-redux';
 import { fetchChatHistory, storeChatHistory } from '../../../actions/chatWindow';
 import io from 'socket.io-client';
 import Cookies from 'js-cookie';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import FlatButton from 'material-ui/FlatButton';
 
 
 class ChatWindow extends Component {
@@ -91,14 +94,17 @@ class ChatWindow extends Component {
 
   render() {
     const messages = this.state.messages.map((message, index) => {
-      return <li key={index}><b>{message.username}: </b>{message.body}</li>
+      return <li key={index} className="chat-message"><b>{message.username}: </b>{message.body}</li>
     });
 
     return (
-      <div style={{ margin: 1, border: '1px solid', borderColor: '#cccccc', width: '300px', height: '300px', position: 'absolute', bottom: 0, right: 0, backgroundColor: 'white' }}>
-        <div>
-          <div style={{ width: '300px' , height: '280px', overflow: 'scroll' }}>{messages}</div>
-          <input type="text" placeholder="Enter a message..." style={{ position: 'relative', bottom: 0, width: '247px', margin: 1}} onKeyUp={this.handleSubmit} /><button type="button" onClick={() => this.handleOnClick(event)}>Send</button>
+      <div className="chat-window">
+        <div className="message-box">
+          {messages}
+          <div className="message-input-container">
+            <input className="chat-input" type="text" placeholder="Enter a message..." onKeyUp={this.handleSubmit} />
+            <FlatButton style={{ width: "100%", borderRadius: 0 }} type="button" onClick={() => this.handleOnClick(event)}>Send</FlatButton>
+          </div>
         </div>
       </div>
     );

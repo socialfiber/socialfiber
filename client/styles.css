@@ -599,6 +599,10 @@ li.dropdown {
   float: none;
 }
 
+.edit-info-btn {
+  z-index: 1;
+}
+
 /* -------------------- My Friends -------------------- */
 
 .friend-list-buttons {
@@ -621,11 +625,6 @@ li.dropdown {
 .my-friends-container {
   width: 100%;
   position: relative;
-}
-
-.chat-window {
-  position: absolute;
-  right: 0;
 }
 
 /* -------------------- Update User Info -------------------- */
@@ -1075,4 +1074,61 @@ li.dropdown {
   to {
     -webkit-transform: rotate(1turn);
   }
+
+/* -------------------- Chat Window -------------------- */
+
+.chat-window-container {
+  position: absolute;
+  right: 0;
+}
+
+.chat-window {
+  position: relative;
+  margin: 1;
+  border: 1px solid;
+  border-color: #cccccc;
+  width: 300px;
+  height: 300px;
+  position: fixed;
+  bottom: 8px;
+  right: 8px;
+  background-color: white;
+}
+
+.message-box {
+ width: 300px;
+ height: 270px;
+ overflow: scroll;
+}
+
+.message-input-container {
+ position: absolute;
+ bottom: 0;
+ width: 100%;
+ margin: 1
+}
+
+.chat-message {
+  position: relative;
+  display: block;
+  padding: 2px 5px;
+  width: 290px;
+  background-color: #fff;
+}
+
+.chat-input {
+  display: block;
+  width: 100%;
+  height: 34px;
+  padding: 6px 6px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border-left: 0;
+  border-right: 0;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+
+.chat-send-btn {
+  margin: -5px;
 }
