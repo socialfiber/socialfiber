@@ -130,10 +130,8 @@ html, body, #main{
 
 
 .creategroupbutton {
-  background-color: #C6AC8F;
   width: 60%;
   margin-bottom: 10px;
-  color: #E3E7D3;
 }
 
 .choose-topic{
@@ -194,6 +192,10 @@ span, .reject-fr-btn {
 
 .username-div {
   margin-bottom: 10px;
+}
+
+.list-group-item:last-child {
+  margin-bottom: 30px;
 }
 
 /* -------------------- All Groups -------------------- */
@@ -325,6 +327,7 @@ span, .reject-fr-btn {
 .navItem {
   float: left;
   color: white;
+  z-index: 1;
 }
 
 
@@ -334,6 +337,7 @@ span, .reject-fr-btn {
     text-align: center;
     padding: 20px 16px;
     text-decoration: none;
+    z-index: 1;
 }
 
 a.home{
@@ -394,10 +398,10 @@ li.dropdown {
 .navheader {
   position: absolute;
   color: white;
-  top: 10px;
-  left: 40%;
-  position:absolute;
-  float: top;
+  top: 4px;
+  left: 0;
+  right: 0;
+  text-align: center;
 }
 
 /* -------------------- Group Page Header -------------------- */
@@ -601,6 +605,7 @@ strong {
   height: 500px;
   width: 100%;
   margin: 0;
+  z-index: -1;
 }
 
 .user-profile-block-right {
@@ -651,7 +656,6 @@ strong {
   width: 100%;
   text-align: center;
   color: #233B44;
-  display: inline-block;
 }
 
 .leave-group-button {
