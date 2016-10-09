@@ -557,6 +557,8 @@ li.dropdown {
   top: 0;
   height: 500px;
   margin: 0 60px;
+  margin-right: 20%;
+  margin-top: 5%;
   overflow: auto;
 }
 
