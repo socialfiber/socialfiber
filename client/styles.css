@@ -1,7 +1,7 @@
 html, body, #main{
   height: 100%;
   font-family: 'Lato', sans-serif;
-  padding-top: 35px;
+  padding-top: 30px;
 }
 
 .container {
@@ -233,7 +233,7 @@ span, .reject-fr-btn {
 .questionnaire {
   background-image: url('./assets/blueberrytree.jpeg');
   height: 100%;
-  width:100%;
+  width: 100%;
   background-color: #FFFFFF;
   background-repeat: no-repeat;
   background-position: center center;
@@ -243,12 +243,16 @@ span, .reject-fr-btn {
   -o-background-size: cover;
   background-size: cover;
   color: white;
-  overflow: hidden;
+  overflow: scroll;
+}
+
+html .questionnaire, body .questionnaire, #main .questionnaire   {
+  padding-top: 0;
 }
 
 .inner-div-questionnaire {
   position: block;
-  margin-top: 30%;
+  /*margin-top: 30%;*/
   background: transparent;
   vertical-align: center;
 }
@@ -261,10 +265,12 @@ span, .reject-fr-btn {
 .questionnaire-h1 {
   text-align: center;
   width: 100%;
-  margin-top: 10%;
-  padding: 20px;*/
+  /*margin-top: 10%;*/
+  padding: 20px;
+  /*
   border: solid;
   border-width: thin;
+  */
   font-size: 75px;
   color: white;
   background-color: transparent;
