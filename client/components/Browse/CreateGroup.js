@@ -25,6 +25,9 @@ class CreateGroup extends Component {
       floatingLabelFocusStyle: {
         color: blueGrey700,
       },
+      labelStyle: {
+        textTransform: 'capitalize'
+      }
     };
 
     return (
@@ -65,6 +68,7 @@ class CreateGroup extends Component {
                   backgroundColor="#C6AC8F"
                   labelColor="#E3E7D3"
                   label="Create Group"
+                  labelStyle={styles.labelStyle}
                   disabled={submitting}
                   type="submit"
                  />

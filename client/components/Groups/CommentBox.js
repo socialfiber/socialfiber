@@ -24,27 +24,37 @@ class CommentBox extends Component {
       floatingLabelFocusStyle: {
         color: blueGrey700,
       },
+      labelStyle: {
+        color: 'white',
+        textTransform: 'capitalize'
+      },
+      backgroundColor: blueGrey700
     };
 
     return (
       <MuiThemeProvider muiTheme={getMuiTheme()}>
         <div>
           <form className="commentbox" onSubmit = {handleSubmit(this.props.postComment)}>
-              <div>
-                <Field
-                  name="message"
-                  component={TextField}
-                  multiLine={true}
-                  floatingLabelText="Reply"
-                  type="text"
-                  underlineStyle={styles.underlineStyle}
-                  underlineFocusStyle={styles.underlineStyle}
-                  floatingLabelStyle={styles.floatingLabelStyle}
-                  floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
-                  style={{textAlign: 'left'}}
-                  required />
-              </div>
-              <RaisedButton type="submit" disabled={submitting} label="Submit" />
+            <div>
+              <Field
+                name="message"
+                component={TextField}
+                multiLine={true}
+                floatingLabelText="Reply"
+                type="text"
+                underlineStyle={styles.underlineStyle}
+                underlineFocusStyle={styles.underlineStyle}
+                floatingLabelStyle={styles.floatingLabelStyle}
+                floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+                style={{textAlign: 'left'}}
+                required />
+            </div>
+            <RaisedButton
+              type="submit"
+              disabled={submitting}
+              label="Submit"
+              labelStyle={styles.labelStyle}
+              backgroundColor={styles.backgroundColor} />
           </form>
         </div>
       </MuiThemeProvider>

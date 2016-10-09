@@ -8,13 +8,20 @@ class SignOut extends Component {
 
   render() {
 
+    const styles = {
+      labelStyle: {
+        textTransform: 'capitalize'
+      }
+    };
+
     return (
     	<div>
     		<RaisedButton
           onClick={this.props.submitSignOut}
           backgroundColor="#D8A154"
           labelColor="#FFFFFF"
-          label="Sign Out"/>
+          label="Sign Out"
+          labelStyle={styles.labelStyle}/>
     	</div>
     );
 

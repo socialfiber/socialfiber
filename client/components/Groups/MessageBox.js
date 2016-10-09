@@ -22,8 +22,11 @@ class MessageBox extends Component {
         color: blueGrey700,
       },
       floatingLabelFocusStyle: {
-        color: blueGrey700,
+        color: blueGrey700
       },
+      labelStyle: {
+        textTransform: 'capitalize'
+      }
     };
 
     return (
@@ -45,7 +48,11 @@ class MessageBox extends Component {
                 style={{textAlign: 'left'}}
                 required />
             </div>
-            <RaisedButton type="submit" disabled={submitting} label="Submit" />
+            <RaisedButton
+              type="submit"
+              disabled={submitting}
+              label="Submit"
+              labelStyle={styles.labelStyle} />
           </form>
         </div>
       </MuiThemeProvider>

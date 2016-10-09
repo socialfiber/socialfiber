@@ -53,7 +53,7 @@ class FoodDiary extends Component {
             <table className='table foodDiaryLogTable'>
               <tbody>
                 <tr>
-                  <th className="fdth">qty</th>
+                  <th className="fdth">Qty</th>
                   <th className="fdth">Food Name</th>
                   <th className="fdth">Calories (kcal)</th>
                   <th className="fdth">Carbohydrates (g)</th>
@@ -61,7 +61,7 @@ class FoodDiary extends Component {
                   <th className="fdth">Fat (g)</th>
                   <th className="fdth">Fiber (g)</th>
                   <th className="fdth">n6 (g)</th>
-                  <th className="fdth">delete</th>
+                  <th className="fdth">Delete</th>
                 </tr>
                 {logsPerDay}
               </tbody>
