@@ -604,6 +604,16 @@ li.dropdown {
 .chat-window {
   position: absolute;
   right: 0;
+
+
+/* -------------------- Update User Info -------------------- */
+.returnToProfile-btn {
+  position: absolute;
+  padding: 20px;
+  bottom: 10px;
+  right: 20px;
+  background-color: transparent;
+  border-width: thin;
 }
 
 /* -------------------- My Group -------------------- */

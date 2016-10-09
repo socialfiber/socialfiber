@@ -87,7 +87,7 @@ class UserProfile extends Component {
             <NavBar />
             <h3>{this.props.userProfile.username}</h3>
             <UpdateUserData />
-            <button type="button" onClick={() => this.toggleEditing()}>Return</button>
+            <button className="returnToProfile-btn btn btn-secondary" type="button" onClick={() => this.toggleEditing()}>Return To Profile</button>
           </div>
         );
 
