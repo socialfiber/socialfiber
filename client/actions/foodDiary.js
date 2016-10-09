@@ -1,4 +1,4 @@
-import { FETCH_FOOD_DIARY, FETCH_MACROS, SUBMIT_DIARY_ENTRY, DELETE_DIARY_ENTRY, LEAVE_TAB } from './types';
+import { FETCH_FOOD_DIARY, FETCH_MACROS, SUBMIT_DIARY_ENTRY, DELETE_DIARY_ENTRY, NO_RESULT, LEAVE_TAB } from './types';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import _ from 'underscore';
@@ -42,19 +42,33 @@ export function fetchMacros() {
 }
 
 export function submitFoodDiaryEntry(foodDiaryEntryObj) {
-  foodDiaryEntryObj.userID = Cookies.get('userID');
-  foodDiaryEntryObj.food = foodDiaryEntryObj.food.split(' ').slice(0,4).join(' ');
-  const data = foodDiaryEntryObj;
-  const config = {
-    headers: { 'x-access-token': Cookies.get('token') }
-  }
-  return axios.post('/api/diaryEntries/singleEntry', data, config)
-    .then((response) => {
-      return { type: SUBMIT_DIARY_ENTRY }
-    })
-    .catch((error) => {
-      console.error(error);
+  if(!foodDiaryEntryObj.food || !foodDiaryEntryObj.qty || !foodDiaryEntryObj.date) {
+    return new Promise((resolve, reject) => {
+      resolve({ type: NO_RESULT, payload: 'Please fill out all fields.' });
     });
+  } else if(!(foodDiaryEntryObj.qty === parseInt(foodDiaryEntryObj.qty, 10))) {
+    return new Promise((resolve, reject) => {
+      resolve({ type: NO_RESULT, payload: 'qty/srv must be an integer.' });
+    });
+  } else {
+    foodDiaryEntryObj.userID = Cookies.get('userID');
+    foodDiaryEntryObj.food = foodDiaryEntryObj.food.split(' ').slice(0,4).join(' ');
+    const data = foodDiaryEntryObj;
+    const config = {
+      headers: { 'x-access-token': Cookies.get('token') }
+    }
+    return axios.post('/api/diaryEntries/singleEntry', data, config)
+      .then((response) => {
+        if(response.data.msg) {
+          return { type: NO_RESULT, payload: response.data.msg }
+        } else {
+          return { type: SUBMIT_DIARY_ENTRY }
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
 }
 
 export function deleteFoodDiaryEntry(foodDiaryEntryObj) {

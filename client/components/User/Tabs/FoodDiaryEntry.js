@@ -1,4 +1,4 @@
-  import React, { Component } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { submitFoodDiaryEntry, fetchFoodDiary, fetchMacros } from '../../../actions/foodDiary';
@@ -11,21 +11,6 @@ import { TextField } from 'redux-form-material-ui';
 
 class FoodDiaryEntry extends Component {
 
-  constructor(props) {
-    super(props);
-    this.submitEntry.bind(this);
-  }
-
-  submitEntry(e) {
-    submitFoodDiaryEntry(e)
-    .then(() => {
-      fetchFoodDiary()
-      .then(() => {
-        fetchMacros();
-      });
-    });
-  }
-
   render() {
 
     const { handleSubmit, submitting } = this.props;
@@ -33,20 +18,21 @@ class FoodDiaryEntry extends Component {
 
     return (
       <MuiThemeProvider muiTheme={getMuiTheme()}>
-        <form className="diaryInputForm" onSubmit={ handleSubmit(this.submitEntry) } >
+        <form className="diaryInputForm" onSubmit={ handleSubmit(this.props.submitFoodDiaryEntry) } >
           <h3>Add Entry</h3>
           <p className="diaryInput-p">Please submit a meal.</p>
           <div className="diaryInputDiv">
             <label className="diaryInputLabel">Date</label>
-            <Field name="date" component={TextField} type="date" max={today} required />
+            <Field name="date" component={TextField} type="date" max={today} />
             <label className="diaryInputLabel">qty/srv</label>
-            <Field name="qty" component={TextField} type="number" min="1" required />
+            <Field name="qty" component={TextField} type="number" />
             <label className="diaryInputLabel">Tell us what you ate</label>
-            <Field name="food" component={TextField} type="text" required />
+            <Field name="food" component={TextField} type="text" />
           </div>
           <FlatButton
             backgroundColor="transparent"
             labelColor="#E3E7D3" label="Submit" type="submit" disabled={submitting} />
+          <p>{this.props.err}</p>
         </form>
       </MuiThemeProvider>
         );
@@ -62,6 +48,7 @@ FoodDiaryEntry = reduxForm({
 const mapStateToProps = (state) => {
   return {
     diaryData: state.foodDiary.logs,
+    err: state.foodDiary.err,
     actualMacros: state.userProfile.actualMacros
   }
 }

@@ -1,6 +1,10 @@
 import { FETCH_FRIENDS, FRIENDSHIP_STATUS, LEAVE_TAB } from '../actions/types';
 
-const INITIAL_STATE = { friendList: null, friendRequests: null, friendshipStatus: null }
+const INITIAL_STATE = {
+  friendList: null,
+  friendRequests: null,
+  friendshipStatus: null
+}
 
 export default function(state = INITIAL_STATE, action) {
   switch(action.type) {

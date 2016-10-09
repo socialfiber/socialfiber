@@ -13,7 +13,12 @@ import {blueGrey700} from 'material-ui/styles/colors';
 
 class SignIn extends Component {
 
+  componentWillUnmount() {
+    this.props.resetError();
+  }
+  
   render() {
+
     const { handleSubmit, submitting } = this.props;
     const styles = {
       underlineStyle: {
@@ -28,7 +33,6 @@ class SignIn extends Component {
     };
 
     return (
-
       <MuiThemeProvider muiTheme={getMuiTheme()}>
         <div className="container">
           <div className="row">
@@ -59,6 +63,7 @@ class SignIn extends Component {
                           className="btn btn-lg btn-primary btn-block main-btn"
                           label="Sign in"
                           labelColor="#455A64"/>
+                        <p>{this.props.err}</p>
                         <Link to={'/signup'} className="text-center new-account">Create an Account</Link>
                       </form>
                   </div>
@@ -67,7 +72,9 @@ class SignIn extends Component {
         </div>
       </MuiThemeProvider>
     );
+
   }
+  
 }
 
 SignIn = reduxForm({

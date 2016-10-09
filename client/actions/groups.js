@@ -1,4 +1,4 @@
-import { FETCH_ALL_GROUPS, FETCH_USER_GROUPS, FETCH_GROUP_USERS, FETCH_GROUP_POSTS, FETCH_GROUP_COMMENTS, CREATE_NEW_GROUP, JOIN_GROUP, LEAVE_GROUP, POST_GROUP_MESSAGE, POST_GROUP_COMMENT, GROUP_STATUS, LEAVE_PAGE, LEAVE_TAB } from '../actions/types';
+import { FETCH_ALL_GROUPS, FETCH_USER_GROUPS, FETCH_GROUP_USERS, FETCH_GROUP_POSTS, FETCH_GROUP_COMMENTS, CREATE_NEW_GROUP, CREATE_GROUP_ERROR, JOIN_GROUP, LEAVE_GROUP, POST_GROUP_MESSAGE, POST_GROUP_COMMENT, GROUP_STATUS, LEAVE_PAGE, LEAVE_TAB } from '../actions/types';
 import { browserHistory } from 'react-router';
 import axios from 'axios';
 import Cookies from 'js-cookie';
@@ -177,20 +177,31 @@ export function fetchGroupUsers(groupObj) {
 }
 
 export function createNewGroup(newGroupObj) {
-  newGroupObj.userID =  Cookies.get('userID');
-  const data = newGroupObj;
-  const config = {
-    headers: {
-      'x-access-token': Cookies.get('token')
-    }
-  }
-  return axios.post('/api/groups/createGroups', data, config)
-    .then((response) => {
-      return { type : CREATE_NEW_GROUP, payload: response.data }
-    })
-    .catch((error) => {
-      console.error(error);
+  if(!newGroupObj.name || !newGroupObj.description) {
+    console.log("MISSING FIELDS")
+    return new Promise((resolve, reject) => {
+      resolve({ type: CREATE_GROUP_ERROR, payload: 'Please fill out all fields.' });
     });
+  } else {
+    newGroupObj.userID =  Cookies.get('userID');
+    const data = newGroupObj;
+    const config = {
+      headers: {
+        'x-access-token': Cookies.get('token')
+      }
+    }
+    return axios.post('/api/groups/createGroups', data, config)
+      .then((response) => {
+        if(response.data.msg) {
+          return { type: CREATE_GROUP_ERROR, payload: response.data.msg }
+        } else {
+          return { type: CREATE_NEW_GROUP, payload: response.data }
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
 }
 
 export function leavePage() {

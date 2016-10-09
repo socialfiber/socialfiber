@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchFoodDiary, leaveTab } from '../../../actions/foodDiary';
+import { fetchFoodDiary, leaveTab, fetchMacros } from '../../../actions/foodDiary';
 import FoodDiaryLog from './FoodDiaryLog';
 import FoodDiaryEntry from './FoodDiaryEntry';
 import RadarGraph from '../../ToolBox/RadarGraph';
@@ -9,21 +9,42 @@ import Cookies from 'js-cookie'
 
 class FoodDiary extends Component {
 
-  componentDidMount() {
+  constructor(props) {
+    super(props);
+    this.state = {
+      diaryData: null
+    }
+  }
+
+  componentWillMount() {
     this.props.fetchFoodDiary();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      diaryData: nextProps.diaryData
+    });
+  }
+
+  componentDidUpdate() {
+    this.render();
   }
 
   componentWillUnmount() {
     this.props.leaveTab();
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    return this.state.diaryData !== nextProps.diaryData;
+  }
+
   render() {
 
     const foodDiaryEntry = Cookies.get('userID') === Cookies.get('currentProfileID') ? <FoodDiaryEntry /> : null;
 
-    if(this.props.diaryData) {
+    if(this.state.diaryData !== null) {
 
-      const diaryDataByDate = this.props.diaryData.map((set, idx) => {
+      const diaryDataByDate = this.state.diaryData.map((set, idx) => {
         const logsPerDay = set.logs.map((log, idx) => <FoodDiaryLog key={idx} log={log} />);
         const date = set.date
         return (
@@ -70,7 +91,7 @@ class FoodDiary extends Component {
 
       return (
         <div>
-          <h3>Loading your food diary...</h3>
+          <h3>Loading food diary...</h3>
         </div>
       );
 
@@ -86,4 +107,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { fetchFoodDiary, leaveTab })(FoodDiary);
+export default connect(mapStateToProps, { fetchFoodDiary, fetchMacros, leaveTab })(FoodDiary);

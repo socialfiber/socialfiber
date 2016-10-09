@@ -6,13 +6,17 @@ import { submitChangePassword, resetError } from '../../../actions/users';
 
 class ChangePassword extends Component {
 
+  componentWillUnmount() {
+    this.props.resetError();
+  }
+
   render() {
 
     const { handleSubmit, submitting } = this.props;
     
     return (
       <div>
-        <form onSubmit={handleSubmit(this.props.submitChangePassword)} >
+        <form onSubmit={ handleSubmit(this.props.submitChangePassword) } >
           <div>
             <label>Password</label>
             <Field name="password" component="input" type="password" />
@@ -26,7 +30,7 @@ class ChangePassword extends Component {
             <Field name="newPW" component="input" type="password" />
           </div>
           <button type="submit" disabled={submitting} >Submit</button>
-          <p>INSERT_MSG_HERE</p>
+          <p>{this.props.msg}</p>
         </form>
       </div>
     );
@@ -40,7 +44,9 @@ ChangePassword = reduxForm({
 })(ChangePassword);
 
 const mapStateToProps = (state) => {
-  return {}
+  return {
+    msg: state.userProfile.changePW
+  }
 }
 
 export default connect(mapStateToProps, { submitChangePassword, resetError })(ChangePassword);

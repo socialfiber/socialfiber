@@ -15,6 +15,7 @@ export const FETCH_FOOD_DIARY = 'FETCH_FOOD_DIARY';
 export const SUBMIT_DIARY_ENTRY = 'SUBMIT_DIARY_ENTRY';
 export const DELETE_DIARY_ENTRY = 'DELETE_DIARY_ENTRY';
 export const FETCH_MACROS = 'FETCH_MACROS';
+export const NO_RESULT = 'NO_RESULT';
 
 //Groups
 export const FETCH_USER_GROUPS = 'FETCH_USER_GROUPS';
@@ -22,8 +23,9 @@ export const FETCH_GROUP_USERS = 'FETCH_GROUP_USERS';
 export const FETCH_GROUP_POSTS = 'FETCH_GROUP_POSTS';
 export const FETCH_GROUP_COMMENTS = 'FETCH_COMMENTS';
 export const CREATE_NEW_GROUP = 'CREATE_NEW_GROUP';
-export const LEAVE_GROUP = 'LEAVE_GROUP';
+export const CREATE_GROUP_ERROR = 'CREATE_GROUP_ERROR';
 export const JOIN_GROUP = 'JOIN_GROUP';
+export const LEAVE_GROUP = 'LEAVE_GROUP';
 export const POST_GROUP_MESSAGE = 'POST_MESSAGE';
 export const POST_GROUP_COMMENT = 'POST_COMMENT';
 
@@ -38,6 +40,7 @@ export const FETCH_ALL_USERS = 'FETCH_ALL_USERS';
 export const FETCH_ALL_GROUPS = 'FETCH_ALL_GROUPS';
 export const LEAVE_PAGE = 'LEAVE_PAGE';
 export const LEAVE_TAB = 'LEAVE_TAB';
+export const RESET_ERROR = 'RESET_ERROR';
 
 //Chat
 export const CREATE_ROOM = 'CREATE_ROOM';

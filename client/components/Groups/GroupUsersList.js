@@ -4,6 +4,8 @@ import { Link } from 'react-router';
 import IndividualUser from '../ToolBox/IndividualUser';
 import FriendRequestButton from '../ToolBox/FriendRequestButton';
 import ProfilePic from '../ToolBox/ProfilePic';
+import _ from 'underscore';
+import Cookies from 'js-cookie';
 
 
 class GroupUsersList extends Component {
@@ -12,6 +14,7 @@ class GroupUsersList extends Component {
 
 		if(this.props.groupUsers.length) {
 
+			this.props.groupUsers.splice(_.findIndex(this.props.groupUsers, (user) => user.id === +Cookies.get('userID')), 1);
 			const groupUsers = this.props.groupUsers.map((user, idx) => {
 				return (
 					<li key={idx} className="list-group-item user-block col-lg-4 col-centered">

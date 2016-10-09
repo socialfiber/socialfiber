@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchAllGroups } from '../../actions/groups';
+import { fetchAllGroups, leavePage } from '../../actions/groups';
 import NavBar from '../ToolBox/NavBar';
 import CreateGroup from './CreateGroup';
 import IndividualGroup from '../ToolBox/IndividualGroup';
@@ -13,6 +13,10 @@ class AllGroups extends Component {
 
   componentWillMount() {
     this.props.fetchAllGroups();
+  }
+
+  componentWillUnmount() {
+    this.props.leavePage();
   }
 
   render() {
@@ -68,4 +72,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { fetchAllGroups })(AllGroups);
+export default connect(mapStateToProps, { fetchAllGroups, leavePage })(AllGroups);

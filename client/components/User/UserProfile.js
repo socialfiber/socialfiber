@@ -66,9 +66,9 @@ class UserProfile extends Component {
                     <li className="user-info-list-item">Gender: {this.props.userProfile.userData.gender}</li>
                     <li className="user-info-list-item">Height: {Math.floor(this.props.userProfile.userData.height/12)}ft {this.props.userProfile.userData.height%12}in</li>
                     <li className="user-info-list-item">Weight: {this.props.userProfile.userData.weight}</li>
+                    <button type="button" onClick={() => this.toggleEditing()}>Edit Info</button>
                   </ul>
                   <div>
-                    <button type="button" onClick={() => this.toggleEditing()}>Edit Info</button>
                   </div>
                 </div>
               </div>

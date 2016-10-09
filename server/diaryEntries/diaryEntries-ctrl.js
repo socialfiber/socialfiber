@@ -57,9 +57,7 @@ const diaryEntries = {
               n6: +(data.n6*req.body.qty).toFixed(4)
             })
             .then((increased) => {
-              res.status(201).send({
-                msg: 'Entry successfully added.'
-              });
+              res.status(201).send();
             })
             .catch((err) => {
               res.status(400).send();
@@ -94,9 +92,7 @@ const diaryEntries = {
             n6: +(data.n6*req.query.qty).toFixed(4)
           })
           .then((decreased) => {
-            res.status(201).send({
-              msg: 'Entry successfully deleted.'
-            });
+            res.status(201).send();
           })
           .catch((err) => {
             res.status(400).send();

@@ -103,10 +103,18 @@ export function updateUserData(userStatsObj) {
 }
 
 export function submitChangePassword(passwordObj) {
-  if (passwordObj.password !== passwordObj.confirmPW) {
-    return { type: CHANGE_PASSWORD, payload: 'Passwords do not match.' };
+  if (!passwordObj.password || !passwordObj.confirmPW || !passwordObj.newPW) {
+    return new Promise((resolve, reject) => {
+      resolve({ type: CHANGE_PASSWORD, payload: 'Please fill out all fields.' })
+    });
+  } else if (passwordObj.password !== passwordObj.confirmPW) {
+    return new Promise((resolve, reject) => {
+      resolve({ type: CHANGE_PASSWORD, payload: 'Passwords do not match.' })
+    });
   } else if (passwordObj.password === passwordObj.newPW) {
-    return { type: CHANGE_PASSWORD, payload: 'New password must be different than current.' };
+    return new Promise((resolve, reject) => {
+      resolve({ type: CHANGE_PASSWORD, payload: 'New password must be different than current.' })
+    });
   } else {
     passwordObj.userID = Cookies.get('userID');
     const config = {
@@ -137,9 +145,13 @@ export function fetchProfilePic(userID) {
 }
 
 export function resetError() {
-  return { type: CHANGE_PASSWORD, payload: '' }
+  return new Promise((resolve, reject) => {
+    resolve({ type: CHANGE_PASSWORD, payload: null });
+  });
 }
 
 export function leavePage() {
-  return { type: LEAVE_PAGE }
+  return new Promise((resolve, reject) => {
+    resolve({ type: LEAVE_PAGE })
+  });
 }
