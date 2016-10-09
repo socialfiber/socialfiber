@@ -1,6 +1,7 @@
 html, body, #main{
   height: 100%;
-    font-family: 'Lato', sans-serif;
+  font-family: 'Lato', sans-serif;
+  padding-top: 35px;
 }
 
 .container {
@@ -329,12 +330,12 @@ span, .reject-fr-btn {
 
 
 .home, .dropbtn {
-    display: inline-block;
-    color: white;
-    text-align: center;
-    padding: 20px 16px;
-    text-decoration: none;
-    z-index: 1;
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 20px 16px;
+  text-decoration: none;
+  z-index: 1;
 }
 
 a.home{
@@ -342,8 +343,8 @@ a.home{
 }
 
 .home:hover, .dropdown:hover .dropbtn {
-    position: block;
-    background-color: transparent;
+  position: block;
+  background-color: transparent;
 }
 
 li.dropdown {
@@ -352,18 +353,18 @@ li.dropdown {
 }
 
 .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
 .dropdown-content li {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    text-align: left;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+  width: 100px;
 }
 
 .dropdown-content li:hover {
@@ -371,19 +372,17 @@ li.dropdown {
 }
 
 .dropdown:hover .dropdown-content {
-    display: block;
+  display: block;
 }
 
-
-.signoutbutton-item {
-  position:fixed;
-  top: 10px;
-  right: 10px;
-}
 
 .signout-button {
-  background-color: #D8A154;
-  color: white;
+  margin-top: 10px;
+  margin-right: 10px;
+  display: inline-block;
+  padding: 20px 16px;
+  z-index: 10;
+
 }
 
 .navheader {

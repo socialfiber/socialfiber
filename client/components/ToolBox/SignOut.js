@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { submitSignOut } from '../../actions/auth'
+import { submitSignOut } from '../../actions/auth';
+import RaisedButton from 'material-ui/RaisedButton';
 
 
 class SignOut extends Component {
@@ -9,7 +10,11 @@ class SignOut extends Component {
 
     return (
     	<div>
-    		<button className='signout-button btn btn-secondary' onClick={this.props.submitSignOut}>Sign Out</button>
+    		<RaisedButton
+          onClick={this.props.submitSignOut}
+          backgroundColor="#D8A154"
+          labelColor="#FFFFFF"
+          label="Sign Out"/>
     	</div>
     );
 
