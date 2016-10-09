@@ -34,7 +34,7 @@ class GroupButton extends Component {
   }
 
   render() {
-
+    
     if(this.state.groupStatus === false) {
       return (
         <div>

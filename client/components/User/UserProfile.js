@@ -53,30 +53,32 @@ class UserProfile extends Component {
         ];
 
         return (
-          <div className="user-container">
+          <div>
             <NavBar />
-            <div className="user-profile-block">
-              <div className="user-profile-block-right">
-                <div>
-                  <ProfilePic userID={this.props.userProfile.userData.user_id} />
-                </div>
-                <div className="user-info">
-                  <ul className="list-group">
-                    <li className="user-info-list-item">Age: {this.props.userProfile.userData.age}</li>
-                    <li className="user-info-list-item">Gender: {this.props.userProfile.userData.gender}</li>
-                    <li className="user-info-list-item">Height: {Math.floor(this.props.userProfile.userData.height/12)}ft {this.props.userProfile.userData.height%12}in</li>
-                    <li className="user-info-list-item">Weight: {this.props.userProfile.userData.weight}</li>
-                  </ul>
+            <div className="user-container">
+              <div className="user-profile-block">
+                <div className="user-profile-block-right">
                   <div>
-                    <button type="button" onClick={() => this.toggleEditing()}>Edit Info</button>
+                    <ProfilePic userID={this.props.userProfile.userData.user_id} />
+                  </div>
+                  <div className="user-info">
+                    <ul className="list-group">
+                      <li className="user-info-list-item">Age: {this.props.userProfile.userData.age}</li>
+                      <li className="user-info-list-item">Gender: {this.props.userProfile.userData.gender}</li>
+                      <li className="user-info-list-item">Height: {Math.floor(this.props.userProfile.userData.height/12)}ft {this.props.userProfile.userData.height%12}in</li>
+                      <li className="user-info-list-item">Weight: {this.props.userProfile.userData.weight}</li>
+                    </ul>
+                    <div className="edit-info-btn">
+                      <button type="button" onClick={() => this.toggleEditing()}>Edit Info</button>
+                    </div>
                   </div>
                 </div>
+                <div className="user-profile-block-left">
+                  <RadarGraph type={'amount'} size={'large'} />
+                </div>
               </div>
-              <div className="user-profile-block-left">
-                <RadarGraph type={'amount'} size={'large'} />
-              </div>
+              <Tabs tabsList={tabsList} />
             </div>
-            <Tabs tabsList={tabsList} />
           </div>
         );
 
