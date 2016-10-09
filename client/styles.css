@@ -3,10 +3,6 @@ html, body, #main{
   font-family: 'Lato', sans-serif;
 }
 
-/*body, #main {
-  padding-top: 40px;
-}*/
-
 .container {
   height: 100%;
   width:100%;
@@ -205,6 +201,7 @@ span, .reject-fr-btn {
 
 /* -------------------- All Groups -------------------- */
 
+/* -- all-container is for every main div --*/
 .all-container {
   margin-top: 100px;
 }
