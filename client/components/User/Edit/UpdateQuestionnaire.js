@@ -58,7 +58,7 @@ class UpdateQuestionnaire extends Component {
               <Field name="weight" component={TextField} type="number" min="70" placeholder={this.props.userData.weight} required />
             </div>
             {femaleQuestions()}
-            <button className="btn btn-secondary" type="submit" disabled={submitting} >Submit</button>
+            <button className="updateQ-btn btn btn-secondary" type="submit" disabled={submitting} >Submit</button>
           </form>
         </div>
       </MuiThemeProvider>
