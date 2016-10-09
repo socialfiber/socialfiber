@@ -47,28 +47,28 @@ class FriendRequestButton extends Component {
               this.setStatus(response);
             })
           }}>
-          <span className="fr-btn" >Send Friend Request</span>
+          <span className="fr-btn">Send Friend Request</span>
           </RaisedButton>
         </div>
       );
     } else if(this.state.friendshipStatus === 'requestee') {
       return (
         <div>
-          <RaisedButton onClick={() => {
+          <RaisedButton style={{ marginBottom: "5px", height: "20px" }} onClick={() => {
             acceptFriendRequest(this.props.otherID)
             .then((response) => {
               this.setStatus(response);
             });
           }}>
-          Accept Friend Request
+          <span className="accept-fr-btn">Accept Friend Request</span>
           </RaisedButton>
-          <RaisedButton onClick={() => {
+          <RaisedButton style={{ height: "20px" }} onClick={() => {
             deleteFriendRequest(this.props.otherID)
             .then((response) => {
               this.setStatus(response);
             });
           }}>
-          Reject Friend Request
+          <span className="reject-fr-btn">Reject Friend Request</span>
           </RaisedButton>
         </div>
       );
@@ -81,7 +81,7 @@ class FriendRequestButton extends Component {
               this.setStatus(response);
             });
           }}>
-          Cancel Friend Request
+          <span className="fr-btn">Cancel Friend Request</span>
           </RaisedButton>
         </div>
       );

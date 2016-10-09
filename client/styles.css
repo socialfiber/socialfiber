@@ -130,10 +130,8 @@ html, body, #main{
 
 
 .creategroupbutton {
-  background-color: #C6AC8F;
   width: 60%;
   margin-bottom: 10px;
-  color: #E3E7D3;
 }
 
 .choose-topic{
@@ -153,9 +151,22 @@ html, body, #main{
   margin: 30px;
 }
 
+.user-block-top {
+}
+
 span, .fr-btn {
   text-align: center;
   padding: 0 10px;
+}
+
+span, .accept-fr-btn {
+  text-align: center;
+  padding: 0 10px 2px 10px;
+}
+
+span, .reject-fr-btn {
+  text-align: center;
+  padding: 0 12px;
 }
 
 .container-centered {
@@ -180,6 +191,10 @@ span, .fr-btn {
 
 .username-div {
   margin-bottom: 10px;
+}
+
+.list-group-item:last-child {
+  margin-bottom: 30px;
 }
 
 /* -------------------- All Groups -------------------- */
@@ -291,8 +306,6 @@ span, .fr-btn {
   width: 20px;
 }
 
-
-
 /*<---- main nav ---->*/
 .homelink {
   color: white;
@@ -311,6 +324,7 @@ span, .fr-btn {
 .navItem {
   float: left;
   color: white;
+  z-index: 1;
 }
 
 
@@ -320,13 +334,12 @@ span, .fr-btn {
     text-align: center;
     padding: 20px 16px;
     text-decoration: none;
+    z-index: 1;
 }
 
 a.home{
   color: white;
 }
-
-
 
 .home:hover, .dropdown:hover .dropbtn {
     position: block;
@@ -367,10 +380,6 @@ li.dropdown {
   top: 10px;
   right: 10px;
 }
-.signout-button {
-  background-color: #D8A154;
-  color: white;
-}
 
 .signout-button {
   background-color: #D8A154;
@@ -380,10 +389,10 @@ li.dropdown {
 .navheader {
   position: absolute;
   color: white;
-  top: 10px;
-  left: 40%;
-  position:absolute;
-  float: top;
+  top: 4px;
+  left: 0;
+  right: 0;
+  text-align: center;
 }
 
 /* -------------------- Group Page Header -------------------- */
@@ -392,16 +401,13 @@ li.dropdown {
   width: 100%;
   text-align: center;
   color: #233B44;
-  display: inline-block;
 }
-
 .leave-group-button {
   float: right;
   color: black;
   margin-bottom: 5px;
   margin-right: 5px;
 }
-
 .join-group-button {
   margin-bottom: 5px;
 }
@@ -502,4 +508,96 @@ strong {
 
 .radarGraphAmount, .radarGraphPercentage {
   display: inline-block;
+}
+
+/* -------------------- Profile Pic -------------------- */
+
+.img-circle {
+  border: 15px solid white;
+  border-radius: 50%;
+}
+
+/* -------------------- Profile Page -------------------- */
+
+.user-container {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.user-profile-block {
+  position: relative;
+  height: 500px;
+  width: 100%;
+  margin: 0;
+  z-index: -1;
+}
+
+.user-profile-block-right {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 500px;
+  margin: 0 60px;
+  overflow: auto;
+}
+
+.user-profile-block-left {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 500px;
+  margin: 0 5px;
+  padding-left: 40px;
+  overflow: auto;
+}
+
+.user-info {
+  position: absolute;
+  bottom: 120px;
+  right: 0;
+  left: 0;
+}
+
+.user-info-list-item {
+  position: relative;
+  display: block;
+  padding: 0 15px;
+  margin: 0;
+}
+
+.user-profile-nav {
+  float: none;
+}
+
+.user-profile-nav li{
+  float: none;
+}
+
+/* -------------------- My Friends -------------------- */
+
+.friend-list-buttons {
+  position: relative;
+  width: 100%;
+  text-align: center;
+  color: #233B44;
+}
+
+.friend-list-button-left {
+  position: absolute;
+  left: 0;
+}
+
+.friend-list-button-right {
+  position: absolute;
+  right: 0;
+}
+
+.my-friends-container {
+  width: 100%;
+  position: relative;
+}
+
+.chat-window {
+  position: absolute;
+  right: 0;
 }
