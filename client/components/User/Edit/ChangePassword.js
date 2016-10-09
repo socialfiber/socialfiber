@@ -24,15 +24,15 @@ class ChangePassword extends Component {
         <div>
           <form onSubmit={handleSubmit(this.props.submitChangePassword)} >
             <div>
-              <label>Password</label>
+              <label className="updateQ-label">Password</label>
               <Field name="password" component={TextField} type="password" />
             </div>
             <div>
-              <label>Confirm Password</label>
+              <label className="updateQ-label">Confirm Password</label>
               <Field name="confirmPW" component={TextField} type="password" />
             </div>
             <div>
-              <label>New Password</label>
+              <label className="updateQ-label">New Password</label>
               <Field name="newPW" component={TextField} type="password" />
             </div>
             <button className="changePW-btn btn btn-secondary" type="submit" disabled={submitting} >Submit</button>

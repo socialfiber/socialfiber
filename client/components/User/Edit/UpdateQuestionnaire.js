@@ -45,16 +45,16 @@ class UpdateQuestionnaire extends Component {
         <div>
           <form onSubmit={handleSubmit(this.props.updateUserData)}>
             <div>
-              <label>Age</label>
+              <label className="updateQ-label">Age</label>
               <Field name="age" component={TextField} type="number" min="13" required />
             </div>
             <div>
-              <label>Height (ft & in)</label>
+              <label className="updateQ-label">Height (ft & in)</label>
               <Field name="ft" component="input" type="number" min ="4" max="8" required />
               <Field name="in" component="input" type="number" min="0" max="11" />
             </div>
             <div>
-              <label>Weight</label>
+              <label className="updateQ-label">Weight</label>
               <Field name="weight" component={TextField} type="number" min="70" required />
             </div>
             {femaleQuestions()}
