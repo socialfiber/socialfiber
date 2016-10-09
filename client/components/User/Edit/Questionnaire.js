@@ -10,7 +10,6 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import FlatButton from 'material-ui/FlatButton';
 import { TextField } from 'redux-form-material-ui';
-import NavBarSplash from '../../ToolBox/NavBarQuestionnaire';
 import {blueGrey700} from 'material-ui/styles/colors';
 
 
@@ -62,8 +61,7 @@ class Questionnaire extends Component {
 
     return (
       <MuiThemeProvider muiTheme={getMuiTheme()}>
-        <div className="container questionnaire">
-        <NavBarSplash />
+        <div className="container questionnaire all-container">
           {/* <div className="row"> */}
             <h1 className="questionnaire-h1">Tell us a little bit about yourself...</h1>
             <p>social fiber calculates RDA-based nutrient recommendations for each individual</p>

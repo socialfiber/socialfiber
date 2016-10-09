@@ -38,7 +38,7 @@ class AllGroups extends Component {
 
     return (
       <MuiThemeProvider muiTheme={getMuiTheme()}>
-        <div className="container-centered">
+        <div className="container-centered all-container">
           <NavBar />
           <h1 className="center">Find a Group</h1>
           <br></br>

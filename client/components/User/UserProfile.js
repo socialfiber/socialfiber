@@ -53,7 +53,7 @@ class UserProfile extends Component {
         ];
 
         return (
-          <div className="user-container">
+          <div className="user-container all-container">
             <NavBar />
             <div className="user-profile-block">
               <div className="user-profile-block-right">
@@ -85,7 +85,7 @@ class UserProfile extends Component {
         return (
           <div>
             <NavBar />
-            <h3>{this.props.userProfile.username}</h3>
+            <h3 className="all-container">{this.props.userProfile.username}</h3>
             <UpdateUserData />
             <button type="button" onClick={() => this.toggleEditing()}>Return</button>
           </div>
@@ -97,7 +97,7 @@ class UserProfile extends Component {
       return (
         <div>
           <NavBar />
-          <h3>Loading your profile...</h3>
+          <h3 className="all-container">Loading your profile...</h3>
         </div>
       );
 

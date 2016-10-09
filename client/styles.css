@@ -3,9 +3,9 @@ html, body, #main{
   font-family: 'Lato', sans-serif;
 }
 
-body, #main {
+/*body, #main {
   padding-top: 40px;
-}
+}*/
 
 .container {
   height: 100%;
@@ -77,13 +77,17 @@ body, #main {
   width: 100%;
   background-image: url(./assets/orangetree.jpeg);
   background-repeat: no-repeat;
-    background-position: center center;
-    background-attachment: fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
   overflow: hidden;
+}
+
+.splashpg-div.all-container {
+  margin-top: 0;
 }
 
 .signin, .signup {
@@ -201,6 +205,10 @@ span, .reject-fr-btn {
 
 /* -------------------- All Groups -------------------- */
 
+.all-container {
+  margin-top: 100px;
+}
+
 .all-groups-table {
   width: 100%;
   table-layout: auto;
@@ -250,8 +258,8 @@ span, .reject-fr-btn {
   overflow: hidden;
 }
 
-body .container.questionnaire {
-  padding: 0 !important;
+.container.questionnaire.all-container {
+  margin-top: 0;
 }
 
 .inner-div-questionnaire {

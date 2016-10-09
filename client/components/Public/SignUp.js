@@ -38,7 +38,7 @@ class SignUp extends Component {
 
     return (
       <MuiThemeProvider muiTheme={getMuiTheme()}>
-        <div className="container">
+        <div className="container all-container">
           <div className="col-sm-6 col-md-4 col-md-offset-4">
             <div className="account-wall">
               <form onSubmit={ handleSubmit(this.props.submitSignUp) } className="form-signin-signup">

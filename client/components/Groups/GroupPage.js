@@ -47,7 +47,7 @@ class GroupPage extends Component {
       return (
         <div>
           <NavBar />
-          <h1>{this.props.params.groupname}</h1>
+          <h1 className="all-container">{this.props.params.groupname}</h1>
           <h3>Loading group page...</h3>
         </div>
       );
@@ -57,7 +57,7 @@ class GroupPage extends Component {
         <MuiThemeProvider muiTheme={getMuiTheme()}>
           <div>
             <NavBar />
-            <div className="group-page-header">
+            <div className="group-page-header all-container">
               <h1>{this.props.params.groupname}</h1>
             </div>
             <Tabs style={{backgroundColor: 'white'}} tabsList={tabsList} defaultTab={'GroupWall'} />
@@ -77,7 +77,7 @@ class GroupPage extends Component {
         <MuiThemeProvider muiTheme={getMuiTheme()}>
           <div>
             <NavBar />
-            <div className="group-page-header">
+            <div className="group-page-header all-container">
             <h1>{this.props.params.groupname}</h1>
               <p>You aren't a member of this group! Please join to participate in the group.</p>
               <RaisedButton
