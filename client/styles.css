@@ -646,3 +646,7 @@ li.dropdown {
 .changePW-div, .updatePic-div, .updateInfo-div {
   padding: 20px;
 }
+
+.updateQ-label {
+  margin-right: 15px;
+}
