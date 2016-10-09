@@ -634,3 +634,10 @@ li.dropdown {
 .my-groups-table {
   display: inline;
 }
+.updateUserData {
+  text-align: center;
+}
+.fileInput {
+  margin-left: auto;
+  margin-right: auto;
+}
