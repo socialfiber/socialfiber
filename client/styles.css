@@ -468,9 +468,11 @@ strong {
 .foodDiaryLogTable {
   text-align: center;
 }
+
 .foodDiaryLogtr {
   margin: 10px;
 }
+
 
 .foodDiaryLogList {
   list-style-type: none;
