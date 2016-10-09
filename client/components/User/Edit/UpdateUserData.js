@@ -11,7 +11,7 @@ class UpdateUserData extends Component {
   render() {
 
     return (
-      <div>
+      <div className="updateUserData">
         <h1>Update Profile</h1>
         <h3>Change Password</h3>
         <ChangePassword />
