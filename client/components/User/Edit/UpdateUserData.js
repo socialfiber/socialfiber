@@ -12,13 +12,19 @@ class UpdateUserData extends Component {
 
     return (
       <div className="updateUserData">
-        <h1>Update Profile</h1>
-        <h3>Change Password</h3>
-        <ChangePassword />
-        <h3>Update Info</h3>
-        <UpdateQuestionnaire />
-        <h3>Upload a profile picture.</h3>
-        <ImageUpload />
+        <h1 className="updatePF">Update Profile</h1>
+        <div className="changePW-div">
+          <h3>Change Password</h3>
+          <ChangePassword />
+        </div>
+        <div className="updateInfo-div">
+          <h3>Update Info</h3>
+          <UpdateQuestionnaire />
+        </div>
+        <div className="updatePic-div">
+          <h3>Upload a profile picture.</h3>
+          <ImageUpload />
+        </div>
       </div>
     );
 
