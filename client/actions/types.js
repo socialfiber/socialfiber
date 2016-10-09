@@ -2,10 +2,11 @@
 export const AUTH_USER = 'AUTH_USER';
 export const AUTH_ERROR = 'AUTH_ERROR';
 export const SIGN_OUT = 'SIGN_OUT';
+export const RESET_ERROR = 'RESET_ERROR';
 
 //User Data
 export const FETCH_USER_DATA = 'FETCH_USER_DATA';
-export const FETCH_PROFILE_PIC = 'FETCH_USER_DATA';
+export const FETCH_PROFILE_PIC = 'FETCH_PROFILE_PIC';
 export const SUBMIT_USER_STATS = 'SUBMIT_USER_STATS';
 export const CHANGE_PASSWORD = 'CHANGE_PASSWORD';
 export const HANDLE_IMG_UPLOAD = 'HANDLE_IMG_UPLOAD';
@@ -40,7 +41,6 @@ export const FETCH_ALL_USERS = 'FETCH_ALL_USERS';
 export const FETCH_ALL_GROUPS = 'FETCH_ALL_GROUPS';
 export const LEAVE_PAGE = 'LEAVE_PAGE';
 export const LEAVE_TAB = 'LEAVE_TAB';
-export const RESET_ERROR = 'RESET_ERROR';
 
 //Chat
 export const CREATE_ROOM = 'CREATE_ROOM';

@@ -9,6 +9,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
 import {blueGrey700} from 'material-ui/styles/colors';
 
+
 class GroupPage extends Component {
 
   componentWillMount() {
@@ -27,8 +28,6 @@ class GroupPage extends Component {
   }
 
   render() {
-
-    console.log("GroupsPage: ", this.props);
 
     const tabsList = [
       { label: 'Wall', component: 'GroupWall' },
@@ -53,6 +52,7 @@ class GroupPage extends Component {
       );
 
     } else if(this.props.membership) {
+
       return (
         <MuiThemeProvider muiTheme={getMuiTheme()}>
           <div>
@@ -90,8 +90,11 @@ class GroupPage extends Component {
           </div>
         </MuiThemeProvider>
       );
+
     }
+
   }
+
 }
 
 const mapStateToProps = (state) => {

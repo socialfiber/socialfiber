@@ -8,7 +8,6 @@ const INITIAL_STATE = {
 export default function(state = INITIAL_STATE, action) {
   switch(action.type) {
     case FETCH_FOOD_DIARY:
-      console.log("INSIDE FOOD DIARY REDUCER", action)
       return { ...state, logs: action.payload };
     case SUBMIT_DIARY_ENTRY:
       return { ...state, err: null }
