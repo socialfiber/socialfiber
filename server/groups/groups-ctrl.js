@@ -19,8 +19,9 @@ const groups = {
         });
       })
       .catch((err) => {
-        console.log('Error: ', err);
-        res.status(400).send();
+        res.status(200).send({
+          msg: 'Group name already taken!'
+        });
       });
     }
   },

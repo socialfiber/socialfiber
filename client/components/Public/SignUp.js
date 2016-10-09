@@ -14,7 +14,7 @@ import { TextField } from 'redux-form-material-ui';
 class SignUp extends Component {
 
   componentWillUnmount() {
-    resetError();
+    this.props.resetError();
   }
 
   render() {

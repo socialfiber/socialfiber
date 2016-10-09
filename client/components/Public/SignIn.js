@@ -14,7 +14,7 @@ import {blueGrey700} from 'material-ui/styles/colors';
 class SignIn extends Component {
 
   componentWillUnmount() {
-    resetError();
+    this.props.resetError();
   }
   
   render() {

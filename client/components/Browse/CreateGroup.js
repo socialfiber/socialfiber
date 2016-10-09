@@ -24,12 +24,13 @@ class CreateGroup extends Component {
                 <h5>Create a group based on your dietary interests.</h5>
                 <h5 className="choose-topic">You may choose a topic such as "paleo" or "vegetarian"</h5>
                 <div>
-                  <Field name='name' component={TextField} type='text' floatingLabelText="Name" required/>
+                  <Field name='name' component={TextField} type='text' floatingLabelText="Name" />
                 </div>
                 <div>
-                  <Field name='description' component={TextField} type='text' floatingLabelText="Description" required/>
+                  <Field name='description' component={TextField} type='text' floatingLabelText="Description" />
                 </div>
                 <button className="creategroupbutton btn btn-secondary" type="submit" disabled={submitting}>CREATE GROUP</button>
+                {this.props.err}
               </form>
             </div>
           </div>
@@ -45,4 +46,10 @@ CreateGroup = reduxForm({
   form: 'CreateGroup'
 })(CreateGroup);
 
-export default connect(null, { createNewGroup })(CreateGroup);
+const mapStateToProps = (state) => {
+  return {
+    err: state.browse.err
+  }
+}
+
+export default connect(mapStateToProps, { createNewGroup })(CreateGroup);
