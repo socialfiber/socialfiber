@@ -18,7 +18,7 @@ class FoodDiary extends Component {
   }
 
   render() {
-    
+
     const foodDiaryEntry = Cookies.get('userID') === Cookies.get('currentProfileID') ? <FoodDiaryEntry /> : null;
 
     if(this.props.diaryData) {
@@ -27,33 +27,38 @@ class FoodDiary extends Component {
         const logsPerDay = set.logs.map((log, idx) => <FoodDiaryLog key={idx} log={log} />);
         const date = set.date
         return (
-          <li key={idx}>
-            <h3>{date}</h3>
-            <table>
+          <li className="foodDiaryLogList" key={idx}>
+            <h3 className='date'>{date}</h3>
+            <table className='table foodDiaryLogTable'>
               <tbody>
                 <tr>
-                  <th>qty</th>
-                  <th>Food Name</th>
-                  <th>Calories (kcal)</th>
-                  <th>Carbohydrates (g)</th>
-                  <th>Protein (g)</th>
-                  <th>Fat (g)</th>
-                  <th>Fiber (g)</th>
-                  <th>n6 (g)</th>
-                  <th>delete</th>
+                  <th className="fdth">qty</th>
+                  <th className="fdth">Food Name</th>
+                  <th className="fdth">Calories (kcal)</th>
+                  <th className="fdth">Carbohydrates (g)</th>
+                  <th className="fdth">Protein (g)</th>
+                  <th className="fdth">Fat (g)</th>
+                  <th className="fdth">Fiber (g)</th>
+                  <th className="fdth">n6 (g)</th>
+                  <th className="fdth">delete</th>
                 </tr>
                 {logsPerDay}
               </tbody>
             </table>
-            <RadarGraph type={'amount'} size={'small'} date={date} />
-            <RadarGraph type={'ratio'} size={'small'} date={date} />
+            <div className="radarGraphDiv">
+              <table className="radarGraphTable"><tr>
+                <th><RadarGraph className="radarGraphAmount" type={'amount'} size={'small'} date={date} /></th>
+                <th><RadarGraph className="radarGraphPercentage" type={'ratio'} size={'small'} date={date} /></th>
+              </tr>
+              </table>
+            </div>
           </li>
         );
       });
 
       return (
         <div>
-          <h1>Food Diary</h1>
+          <h1 className="foodDiaryHeader">Food Diary</h1>
           {foodDiaryEntry}
           <ul>
             {diaryDataByDate}

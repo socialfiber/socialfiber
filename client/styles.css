@@ -210,9 +210,9 @@ span, .fr-btn {
   margin-right: auto;
 }
 /*select component style*/
-.selectComponent-style {
+/*.selectComponent-style {
   color: white;
-}
+}*/
 
 /*questionnaire style*/
 
@@ -229,6 +229,7 @@ span, .fr-btn {
   -o-background-size: cover;
   background-size: cover;
   color: white;
+  overflow: hidden;
 }
 
 .inner-div-questionnaire {
@@ -264,8 +265,16 @@ span, .fr-btn {
   background-color: transparent;
 }
 
+.inputs {
+  width: 1px
+}
 
-.containerquestionnaire, label {
+.q-label {
+  color: white;
+  padding: 10px;
+}
+
+.containerquestionnaire {
   margin-right:15px;
   background-color: transparent;
   font-size: 15px;
@@ -279,7 +288,7 @@ span, .fr-btn {
 }
 
 .ft, .in{
-  width: 50px;
+  width: 20px;
 }
 
 
@@ -377,7 +386,6 @@ li.dropdown {
   float: top;
 }
 
-
 /* -------------------- Group Page Header -------------------- */
 
 .group-page-header {
@@ -437,4 +445,61 @@ strong {
 .page-tab > li > a:hover{
   background-color: #233B44;
   color: white;
+}
+
+/*<---- food diary entry ---->*/
+.diaryInputForm {
+  text-align: center;
+}
+
+.diaryInputDiv {
+  width: 85%
+  margin: 50px;
+}
+
+.diaryInputLabel {
+  margin: 10px;
+}
+
+.diaryInput-p {
+  color: #355834;
+}
+
+.foodDiaryLogTable {
+  text-align: center;
+}
+
+.foodDiaryLogtr {
+  margin: 10px;
+}
+
+
+.foodDiaryLogList {
+  list-style-type: none;
+  width: 90%;
+}
+
+.fdth {
+  font-weight: bold;
+  font-size: medium;
+}
+
+.fdltd {
+  color: #355834;
+}
+
+.foodDiaryHeader {
+  text-align: center;
+  font-size: 100px;
+  padding: 15px;
+}
+.radarGraphTable {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+.radarGraphAmount, .radarGraphPercentage {
+  display: inline-block;
 }
