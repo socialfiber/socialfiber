@@ -37,27 +37,27 @@ class CreateGroup extends Component {
               <form onSubmit={ handleSubmit(this.props.createNewGroup) }>
                 <h5>Create a group based on your dietary interests.</h5>
                 <h5 className="choose-topic">You may choose a topic such as "paleo" or "vegetarian"</h5>
-                  <Field
-                    name='name'
-                    component={TextField}
-                    type='text'
-                    underlineStyle={styles.underlineStyle}
-                    underlineFocusStyle={styles.underlineStyle}
-                    floatingLabelStyle={styles.floatingLabelStyle}
-                    floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
-                    floatingLabelText="Name"
-                    required/>
-                  <Field
-                    name='description'
-                    component={TextField}
-                    type='text'
-                    underlineStyle={styles.underlineStyle}
-                    underlineFocusStyle={styles.underlineStyle}
-                    floatingLabelStyle={styles.floatingLabelStyle}
-                    floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
-                    floatingLabelText="Description"
-                    required/>
-                <div>{this.props.err}</div>
+                <Field
+                  name='name'
+                  component={TextField}
+                  type='text'
+                  underlineStyle={styles.underlineStyle}
+                  underlineFocusStyle={styles.underlineStyle}
+                  floatingLabelStyle={styles.floatingLabelStyle}
+                  floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+                  floatingLabelText="Name"
+                  required/>
+                <Field
+                  name='description'
+                  component={TextField}
+                  type='text'
+                  underlineStyle={styles.underlineStyle}
+                  underlineFocusStyle={styles.underlineStyle}
+                  floatingLabelStyle={styles.floatingLabelStyle}
+                  floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+                  floatingLabelText="Description"
+                  required/>
+                <div className="error-txt">{this.props.err}</div>
                 <RaisedButton
                   className="creategroupbutton"
                   backgroundColor="#C6AC8F"

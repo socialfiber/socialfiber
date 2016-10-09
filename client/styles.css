@@ -674,3 +674,8 @@ li.dropdown {
   color: white;
   text-align: center;
 }
+
+/* -------------------- ERROR HANDLER -------------------- */
+.error-txt {
+  color: red;
+}

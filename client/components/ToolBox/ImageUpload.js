@@ -20,7 +20,7 @@ class ImageUpload extends Component {
             <Field className="fileInput" name='image' component='input' type='file' accept='image/*' />
           </div>
           <button className='imageUpload-btn btn btn-secondary' type='submit' disabled={submitting} >Submit</button>
-          {this.props.msg}
+          <p className="error-txt">{this.props.msg}</p>
         </form>
       </div>
     );
