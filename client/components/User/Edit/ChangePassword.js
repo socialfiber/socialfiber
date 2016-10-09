@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { submitChangePassword, resetError } from '../../../actions/users';
+import { AutoComplete as MUIAutoComplete } from 'material-ui';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import FlatButton from 'material-ui/FlatButton';
+import { TextField } from 'redux-form-material-ui';
 
 
 class ChangePassword extends Component {
@@ -13,28 +18,29 @@ class ChangePassword extends Component {
   render() {
 
     const { handleSubmit, submitting } = this.props;
-    
+
     return (
-      <div>
-        <form onSubmit={ handleSubmit(this.props.submitChangePassword) } >
-          <div>
-            <label>Password</label>
-            <Field name="password" component="input" type="password" />
-          </div>
-          <div>
-            <label>Confirm Password</label>
-            <Field name="confirmPW" component="input" type="password" />
-          </div>
-          <div>
-            <label>New Password</label>
-            <Field name="newPW" component="input" type="password" />
-          </div>
-          <button type="submit" disabled={submitting} >Submit</button>
-          <p>{this.props.msg}</p>
-        </form>
-      </div>
+      <MuiThemeProvider muiTheme={getMuiTheme()}>
+        <div>
+          <form onSubmit={handleSubmit(this.props.submitChangePassword)} >
+            <div>
+              <label>Password</label>
+              <Field name="password" component={TextField} type="password" />
+            </div>
+            <div>
+              <label>Confirm Password</label>
+              <Field name="confirmPW" component={TextField} type="password" />
+            </div>
+            <div>
+              <label>New Password</label>
+              <Field name="newPW" component={TextField} type="password" />
+            </div>
+            <button type="btn btn-secondary submit" disabled={submitting} >Submit</button>
+          </form>
+        </div>
+      </MuiThemeProvider>
     );
-    
+
   }
 
 }
