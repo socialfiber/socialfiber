@@ -39,7 +39,7 @@ class SignIn extends Component {
 
     return (
       <MuiThemeProvider muiTheme={getMuiTheme()}>
-        <div className="container">
+        <div className="container all-container">
           <div className="row">
             <div className="col-sm-6 col-md-4 col-md-offset-4">
               <div className="account-wall">

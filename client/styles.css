@@ -1,7 +1,6 @@
 html, body, #main{
   height: 100%;
   font-family: 'Lato', sans-serif;
-  padding-top: 30px;
 }
 
 .container {
@@ -74,13 +73,17 @@ html, body, #main{
   width: 100%;
   background-image: url(./assets/orangetree.jpeg);
   background-repeat: no-repeat;
-    background-position: center center;
-    background-attachment: fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
   overflow: hidden;
+}
+
+.splashpg-div.all-container {
+  margin-top: 0;
 }
 
 .signin, .signup {
@@ -113,9 +116,10 @@ html, body, #main{
 
 
 .header-splashpg {
-  position: block;
+  position: relative;
   font-size: 4em;
   text-align: center;
+  margin-top: -50px;
 }
 
 /* -------------------- Splash Page -------------------- */
@@ -197,6 +201,11 @@ span, .reject-fr-btn {
 
 /* -------------------- All Groups -------------------- */
 
+/* -- all-container is for every main div --*/
+.all-container {
+  margin-top: 100px;
+}
+
 .all-groups-table {
   width: 100%;
   table-layout: auto;
@@ -243,11 +252,11 @@ span, .reject-fr-btn {
   -o-background-size: cover;
   background-size: cover;
   color: white;
-  overflow: scroll;
+  overflow: hidden;
 }
 
-html .questionnaire, body .questionnaire, #main .questionnaire   {
-  padding-top: 0;
+.container.questionnaire.all-container {
+  margin-top: 0;
 }
 
 .inner-div-questionnaire {
@@ -260,6 +269,7 @@ html .questionnaire, body .questionnaire, #main .questionnaire   {
 .questionnaire-form {
   width:100%;
   background-color: transparent;
+  margin-bottom: 30px;
 }
 
 .questionnaire-h1 {
