@@ -634,6 +634,12 @@ li.dropdown {
 .my-groups-table {
   display: inline;
 }
+
+.imageUpload-btn, .changePW-btn, .updateQ-btn {
+  background-color: #D8A154;
+  color: white;
+}
+
 .updateUserData {
   text-align: center;
 }
