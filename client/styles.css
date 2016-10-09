@@ -312,13 +312,13 @@ span, .reject-fr-btn {
 }
 
 .nav {
-      list-style-type: none;
-      margin: 0;
-      padding: 0;
-      background-color: #233B44;
-      width: 100%;
-      height: 10%;
-      color: white;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  background-color: #233B44;
+  width: 100%;
+  height: 10%;
+  color: white;
 }
 
 .navItem {
