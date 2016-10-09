@@ -33,7 +33,7 @@ class MessageBox extends Component {
       <MuiThemeProvider muiTheme={getMuiTheme()}>
         <div>
           <form className="message-form" onSubmit = { handleSubmit(this.props.postMessage) }>
-            <h4 id="messagebox-header">Post a Message</h4>
+            <h4 className="messagebox-header">Post a Message</h4>
             <div>
               <Field
                 name="message"

@@ -27,10 +27,7 @@ html, body, #main{
     max-width: 330px;
     padding: 15px;
     margin: 0 auto;
-}
-
-.form-signin-signup .form-signin-signup-heading, .form-signin-signup {
-    margin-bottom: 10px;
+    margin-bottom: 10px
 }
 
 .form-signin-signup .form-control {
@@ -225,6 +222,7 @@ span, .reject-fr-btn {
   margin-left: auto;
   margin-right: auto;
 }
+
 /*select component style*/
 /*.selectComponent-style {
   color: white;
@@ -385,14 +383,12 @@ li.dropdown {
   display: block;
 }
 
-
 .signout-button {
   margin-top: 10px;
   margin-right: 10px;
   display: inline-block;
   padding: 20px 16px;
   z-index: 10;
-
 }
 
 .navheader {
@@ -439,7 +435,7 @@ li.dropdown {
   background-color: white;
 }
 
-#messagebox-header {
+.messagebox-header {
   text-align: center;
 }
 
@@ -508,7 +504,6 @@ li.dropdown {
   margin-left: auto;
   margin-right: auto;
 }
-
 
 .radarGraphAmount, .radarGraphPercentage {
   display: inline-block;

@@ -94,11 +94,8 @@ class FoodDiary extends Component {
           <h3>Loading food diary...</h3>
         </div>
       );
-
     }
-
   }
-
 }
 
 const mapStateToProps = (state) => {

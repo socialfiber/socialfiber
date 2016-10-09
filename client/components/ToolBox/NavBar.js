@@ -34,9 +34,7 @@ class NavBar extends Component {
         </nav>
       </MuiThemeProvider>
     );
-
   }
-
 }
 
 export default NavBar;

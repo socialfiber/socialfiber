@@ -5,7 +5,6 @@ import { createNewGroup } from '../../actions/groups';
 import { AutoComplete as MUIAutoComplete } from 'material-ui';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import FlatButton from 'material-ui/FlatButton';
 import { TextField } from 'redux-form-material-ui';
 import {blueGrey700} from 'material-ui/styles/colors';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -38,7 +37,6 @@ class CreateGroup extends Component {
               <form onSubmit={ handleSubmit(this.props.createNewGroup) }>
                 <h5>Create a group based on your dietary interests.</h5>
                 <h5 className="choose-topic">You may choose a topic such as "paleo" or "vegetarian"</h5>
-                <div>
                   <Field
                     name='name'
                     component={TextField}
@@ -49,8 +47,6 @@ class CreateGroup extends Component {
                     floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
                     floatingLabelText="Name"
                     required/>
-                </div>
-                <div>
                   <Field
                     name='description'
                     component={TextField}
@@ -61,7 +57,6 @@ class CreateGroup extends Component {
                     floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
                     floatingLabelText="Description"
                     required/>
-                </div>
                 <div>{this.props.err}</div>
                 <RaisedButton
                   className="creategroupbutton"
@@ -78,9 +73,7 @@ class CreateGroup extends Component {
         </div>
       </MuiThemeProvider>
     );
-
   }
-
 }
 
 CreateGroup = reduxForm({

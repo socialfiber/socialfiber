@@ -10,23 +10,22 @@ class SignOut extends Component {
 
     const styles = {
       labelStyle: {
+        color: 'white',
         textTransform: 'capitalize'
-      }
+      },
+      backgroundColor: '#D8A154'
     };
 
     return (
     	<div>
     		<RaisedButton
           onClick={this.props.submitSignOut}
-          backgroundColor="#D8A154"
-          labelColor="#FFFFFF"
+          backgroundColor={styles.backgroundColor}
           label="Sign Out"
           labelStyle={styles.labelStyle}/>
     	</div>
     );
-
   }
-
 }
 
 const mapStateToProps = (state) => {

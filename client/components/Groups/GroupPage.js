@@ -83,15 +83,15 @@ class GroupPage extends Component {
               <RaisedButton
                 className="join-group-button"
                 onClick={() => {this.props.joinGroup(this.props.params.id).then(()=>window.location.reload())}}
-                label="Join Group" />
+                label="Join Group"
+                labelStyle={styles.labelStyle}
+                backgroundColor={styles.backgroundColor}/>
             </div>
           </div>
         </MuiThemeProvider>
       );
     }
-
   }
-
 }
 
 const mapStateToProps = (state) => {

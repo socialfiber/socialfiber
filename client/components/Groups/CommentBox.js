@@ -59,9 +59,7 @@ class CommentBox extends Component {
         </div>
       </MuiThemeProvider>
     );
-
   }
-
 }
 
 CommentBox = reduxForm({

@@ -70,10 +70,8 @@ class FoodDiaryEntry extends Component {
           <p>{this.props.err}</p>
         </form>
       </MuiThemeProvider>
-        );
-
+    );
   }
-
 }
 
 FoodDiaryEntry = reduxForm({

@@ -7,10 +7,8 @@ import { AutoComplete as MUIAutoComplete } from 'material-ui';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import FlatButton from 'material-ui/FlatButton';
-import RaisedButton from 'material-ui/RaisedButton';
 import { TextField } from 'redux-form-material-ui';
 import {blueGrey700} from 'material-ui/styles/colors';
-
 
 class SignUp extends Component {
 
@@ -86,9 +84,7 @@ class SignUp extends Component {
         </div>
       </MuiThemeProvider>
     );
-
   }
-
 }
 
 SignUp = reduxForm({
