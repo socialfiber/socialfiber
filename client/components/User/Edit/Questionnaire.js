@@ -10,6 +10,8 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import FlatButton from 'material-ui/FlatButton';
 import { TextField } from 'redux-form-material-ui';
+import NavBarSplash from '../../ToolBox/NavBarQuestionnaire';
+import {blueGrey700} from 'material-ui/styles/colors';
 
 
 class Questionnaire extends Component {
@@ -42,10 +44,26 @@ class Questionnaire extends Component {
         );
       }
     }
+    const styles = {
+      underlineStyle: {
+        borderColor: blueGrey700
+      },
+      floatingLabelStyle: {
+        color: blueGrey700
+      },
+      floatingLabelFocusStyle: {
+        color: blueGrey700
+      },
+      inputStyle: {
+        color: 'white'
+      }
+		};
+
 
     return (
       <MuiThemeProvider muiTheme={getMuiTheme()}>
         <div className="container questionnaire">
+        <NavBarSplash />
           {/* <div className="row"> */}
             <h1 className="questionnaire-h1">Tell us a little bit about yourself...</h1>
             <p>social fiber calculates RDA-based nutrient recommendations for each individual</p>
@@ -54,7 +72,16 @@ class Questionnaire extends Component {
                 <form className="questionnaire-form" onSubmit={handleSubmit(this.props.submitUserStats)}>
                   <div className="questionnaire-inputs">
                     <label className="q-label">Age</label>
-                    <Field name="age" component={TextField} type="number" min="13" required />
+                    <Field
+                      name="age"
+                      component={TextField}
+                      type="number"
+                      min="13"
+                      underlineFocusStyle={styles.underlineStyle}
+                      floatingLabelStyle={styles.floatingLabelStyle}
+                      floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+                      inputStyle={styles.inputStyle}
+                      required />
                   </div>
                   <div className="questionnaire-inputs">
                     <label className="q-label">Height (ft & in)</label>
@@ -63,7 +90,16 @@ class Questionnaire extends Component {
                   </div>
                   <div className="questionnaire-inputs">
                     <label className="q-label">Weight</label>
-                    <Field name="weight" component={TextField} type="number" min="70" required />
+                    <Field
+                      name="weight"
+                      component={TextField}
+                      type="number"
+                      min="70"
+                      underlineFocusStyle={styles.underlineStyle}
+                      floatingLabelStyle={styles.floatingLabelStyle}
+                      floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+                      inputStyle={styles.inputStyle}
+                      required />
                   </div>
                   <div className="questionnaire-inputs">
                     <label className="q-label">Gender</label>

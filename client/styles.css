@@ -1,7 +1,10 @@
 html, body, #main{
   height: 100%;
   font-family: 'Lato', sans-serif;
-  padding-top: 30px;
+}
+
+body, #main {
+  padding-top: 40px;
 }
 
 .container {
@@ -113,9 +116,10 @@ html, body, #main{
 
 
 .header-splashpg {
-  position: block;
+  position: relative;
   font-size: 4em;
   text-align: center;
+  margin-top: -50px;
 }
 
 /* -------------------- Splash Page -------------------- */
@@ -243,11 +247,11 @@ span, .reject-fr-btn {
   -o-background-size: cover;
   background-size: cover;
   color: white;
-  overflow: scroll;
+  overflow: hidden;
 }
 
-html .questionnaire, body .questionnaire, #main .questionnaire   {
-  padding-top: 0;
+body .container.questionnaire {
+  padding: 0 !important;
 }
 
 .inner-div-questionnaire {
@@ -260,6 +264,7 @@ html .questionnaire, body .questionnaire, #main .questionnaire   {
 .questionnaire-form {
   width:100%;
   background-color: transparent;
+  margin-bottom: 30px;
 }
 
 .questionnaire-h1 {
