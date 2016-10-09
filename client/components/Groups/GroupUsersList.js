@@ -37,8 +37,7 @@ class GroupUsersList extends Component {
 
 			return (
 				<div>
-					<h3>Nobody has joined this group yet.</h3>
-          <h4>Be the first one to join this group!</h4>
+					<h3>Nobody else has joined this group yet.</h3>
 				</div>
 			);
 
