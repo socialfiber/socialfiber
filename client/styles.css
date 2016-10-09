@@ -629,7 +629,9 @@ li.dropdown {
 
 /* -------------------- Update User Info -------------------- */
 
-.returnToProfile-btn {
+/* -------------------- Chat Window -------------------- */
+
+.chat-window-container {
   position: absolute;
   padding: 20px;
   right: 0px;
@@ -637,14 +639,65 @@ li.dropdown {
   border-width: thin;
 }
 
+.chat-window {
+  position: relative;
+  margin: 1;
+  border: 1px solid;
+  border-color: #cccccc;
+  width: 300px;
+  height: 300px;
+  position: fixed;
+  bottom: 8px;
+  right: 8px;
+  background-color: white;
+}
+
+.message-box {
+ width: 300px;
+ height: 270px;
+ overflow: scroll;
+}
+
+.message-input-container {
+ position: absolute;
+ bottom: 0;
+ width: 100%;
+ margin: 1
+}
+
+.chat-message {
+  position: relative;
+  display: block;
+  padding: 2px 5px;
+  width: 290px;
+  background-color: #fff;
+}
+
+.chat-input {
+  display: block;
+  width: 100%;
+  height: 34px;
+  padding: 6px 6px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border-left: 0;
+  border-right: 0;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+
+.chat-send-btn {
+  margin: -5px;
+}
+
 /* -------------------- My Group -------------------- */
+
 .my-groups {
   text-align: center;
 }
 
 .my-groups-table {
   display: inline;
-}
 
 .imageUpload-btn, .changePW-btn, .updateQ-btn {
   background-color: #D8A154;
