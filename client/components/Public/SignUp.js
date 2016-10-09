@@ -9,6 +9,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import { TextField } from 'redux-form-material-ui';
+import {blueGrey700} from 'material-ui/styles/colors';
 
 
 class SignUp extends Component {
@@ -20,6 +21,22 @@ class SignUp extends Component {
   render() {
 
     const { handleSubmit, submitting } = this.props;
+    const styles = {
+      underlineStyle: {
+        borderColor: blueGrey700
+      },
+      floatingLabelStyle: {
+        color: blueGrey700
+      },
+      floatingLabelFocusStyle: {
+        color: blueGrey700
+      },
+      labelStyle: {
+        color: 'white',
+        textTransform: 'capitalize'
+      },
+      backgroundColor: blueGrey700
+    };
 
     return (
       <MuiThemeProvider muiTheme={getMuiTheme()}>
@@ -27,16 +44,40 @@ class SignUp extends Component {
           <div className="col-sm-6 col-md-4 col-md-offset-4">
             <div className="account-wall">
               <form onSubmit={ handleSubmit(this.props.submitSignUp) } className="form-signin-signup">
-                <div>
-                  <Field name="username" component={TextField} type="text" floatingLabelText="Username" className="text-line" />
-                </div>
-                <div>
-                  <Field name="password" component={TextField} type="password" floatingLabelText="Password" className="text-line" />
-                </div>
-                <div className="confirm-pw">
-                  <Field name="confirmPW" component={TextField} type="password" floatingLabelText="Confirm Password" className="text-line" />
-                </div>
-                <FlatButton type="submit" disabled={submitting} className="btn btn-lg btn-primary btn-block main-btn">Sign Up</FlatButton>
+                <Field
+                  name="username"
+                  component={TextField}
+                  type="text"
+                  floatingLabelText="Username"
+                  className="text-line"
+                  underlineFocusStyle={styles.underlineStyle}
+                  floatingLabelStyle={styles.floatingLabelStyle}
+                  floatingLabelFocusStyle={styles.floatingLabelFocusStyle} />
+                <Field
+                  name="password"
+                  component={TextField}
+                  type="password"
+                  floatingLabelText="Password"
+                  className="text-line"
+                  underlineFocusStyle={styles.underlineStyle}
+                  floatingLabelStyle={styles.floatingLabelStyle}
+                  floatingLabelFocusStyle={styles.floatingLabelFocusStyle} />
+                <Field
+                  name="confirmPW"
+                  component={TextField}
+                  type="password"
+                  floatingLabelText="Confirm Password"
+                  className="text-line"
+                  underlineFocusStyle={styles.underlineStyle}
+                  floatingLabelStyle={styles.floatingLabelStyle}
+                  floatingLabelFocusStyle={styles.floatingLabelFocusStyle} />
+                <FlatButton
+                  type="submit"
+                  disabled={submitting}
+                  className="btn btn-lg btn-primary btn-block main-btn"
+                  label="Sign Up"
+                  labelStyle={styles.labelStyle}
+                  backgroundColor={styles.backgroundColor} />
                 <p>{this.props.err}</p>
                 <Link to={'/signin'} className="text-center new-account">Sign In</Link>
               </form>
@@ -45,7 +86,7 @@ class SignUp extends Component {
         </div>
       </MuiThemeProvider>
     );
-    
+
   }
 
 }
