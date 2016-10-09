@@ -14,7 +14,6 @@ export default function(state = INITIAL_STATE, action) {
     case AUTH_ERROR:
       return { ...state, err: action.payload }
     case RESET_ERROR:
-      console.log('inside RESET_ERROR')
       return { ...state, err: null }
     case SIGN_OUT:
       return INITIAL_STATE;

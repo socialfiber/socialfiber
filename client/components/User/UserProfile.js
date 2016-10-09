@@ -55,6 +55,7 @@ class UserProfile extends Component {
         return (
           <div className="user-container">
             <NavBar />
+                    <button type="button" onClick={() => this.toggleEditing()}>Edit Info</button>
             <div className="user-profile-block">
               <div className="user-profile-block-right">
                 <div>
@@ -68,7 +69,6 @@ class UserProfile extends Component {
                     <li className="user-info-list-item">Weight: {this.props.userProfile.userData.weight}</li>
                   </ul>
                   <div>
-                    <button type="button" onClick={() => this.toggleEditing()}>Edit Info</button>
                   </div>
                 </div>
               </div>

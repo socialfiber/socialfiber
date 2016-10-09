@@ -42,11 +42,21 @@ export function submitSignIn(usernameAndPasswordObj) {
 
 export function submitSignUp(usernameAndPasswordObj) {
   if(!usernameAndPasswordObj.username) {
-    return { type: AUTH_ERROR, payload: 'Please enter username.' }
+    return new Promise((resolve, reject) => {
+      resolve({ type: AUTH_ERROR, payload: 'Please enter username.' });
+    });
   } else if(!usernameAndPasswordObj.password) {
-    return { type: AUTH_ERROR, payload: 'Please enter password.' }
+    return new Promise((resolve, reject) => {
+      resolve({ type: AUTH_ERROR, payload: 'Please enter password.' });
+    });
+  } else if(!usernameAndPasswordObj.confirmPW) {
+    return new Promise((resolve, reject) => {
+      resolve({ type: AUTH_ERROR, payload: 'Please confirm password.' });
+    });
   } else if(usernameAndPasswordObj.password !== usernameAndPasswordObj.confirmPW) {
-    return { type: AUTH_ERROR, payload: 'Passwords do not match.' }
+    return new Promise((resolve, reject) => {
+      resolve({ type: AUTH_ERROR, payload: 'Passwords do not match.' });
+    });
   } else {
     return axios.post('/auth/signup', usernameAndPasswordObj)
       .then((response) => {

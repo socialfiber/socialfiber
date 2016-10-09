@@ -4,40 +4,50 @@ import Cookies from 'js-cookie';
 
 
 export function handleImageUpload(file) {
-  const photoReader = new FileReader();
-  photoReader.readAsDataURL(file.image[0]);
-  photoReader.onloadend = () => {
-    const data = {
-      image: photoReader.result.slice(22),
-      type: 'base64'
-    }
-    const config = {
-      headers : {
-        Authorization: 'Client-ID 9d052d270eaeaec',
-        Accept: 'application/json'
-      }
-    }
-    return axios.post('https://api.imgur.com/3/image', data, config)
-    .then((response) => {
+  return new Promise((resolve, reject) => {
+    const photoReader = new FileReader();
+    photoReader.readAsDataURL(file.image[0]);
+    photoReader.onloadend = () => {
       const data = {
-        userID: Cookies.get('userID'),
-        url: response.data.data.link
+        image: photoReader.result.slice(22),
+        type: 'base64'
       }
       const config = {
-        headers : { 'x-access-token': Cookies.get('token') }
+        headers : {
+          Authorization: 'Client-ID 9d052d270eaeaec',
+          Accept: 'application/json'
+        }
       }
-      axios.post('/api/profilePics/pic', data, config)
+      return axios.post('https://api.imgur.com/3/image', data, config)
       .then((response) => {
-        return { type: HANDLE_IMG_UPLOAD, payload: 'Successfully stored image.' }
+        const data = {
+          userID: Cookies.get('userID'),
+          url: response.data.data.link
+        }
+        const config = {
+          headers : { 'x-access-token': Cookies.get('token') }
+        }
+        axios.post('/api/profilePics/pic', data, config)
+        .then((response) => {
+          console.log("STORED")
+          resolve({ type: HANDLE_IMG_UPLOAD, payload: 'Successfully stored image.' });
+        })
+        .catch((error) => {
+          console.error(error);
+          resolve({ type: HANDLE_IMG_UPLOAD, payload: 'Error storing image.' });
+        });
       })
-      .catch((error) => {
+      .catch((error)=> {
         console.error(error);
-        return { type: HANDLE_IMG_UPLOAD, payload: 'Error storing image.' }
+        resolve({ type: HANDLE_IMG_UPLOAD, payload: 'Error uploading image.' });
       });
-    })
-    .catch((error)=> {
-      console.error(error);
-      return { type: HANDLE_IMG_UPLOAD, payload: 'Error uploading image.' }
-    });
-  }
+    }
+  });
 }
+
+export function resetError() {
+  return new Promise((resolve, reject) => {
+    resolve({ type: HANDLE_IMG_UPLOAD, payload: null });
+  });
+}
+

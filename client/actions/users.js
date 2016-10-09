@@ -146,7 +146,7 @@ export function fetchProfilePic(userID) {
 
 export function resetError() {
   return new Promise((resolve, reject) => {
-    resolve({ type: CHANGE_PASSWORD, payload: null })
+    resolve({ type: CHANGE_PASSWORD, payload: null });
   });
 }
 
