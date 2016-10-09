@@ -35,7 +35,7 @@ class ChangePassword extends Component {
               <label>New Password</label>
               <Field name="newPW" component={TextField} type="password" />
             </div>
-            <button type="btn btn-secondary submit" disabled={submitting} >Submit</button>
+            <button className="btn btn-secondary" type="submit" disabled={submitting} >Submit</button>
           </form>
         </div>
       </MuiThemeProvider>
