@@ -1,6 +1,7 @@
 html, body, #main{
   height: 100%;
-    font-family: 'Lato', sans-serif;
+  font-family: 'Lato', sans-serif;
+  padding-top: 30px;
 }
 
 .container {
@@ -26,10 +27,7 @@ html, body, #main{
     max-width: 330px;
     padding: 15px;
     margin: 0 auto;
-}
-
-.form-signin-signup .form-signin-signup-heading, .form-signin-signup {
-    margin-bottom: 10px;
+    margin-bottom: 10px
 }
 
 .form-signin-signup .form-control {
@@ -224,6 +222,7 @@ span, .reject-fr-btn {
   margin-left: auto;
   margin-right: auto;
 }
+
 /*select component style*/
 /*.selectComponent-style {
   color: white;
@@ -234,7 +233,7 @@ span, .reject-fr-btn {
 .questionnaire {
   background-image: url('./assets/blueberrytree.jpeg');
   height: 100%;
-  width:100%;
+  width: 100%;
   background-color: #FFFFFF;
   background-repeat: no-repeat;
   background-position: center center;
@@ -244,12 +243,16 @@ span, .reject-fr-btn {
   -o-background-size: cover;
   background-size: cover;
   color: white;
-  overflow: hidden;
+  overflow: scroll;
+}
+
+html .questionnaire, body .questionnaire, #main .questionnaire   {
+  padding-top: 0;
 }
 
 .inner-div-questionnaire {
   position: block;
-  margin-top: 30%;
+  /*margin-top: 30%;*/
   background: transparent;
   vertical-align: center;
 }
@@ -262,10 +265,12 @@ span, .reject-fr-btn {
 .questionnaire-h1 {
   text-align: center;
   width: 100%;
-  margin-top: 10%;
-  padding: 20px;*/
+  /*margin-top: 10%;*/
+  padding: 20px;
+  /*
   border: solid;
   border-width: thin;
+  */
   font-size: 75px;
   color: white;
   background-color: transparent;
@@ -312,13 +317,13 @@ span, .reject-fr-btn {
 }
 
 .nav {
-      list-style-type: none;
-      margin: 0;
-      padding: 0;
-      background-color: #233B44;
-      width: 100%;
-      height: 10%;
-      color: white;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  background-color: #233B44;
+  width: 100%;
+  height: 10%;
+  color: white;
 }
 
 .navItem {
@@ -329,21 +334,31 @@ span, .reject-fr-btn {
 
 
 .home, .dropbtn {
-    display: inline-block;
-    color: white;
-    text-align: center;
-    padding: 20px 16px;
-    text-decoration: none;
-    z-index: 1;
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 20px 16px;
+  text-decoration: none;
+  z-index: 1;
 }
 
 a.home{
   color: white;
 }
 
-.home:hover, .dropdown:hover .dropbtn {
-    position: block;
-    background-color: transparent;
+.navbar .navbar-nav > .active{
+  color: #FFFFFF;
+  background: #233B44;
+}
+.navbar .navbar-nav > .active > a,
+.navbar .navbar-nav > .active > a:hover,
+.navbar .navbar-nav > .active > a:focus {
+  color: #FFFFFF;
+  background: #233B44;
+}
+
+.home:hover, .dropdown:hover, .dropbtn {
+  background-color: transparent;
 }
 
 li.dropdown {
@@ -352,18 +367,18 @@ li.dropdown {
 }
 
 .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
 .dropdown-content li {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    text-align: left;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+  width: 100px;
 }
 
 .dropdown-content li:hover {
@@ -371,19 +386,15 @@ li.dropdown {
 }
 
 .dropdown:hover .dropdown-content {
-    display: block;
-}
-
-
-.signoutbutton-item {
-  position:fixed;
-  top: 10px;
-  right: 10px;
+  display: block;
 }
 
 .signout-button {
-  background-color: #D8A154;
-  color: white;
+  margin-top: 10px;
+  margin-right: 10px;
+  display: inline-block;
+  padding: 20px 16px;
+  z-index: 10;
 }
 
 .navheader {
@@ -404,7 +415,6 @@ li.dropdown {
 }
 .leave-group-button {
   float: right;
-  color: black;
   margin-bottom: 5px;
   margin-right: 5px;
 }
@@ -431,17 +441,13 @@ li.dropdown {
   background-color: white;
 }
 
-#messagebox-header {
+.messagebox-header {
   text-align: center;
 }
 
 .commentbox {
   text-align: center;
   margin-bottom: 10px;
-}
-
-strong {
-  font-weight: 600;
 }
 
 .page-tab {
@@ -505,7 +511,6 @@ strong {
   margin-right: auto;
 }
 
-
 .radarGraphAmount, .radarGraphPercentage {
   display: inline-block;
 }
@@ -529,7 +534,6 @@ strong {
   height: 500px;
   width: 100%;
   margin: 0;
-  z-index: -1;
 }
 
 .user-profile-block-right {
@@ -600,4 +604,13 @@ strong {
 .chat-window {
   position: absolute;
   right: 0;
+}
+
+/* -------------------- My Group -------------------- */
+.my-groups {
+  text-align: center;
+}
+
+.my-groups-table {
+  display: inline;
 }

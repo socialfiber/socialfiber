@@ -1,20 +1,31 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { submitSignOut } from '../../actions/auth'
+import { submitSignOut } from '../../actions/auth';
+import RaisedButton from 'material-ui/RaisedButton';
 
 
 class SignOut extends Component {
 
   render() {
 
+    const styles = {
+      labelStyle: {
+        color: 'white',
+        textTransform: 'capitalize'
+      },
+      backgroundColor: '#D8A154'
+    };
+
     return (
     	<div>
-    		<button className='signout-button btn btn-secondary' onClick={this.props.submitSignOut}>Sign Out</button>
+    		<RaisedButton
+          onClick={this.props.submitSignOut}
+          backgroundColor={styles.backgroundColor}
+          label="Sign Out"
+          labelStyle={styles.labelStyle}/>
     	</div>
     );
-
   }
-
 }
 
 const mapStateToProps = (state) => {

@@ -7,6 +7,7 @@ import Tabs from '../ToolBox/Tabs';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
+import {blueGrey700} from 'material-ui/styles/colors';
 
 class GroupPage extends Component {
 
@@ -33,6 +34,13 @@ class GroupPage extends Component {
       { label: 'Wall', component: 'GroupWall' },
       { label: 'Members', component: 'GroupUsersList' }
     ];
+    const styles = {
+      labelStyle: {
+        color: 'white',
+        textTransform: 'capitalize'
+      },
+      backgroundColor: '#D8A154'
+    };
 
     if(this.props.membership === null) {
 
@@ -55,8 +63,8 @@ class GroupPage extends Component {
             <Tabs style={{backgroundColor: 'white'}} tabsList={tabsList} defaultTab={'GroupWall'} />
             <RaisedButton
               className="leave-group-button"
-              backgroundColor="#D8A154"
-              labelColor="#FFFFFF"
+              backgroundColor={styles.backgroundColor}
+              labelStyle={styles.labelStyle}
               onClick = {() => {this.props.leaveGroup(this.props.params.id).then(()=>window.location.reload())}}
               label="Leave Group" />
           </div>
@@ -75,15 +83,15 @@ class GroupPage extends Component {
               <RaisedButton
                 className="join-group-button"
                 onClick={() => {this.props.joinGroup(this.props.params.id).then(()=>window.location.reload())}}
-                label="Join Group" />
+                label="Join Group"
+                labelStyle={styles.labelStyle}
+                backgroundColor={styles.backgroundColor}/>
             </div>
           </div>
         </MuiThemeProvider>
       );
     }
-
   }
-
 }
 
 const mapStateToProps = (state) => {

@@ -5,15 +5,29 @@ import { createNewGroup } from '../../actions/groups';
 import { AutoComplete as MUIAutoComplete } from 'material-ui';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import FlatButton from 'material-ui/FlatButton';
 import { TextField } from 'redux-form-material-ui';
-
+import {blueGrey700} from 'material-ui/styles/colors';
+import RaisedButton from 'material-ui/RaisedButton';
 
 class CreateGroup extends Component {
 
   render() {
 
     const { handleSubmit, submitting } = this.props;
+    const styles = {
+      underlineStyle: {
+        borderColor: blueGrey700
+      },
+      floatingLabelStyle: {
+        color: blueGrey700,
+      },
+      floatingLabelFocusStyle: {
+        color: blueGrey700,
+      },
+      labelStyle: {
+        textTransform: 'capitalize'
+      }
+    };
 
     return (
       <MuiThemeProvider muiTheme={getMuiTheme()}>
@@ -23,23 +37,43 @@ class CreateGroup extends Component {
               <form onSubmit={ handleSubmit(this.props.createNewGroup) }>
                 <h5>Create a group based on your dietary interests.</h5>
                 <h5 className="choose-topic">You may choose a topic such as "paleo" or "vegetarian"</h5>
-                <div>
-                  <Field name='name' component={TextField} type='text' floatingLabelText="Name" />
-                </div>
-                <div>
-                  <Field name='description' component={TextField} type='text' floatingLabelText="Description" />
-                </div>
-                <button className="creategroupbutton btn btn-secondary" type="submit" disabled={submitting}>CREATE GROUP</button>
-                {this.props.err}
+                  <Field
+                    name='name'
+                    component={TextField}
+                    type='text'
+                    underlineStyle={styles.underlineStyle}
+                    underlineFocusStyle={styles.underlineStyle}
+                    floatingLabelStyle={styles.floatingLabelStyle}
+                    floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+                    floatingLabelText="Name"
+                    required/>
+                  <Field
+                    name='description'
+                    component={TextField}
+                    type='text'
+                    underlineStyle={styles.underlineStyle}
+                    underlineFocusStyle={styles.underlineStyle}
+                    floatingLabelStyle={styles.floatingLabelStyle}
+                    floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+                    floatingLabelText="Description"
+                    required/>
+                <div>{this.props.err}</div>
+                <RaisedButton
+                  className="creategroupbutton"
+                  backgroundColor="#C6AC8F"
+                  labelColor="#E3E7D3"
+                  label="Create Group"
+                  labelStyle={styles.labelStyle}
+                  disabled={submitting}
+                  type="submit"
+                 />
               </form>
             </div>
           </div>
         </div>
       </MuiThemeProvider>
     );
-
   }
-
 }
 
 CreateGroup = reduxForm({

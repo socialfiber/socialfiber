@@ -22,15 +22,18 @@ class MessageBox extends Component {
         color: blueGrey700,
       },
       floatingLabelFocusStyle: {
-        color: blueGrey700,
+        color: blueGrey700
       },
+      labelStyle: {
+        textTransform: 'capitalize'
+      }
     };
 
     return (
       <MuiThemeProvider muiTheme={getMuiTheme()}>
         <div>
           <form className="message-form" onSubmit = { handleSubmit(this.props.postMessage) }>
-            <h4 id="messagebox-header">Post a Message</h4>
+            <h4 className="messagebox-header">Post a Message</h4>
             <div>
               <Field
                 name="message"
@@ -45,7 +48,11 @@ class MessageBox extends Component {
                 style={{textAlign: 'left'}}
                 required />
             </div>
-            <RaisedButton type="submit" disabled={submitting} label="Submit" />
+            <RaisedButton
+              type="submit"
+              disabled={submitting}
+              label="Submit"
+              labelStyle={styles.labelStyle} />
           </form>
         </div>
       </MuiThemeProvider>

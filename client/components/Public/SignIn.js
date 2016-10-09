@@ -16,65 +16,71 @@ class SignIn extends Component {
   componentWillUnmount() {
     this.props.resetError();
   }
-  
+
   render() {
 
     const { handleSubmit, submitting } = this.props;
     const styles = {
       underlineStyle: {
-        borderColor: blueGrey700,
+        borderColor: blueGrey700
       },
       floatingLabelStyle: {
-        color: blueGrey700,
+        color: blueGrey700
       },
       floatingLabelFocusStyle: {
-        color: blueGrey700,
+        color: blueGrey700
       },
+      labelStyle: {
+        color: 'white',
+        textTransform: 'capitalize'
+      },
+      backgroundColor: blueGrey700
     };
 
     return (
       <MuiThemeProvider muiTheme={getMuiTheme()}>
         <div className="container">
           <div className="row">
-              <div className="col-sm-6 col-md-4 col-md-offset-4">
-                  <div className="account-wall">
-                      <form onSubmit={ handleSubmit(this.props.submitSignIn) } className="form-signin-signup">
-                        <Field
-                          name="username"
-                          component={TextField}
-                          type="text"
-                          floatingLabelText="Username"
-                          className="text-line"
-                          underlineFocusStyle={styles.underlineStyle}
-                          floatingLabelStyle={styles.floatingLabelStyle}
-                          floatingLabelFocusStyle={styles.floatingLabelFocusStyle} />
-                        <Field
-                          name="password"
-                          component={TextField}
-                          type="password"
-                          floatingLabelText="Password"
-                          className="text-line"
-                          underlineFocusStyle={styles.underlineStyle}
-                          floatingLabelStyle={styles.floatingLabelStyle}
-                          floatingLabelFocusStyle={styles.floatingLabelFocusStyle}/>
-                        <FlatButton
-                          type="submit"
-                          disabled={submitting}
-                          className="btn btn-lg btn-primary btn-block main-btn"
-                          label="Sign in"
-                          labelColor="#455A64"/>
-                        <p>{this.props.err}</p>
-                        <Link to={'/signup'} className="text-center new-account">Create an Account</Link>
-                      </form>
-                  </div>
+            <div className="col-sm-6 col-md-4 col-md-offset-4">
+              <div className="account-wall">
+                <form onSubmit={ handleSubmit(this.props.submitSignIn) } className="form-signin-signup">
+                  <Field
+                    name="username"
+                    component={TextField}
+                    type="text"
+                    floatingLabelText="Username"
+                    className="text-line"
+                    underlineFocusStyle={styles.underlineStyle}
+                    floatingLabelStyle={styles.floatingLabelStyle}
+                    floatingLabelFocusStyle={styles.floatingLabelFocusStyle} />
+                  <Field
+                    name="password"
+                    component={TextField}
+                    type="password"
+                    floatingLabelText="Password"
+                    className="text-line"
+                    underlineFocusStyle={styles.underlineStyle}
+                    floatingLabelStyle={styles.floatingLabelStyle}
+                    floatingLabelFocusStyle={styles.floatingLabelFocusStyle}/>
+                  <FlatButton
+                    type="submit"
+                    disabled={submitting}
+                    className="btn btn-lg btn-primary btn-block main-btn"
+                    label="Sign in"
+                    labelStyle={styles.labelStyle}
+                    backgroundColor={styles.backgroundColor} />
+                  <p>{this.props.err}</p>
+                  <Link to={'/signup'} className="text-center new-account">Create an Account</Link>
+                </form>
               </div>
+            </div>
           </div>
         </div>
       </MuiThemeProvider>
     );
 
   }
-  
+
 }
 
 SignIn = reduxForm({

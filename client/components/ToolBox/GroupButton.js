@@ -35,6 +35,12 @@ class GroupButton extends Component {
 
   render() {
 
+    const styles = {
+      labelStyle: {
+        textTransform: 'capitalize'
+      }
+    };
+
     if(this.state.groupStatus === false) {
       return (
         <div>
@@ -42,6 +48,7 @@ class GroupButton extends Component {
             backgroundColor="#667761"
             labelColor="#E3E7D3"
             label="Join Group"
+            labelStyle={styles.labelStyle}
             fullWidth={true}
             onClick={() => {
             joinGroup(this.props.groupID)
@@ -71,6 +78,7 @@ class GroupButton extends Component {
             backgroundColor="#C6AC8F"
             labelColor="#E3E7D3"
             label="Leave Group"
+            labelStyle={styles.labelStyle}
             fullWidth={true}
             onClick={() => {
             leaveGroup(this.props.groupID)

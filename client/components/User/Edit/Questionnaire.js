@@ -46,7 +46,7 @@ class Questionnaire extends Component {
     return (
       <MuiThemeProvider muiTheme={getMuiTheme()}>
         <div className="container questionnaire">
-          <div className="row">
+          {/* <div className="row"> */}
             <h1 className="questionnaire-h1">Tell us a little bit about yourself...</h1>
             <p>social fiber calculates RDA-based nutrient recommendations for each individual</p>
             <div className="col-sm-6 col-md-4 col-md-offset-4">
@@ -74,7 +74,7 @@ class Questionnaire extends Component {
                 </form>
               </div>
             </div>
-          </div>
+          {/* </div> */}
         </div>
         </MuiThemeProvider>
     );

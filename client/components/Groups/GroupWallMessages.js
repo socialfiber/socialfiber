@@ -28,6 +28,11 @@ class GroupWallMessages extends Component {
 	render() {
 
 		const postComments = this.props.post.comments.map((comment, idx) => <GroupWallComments key={idx} comment={comment} />);
+		const styles = {
+			labelStyle: {
+				textTransform: 'capitalize'
+			}
+		};
 
 		return (
 			<MuiThemeProvider muiTheme={getMuiTheme()}>
@@ -42,7 +47,12 @@ class GroupWallMessages extends Component {
 							<div>
 								{this.state.showReply && <CommentBox />}
 							</div>
-							<div style={{textAlign:'center'}}><RaisedButton onClick={this.showReplyForm} label="Reply"/></div>
+							<div style={{textAlign:'center'}}>
+								<RaisedButton
+									onClick={this.showReplyForm}
+									label="Reply"
+									labelStyle={styles.labelStyle}/>
+							</div>
 						</li>
 					</ul>
 				</div>
