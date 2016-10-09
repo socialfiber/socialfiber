@@ -66,7 +66,7 @@ class UserProfile extends Component {
                     <li className="user-info-list-item">Gender: {this.props.userProfile.userData.gender}</li>
                     <li className="user-info-list-item">Height: {Math.floor(this.props.userProfile.userData.height/12)}ft {this.props.userProfile.userData.height%12}in</li>
                     <li className="user-info-list-item">Weight: {this.props.userProfile.userData.weight}</li>
-                    <button type="button" onClick={() => this.toggleEditing()}>Edit Info</button>
+                    <button className="btn btn-secondary editInfoBtn" type="button" onClick={() => this.toggleEditing()}>Edit Info</button>
                   </ul>
                   <div>
                   </div>
@@ -87,7 +87,7 @@ class UserProfile extends Component {
             <NavBar />
             <h3>{this.props.userProfile.username}</h3>
             <UpdateUserData />
-            <button type="button" onClick={() => this.toggleEditing()}>Return</button>
+            <button className="returnToProfile-btn btn btn-secondary" type="button" onClick={() => this.toggleEditing()}>Return To Profile</button>
           </div>
         );
 
