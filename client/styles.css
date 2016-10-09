@@ -342,8 +342,18 @@ a.home{
   color: white;
 }
 
-.home:hover, .dropdown:hover .dropbtn {
-  position: block;
+.navbar .navbar-nav > .active{
+  color: #FFFFFF;
+  background: #233B44;
+}
+.navbar .navbar-nav > .active > a,
+.navbar .navbar-nav > .active > a:hover,
+.navbar .navbar-nav > .active > a:focus {
+  color: #FFFFFF;
+  background: #233B44;
+}
+
+.home:hover, .dropdown:hover, .dropbtn {
   background-color: transparent;
 }
 
