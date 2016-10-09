@@ -637,3 +637,12 @@ li.dropdown {
   margin-left: auto;
   margin-right: auto;
 }
+
+.updatePF {
+  padding: 10px;
+  font-size: 100px;
+}
+
+.changePW-div, .updatePic-div, .updateInfo-div {
+  padding: 20px;
+}
