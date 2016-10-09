@@ -199,6 +199,10 @@ span, .reject-fr-btn {
   margin-bottom: 30px;
 }
 
+.list-group {
+  text-align: center;
+}
+
 /* -------------------- All Groups -------------------- */
 
 /* -- all-container is for every main div --*/
@@ -530,6 +534,7 @@ li.dropdown {
 .img-circle {
   border: 15px solid white;
   border-radius: 50%;
+  text-align: center;
 }
 
 /* -------------------- Profile Page -------------------- */
@@ -577,6 +582,7 @@ li.dropdown {
   display: block;
   padding: 0 15px;
   margin: 0;
+  text-align: center;
 }
 
 .user-profile-nav {
@@ -659,4 +665,10 @@ li.dropdown {
 
 .updateQ-label {
   margin-right: 15px;
+}
+
+.editInfoBtn {
+  background-color: #D8A154;
+  color: white;
+  text-align: center;
 }
