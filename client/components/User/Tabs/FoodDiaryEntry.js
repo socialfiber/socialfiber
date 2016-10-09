@@ -1,4 +1,4 @@
-  import React, { Component } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { submitFoodDiaryEntry, fetchFoodDiary, fetchMacros } from '../../../actions/foodDiary';
@@ -20,8 +20,12 @@ class FoodDiaryEntry extends Component {
     submitFoodDiaryEntry(e)
     .then(() => {
       fetchFoodDiary()
-      .then(() => {
-        fetchMacros();
+      .then((response1) => {
+        console.log(response1)
+        fetchMacros()
+        .then((response2) => {
+          console.log(response2)  
+        });
       });
     });
   }
@@ -49,7 +53,7 @@ class FoodDiaryEntry extends Component {
             labelColor="#E3E7D3" label="Submit" type="submit" disabled={submitting} />
         </form>
       </MuiThemeProvider>
-        );
+    );
 
   }
 

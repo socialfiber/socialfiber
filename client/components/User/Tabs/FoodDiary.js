@@ -13,8 +13,17 @@ class FoodDiary extends Component {
     this.props.fetchFoodDiary();
   }
 
+  componentWillReceiveProps(nextProps) {
+    console.log(nextProps);
+  }
+
   componentWillUnmount() {
     this.props.leaveTab();
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log('shouldComponentUpdate', nextProps, nextState)
+    return true;
   }
 
   render() {

@@ -50,7 +50,11 @@ export function submitFoodDiaryEntry(foodDiaryEntryObj) {
   }
   return axios.post('/api/diaryEntries/singleEntry', data, config)
     .then((response) => {
-      return { type: SUBMIT_DIARY_ENTRY }
+      if(response.data.msg) {
+        return { type: SUBMIT_DIARY_ENTRY }
+      } else {
+        return { type: SUBMIT_DIARY_ENTRY }
+      }
     })
     .catch((error) => {
       console.error(error);
