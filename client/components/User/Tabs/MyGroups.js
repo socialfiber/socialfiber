@@ -29,23 +29,18 @@ class MyGroups extends Component {
 
     } else if(this.props.myGroups.length > 0) {
 
-      const groupsList = this.props.myGroups.map((group, idx) =>
-        <IndividualGroup key={idx} group={group} />
-      );
-      
+      const groupsList = this.props.myGroups.map((group, idx) => <IndividualGroup key={idx} group={group} />);
+
       return (
         <div className="my-groups">
           <table className="my-groups-table">
             <tbody>
-              {/* <tr>
-                <th>Name</th>
-                <th>Description</th>
-              </tr> */}
               {groupsList}
             </tbody>
           </table>
         </div>
       );
+
     } else if(this.props.myGroups.length === 0) {
 
       return (

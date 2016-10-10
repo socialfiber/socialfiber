@@ -32,11 +32,15 @@ class Questionnaire extends Component {
         return (
           <div>
             <div className="questionnaire-inputs">
-              <label className="q-label">Are you currently pregnant?</label>
+              <label className="q-label">
+                Are you currently pregnant?
+              </label>
               <Field className="selectComponent-div" name="preg" component={SelectComponent} options={pregnantOptions} />
             </div>
             <div className="questionnaire-inputs">
-              <label className="q-label">Are you currently lactating?</label>
+              <label className="q-label">
+                Are you currently lactating?
+              </label>
               <Field className="selectComponent-div" name="lact" component={SelectComponent} options={lactatingOptions} />
             </div>
           </div>

@@ -9,6 +9,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 const FriendRequestList = (props) => {
 
   if(props.friendRequests.length) {
+    
     const friendRequests = props.friendRequests.map((friend, idx) => {
       return (
         <li key={idx} className="list-group-item user-block col-lg-4 col-centered">
@@ -20,6 +21,7 @@ const FriendRequestList = (props) => {
         </li>
       );
     });
+
     return (
       <MuiThemeProvider muiTheme={getMuiTheme()}>
         <div>
@@ -30,8 +32,11 @@ const FriendRequestList = (props) => {
         </div>
       </MuiThemeProvider>
     );
+
   } else {
+
     return null;
+
   }
 
 }

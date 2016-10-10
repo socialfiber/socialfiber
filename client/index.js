@@ -46,6 +46,7 @@ ReactDOM.render(
       <Route path='/grouppage/:id/:groupname' onEnter={ensureAuthenticated} component={GroupPage} />
       <Route path='/viewallgroups' onEnter={ensureAuthenticated} component={AllGroups} />
       <Route path='/viewallusers' onEnter={ensureAuthenticated} component={AllUsers} />
+      <Route path='*' component={UserProfile} />
     </Router>
   </Provider>
 , document.getElementById('main'));

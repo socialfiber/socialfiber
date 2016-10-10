@@ -4,12 +4,11 @@ import { connect } from 'react-redux';
 import { fetchUserData, leavePage } from '../../actions/users';
 import NavBar from '../ToolBox/NavBar';
 import ProfilePic from '../ToolBox/ProfilePic';
-import Tabs from '../ToolBox/Tabs';
 import RadarGraph from '../ToolBox/RadarGraph';
-import ChatWindow from './Tabs/ChatWindow';
+import MacroTable from '../ToolBox/MacroTable';
+import Tabs from '../ToolBox/Tabs';
 import UpdateUserData from './Edit/UpdateUserData';
 import Cookies from 'js-cookie';
-import MacroTable from '../ToolBox/MacroTable';
 
 
 class UserProfile extends Component {
@@ -83,27 +82,6 @@ class UserProfile extends Component {
                       </button>
                     </div>
                   </div>
-                  <div className="user-info">
-                    <ul className="list-group">
-                      <li className="user-info-list-item">
-                        Age: {this.props.userProfile.userData.age}
-                      </li>
-                      <li className="user-info-list-item">
-                        Gender: {this.props.userProfile.userData.gender}
-                      </li>
-                      <li className="user-info-list-item">
-                        Height: {Math.floor(this.props.userProfile.userData.height/12)}ft {this.props.userProfile.userData.height%12}in
-                      </li>
-                      <li className="user-info-list-item">
-                        Weight: {this.props.userProfile.userData.weight}
-                      </li>
-                    </ul>
-                    <div className="edit-info-btn">
-                      <button type="button" onClick={() => this.toggleEditing()}>
-                        Edit Info
-                      </button>
-                    </div>
-                  </div>
                 </div>
                 <div className="col-lg-4 user-profile-block-center">
                   <RadarGraph type={'amount'} size={'large'} />
@@ -135,6 +113,7 @@ class UserProfile extends Component {
         );
 
       }
+      
     } else {
 
       return (
