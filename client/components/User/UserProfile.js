@@ -9,6 +9,7 @@ import RadarGraph from '../ToolBox/RadarGraph';
 import ChatWindow from './Tabs/ChatWindow';
 import UpdateUserData from './Edit/UpdateUserData';
 import Cookies from 'js-cookie';
+import MacroTable from '../ToolBox/MacroTable';
 
 
 class UserProfile extends Component {
@@ -55,7 +56,7 @@ class UserProfile extends Component {
         return (
           <div>
             <NavBar />
-            <div className="user-container">
+            <div className="user-container all-container">
               <div className="user-row">
                 <div className="col-lg-4 user-profile-block-left">
                   <div>
@@ -84,11 +85,14 @@ class UserProfile extends Component {
                     </div>
                   </div>
                 </div>
-                <div className="col-lg-4 user-profile-block-right">
+                <div className="col-lg-4 user-profile-block-center">
                   <RadarGraph type={'amount'} size={'large'} />
                 </div>
+                <div className="col-lg-4 user-profile-block-right">
+                  <MacroTable idealMacros={this.props.userProfile.idealMacros} actualMacros={this.props.userProfile.actualMacros} />
+                </div>
               </div>
-              <div className="clear-floats">
+              <div className="clear-floats user-tabs">
                 <Tabs tabsList={tabsList} />
               </div>
             </div>

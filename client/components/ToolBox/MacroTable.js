@@ -21,7 +21,7 @@ const MacroTable = (props) => {
   }
 
   return (
-    <table>
+    <table className="table">
       <tbody>
         <tr>
           <th>Macronutrient</th>

@@ -551,7 +551,6 @@ li.dropdown {
 .user-row {
   display: inline-block;
   width: 100%;
-
 }
 
 /*.user-profile-block {
@@ -561,20 +560,12 @@ li.dropdown {
   margin: 0;
 }*/
 
-.user-profile-block-right {
-  /*position: absolute;
-  right: 0;
-  top: 0;
-  height: 500px;
-  margin: 0 60px;
-  margin-right: 20%;
-  margin-top: 5%;
-  overflow: auto;*/
+.user-profile-block-center {
   float: left;
   height: 505px;
-  /*width: auto;*/
-  width: 33%;
-  margin-left: 16%;
+  width: 50%;
+  padding-top: 20px;
+  text-align: center;
 }
 
 .radar-graph-block {
@@ -582,21 +573,21 @@ li.dropdown {
 }
 
 .user-profile-block-left {
-  /*position: absolute;
-  left: 0;
-  top: 0;
-  height: 500px;
-  margin: 0 5px;
-  padding-left: 40px;
-  overflow: auto;*/
   float: left;
   margin-top: 11px;
   padding-top: 35px;
   height: 505px;
-  /*width: auto;*/
   width: 16%;
   text-align: center;
   border-right: 1px solid lightgrey;
+}
+
+.user-profile-block-right {
+  float: left;
+  height: 505px;
+  width: 32%;
+  padding-top: 110px;
+  font-size: 20px;
 }
 
 .user-info {
@@ -612,6 +603,7 @@ li.dropdown {
   padding: 0 15px;
   margin: 0;
   text-align: center;
+  font-size: 17px;
 }
 
 .user-profile-nav {
