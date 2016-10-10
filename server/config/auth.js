@@ -9,7 +9,7 @@ const auth = {
         'secret': process.env.jwt_secret
     },
 
-    'db' : {
+    'mysql' : {
         'hostname': process.env.db_hostname,
         'username': process.env.db_username,
         'password': process.env.db_password,

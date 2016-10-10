@@ -1,10 +1,12 @@
+const auth = require('./auth.js');
+
 const Sequelize = require('sequelize');
 const sequelize = new Sequelize(
-  'tml_1001',
-  'tmluser',
-  'healthy1001',
+  auth.mysql.database,
+  auth.mysql.username,
+  auth.mysql.password,
   {
-    host: 'mysql.kanadachi.com',
+    host: auth.mysql.hostname,
     dialect: 'mysql',
     options: {
       timezone: 'America/Los_Angeles'

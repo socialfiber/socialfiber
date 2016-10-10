@@ -15,6 +15,13 @@ class FoodDiaryEntry extends Component {
   render() {
 
     const { handleSubmit, submitting } = this.props;
+    const submitEntry = (e) => {
+      this.props.submitFoodDiaryEntry(e)
+      .then(() => {
+        this.props.fetchFoodDiary();
+        this.props.fetchMacros();
+      });
+    }
     const today = new Date().toISOString().substr(0,10);
     const styles = {
       underlineStyle: {
@@ -35,7 +42,7 @@ class FoodDiaryEntry extends Component {
 
     return (
       <MuiThemeProvider muiTheme={getMuiTheme()}>
-        <form className="diaryInputForm" onSubmit={ handleSubmit(this.props.submitFoodDiaryEntry) } >
+        <form className="diaryInputForm" onSubmit={ handleSubmit(submitEntry) } >
           <h3>Add Entry</h3>
           <p className="diaryInput-p">Please submit a meal.</p>
           <div className="diaryInputDiv">

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchFoodDiary, leaveTab, fetchMacros } from '../../../actions/foodDiary';
+import { fetchFoodDiary, fetchMacros, leaveTab } from '../../../actions/foodDiary';
 import FoodDiaryLog from './FoodDiaryLog';
 import FoodDiaryEntry from './FoodDiaryEntry';
 import RadarGraph from '../../ToolBox/RadarGraph';
@@ -101,7 +101,8 @@ class FoodDiary extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    diaryData: state.foodDiary.logs
+    diaryData: state.foodDiary.logs,
+    actualMacros: state.userProfile.actualMacros,
   }
 }
 
