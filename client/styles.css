@@ -544,36 +544,58 @@ li.dropdown {
 /* -------------------- Profile Page -------------------- */
 
 .user-container {
-  margin-left: auto;
-  margin-right: auto;
+  width: 100%;
+  /*text-align: center;*/
 }
 
-.user-profile-block {
+.user-row {
+  display: inline-block;
+  width: 100%;
+
+}
+
+/*.user-profile-block {
   position: relative;
   height: 500px;
   width: 100%;
   margin: 0;
-}
+}*/
 
 .user-profile-block-right {
-  position: absolute;
+  /*position: absolute;
   right: 0;
   top: 0;
   height: 500px;
   margin: 0 60px;
   margin-right: 20%;
   margin-top: 5%;
-  overflow: auto;
+  overflow: auto;*/
+  float: left;
+  height: 505px;
+  /*width: auto;*/
+  width: 33%;
+  margin-left: 16%;
+}
+
+.radar-graph-block {
 }
 
 .user-profile-block-left {
-  position: absolute;
+  /*position: absolute;
   left: 0;
   top: 0;
   height: 500px;
   margin: 0 5px;
   padding-left: 40px;
-  overflow: auto;
+  overflow: auto;*/
+  float: left;
+  margin-top: 18px;
+  padding-top: 35px;
+  height: 505px;
+  /*width: auto;*/
+  width: 16%;
+  text-align: center;
+  border-right: 1px solid lightgrey;
 }
 
 .user-info {
@@ -631,6 +653,10 @@ li.dropdown {
 
 /* -------------------- Chat Window -------------------- */
 
+.clear-floats {
+  clear: both;
+}
+
 .chat-window-container {
   position: absolute;
   padding: 20px;
@@ -654,8 +680,9 @@ li.dropdown {
 
 .message-box {
  width: 300px;
- height: 270px;
+ height: 227px;
  overflow: scroll;
+ text-align: left;
 }
 
 .message-input-container {
