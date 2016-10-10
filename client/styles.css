@@ -256,7 +256,7 @@ span, .reject-fr-btn {
   -o-background-size: cover;
   background-size: cover;
   color: white;
-  overflow: hidden;
+  overflow: auto;
 }
 
 .container.questionnaire.all-container {
@@ -857,8 +857,9 @@ li.dropdown {
   color: #999;
   cursor: pointer;
   display: table-cell;
-  position: relative;
-  text-align: center;
+  position: absolute;
+  text-align: right;
+  margin-left: 50px;
   vertical-align: middle;
   width: 17px;
 }
@@ -929,7 +930,10 @@ li.dropdown {
   max-height: 200px;
   position: absolute;
   top: 100%;
-  width: 250px;
+  margin-left: 65px;
+  margin-bottom: 50px;
+  width: 253px;
+  overflow-x: hidden;
   z-index: 1;
   -webkit-overflow-scrolling: touch;
 }
@@ -972,6 +976,7 @@ li.dropdown {
   color: #cccccc;
   cursor: default;
 }
+
 .Select-noresults {
   box-sizing: border-box;
   color: #999999;
@@ -979,14 +984,17 @@ li.dropdown {
   display: block;
   padding: 8px 10px;
 }
+
 .Select--multi .Select-input {
   vertical-align: middle;
   margin-left: 10px;
   padding: 0;
 }
+
 .Select--multi.has-value .Select-input {
   margin-left: 5px;
 }
+
 .Select--multi .Select-value {
   background-color: #ebf5ff;
   /* Fallback color for IE 8 */
@@ -1001,17 +1009,20 @@ li.dropdown {
   margin-top: 5px;
   vertical-align: top;
 }
+
 .Select--multi .Select-value-icon,
 .Select--multi .Select-value-label {
   display: inline-block;
   vertical-align: middle;
 }
+
 .Select--multi .Select-value-label {
   border-bottom-right-radius: 2px;
   border-top-right-radius: 2px;
   cursor: default;
   padding: 2px 5px;
 }
+
 .Select--multi a.Select-value-label {
   color: #007eff;
   cursor: pointer;
