@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { resetError } from '../../../actions/users';
 import ChangePassword from './ChangePassword';
 import UpdateQuestionnaire from './UpdateQuestionnaire';
 import ImageUpload from '../../ToolBox/ImageUpload';
 
 
-
 class UpdateUserData extends Component {
+
+  componentWillUnmount() {
+    this.props.resetError();
+  }
 
   render() {
 
@@ -38,4 +42,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, null)(UpdateUserData);
+export default connect(mapStateToProps, { resetError })(UpdateUserData);

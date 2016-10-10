@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
-import { handleImageUpload, resetError } from '../../actions/handleImageUpload'
+import { handleImageUpload } from '../../actions/handleImageUpload'
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 
 
 class ImageUpload extends Component {
-
-  componentWillUnmount() {
-    this.props.resetError();
-  }
 
   render() {
     const { handleSubmit, submitting } = this.props;
@@ -38,4 +34,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { handleImageUpload, resetError })(ImageUpload);
+export default connect(mapStateToProps, { handleImageUpload })(ImageUpload);

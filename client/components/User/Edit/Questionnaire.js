@@ -58,7 +58,6 @@ class Questionnaire extends Component {
       }
 		};
 
-
     return (
       <MuiThemeProvider muiTheme={getMuiTheme()}>
         <div className="container questionnaire all-container">
@@ -74,30 +73,28 @@ class Questionnaire extends Component {
                       name="age"
                       component={TextField}
                       type="number"
-                      min="13"
                       underlineFocusStyle={styles.underlineStyle}
                       floatingLabelStyle={styles.floatingLabelStyle}
                       floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
                       inputStyle={styles.inputStyle}
-                      required />
+                    />
                   </div>
                   <div className="questionnaire-inputs">
                     <label className="q-label">Height (ft & in)</label>
-                    <Field className='input' name="ft" component="input" type="number" min="4" max="8" required />
-                    <Field name="in" component="input" type="number" min="0" max="11" />
+                    <Field className='input' name="ft" component="input" type="number" />
+                    <Field className='input' name="in" component="input" type="number" />
                   </div>
                   <div className="questionnaire-inputs">
-                    <label className="q-label">Weight</label>
+                    <label className="q-label">Weight (lb)</label>
                     <Field
                       name="weight"
                       component={TextField}
                       type="number"
-                      min="70"
                       underlineFocusStyle={styles.underlineStyle}
                       floatingLabelStyle={styles.floatingLabelStyle}
                       floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
                       inputStyle={styles.inputStyle}
-                      required />
+                    />
                   </div>
                   <div className="questionnaire-inputs">
                     <label className="q-label">Gender</label>
@@ -105,6 +102,7 @@ class Questionnaire extends Component {
                   </div>
                   {femaleQuestions()}
                   <button className='submitquestionnaire btn btn-secondary' type="submit" disabled={submitting} >Submit</button>
+                  <p className="error-txt">{this.props.submitStats}</p>
                 </form>
               </div>
             </div>
@@ -121,4 +119,10 @@ Questionnaire = reduxForm({
   form: 'Questionnaire'
 })(Questionnaire);
 
-export default connect(null, { submitUserStats })(Questionnaire);
+const mapStateToProps = (state) => {
+  return {
+    submitStats: state.userProfile.submitStats
+  }
+}
+
+export default connect(mapStateToProps, { submitUserStats })(Questionnaire);

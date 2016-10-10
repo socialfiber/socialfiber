@@ -1,4 +1,4 @@
-import { FETCH_USER_DATA, UPDATE_USER_DATA, HANDLE_IMG_UPLOAD, CHANGE_PASSWORD, FETCH_MACROS, LEAVE_PAGE } from '../actions/types';
+import { FETCH_USER_DATA, SUBMIT_USER_STATS, UPDATE_USER_STATS, HANDLE_IMG_UPLOAD, CHANGE_PASSWORD, RESET_ERROR, FETCH_MACROS, LEAVE_PAGE } from '../actions/types';
 
 const INITIAL_STATE = {
   userData: null,
@@ -19,6 +19,8 @@ const INITIAL_STATE = {
   },
   actualMacros: [],
   changePW: null,
+  submitStats: null,
+  updateStats: null,
   imageUpload: null
 }
 
@@ -26,10 +28,14 @@ export default function(state = INITIAL_STATE, action) {
   switch(action.type) {
     case FETCH_USER_DATA:
       return { ...state, username: action.payload.username, userData: action.payload.question, idealMacros: action.payload.dietaryProfile, actualMacros: action.payload.nutritionTotals }
-    case UPDATE_USER_DATA:
-      return state;
+    case SUBMIT_USER_STATS:
+      return { ...state, submitStats: action.payload }
+    case UPDATE_USER_STATS:
+      return { ...state, updateStats: action.payload }
     case CHANGE_PASSWORD:
       return { ...state, changePW: action.payload }
+    case RESET_ERROR:
+      return { ...state, changePW: null, updateStats: null, imageUpload: null }
     case FETCH_MACROS:
       return { ...state, actualMacros: action.payload }
     case HANDLE_IMG_UPLOAD:
