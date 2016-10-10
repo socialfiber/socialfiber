@@ -10,6 +10,7 @@ import FlatButton from 'material-ui/FlatButton';
 import { TextField } from 'redux-form-material-ui';
 import {blueGrey700} from 'material-ui/styles/colors';
 
+
 class SignUp extends Component {
 
   componentWillUnmount() {
@@ -50,7 +51,8 @@ class SignUp extends Component {
                   className="text-line"
                   underlineFocusStyle={styles.underlineStyle}
                   floatingLabelStyle={styles.floatingLabelStyle}
-                  floatingLabelFocusStyle={styles.floatingLabelFocusStyle} />
+                  floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+                />
                 <Field
                   name="password"
                   component={TextField}
@@ -59,7 +61,8 @@ class SignUp extends Component {
                   className="text-line"
                   underlineFocusStyle={styles.underlineStyle}
                   floatingLabelStyle={styles.floatingLabelStyle}
-                  floatingLabelFocusStyle={styles.floatingLabelFocusStyle} />
+                  floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+                />
                 <Field
                   name="confirmPW"
                   component={TextField}
@@ -68,7 +71,8 @@ class SignUp extends Component {
                   className="text-line"
                   underlineFocusStyle={styles.underlineStyle}
                   floatingLabelStyle={styles.floatingLabelStyle}
-                  floatingLabelFocusStyle={styles.floatingLabelFocusStyle} />
+                  floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+                />
                 <FlatButton
                   type="submit"
                   disabled={submitting}
@@ -76,8 +80,12 @@ class SignUp extends Component {
                   label="Sign Up"
                   labelStyle={styles.labelStyle}
                   backgroundColor={styles.backgroundColor} />
-                <p className="error-txt">{this.props.err}</p>
-                <Link to={'/signin'} className="text-center new-account">Sign In</Link>
+                <p className="error-txt">
+                  {this.props.err}
+                </p>
+                <Link to={'/signin'} className="text-center new-account">
+                  Sign In
+                </Link>
               </form>
             </div>
           </div>

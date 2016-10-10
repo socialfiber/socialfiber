@@ -25,7 +25,9 @@ class SignOut extends Component {
           labelStyle={styles.labelStyle}/>
     	</div>
     );
+
   }
+  
 }
 
 const mapStateToProps = (state) => {

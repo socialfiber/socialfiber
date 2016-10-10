@@ -39,11 +39,15 @@ class GroupWallMessages extends Component {
 				<div>
 					<ul className="list-unstyled">
 						<li className="list-group-item group-message" style={{marginBottom:'5px'}}>
-							{/* <div>{this.props.post.createdAt.substr(0,10)}</div> */}
-							<div><strong>{this.props.post.username}</strong>: {this.props.post.message}</div>
-							<li className="group-comments">
-								{postComments}
-							</li>
+							<div>
+								<strong>{this.props.post.username}</strong>
+								: {this.props.post.message}
+							</div>
+							<ul>
+								<li className="group-comments">
+									{postComments}
+								</li>
+							</ul>
 							<div>
 								{this.state.showReply && <CommentBox />}
 							</div>
@@ -51,7 +55,8 @@ class GroupWallMessages extends Component {
 								<RaisedButton
 									onClick={this.showReplyForm}
 									label="Reply"
-									labelStyle={styles.labelStyle}/>
+									labelStyle={styles.labelStyle}
+								/>
 							</div>
 						</li>
 					</ul>

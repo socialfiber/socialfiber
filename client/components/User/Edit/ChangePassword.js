@@ -16,7 +16,7 @@ class ChangePassword extends Component {
     const { handleSubmit, submitting } = this.props;
 
     return (
-      <MuiThemeProvider muiTheme={getMuiTheme()}>
+      <MuiThemeProvider muiTheme={getMuiTheme()} >
         <div>
           <form onSubmit={handleSubmit(this.props.submitChangePassword)} >
             <div>
@@ -32,7 +32,9 @@ class ChangePassword extends Component {
               <Field name="newPW" component={TextField} type="password" />
             </div>
             <button className="changePW-btn btn btn-secondary" type="submit" disabled={submitting} >Submit</button>
-            <p className="error-txt">{this.props.msg}</p>
+            <p className="error-txt">
+              {this.props.msg}
+            </p>
           </form>
         </div>
       </MuiThemeProvider>

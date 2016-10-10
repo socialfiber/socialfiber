@@ -42,9 +42,12 @@ class Tabs extends Component {
 
     const tabsList = this.state.tabsList.map((tab, idx) => {
       return (
-        <li role="presentation" key={idx} onClick={()=>this.changeTab(tab.component)}><a data-toggle="tab" href={"#" + tab.label}>{tab.label}</a></li>
+        <li role="presentation" key={idx} onClick={() => this.changeTab(tab.component)}>
+          <a data-toggle="tab" href={"#" + tab.label}>{tab.label}</a>
+        </li>
       );
     });
+
     return (
       <div>
         <nav>

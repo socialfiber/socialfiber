@@ -6,6 +6,7 @@ import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColu
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
+
 const IndividualGroup = (props) => {
 
 	return (
@@ -17,6 +18,7 @@ const IndividualGroup = (props) => {
 			</TableRow>
 		</MuiThemeProvider>
 	);
+  
 }
 
 export default IndividualGroup;

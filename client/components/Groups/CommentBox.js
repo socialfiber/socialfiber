@@ -47,14 +47,16 @@ class CommentBox extends Component {
                 floatingLabelStyle={styles.floatingLabelStyle}
                 floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
                 style={{textAlign: 'left'}}
-                required />
+                required
+              />
             </div>
             <RaisedButton
               type="submit"
               disabled={submitting}
               label="Submit"
               labelStyle={styles.labelStyle}
-              backgroundColor={styles.backgroundColor} />
+              backgroundColor={styles.backgroundColor}
+            />
           </form>
         </div>
       </MuiThemeProvider>

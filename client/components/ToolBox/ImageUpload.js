@@ -7,7 +7,9 @@ import { Field, reduxForm } from 'redux-form';
 class ImageUpload extends Component {
 
   render() {
+
     const { handleSubmit, submitting } = this.props;
+
     return(
       <div>
         <form onSubmit={ handleSubmit(this.props.handleImageUpload) }>
@@ -20,6 +22,7 @@ class ImageUpload extends Component {
         </form>
       </div>
     );
+    
   }
 
 }

@@ -9,14 +9,24 @@ class ProfilePic extends Component {
     this.state = {
       url: undefined
     }
+    this.fetchPic = this.fetchPic.bind(this);
+    this.setPic = this.setPic.bind(this);
   }
 
   componentWillMount() {
+    this.fetchPic();
+  }
+
+  fetchPic() {
     fetchProfilePic(this.props.userID)
     .then((response) => {
-      this.setState({
-        url: response.payload.url
-      });
+      this.setPic(response);
+    });
+  }
+
+  setPic(response) {
+    this.setState({
+      url: response.payload.url
     });
   }
 

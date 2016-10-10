@@ -46,13 +46,15 @@ class MessageBox extends Component {
                 floatingLabelStyle={styles.floatingLabelStyle}
                 floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
                 style={{textAlign: 'left'}}
-                required />
+                required
+              />
             </div>
             <RaisedButton
               type="submit"
               disabled={submitting}
               label="Submit"
-              labelStyle={styles.labelStyle} />
+              labelStyle={styles.labelStyle}
+            />
           </form>
         </div>
       </MuiThemeProvider>

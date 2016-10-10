@@ -1,4 +1,4 @@
-import { AUTH_USER, AUTH_ERROR, RESET_ERROR, SIGN_OUT } from './types';
+import { AUTH_USER, AUTH_ERROR, SIGN_OUT, RESET_ERROR } from './types';
 import { browserHistory } from 'react-router';
 import axios from 'axios';
 import Cookies from 'js-cookie';

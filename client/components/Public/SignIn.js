@@ -52,7 +52,8 @@ class SignIn extends Component {
                     className="text-line"
                     underlineFocusStyle={styles.underlineStyle}
                     floatingLabelStyle={styles.floatingLabelStyle}
-                    floatingLabelFocusStyle={styles.floatingLabelFocusStyle} />
+                    floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+                  />
                   <Field
                     name="password"
                     component={TextField}
@@ -61,14 +62,16 @@ class SignIn extends Component {
                     className="text-line"
                     underlineFocusStyle={styles.underlineStyle}
                     floatingLabelStyle={styles.floatingLabelStyle}
-                    floatingLabelFocusStyle={styles.floatingLabelFocusStyle}/>
+                    floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+                  />
                   <FlatButton
                     type="submit"
                     disabled={submitting}
                     className="btn btn-lg btn-primary btn-block main-btn"
                     label="Sign in"
                     labelStyle={styles.labelStyle}
-                    backgroundColor={styles.backgroundColor} />
+                    backgroundColor={styles.backgroundColor}
+                  />
                   <p className="error-txt">{this.props.err}</p>
                   <Link to={'/signup'} className="text-center new-account">Create an Account</Link>
                 </form>

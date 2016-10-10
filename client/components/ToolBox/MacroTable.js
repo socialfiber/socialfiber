@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 const MacroTable = (props) => {
 
   const macroAverage = {
@@ -8,7 +9,7 @@ const MacroTable = (props) => {
     prot: 0,
     fib: 0,
     n6: 0
-  };
+  }
   for(var total of props.actualMacros) {
     macroAverage.fat = macroAverage.fat+total.fat;
     macroAverage.carb = macroAverage.carb+total.carb;
@@ -17,7 +18,7 @@ const MacroTable = (props) => {
     macroAverage.n6 = macroAverage.n6+total.n6;
   }
   for(var macro in macroAverage) {
-    macroAverage[macro] = +(macroAverage[macro]/(props.actualMacros.length||1)).toFixed(4);
+    macroAverage[macro] = +(macroAverage[macro]/(props.actualMacros.length||1)).toFixed(2);
   }
 
   return (

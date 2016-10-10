@@ -50,16 +50,22 @@ class RadarGraph extends Component {
 
   updateMacros() {
     if(this.props.date === undefined && this.props.actualMacros.length) {
-      const macroAverage = {};
+      const macroAverage = {
+        fat: 0,
+        carb: 0,
+        prot: 0,
+        fib: 0,
+        n6: 0
+      }
       for(var total of this.props.actualMacros) {
-        macroAverage.fat = macroAverage.fat ? macroAverage.fat+total.fat : total.fat;
-        macroAverage.carb = macroAverage.carb ? macroAverage.carb+total.carb : total.carb;
-        macroAverage.prot = macroAverage.prot ? macroAverage.prot+total.prot : total.prot;
-        macroAverage.fib = macroAverage.fib ? macroAverage.fib+total.fib : total.fib;
-        macroAverage.n6 = macroAverage.n6 ? macroAverage.n6+total.n6 : total.n6;
+        macroAverage.fat = macroAverage.fat+total.fat;
+        macroAverage.carb = macroAverage.carb+total.carb;
+        macroAverage.prot = macroAverage.prot+total.prot;
+        macroAverage.fib = macroAverage.fib+total.fib;
+        macroAverage.n6 = macroAverage.n6+total.n6;
       }
       for(var macro in macroAverage) {
-        macroAverage[macro] = +(macroAverage[macro]/this.props.actualMacros.length).toFixed(4);
+        macroAverage[macro] = +(macroAverage[macro]/(this.props.actualMacros.length||1)).toFixed(4);
       }
       this.setState({
         actualMacros: macroAverage
