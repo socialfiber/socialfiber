@@ -17,10 +17,10 @@ class ImageUpload extends Component {
         <form onSubmit={ handleSubmit(this.props.handleImageUpload) }>
           <div className='fileUpload'>
             <label>Upload an image.</label>
-            <Field name='image' component='input' type='file' accept='image/*' />
+            <Field className="fileInput" name='image' component='input' type='file' accept='image/*' />
           </div>
-          <button type='submit' disabled={submitting} >Submit</button>
-          {this.props.msg}
+          <button className='imageUpload-btn btn btn-secondary' type='submit' disabled={submitting} >Submit</button>
+          <p className="error-txt">{this.props.msg}</p>
         </form>
       </div>
     );

@@ -199,6 +199,10 @@ span, .reject-fr-btn {
   margin-bottom: 30px;
 }
 
+.list-group {
+  text-align: center;
+}
+
 /* -------------------- All Groups -------------------- */
 
 /* -- all-container is for every main div --*/
@@ -530,6 +534,7 @@ li.dropdown {
 .img-circle {
   border: 15px solid white;
   border-radius: 50%;
+  text-align: center;
 }
 
 /* -------------------- Profile Page -------------------- */
@@ -552,6 +557,8 @@ li.dropdown {
   top: 0;
   height: 500px;
   margin: 0 60px;
+  margin-right: 20%;
+  margin-top: 5%;
   overflow: auto;
 }
 
@@ -577,6 +584,7 @@ li.dropdown {
   display: block;
   padding: 0 15px;
   margin: 0;
+  text-align: center;
 }
 
 .user-profile-nav {
@@ -616,6 +624,16 @@ li.dropdown {
   right: 0;
 }
 
+/* -------------------- Update User Info -------------------- */
+
+.returnToProfile-btn {
+  position: absolute;
+  padding: 20px;
+  right: 0px;
+  background-color: transparent;
+  border-width: thin;
+}
+
 /* -------------------- My Group -------------------- */
 .my-groups {
   text-align: center;
@@ -623,4 +641,42 @@ li.dropdown {
 
 .my-groups-table {
   display: inline;
+}
+
+.imageUpload-btn, .changePW-btn, .updateQ-btn {
+  background-color: #D8A154;
+  color: white;
+}
+
+.updateUserData {
+  text-align: center;
+}
+.fileInput {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.updatePF {
+  padding: 10px;
+  font-size: 100px;
+}
+
+.changePW-div, .updatePic-div, .updateInfo-div {
+  padding: 20px;
+}
+
+.updateQ-label {
+  margin-right: 15px;
+}
+
+.editInfoBtn {
+  background-color: #D8A154;
+  color: white;
+  text-align: center;
+}
+
+/* -------------------- ERROR HANDLER -------------------- */
+.error-txt {
+  color: red;
+  font-weight: bold;
 }

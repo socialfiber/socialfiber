@@ -67,7 +67,7 @@ class FoodDiaryEntry extends Component {
             label="Submit"
             type="submit"
             disabled={submitting} />
-          <p>{this.props.err}</p>
+          <p className="error-txt">{this.props.err}</p>
         </form>
       </MuiThemeProvider>
     );
