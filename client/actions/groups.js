@@ -116,9 +116,9 @@ export function postMessage(message) {
     });
 }
 
-export function postComment(message, filler, commentObject) {
+export function postComment(message, postID) {
   const data = {
-    postID: commentObject.myGroups.commentObject.id,
+    postID: postID,
     username: Cookies.get('username'),
     message: message.message
   }

@@ -23,7 +23,6 @@ class GroupWallMessages extends Component {
 		this.setState({
 			showReply: !this.state.showReply
 		});
-		this.props.myGroups.commentObject = this.props.post;
 	}
 
 	render() {
@@ -50,7 +49,7 @@ class GroupWallMessages extends Component {
 								</li>
 							</ul>
 							<div>
-								{this.state.showReply && <CommentBox />}
+								{this.state.showReply && <CommentBox postID={this.props.post.id} />}
 							</div>
 							<div style={{textAlign:'center'}}>
 								<RaisedButton
