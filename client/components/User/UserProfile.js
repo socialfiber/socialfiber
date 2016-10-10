@@ -64,6 +64,9 @@ class UserProfile extends Component {
                   <div className="user-info">
                     <ul className="list-group">
                       <li className="user-info-list-item">
+                        <strong>{this.props.userProfile.username}</strong>
+                      </li>
+                      <li className="user-info-list-item">
                         Age: {this.props.userProfile.userData.age}
                       </li>
                       <li className="user-info-list-item">

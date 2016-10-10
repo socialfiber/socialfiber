@@ -56,17 +56,16 @@ class BrowseProfile extends Component {
           <div>
             <NavBar />
             <div className="user-container all-container">
-              <h3>
-                {this.props.userProfile.username}
-              </h3>
               <div className="user-row">
-                
                 <div className="col-lg-4 user-profile-block-left">
                   <div>
                     <ProfilePic userID={this.props.params.id} />
                   </div>
                   <div className="user-info">
                     <ul className="list-group">
+                      <li className="user-info-list-item">
+                        <strong>{this.props.userProfile.username}</strong>
+                      </li>
                       <li className="user-info-list-item">
                         Age: {this.props.userProfile.userData.age}
                       </li>
