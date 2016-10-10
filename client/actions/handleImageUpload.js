@@ -1,4 +1,5 @@
 import { HANDLE_IMG_UPLOAD } from './types';
+import auth from '../../server/config/auth'
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
@@ -29,7 +30,6 @@ export function handleImageUpload(file) {
         }
         axios.post('/api/profilePics/pic', data, config)
         .then((response) => {
-          console.log("STORED")
           resolve({ type: HANDLE_IMG_UPLOAD, payload: 'Successfully stored image.' });
         })
         .catch((error) => {

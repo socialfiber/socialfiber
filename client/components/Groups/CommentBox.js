@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
-import { postComment } from '../../actions/groups';
+import { postComment, fetchGroupPosts } from '../../actions/groups';
+import Cookies from 'js-cookie';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { TextField } from 'redux-form-material-ui';
@@ -11,9 +12,18 @@ import {blueGrey700} from 'material-ui/styles/colors';
 
 class CommentBox extends Component {
 
-  render() {
+  constructor(props) {
+    super(props);
+  }
 
+  render() {
     const { handleSubmit, submitting } = this.props;
+    const submitComment = (e) => {
+      this.props.postComment(e, this.props.postID)
+      .then(() => {
+        this.props.fetchGroupPosts(Cookies.get('groupID'));
+      });
+    }
     const styles = {
       underlineStyle: {
         borderColor: blueGrey700,
@@ -34,7 +44,7 @@ class CommentBox extends Component {
     return (
       <MuiThemeProvider muiTheme={getMuiTheme()}>
         <div>
-          <form className="commentbox" onSubmit = {handleSubmit(this.props.postComment)}>
+          <form className="commentbox" onSubmit={ handleSubmit(submitComment) } >
             <div>
               <Field
                 name="message"
@@ -47,14 +57,16 @@ class CommentBox extends Component {
                 floatingLabelStyle={styles.floatingLabelStyle}
                 floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
                 style={{textAlign: 'left'}}
-                required />
+                required
+              />
             </div>
             <RaisedButton
               type="submit"
               disabled={submitting}
               label="Submit"
               labelStyle={styles.labelStyle}
-              backgroundColor={styles.backgroundColor} />
+              backgroundColor={styles.backgroundColor}
+            />
           </form>
         </div>
       </MuiThemeProvider>
@@ -68,8 +80,9 @@ CommentBox = reduxForm({
 
 const mapStateToProps = (state) => {
 	return {
-		myGroups: state.groups
+    groupPosts: state.groups.groupPosts,
+    comments: state.groups.comments
 	}
 }
 
-export default connect(mapStateToProps, { postComment })(CommentBox);
+export default connect(mapStateToProps, { postComment, fetchGroupPosts })(CommentBox);

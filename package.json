@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server/server.js",
+    "start": "node server/server.js",
     "bundle": "node_modules/.bin/webpack -w",
     "postinstall": "node_modules/.bin/webpack -p"
   },

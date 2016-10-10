@@ -8,7 +8,6 @@ import CommentBox from './CommentBox';
 import GroupWallMessages from './GroupWallMessages';
 import GroupWallComments from './GroupWallComments';
 import GroupUsersList from './GroupUsersList';
-import GroupWallMessagesNoReply from './GroupWallMessagesNoReply';
 
 
 class GroupWall extends Component {
@@ -20,7 +19,6 @@ class GroupWall extends Component {
   render() {
 
     const groupPosts = this.props.groupPosts.map((post, idx) => <GroupWallMessages key={idx} post={post} />);
-    const groupPostsNoReply = this.props.groupPosts.map((post, idx) => <GroupWallMessagesNoReply key={idx} post={post} />);
 
     return(
       <div>

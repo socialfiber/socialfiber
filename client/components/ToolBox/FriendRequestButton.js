@@ -15,13 +15,15 @@ class FriendRequestButton extends Component {
     this.setStatus.bind(this);
   }
 
+  componentDidMount() {
+    this.getStatus();
+  }
+
   getStatus() {
     if(+Cookies.get('userID') !== this.props.otherID) {
       fetchFriendshipStatus(this.props.otherID)
       .then((response) => {
-        this.setState({
-          friendshipStatus: response.payload
-        });
+        this.setStatus(response);
       });
     }
   }
@@ -32,26 +34,25 @@ class FriendRequestButton extends Component {
     });
   }
 
-  componentDidMount() {
-    this.getStatus();
-  }
-
   render() {
 
     if(this.state.friendshipStatus === null) {
+
       return (
         <div>
           <RaisedButton onClick={() => {
             sendFriendRequest(this.props.otherID)
             .then((response) => {
               this.setStatus(response);
-            })
+            });
           }}>
           <span className="fr-btn">Send Friend Request</span>
           </RaisedButton>
         </div>
       );
+
     } else if(this.state.friendshipStatus === 'requestee') {
+
       return (
         <div>
           <RaisedButton style={{ marginBottom: "5px", height: "20px" }} onClick={() => {
@@ -72,7 +73,9 @@ class FriendRequestButton extends Component {
           </RaisedButton>
         </div>
       );
+
     } else if(this.state.friendshipStatus === 'requestor') {
+
       return (
         <div>
           <RaisedButton onClick={() => {
@@ -85,7 +88,9 @@ class FriendRequestButton extends Component {
           </RaisedButton>
         </div>
       );
+
     } else if(this.state.friendshipStatus === 'friends') {
+
       return (
         <div>
           <RaisedButton onClick={() => {
@@ -98,8 +103,11 @@ class FriendRequestButton extends Component {
           </RaisedButton>
         </div>
       );
+
     } else {
+
       return null;
+      
     }
 
   }

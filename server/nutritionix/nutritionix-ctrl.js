@@ -1,6 +1,7 @@
 const Nutritionix = require('./nutritionix-model.js');
 const Storage = require('./nutritionixStorage-model.js');
 
+
 const nutritionix = {
 
 	//search cache before pinging API

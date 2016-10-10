@@ -1,6 +1,7 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../config/database');
 
+
 const Chatrooms = sequelize.define('chatrooms', {
   room_id: {
     type: Sequelize.STRING,

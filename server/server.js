@@ -33,11 +33,9 @@ const io = socketIo(server);
 io.on('connection', (socket) => {
   socket.on('room', (room) => {
     socket.join(room);
-    console.log("You have joined the room");
   });
 
   socket.on('message', (message) => {
-    console.log("received: ", message);
     socket.broadcast.to(message.room_id).emit('message', {
       body: message.body,
       username: message.username
@@ -46,6 +44,5 @@ io.on('connection', (socket) => {
 });
 
 server.listen(app.get('port'), () => {
-  //database.ensureSchema();
   console.log(`[${moment().format('h:mm:ss a')}] Server is now listening on port ${app.get('port')}`);
 });

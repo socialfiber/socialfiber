@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
-import { createNewGroup } from '../../actions/groups';
+import { createNewGroup, fetchAllGroups } from '../../actions/groups';
 import { AutoComplete as MUIAutoComplete } from 'material-ui';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { TextField } from 'redux-form-material-ui';
 import {blueGrey700} from 'material-ui/styles/colors';
 import RaisedButton from 'material-ui/RaisedButton';
+
 
 class CreateGroup extends Component {
 
@@ -28,13 +29,19 @@ class CreateGroup extends Component {
         textTransform: 'capitalize'
       }
     };
+    const submitCreate = (e) => {
+      this.props.createNewGroup(e)
+      .then(() => {
+        this.props.fetchAllGroups();
+      });
+    }
 
     return (
       <MuiThemeProvider muiTheme={getMuiTheme()}>
         <div className="container create group">
           <div className="row">
             <div className="col-sm-6 col-md-4 col-md-offset-4">
-              <form onSubmit={ handleSubmit(this.props.createNewGroup) }>
+              <form onSubmit={ handleSubmit(submitCreate) }>
                 <h5>Create a group based on your dietary interests.</h5>
                 <h5 className="choose-topic">You may choose a topic such as "paleo" or "vegetarian"</h5>
                 <Field
@@ -46,7 +53,7 @@ class CreateGroup extends Component {
                   floatingLabelStyle={styles.floatingLabelStyle}
                   floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
                   floatingLabelText="Name"
-                  required/>
+                />
                 <Field
                   name='description'
                   component={TextField}
@@ -56,7 +63,7 @@ class CreateGroup extends Component {
                   floatingLabelStyle={styles.floatingLabelStyle}
                   floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
                   floatingLabelText="Description"
-                  required/>
+                />
                 <RaisedButton
                   className="creategroupbutton"
                   backgroundColor="#C6AC8F"
@@ -65,15 +72,19 @@ class CreateGroup extends Component {
                   labelStyle={styles.labelStyle}
                   disabled={submitting}
                   type="submit"
-                 />
-                <p className="error-txt">{this.props.msg}</p>
+                />
+                <p className="error-txt">
+                  {this.props.msg}
+                </p>
               </form>
             </div>
           </div>
         </div>
       </MuiThemeProvider>
     );
+
   }
+  
 }
 
 CreateGroup = reduxForm({
@@ -82,8 +93,9 @@ CreateGroup = reduxForm({
 
 const mapStateToProps = (state) => {
   return {
-    msg: state.browse.msg
+    msg: state.browse.msg,
+    groups: state.browse.allGroups
   }
 }
 
-export default connect(mapStateToProps, { createNewGroup })(CreateGroup);
+export default connect(mapStateToProps, { createNewGroup, fetchAllGroups })(CreateGroup);

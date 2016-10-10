@@ -5,8 +5,7 @@ const INITIAL_STATE = {
   groupUsers: null,
   membership: null,
   groupPosts: [],
-  postMessages: [],
-  postComments: []
+  comments: []
 }
 
 export default function(state = INITIAL_STATE, action){

@@ -3,11 +3,15 @@ import { connect } from 'react-redux';
 import { fetchProfile, leavePage } from '../../actions/users';
 import { fetchFriendshipStatus } from '../../actions/friends';
 import NavBar from '../ToolBox/NavBar';
-import FriendRequestButton from '../ToolBox/FriendRequestButton';
-import RadarGraph from '../ToolBox/RadarGraph';
 import ProfilePic from '../ToolBox/ProfilePic';
+import RadarGraph from '../ToolBox/RadarGraph';
+import MacroTable from '../ToolBox/MacroTable';
+import FriendRequestButton from '../ToolBox/FriendRequestButton';
 import Tabs from '../ToolBox/Tabs';
 import Cookies from 'js-cookie';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
 
 class BrowseProfile extends Component {
 
@@ -26,7 +30,6 @@ class BrowseProfile extends Component {
 
     if(this.props.userProfile.userData !== null) {
 
-      console.log(this.props.userProfile.username);
       const tabsList = [
         { label: 'Food Diary', component: 'FoodDiary' },
         { label: 'Friends', component: 'MyFriends' },
@@ -35,26 +38,63 @@ class BrowseProfile extends Component {
       const showTabs = () => {
         if(this.props.friendshipStatus === 'friends') {
           return (
-            <Tabs tabsList={tabsList} />
+            <div className="clear-floats user-tabs">
+              <Tabs tabsList={tabsList} />
+            </div>
           );
         } else {
           return (
-            <h4>`You must be friends to see {this.props.userProfile.username}'s profile.`</h4>
+            <h4  className="all-container">
+              You must be friends to see {this.props.userProfile.username}'s profile.
+            </h4>
           );
         }
       }
 
       return (
-        <div>
-          <NavBar />
-          <h3 className="all-container">{this.props.userProfile.username}</h3>
-          <ProfilePic userID={this.props.params.id} />
-          <FriendRequestButton otherID={this.props.params.id} />
-          <div>Age: {this.props.userProfile.userData.age}</div>
-          <div>Gender: {this.props.userProfile.userData.gender}</div>
-          <RadarGraph type={'amount'} size={'large'} />
-          {showTabs()}
-        </div>
+        <MuiThemeProvider muiTheme={getMuiTheme()} >
+          <div>
+            <NavBar />
+            <div className="user-container all-container">
+              <div className="user-row">
+                <div className="col-lg-4 user-profile-block-left">
+                  <div>
+                    <ProfilePic userID={this.props.params.id} />
+                  </div>
+                  <div className="user-info">
+                    <ul className="list-group">
+                      <li className="user-info-list-item">
+                        <strong>{this.props.userProfile.username}</strong>
+                      </li>
+                      <li className="user-info-list-item">
+                        Age: {this.props.userProfile.userData.age}
+                      </li>
+                      <li className="user-info-list-item">
+                        Gender: {this.props.userProfile.userData.gender}
+                      </li>
+                      <li className="user-info-list-item">
+                        Height: {Math.floor(this.props.userProfile.userData.height/12)}ft {this.props.userProfile.userData.height%12}in
+                      </li>
+                      <li className="user-info-list-item">
+                        Weight: {this.props.userProfile.userData.weight}
+                      </li>
+                    </ul>
+                    <div>
+                      <FriendRequestButton otherID={this.props.params.id} />
+                    </div>
+                  </div>
+                </div>
+              <div className="col-lg-4 user-profile-block-center">
+                <RadarGraph type={'amount'} size={'large'} />
+              </div>
+              <div className="col-lg-4 user-profile-block-right">
+                <MacroTable idealMacros={this.props.userProfile.idealMacros} actualMacros={this.props.userProfile.actualMacros} />
+              </div>
+              {showTabs()}
+              </div>
+            </div>
+          </div>
+        </MuiThemeProvider>
       );
 
     } else {
@@ -62,11 +102,16 @@ class BrowseProfile extends Component {
       return (
         <div>
           <NavBar />
-          <h3>Loading profile...</h3>
+          <div className="all-container">
+            <h3>
+              Loading profile...
+            </h3>
+          </div>
         </div>
       );
 
     }
+    
   }
 
 }

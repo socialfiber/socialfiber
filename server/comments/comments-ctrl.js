@@ -1,6 +1,7 @@
 const Comments = require('./comments-model.js');
 const Posts = require('../posts/posts-model.js');
 
+
 const comments = {
 
   //Endpoint to retrieve group messages.

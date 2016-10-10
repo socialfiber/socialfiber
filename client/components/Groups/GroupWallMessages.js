@@ -7,6 +7,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
+
 class GroupWallMessages extends Component {
 
 	constructor(props) {
@@ -22,7 +23,6 @@ class GroupWallMessages extends Component {
 		this.setState({
 			showReply: !this.state.showReply
 		});
-		this.props.myGroups.commentObject = this.props.post;
 	}
 
 	render() {
@@ -39,19 +39,24 @@ class GroupWallMessages extends Component {
 				<div>
 					<ul className="list-unstyled">
 						<li className="list-group-item group-message" style={{marginBottom:'5px'}}>
-							{/* <div>{this.props.post.createdAt.substr(0,10)}</div> */}
-							<div><strong>{this.props.post.username}</strong>: {this.props.post.message}</div>
-							<li className="group-comments">
-								{postComments}
-							</li>
 							<div>
-								{this.state.showReply && <CommentBox />}
+								<strong>{this.props.post.username}</strong>
+								: {this.props.post.message}
+							</div>
+							<ul>
+								<li className="group-comments">
+									{postComments}
+								</li>
+							</ul>
+							<div>
+								{this.state.showReply && <CommentBox postID={this.props.post.id} />}
 							</div>
 							<div style={{textAlign:'center'}}>
 								<RaisedButton
 									onClick={this.showReplyForm}
 									label="Reply"
-									labelStyle={styles.labelStyle}/>
+									labelStyle={styles.labelStyle}
+								/>
 							</div>
 						</li>
 					</ul>

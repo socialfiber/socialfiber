@@ -14,9 +14,7 @@ const groups = {
         description: req.body.description
       })
       .then((group) => {
-        res.status(201).send({
-          group: group
-        });
+        res.status(201).send();
       })
       .catch((err) => {
         res.status(200).send({

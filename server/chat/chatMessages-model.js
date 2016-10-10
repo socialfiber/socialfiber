@@ -2,6 +2,7 @@ const Sequelize = require('sequelize');
 const sequelize = require('../config/database');
 const Chatrooms = require('./chatrooms-model.js');
 
+
 const ChatMessages = sequelize.define('chatMessages', {
   username: {
     type: Sequelize.STRING,

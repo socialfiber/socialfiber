@@ -34,6 +34,9 @@ export function fetchMacros() {
   }
   return axios.get('/api/users/getUserData', data)
     .then((response) => {
+      for(var total in response.data.nutritionTotals) {
+        response.data.nutritionTotals[total].date = response.data.nutritionTotals[total].date.substr(0,10);
+      }
       return { type: FETCH_MACROS, payload: response.data.nutritionTotals }
     })
     .catch((error) => {

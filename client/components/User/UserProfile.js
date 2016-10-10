@@ -4,12 +4,11 @@ import { connect } from 'react-redux';
 import { fetchUserData, leavePage } from '../../actions/users';
 import NavBar from '../ToolBox/NavBar';
 import ProfilePic from '../ToolBox/ProfilePic';
-import Tabs from '../ToolBox/Tabs';
 import RadarGraph from '../ToolBox/RadarGraph';
-import ChatWindow from './Tabs/ChatWindow';
+import MacroTable from '../ToolBox/MacroTable';
+import Tabs from '../ToolBox/Tabs';
 import UpdateUserData from './Edit/UpdateUserData';
 import Cookies from 'js-cookie';
-import MacroTable from '../ToolBox/MacroTable';
 
 
 class UserProfile extends Component {
@@ -64,24 +63,26 @@ class UserProfile extends Component {
                   </div>
                   <div className="user-info">
                     <ul className="list-group">
-                      <li className="user-info-list-item">Age: {this.props.userProfile.userData.age}</li>
-                      <li className="user-info-list-item">Gender: {this.props.userProfile.userData.gender}</li>
-                      <li className="user-info-list-item">Height: {Math.floor(this.props.userProfile.userData.height/12)}ft {this.props.userProfile.userData.height%12}in</li>
-                      <li className="user-info-list-item">Weight: {this.props.userProfile.userData.weight}</li>
+                      <li className="user-info-list-item">
+                        <strong>{this.props.userProfile.username}</strong>
+                      </li>
+                      <li className="user-info-list-item">
+                        Age: {this.props.userProfile.userData.age}
+                      </li>
+                      <li className="user-info-list-item">
+                        Gender: {this.props.userProfile.userData.gender}
+                      </li>
+                      <li className="user-info-list-item">
+                        Height: {Math.floor(this.props.userProfile.userData.height/12)}ft {this.props.userProfile.userData.height%12}in
+                      </li>
+                      <li className="user-info-list-item">
+                        Weight: {this.props.userProfile.userData.weight}
+                      </li>
                     </ul>
                     <div className="edit-info-btn">
-                      <button type="button" onClick={() => this.toggleEditing()}>Edit Info</button>
-                    </div>
-                  </div>
-                  <div className="user-info">
-                    <ul className="list-group">
-                      <li className="user-info-list-item">Age: {this.props.userProfile.userData.age}</li>
-                      <li className="user-info-list-item">Gender: {this.props.userProfile.userData.gender}</li>
-                      <li className="user-info-list-item">Height: {Math.floor(this.props.userProfile.userData.height/12)}ft {this.props.userProfile.userData.height%12}in</li>
-                      <li className="user-info-list-item">Weight: {this.props.userProfile.userData.weight}</li>
-                    </ul>
-                    <div className="edit-info-btn">
-                      <button type="button" onClick={() => this.toggleEditing()}>Edit Info</button>
+                      <button type="button" onClick={() => this.toggleEditing()}>
+                        Edit Info
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -104,19 +105,26 @@ class UserProfile extends Component {
         return (
           <div>
             <NavBar />
-            <h3 className="all-container">{this.props.userProfile.username}</h3>
+            <h3 className="all-container">
+              {this.props.userProfile.username}
+            </h3>
             <UpdateUserData />
-            <button className="returnToProfile-btn btn btn-secondary" type="button" onClick={() => this.toggleEditing()}>Return To Profile</button>
+            <button className="returnToProfile-btn btn btn-secondary" type="button" onClick={() => this.toggleEditing()}>
+              Return to Profile
+            </button>
           </div>
         );
 
       }
+      
     } else {
 
       return (
         <div>
           <NavBar />
-          <h3 className="all-container">Loading your profile...</h3>
+          <h3 className="all-container">
+            Loading your profile...
+          </h3>
         </div>
       );
 

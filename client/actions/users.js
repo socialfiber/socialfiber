@@ -33,7 +33,6 @@ export function fetchUserData() {
         for(var total in response.data.nutritionTotals) {
           response.data.nutritionTotals[total].date = response.data.nutritionTotals[total].date.substr(0,10);
         }
-        response.data.nutritionTotals = _.sortBy(response.data.nutritionTotals, 'date');
         return { type: FETCH_USER_DATA, payload: response.data };
       }
     })
@@ -118,7 +117,7 @@ export function updateUserStats(userStatsObj) {
     return new Promise((resolve, reject) => {
       resolve({ type: UPDATE_USER_STATS, payload: 'Please enter valid age between 13 and 70.' })
     });
-  } else if(userStatsObj.ft < 4 || userStatsObj.ft > 8 || userStatsObj.in < 0 || userStatsObj.in > 11) {
+  } else if(userStatsObj.ft < 4 || userStatsObj.ft > 8 || (userStatsObj.in && userStatsObj.in < 0) || (userStatsObj.in && userStatsObj.in > 11)) {
     return new Promise((resolve, reject) => {
       resolve({ type: UPDATE_USER_STATS, payload: `Please enter valid height between 4'0" and 8'11".` })
     });

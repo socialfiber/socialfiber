@@ -7,11 +7,6 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 class NavBar extends Component {
 
-  constructor(props) {
-    super(props)
-    this.state={}
-  }
-
   render() {
 
     return(
@@ -23,8 +18,10 @@ class NavBar extends Component {
               <li className="dropdown active">
                 <a href="#" className="dropbtn">Browse</a>
                 <div className="dropdown-content">
-                  <li className="dropdown-item navItem"><Link to='/viewallgroups'>All Groups</Link></li>
-                  <li className="dropdown-item navItem"><Link to='/viewallusers'>All Users</Link></li>
+                  <ul>
+                    <li className="dropdown-item navItem"><Link to='/viewallgroups'>All Groups</Link></li>
+                    <li className="dropdown-item navItem"><Link to='/viewallusers'>All Users</Link></li>
+                  </ul>
                 </div>
               </li>
               <li className="navbar-right signout-button"><SignOut /></li>
@@ -34,7 +31,9 @@ class NavBar extends Component {
         </nav>
       </MuiThemeProvider>
     );
+
   }
+
 }
 
 export default NavBar;

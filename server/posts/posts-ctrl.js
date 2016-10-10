@@ -46,7 +46,17 @@ const posts = {
           'message',
           'createdAt'
         ],
-        include: [Comments]
+        include: [
+          {
+            model: Comments,
+            order: [
+              ['createdAt', 'DESC']
+            ]
+          }
+        ],
+        order: [
+          ['createdAt', 'DESC']
+        ]
       })
       .then((messages) => {
         res.status(200).json(messages);
