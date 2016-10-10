@@ -56,10 +56,10 @@ class UserProfile extends Component {
           <div>
             <NavBar />
             <div className="user-container">
-              <div className="user-profile-block">
-                <div className="user-profile-block-right">
+              <div className="user-row">
+                <div className="col-lg-4 user-profile-block-left">
                   <div>
-                    <ProfilePic userID={this.props.userProfile.userData.user_id} />
+                    <ProfilePic userID={Cookies.get('userID')} />
                   </div>
                   <div className="user-info">
                     <ul className="list-group">
@@ -73,11 +73,13 @@ class UserProfile extends Component {
                     </div>
                   </div>
                 </div>
-                <div className="user-profile-block-left">
+                <div className="col-lg-4 user-profile-block-right">
                   <RadarGraph type={'amount'} size={'large'} />
                 </div>
               </div>
-              <Tabs tabsList={tabsList} />
+              <div className="clear-floats">
+                <Tabs tabsList={tabsList} />
+              </div>
             </div>
           </div>
         );
