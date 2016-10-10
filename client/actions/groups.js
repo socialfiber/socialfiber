@@ -178,7 +178,6 @@ export function fetchGroupUsers(groupObj) {
 
 export function createNewGroup(newGroupObj) {
   if(!newGroupObj.name || !newGroupObj.description) {
-    console.log("MISSING FIELDS")
     return new Promise((resolve, reject) => {
       resolve({ type: CREATE_GROUP_ERROR, payload: 'Please fill out all fields.' });
     });

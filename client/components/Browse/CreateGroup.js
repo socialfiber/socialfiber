@@ -57,7 +57,6 @@ class CreateGroup extends Component {
                   floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
                   floatingLabelText="Description"
                   required/>
-                <div className="error-txt">{this.props.err}</div>
                 <RaisedButton
                   className="creategroupbutton"
                   backgroundColor="#C6AC8F"
@@ -67,6 +66,7 @@ class CreateGroup extends Component {
                   disabled={submitting}
                   type="submit"
                  />
+                <p className="error-txt">{this.props.msg}</p>
               </form>
             </div>
           </div>
@@ -82,7 +82,7 @@ CreateGroup = reduxForm({
 
 const mapStateToProps = (state) => {
   return {
-    err: state.browse.err
+    msg: state.browse.msg
   }
 }
 
