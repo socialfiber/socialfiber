@@ -46,9 +46,9 @@ export function submitFoodDiaryEntry(foodDiaryEntryObj) {
     return new Promise((resolve, reject) => {
       resolve({ type: NO_RESULT, payload: 'Please fill out all fields.' });
     });
-  } else if(!(foodDiaryEntryObj.qty === parseInt(foodDiaryEntryObj.qty, 10))) {
+  } else if(foodDiaryEntryObj.qty !== parseInt(foodDiaryEntryObj.qty, 10)) {
     return new Promise((resolve, reject) => {
-      resolve({ type: NO_RESULT, payload: 'qty/srv must be an integer.' });
+      resolve({ type: NO_RESULT, payload: 'qty/srv must be a valid number.' });
     });
   } else {
     foodDiaryEntryObj.userID = Cookies.get('userID');

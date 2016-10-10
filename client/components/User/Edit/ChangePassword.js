@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
-import { submitChangePassword, resetError } from '../../../actions/users';
+import { submitChangePassword } from '../../../actions/users';
 import { AutoComplete as MUIAutoComplete } from 'material-ui';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -10,10 +10,6 @@ import { TextField } from 'redux-form-material-ui';
 
 
 class ChangePassword extends Component {
-
-  componentWillUnmount() {
-    this.props.resetError();
-  }
 
   render() {
 
@@ -56,4 +52,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { submitChangePassword, resetError })(ChangePassword);
+export default connect(mapStateToProps, { submitChangePassword })(ChangePassword);

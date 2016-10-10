@@ -1,4 +1,4 @@
-import { FETCH_ALL_USERS, FETCH_USER_DATA, SUBMIT_USER_STATS, CHANGE_PASSWORD, UPDATE_USER_DATA, FETCH_PROFILE_PIC, REDIRECT_PROFILE, LEAVE_PAGE } from './types';
+import { FETCH_ALL_USERS, FETCH_USER_DATA, SUBMIT_USER_STATS, CHANGE_PASSWORD, UPDATE_USER_STATS, RESET_ERROR, FETCH_PROFILE_PIC, REDIRECT_PROFILE, LEAVE_PAGE } from './types';
 import { browserHistory } from 'react-router';
 import axios from 'axios';
 import Cookies from 'js-cookie';
@@ -84,22 +84,44 @@ export function submitUserStats(userStatsObj) {
     });
 }
 
-export function updateUserData(userStatsObj) {
-  userStatsObj.user_id = Cookies.get('userID');
-  userStatsObj.gender = Cookies.get('userGender');
-  userStatsObj.preg = userStatsObj.preg ? userStatsObj.preg.value : false
-  userStatsObj.lact = userStatsObj.lact ? userStatsObj.lact.value : false
-  userStatsObj.height = userStatsObj.ft*12+userStatsObj.in;
-  const config = {
-    headers: { 'x-access-token': Cookies.get('token') }
-  }
-  return axios.put('/api/questions/submitData', userStatsObj, config)
-    .then((response) => {
-      return { type: UPDATE_USER_DATA, payload: response.data.msg };
-    })
-    .catch(function(error) {
-      console.error(error);
+export function updateUserStats(userStatsObj) {
+  if(!userStatsObj.age || !userStatsObj.ft || !userStatsObj.weight) {
+    return new Promise((resolve, reject) => {
+      resolve({ type: UPDATE_USER_STATS, payload: 'Please fill out all fields.' })
     });
+  } else if((userStatsObj.age !== parseInt(userStatsObj.age, 10)) || (userStatsObj.ft !== parseInt(userStatsObj.ft, 10)) || (userStatsObj.in && userStatsObj.in !== parseInt(userStatsObj.in, 10)) || (userStatsObj.weight !== parseInt(userStatsObj.weight, 10))) {
+    return new Promise((resolve, reject) => {
+      resolve({ type: UPDATE_USER_STATS, payload: 'Age, Height, and Weight must be valid numbers.' })
+    });
+  } else if(userStatsObj.age < 13 || userStatsObj.age > 70) {
+    return new Promise((resolve, reject) => {
+      resolve({ type: UPDATE_USER_STATS, payload: 'Please enter valid age between 13 and 70.' })
+    });
+  } else if(userStatsObj.ft < 4 || userStatsObj.ft > 8 || userStatsObj.in < 0 || userStatsObj.in > 11) {
+    return new Promise((resolve, reject) => {
+      resolve({ type: UPDATE_USER_STATS, payload: `Please enter valid height between 4'0" and 8'11".` })
+    });
+  } else if(userStatsObj.weight < 70 || userStatsObj.weight > 300) {
+    return new Promise((resolve, reject) => {
+      resolve({ type: UPDATE_USER_STATS, payload: 'Please enter valid weight between 70lb and 300lb.' })
+    });
+  } else {
+    userStatsObj.user_id = Cookies.get('userID');
+    userStatsObj.gender = Cookies.get('userGender');
+    userStatsObj.preg = userStatsObj.preg ? userStatsObj.preg.value : false
+    userStatsObj.lact = userStatsObj.lact ? userStatsObj.lact.value : false
+    userStatsObj.height = userStatsObj.ft*12+(userStatsObj.in || 0);
+    const config = {
+      headers: { 'x-access-token': Cookies.get('token') }
+    }
+    return axios.put('/api/questions/submitData', userStatsObj, config)
+      .then((response) => {
+        return { type: UPDATE_USER_STATS, payload: response.data.msg };
+      })
+      .catch(function(error) {
+        console.error(error);
+      });
+  }
 }
 
 export function submitChangePassword(passwordObj) {
@@ -146,7 +168,7 @@ export function fetchProfilePic(userID) {
 
 export function resetError() {
   return new Promise((resolve, reject) => {
-    resolve({ type: CHANGE_PASSWORD, payload: null });
+    resolve({ type: RESET_ERROR });
   });
 }
 

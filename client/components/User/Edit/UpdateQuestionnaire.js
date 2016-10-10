@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
-import { updateUserData } from '../../../actions/users';
+import { updateUserStats } from '../../../actions/users';
 import Cookies from 'js-cookie';
 import SelectComponent from '../../ToolBox/SelectComponent';
 import { AutoComplete as MUIAutoComplete } from 'material-ui';
@@ -43,22 +43,23 @@ class UpdateQuestionnaire extends Component {
     return (
       <MuiThemeProvider muiTheme={getMuiTheme()}>
         <div>
-          <form onSubmit={handleSubmit(this.props.updateUserData)}>
+          <form onSubmit={handleSubmit(this.props.updateUserStats)}>
             <div>
               <label className="updateQ-label">Age</label>
-              <Field name="age" component={TextField} type="number" min="13" required />
+              <Field name="age" component={TextField} type="number" />
             </div>
             <div>
               <label className="updateQ-label">Height (ft & in)</label>
-              <Field name="ft" component="input" type="number" min ="4" max="8" required />
-              <Field name="in" component="input" type="number" min="0" max="11" />
+              <Field name="ft" component="input" type="number" />
+              <Field name="in" component="input" type="number" />
             </div>
             <div>
-              <label className="updateQ-label">Weight</label>
-              <Field name="weight" component={TextField} type="number" min="70" required />
+              <label className="updateQ-label">Weight (lb)</label>
+              <Field name="weight" component={TextField} type="number" />
             </div>
             {femaleQuestions()}
             <button className="updateQ-btn btn btn-secondary" type="submit" disabled={submitting} >Submit</button>
+            <p className="error-txt">{this.props.updateStats}</p>
           </form>
         </div>
       </MuiThemeProvider>
@@ -75,7 +76,8 @@ UpdateQuestionnaire = reduxForm({
 const mapStateToProps = (state) => {
   return {
     userData: state.userProfile.userData,
+    updateStats: state.userProfile.updateStats
   }
 }
 
-export default connect(mapStateToProps, { updateUserData })(UpdateQuestionnaire);
+export default connect(mapStateToProps, { updateUserStats })(UpdateQuestionnaire);
