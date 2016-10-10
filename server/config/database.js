@@ -1,5 +1,6 @@
 const auth = require('./auth.js');
 
+
 const Sequelize = require('sequelize');
 const sequelize = new Sequelize(
   auth.mysql.database,

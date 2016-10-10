@@ -15,6 +15,7 @@ import BrowseProfile from './components/User/BrowseProfile';
 import GroupPage from './components/Groups/GroupPage';
 import AllGroups from './components/Browse/AllGroups';
 import AllUsers from './components/Browse/AllUsers';
+import _404Pg from './components/Public/_404Pg'
 
 
 const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
@@ -46,7 +47,7 @@ ReactDOM.render(
       <Route path='/grouppage/:id/:groupname' onEnter={ensureAuthenticated} component={GroupPage} />
       <Route path='/viewallgroups' onEnter={ensureAuthenticated} component={AllGroups} />
       <Route path='/viewallusers' onEnter={ensureAuthenticated} component={AllUsers} />
-      <Route path='*' component={UserProfile} />
+      <Route path='*' component={_404Pg} />
     </Router>
   </Provider>
 , document.getElementById('main'));
