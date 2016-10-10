@@ -9,6 +9,7 @@ import ProfilePic from '../ToolBox/ProfilePic';
 import Tabs from '../ToolBox/Tabs';
 import Cookies from 'js-cookie';
 
+
 class BrowseProfile extends Component {
 
   componentWillMount() {
@@ -26,7 +27,6 @@ class BrowseProfile extends Component {
 
     if(this.props.userProfile.userData !== null) {
 
-      console.log(this.props.userProfile.username);
       const tabsList = [
         { label: 'Food Diary', component: 'FoodDiary' },
         { label: 'Friends', component: 'MyFriends' },
@@ -39,19 +39,28 @@ class BrowseProfile extends Component {
           );
         } else {
           return (
-            <h4>`You must be friends to see {this.props.userProfile.username}'s profile.`</h4>
+            <h4>
+              You must be friends to see {this.props.userProfile.username}'s profile.
+            </h4>
           );
         }
+
       }
 
       return (
         <div>
           <NavBar />
-          <h3 className="all-container">{this.props.userProfile.username}</h3>
+          <h3 className="all-container">
+            {this.props.userProfile.username}
+          </h3>
           <ProfilePic userID={this.props.params.id} />
           <FriendRequestButton otherID={this.props.params.id} />
-          <div>Age: {this.props.userProfile.userData.age}</div>
-          <div>Gender: {this.props.userProfile.userData.gender}</div>
+          <div>
+            Age: {this.props.userProfile.userData.age}
+          </div>
+          <div>
+            Gender: {this.props.userProfile.userData.gender}
+          </div>
           <RadarGraph type={'amount'} size={'large'} />
           {showTabs()}
         </div>
@@ -67,6 +76,7 @@ class BrowseProfile extends Component {
       );
 
     }
+    
   }
 
 }

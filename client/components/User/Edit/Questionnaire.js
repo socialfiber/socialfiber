@@ -61,54 +61,68 @@ class Questionnaire extends Component {
     return (
       <MuiThemeProvider muiTheme={getMuiTheme()}>
         <div className="container questionnaire all-container">
-          {/* <div className="row"> */}
-            <h1 className="questionnaire-h1">Tell us a little bit about yourself...</h1>
-            <p>social fiber calculates RDA-based nutrient recommendations for each individual</p>
-            <div className="col-sm-6 col-md-4 col-md-offset-4">
-              <div className='inner-div-questionnaire'>
-                <form className="questionnaire-form" onSubmit={handleSubmit(this.props.submitUserStats)}>
-                  <div className="questionnaire-inputs">
-                    <label className="q-label">Age</label>
-                    <Field
-                      name="age"
-                      component={TextField}
-                      type="number"
-                      underlineFocusStyle={styles.underlineStyle}
-                      floatingLabelStyle={styles.floatingLabelStyle}
-                      floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
-                      inputStyle={styles.inputStyle}
-                    />
-                  </div>
-                  <div className="questionnaire-inputs">
-                    <label className="q-label">Height (ft & in)</label>
-                    <Field className='input' name="ft" component="input" type="number" />
-                    <Field className='input' name="in" component="input" type="number" />
-                  </div>
-                  <div className="questionnaire-inputs">
-                    <label className="q-label">Weight (lb)</label>
-                    <Field
-                      name="weight"
-                      component={TextField}
-                      type="number"
-                      underlineFocusStyle={styles.underlineStyle}
-                      floatingLabelStyle={styles.floatingLabelStyle}
-                      floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
-                      inputStyle={styles.inputStyle}
-                    />
-                  </div>
-                  <div className="questionnaire-inputs">
-                    <label className="q-label">Gender</label>
-                    <Field className="selectComponent-div" name="gender" component={GenderSelect} genderState={this} />
-                  </div>
-                  {femaleQuestions()}
-                  <button className='submitquestionnaire btn btn-secondary' type="submit" disabled={submitting} >Submit</button>
-                  <p className="error-txt">{this.props.submitStats}</p>
-                </form>
-              </div>
+          <h1 className="questionnaire-h1">
+            Tell us a little bit about yourself...
+          </h1>
+          <p>
+            social fiber calculates RDA-based nutrient recommendations for each individual
+          </p>
+          <div className="col-sm-6 col-md-4 col-md-offset-4">
+            <div className='inner-div-questionnaire'>
+              <form className="questionnaire-form" onSubmit={ handleSubmit(this.props.submitUserStats) } >
+                <div className="questionnaire-inputs">
+                  <label className="q-label">
+                    Age
+                  </label>
+                  <Field
+                    name="age"
+                    component={TextField}
+                    type="number"
+                    underlineFocusStyle={styles.underlineStyle}
+                    floatingLabelStyle={styles.floatingLabelStyle}
+                    floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+                    inputStyle={styles.inputStyle}
+                  />
+                </div>
+                <div className="questionnaire-inputs">
+                  <label className="q-label">
+                    Height (ft & in)
+                  </label>
+                  <Field className='input' name="ft" component="input" type="number" />
+                  <Field className='input' name="in" component="input" type="number" />
+                </div>
+                <div className="questionnaire-inputs">
+                  <label className="q-label">
+                    Weight (lb)
+                  </label>
+                  <Field
+                    name="weight"
+                    component={TextField}
+                    type="number"
+                    underlineFocusStyle={styles.underlineStyle}
+                    floatingLabelStyle={styles.floatingLabelStyle}
+                    floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+                    inputStyle={styles.inputStyle}
+                  />
+                </div>
+                <div className="questionnaire-inputs">
+                  <label className="q-label">
+                    Gender
+                  </label>
+                  <Field className="selectComponent-div" name="gender" component={GenderSelect} genderState={this} />
+                </div>
+                {femaleQuestions()}
+                <button className='submitquestionnaire btn btn-secondary' type="submit" disabled={submitting} >
+                  Submit
+                </button>
+                <p className="error-txt">
+                  {this.props.submitStats}
+                </p>
+              </form>
             </div>
-          {/* </div> */}
+          </div>
         </div>
-        </MuiThemeProvider>
+      </MuiThemeProvider>
     );
 
   }

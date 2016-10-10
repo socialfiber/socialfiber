@@ -72,8 +72,12 @@ class SignIn extends Component {
                     labelStyle={styles.labelStyle}
                     backgroundColor={styles.backgroundColor}
                   />
-                  <p className="error-txt">{this.props.err}</p>
-                  <Link to={'/signup'} className="text-center new-account">Create an Account</Link>
+                  <p className="error-txt">
+                    {this.props.err}
+                  </p>
+                  <Link to={'/signup'} className="text-center new-account">
+                    Create an Account
+                  </Link>
                 </form>
               </div>
             </div>

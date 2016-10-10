@@ -4,7 +4,7 @@ import Select from 'react-select';
 const GenderSelect = (props) => {
 
   return (
-    <div className='selectComponent-div'a>
+    <div className='selectComponent-div'>
       <Select
         options={[{value: 'male', label: 'male'}, {value: 'female', label: 'female'}]}
         {...props.input}
@@ -16,6 +16,7 @@ const GenderSelect = (props) => {
       />
     </div>
   );
+  
 }
 
 export default GenderSelect;

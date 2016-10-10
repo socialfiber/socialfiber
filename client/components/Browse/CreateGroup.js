@@ -9,6 +9,7 @@ import { TextField } from 'redux-form-material-ui';
 import {blueGrey700} from 'material-ui/styles/colors';
 import RaisedButton from 'material-ui/RaisedButton';
 
+
 class CreateGroup extends Component {
 
   render() {
@@ -46,7 +47,7 @@ class CreateGroup extends Component {
                   floatingLabelStyle={styles.floatingLabelStyle}
                   floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
                   floatingLabelText="Name"
-                  required/>
+                />
                 <Field
                   name='description'
                   component={TextField}
@@ -56,7 +57,7 @@ class CreateGroup extends Component {
                   floatingLabelStyle={styles.floatingLabelStyle}
                   floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
                   floatingLabelText="Description"
-                  required/>
+                />
                 <RaisedButton
                   className="creategroupbutton"
                   backgroundColor="#C6AC8F"
@@ -65,15 +66,19 @@ class CreateGroup extends Component {
                   labelStyle={styles.labelStyle}
                   disabled={submitting}
                   type="submit"
-                 />
-                <p className="error-txt">{this.props.msg}</p>
+                />
+                <p className="error-txt">
+                  {this.props.msg}
+                </p>
               </form>
             </div>
           </div>
         </div>
       </MuiThemeProvider>
     );
+
   }
+  
 }
 
 CreateGroup = reduxForm({

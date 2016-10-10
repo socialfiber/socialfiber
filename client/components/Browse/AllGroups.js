@@ -26,7 +26,9 @@ class AllGroups extends Component {
       return (
         <div>
           <NavBar />
-          <h3 className="center">Loading groups...</h3>
+          <h3 className="center">
+            Loading groups...
+          </h3>
         </div>
       );
 
@@ -47,21 +49,27 @@ class AllGroups extends Component {
                 <TableHeader
                   adjustForCheckbox={false}
                   displaySelectAll={false}
-                  enableSelectAll={false}>
+                  enableSelectAll={false}
+                >
                   <TableRow>
                     {groupsList}
                   </TableRow>
-                  </TableHeader>
-                </TableBody>
-              </Table>
-              <br></br>
-              <h4>Can't find a group? Start your own!</h4>
-              <CreateGroup />
-            </div>
-          </MuiThemeProvider>
-        );
+                </TableHeader>
+              </TableBody>
+            </Table>
+            <br></br>
+            <h4>
+              Can't find a group? Start your own!
+            </h4>
+            <CreateGroup />
+          </div>
+        </MuiThemeProvider>
+      );
+
     }
+
   }
+
 }
 
 const mapStateToProps = (state) => {

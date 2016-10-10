@@ -20,18 +20,21 @@ class MyGroups extends Component {
     const noGroups = Cookies.get('userID') === Cookies.get('currentProfileID') ? <h3>You haven't joined any groups.</h3> : <h3>User has not joined any groups.</h3>;
 
     if(this.props.myGroups === null) {
+
       return (
         <div>
           <h3>Loading groups...</h3>
         </div>
       );
+
     } else if(this.props.myGroups.length > 0) {
+
       const groupsList = this.props.myGroups.map((group, idx) =>
         <IndividualGroup key={idx} group={group} />
       );
+      
       return (
         <div className="my-groups">
-          <h1>My Groups</h1>
           <table className="my-groups-table">
             <tbody>
               {/* <tr>
@@ -44,12 +47,15 @@ class MyGroups extends Component {
         </div>
       );
     } else if(this.props.myGroups.length === 0) {
+
       return (
         <div>
           {noGroups}
         </div>
       );
+
     }
+
   }
 
 }

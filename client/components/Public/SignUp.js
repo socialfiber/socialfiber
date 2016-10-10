@@ -79,7 +79,8 @@ class SignUp extends Component {
                   className="btn btn-lg btn-primary btn-block main-btn"
                   label="Sign Up"
                   labelStyle={styles.labelStyle}
-                  backgroundColor={styles.backgroundColor} />
+                  backgroundColor={styles.backgroundColor}
+                />
                 <p className="error-txt">
                   {this.props.err}
                 </p>
@@ -92,7 +93,9 @@ class SignUp extends Component {
         </div>
       </MuiThemeProvider>
     );
+
   }
+  
 }
 
 SignUp = reduxForm({

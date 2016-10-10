@@ -44,7 +44,7 @@ class FriendRequestButton extends Component {
             sendFriendRequest(this.props.otherID)
             .then((response) => {
               this.setStatus(response);
-            })
+            });
           }}>
           <span className="fr-btn">Send Friend Request</span>
           </RaisedButton>

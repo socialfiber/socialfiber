@@ -66,7 +66,8 @@ class GroupPage extends Component {
               backgroundColor={styles.backgroundColor}
               labelStyle={styles.labelStyle}
               onClick = {() => {this.props.leaveGroup(this.props.params.id).then(()=>window.location.reload())}}
-              label="Leave Group" />
+              label="Leave Group"
+            />
           </div>
         </MuiThemeProvider>
       );
@@ -85,7 +86,8 @@ class GroupPage extends Component {
                 onClick={() => {this.props.joinGroup(this.props.params.id).then(()=>window.location.reload())}}
                 label="Join Group"
                 labelStyle={styles.labelStyle}
-                backgroundColor={styles.backgroundColor}/>
+                backgroundColor={styles.backgroundColor}
+              />
             </div>
           </div>
         </MuiThemeProvider>
