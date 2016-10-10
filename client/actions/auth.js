@@ -4,12 +4,6 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 
 
-export function resetError() {
-  return new Promise((resolve, reject) => {
-    resolve({ type: RESET_ERROR });
-  });
-}
-
 export function submitSignIn(usernameAndPasswordObj) {
   if(!usernameAndPasswordObj.username) {
     return new Promise((resolve, reject) => {
@@ -35,7 +29,6 @@ export function submitSignIn(usernameAndPasswordObj) {
       })
       .catch((error) => {
         console.error(error);
-        return { type: AUTH_ERROR, payload: response.data.msg }
       });
   }
 }
@@ -45,9 +38,17 @@ export function submitSignUp(usernameAndPasswordObj) {
     return new Promise((resolve, reject) => {
       resolve({ type: AUTH_ERROR, payload: 'Please enter username.' });
     });
+  } else if(usernameAndPasswordObj.username.length < 6) {
+    return new Promise((resolve, reject) => {
+      resolve({ type: AUTH_ERROR, payload: 'Username must be at least 6 characters.' });
+    });
   } else if(!usernameAndPasswordObj.password) {
     return new Promise((resolve, reject) => {
       resolve({ type: AUTH_ERROR, payload: 'Please enter password.' });
+    });
+  } else if(usernameAndPasswordObj.password.length < 4) {
+    return new Promise((resolve, reject) => {
+      resolve({ type: AUTH_ERROR, payload: 'Password must be at least 4 characters.' });
     });
   } else if(!usernameAndPasswordObj.confirmPW) {
     return new Promise((resolve, reject) => {
@@ -73,7 +74,6 @@ export function submitSignUp(usernameAndPasswordObj) {
       })
       .catch((error) => {
         console.error(error);
-        return { type: AUTH_ERROR, payload: response.data.msg }
       });
   }
 }
@@ -85,4 +85,10 @@ export function submitSignOut() {
   Cookies.set('authenticated', false);
   browserHistory.push('/signin');
   return { type: SIGN_OUT }
+}
+
+export function resetError() {
+  return new Promise((resolve, reject) => {
+    resolve({ type: RESET_ERROR });
+  });
 }

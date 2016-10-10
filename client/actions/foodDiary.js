@@ -87,5 +87,7 @@ export function deleteFoodDiaryEntry(foodDiaryEntryObj) {
 }
 
 export function leaveTab() {
-  return { type: LEAVE_TAB }
+  return new Promise((resolve, reject) => {
+    resolve({ type: LEAVE_TAB });
+  });
 }

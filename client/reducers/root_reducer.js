@@ -8,6 +8,7 @@ import FriendsReducer from './friends_reducer';
 import BrowseReducer from './browse_reducer';
 import ChatWindowReducer from './chatWindow_reducer';
 
+
 const rootReducer = combineReducers({
   auth: AuthReducer,
   form: FormReducer,

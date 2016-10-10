@@ -13,7 +13,7 @@ export default function(state = INITIAL_STATE, action) {
     case FRIENDSHIP_STATUS:
       return { ...state, friendshipStatus: action.payload }
     case LEAVE_TAB:
-      return INITIAL_STATE;
+      return { ...state, friendList: null, friendRequests: null }
     default:
       return state;
   }

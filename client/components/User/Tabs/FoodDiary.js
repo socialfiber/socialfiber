@@ -41,6 +41,7 @@ class FoodDiary extends Component {
   render() {
 
     const foodDiaryEntry = Cookies.get('userID') === Cookies.get('currentProfileID') ? <FoodDiaryEntry /> : null;
+    const deleteEntry = Cookies.get('userID') === Cookies.get('currentProfileID') ? <th className="fdth">Delete</th> : null;
 
     if(this.state.diaryData !== null) {
 
@@ -61,7 +62,7 @@ class FoodDiary extends Component {
                   <th className="fdth">Fat (g)</th>
                   <th className="fdth">Fiber (g)</th>
                   <th className="fdth">n6 (g)</th>
-                  <th className="fdth">Delete</th>
+                  {deleteEntry}
                 </tr>
                 {logsPerDay}
               </tbody>

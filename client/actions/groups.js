@@ -178,7 +178,6 @@ export function fetchGroupUsers(groupObj) {
 
 export function createNewGroup(newGroupObj) {
   if(!newGroupObj.name || !newGroupObj.description) {
-    console.log("MISSING FIELDS")
     return new Promise((resolve, reject) => {
       resolve({ type: CREATE_GROUP_ERROR, payload: 'Please fill out all fields.' });
     });
@@ -205,9 +204,13 @@ export function createNewGroup(newGroupObj) {
 }
 
 export function leavePage() {
-  return { type: LEAVE_PAGE }
+  return new Promise((resolve, reject) => {
+    resolve({ type: LEAVE_PAGE });
+  });
 }
 
 export function leaveTab() {
-  return { type: LEAVE_TAB }
+  return new Promise((resolve, reject) => {
+    resolve({ type: LEAVE_TAB });
+  });
 }

@@ -67,7 +67,7 @@ class FoodDiaryEntry extends Component {
             label="Submit"
             type="submit"
             disabled={submitting} />
-          <p className="error-txt">{this.props.err}</p>
+          <p className="error-txt">{this.props.msg}</p>
         </form>
       </MuiThemeProvider>
     );
@@ -81,7 +81,7 @@ FoodDiaryEntry = reduxForm({
 const mapStateToProps = (state) => {
   return {
     diaryData: state.foodDiary.logs,
-    err: state.foodDiary.err,
+    msg: state.foodDiary.msg,
     actualMacros: state.userProfile.actualMacros
   }
 }
