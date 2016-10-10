@@ -74,7 +74,6 @@ export function submitSignUp(usernameAndPasswordObj) {
       })
       .catch((error) => {
         console.error(error);
-        return { type: AUTH_ERROR, payload: response.data.msg }
       });
   }
 }
