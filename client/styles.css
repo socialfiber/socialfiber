@@ -390,6 +390,12 @@ li.dropdown {
   background-color: #f9f9f9;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
+
+.dropdown-list {
+  width: 140px;
+  margin-left: -38px;
+}
+
 .dropdown-content li {
   color: black;
   padding: 12px 16px;
@@ -770,6 +776,7 @@ li.dropdown {
 
 .my-groups-table {
   display: inline;
+}
 
 .imageUpload-btn, .changePW-btn, .updateQ-btn {
   background-color: #D8A154;
@@ -797,7 +804,7 @@ li.dropdown {
   margin-right: 15px;
 }
 
-.editInfoBtn {
+.edit-info-btn {
   background-color: #D8A154;
   color: white;
   text-align: center;
@@ -815,6 +822,7 @@ li.dropdown {
 .Select {
   position: relative;
 }
+
 .Select,
 .Select div,
 .Select input,
@@ -823,6 +831,7 @@ li.dropdown {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
+
 .Select.is-disabled > .Select-control {
   background-color: #f9f9f9;
 }
@@ -1034,6 +1043,7 @@ li.dropdown {
     opacity: 1;
   }
 }
+
 @keyframes Select-animation-fadeIn {
   from {
     opacity: 0;
@@ -1042,6 +1052,7 @@ li.dropdown {
     opacity: 1;
   }
 }
+
 .Select-menu-outer {
   border-bottom-right-radius: 4px;
   border-bottom-left-radius: 4px;
@@ -1054,7 +1065,7 @@ li.dropdown {
   max-height: 200px;
   position: absolute;
   top: 100%;
-  margin-left: 65px;
+  margin-left: 133px;
   margin-bottom: 50px;
   width: 253px;
   overflow-x: hidden;
@@ -1199,6 +1210,7 @@ li.dropdown {
   to {
     -webkit-transform: rotate(1turn);
   }
+}
 
 /* -------------------- Chat Window -------------------- */
 
@@ -1208,7 +1220,7 @@ li.dropdown {
 }
 
 .chat-window {
-  position: relative;
+  position: uplative;
   margin: 1;
   border: 1px solid;
   border-color: #cccccc;
@@ -1256,4 +1268,11 @@ li.dropdown {
 
 .chat-send-btn {
   margin: -5px;
+}
+
+
+.disclaimer {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 14px;
 }

@@ -25,8 +25,8 @@ class Questionnaire extends Component {
   render() {
 
     const { handleSubmit, submitting } = this.props;
-    const pregnantOptions = [{value: true, label: 'true'}, {value: false, label: 'false'}];
-    const lactatingOptions = [{value: true, label: 'true'}, {value: false, label: 'false'}];
+    const pregnantOptions = [{value: true, label: 'yes'}, {value: false, label: 'no'}];
+    const lactatingOptions = [{value: true, label: 'yes'}, {value: false, label: 'no'}];
     const femaleQuestions = () => {
       if(this.state.gender === 'female') {
         return (
