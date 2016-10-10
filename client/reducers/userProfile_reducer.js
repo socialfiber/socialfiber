@@ -29,7 +29,7 @@ export default function(state = INITIAL_STATE, action) {
     case FETCH_USER_DATA:
       return { ...state, username: action.payload.username, userData: action.payload.question, idealMacros: action.payload.dietaryProfile, actualMacros: action.payload.nutritionTotals }
     case SUBMIT_USER_STATS:
-      return { ...state, submitStats }
+      return { ...state, submitStats: action.payload }
     case UPDATE_USER_STATS:
       return { ...state, updateStats: action.payload }
     case CHANGE_PASSWORD:
