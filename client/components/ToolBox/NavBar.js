@@ -18,7 +18,7 @@ class NavBar extends Component {
               <li className="dropdown active">
                 <a href="#" className="dropbtn">Browse</a>
                 <div className="dropdown-content">
-                  <ul>
+                  <ul className="dropdown-list navItem">
                     <li className="dropdown-item navItem"><Link to='/viewallgroups'>All Groups</Link></li>
                     <li className="dropdown-item navItem"><Link to='/viewallusers'>All Users</Link></li>
                   </ul>

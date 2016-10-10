@@ -79,8 +79,8 @@ class UserProfile extends Component {
                         Weight: {this.props.userProfile.userData.weight}
                       </li>
                     </ul>
-                    <div className="edit-info-btn">
-                      <button type="button" onClick={() => this.toggleEditing()}>
+                    <div>
+                      <button className="edit-info-btn btn btn-secondary" type="button" onClick={() => this.toggleEditing()}>
                         Edit Info
                       </button>
                     </div>
@@ -91,6 +91,7 @@ class UserProfile extends Component {
                 </div>
                 <div className="col-lg-4 user-profile-block-right">
                   <MacroTable idealMacros={this.props.userProfile.idealMacros} actualMacros={this.props.userProfile.actualMacros} />
+                  <p className="disclaimer">*all nutrient recommendations are USDA and RDA-based dietary reference intakes*</p>
                 </div>
               </div>
               <div className="clear-floats user-tabs">
@@ -106,7 +107,6 @@ class UserProfile extends Component {
           <div>
             <NavBar />
             <h3 className="all-container">
-              {this.props.userProfile.username}
             </h3>
             <UpdateUserData />
             <button className="returnToProfile-btn btn btn-secondary" type="button" onClick={() => this.toggleEditing()}>

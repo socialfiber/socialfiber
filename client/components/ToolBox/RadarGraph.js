@@ -10,21 +10,7 @@ class RadarGraph extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      idealMacros: {
-        fat: 0,
-        fat_min: 0,
-        fat_max: 0,
-        carb: 0,
-        carb_min: 0,
-        carb_max: 0,
-        prot: 0,
-        prot_min: 0,
-        prot_max: 0,
-        fib: 0,
-        n6: 0,
-        n6_min: 0,
-        n6_max: 0
-      },
+      idealMacros: this.props.idealMacros,
       actualMacros: {
         fat: 0,
         carb: 0,

@@ -21,19 +21,23 @@ class UpdateQuestionnaire extends Component {
 
     Cookies.set('userGender', this.props.userData.gender);
     const { handleSubmit, submitting } = this.props;
-    const pregnantOptions = [{value: true, label: 'true'}, {value: false, label: 'false'}];
-    const lactatingOptions = [{value: true, label: 'true'}, {value: false, label: 'false'}];
+    const pregnantOptions = [{value: true, label: 'yes'}, {value: false, label: 'no'}];
+    const lactatingOptions = [{value: true, label: 'yes'}, {value: false, label: 'no'}];
     const femaleQuestions = () => {
       if(this.props.userData.gender === 'female') {
         return (
           <div>
-            <div>
-              <label>Are you currently pregnant?</label>
-              <Field name="preg" component={SelectComponent} options={pregnantOptions} placeholder={this.props.userData.preg} />
+            <div className="questionnaire-inputs">
+              <label className="q-label">
+                Are you currently pregnant?
+              </label>
+              <Field className="selectComponent-div" name="preg" component={SelectComponent} options={pregnantOptions} />
             </div>
-            <div>
-              <label>Are you currently lactating?</label>
-              <Field name="lact" component={SelectComponent} options={lactatingOptions} placeholder={this.props.userData.lact} />
+            <div className="questionnaire-inputs" >
+              <label className="q-label">
+                Are you currently lactating?
+              </label>
+              <Field className="selectComponent-div" name="lact" component={SelectComponent} options={lactatingOptions} />
             </div>
           </div>
         );
