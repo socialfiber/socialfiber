@@ -540,6 +540,7 @@ li.dropdown {
   height: 500px;
   width: 100%;
   margin: 0;
+<<<<<<< HEAD
 }*/
 
 .user-profile-block-right {
@@ -554,6 +555,7 @@ li.dropdown {
   /*width: auto;*/
   width: 33%;
   margin-left: 16%;
+  padding-top: 24px;
 }
 
 .radar-graph-block {
@@ -569,7 +571,7 @@ li.dropdown {
   padding-left: 40px;
   overflow: auto;*/
   float: left;
-  margin-top: 18px;
+  margin-top: 11px;
   padding-top: 35px;
   height: 505px;
   /*width: auto;*/
@@ -699,3 +701,4 @@ li.dropdown {
 
 .my-groups-table {
   display: inline;
+}
