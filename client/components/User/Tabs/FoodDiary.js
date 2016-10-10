@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchFoodDiary, fetchMacros, leaveTab } from '../../../actions/foodDiary';
+import { fetchFoodDiary, leaveTab } from '../../../actions/foodDiary';
 import FoodDiaryLog from './FoodDiaryLog';
 import FoodDiaryEntry from './FoodDiaryEntry';
 import RadarGraph from '../../ToolBox/RadarGraph';
@@ -106,4 +106,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { fetchFoodDiary, fetchMacros, leaveTab })(FoodDiary);
+export default connect(mapStateToProps, { fetchFoodDiary, leaveTab })(FoodDiary);

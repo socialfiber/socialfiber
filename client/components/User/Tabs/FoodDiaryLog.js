@@ -1,26 +1,54 @@
-import React from 'react';
-import { deleteFoodDiaryEntry } from '../../../actions/foodDiary';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { deleteFoodDiaryEntry, fetchFoodDiary, fetchMacros } from '../../../actions/foodDiary';
 import Cookies from 'js-cookie';
 
 
-const FoodDiaryLog = (props) => {
+class FoodDiaryLog extends Component {
 
-	const deleteButton = Cookies.get('currentProfileID') === Cookies.get('userID') ? <td className="fdltd" onClick={()=>{deleteFoodDiaryEntry(props.log)}} >x</td> : null;
+	constructor(props) {
+		super(props);
+	}
 
-	return (
-		<tr className="foodDiaryLogtr">
-			<td className="fdltd">{props.log.qty}</td>
-			<td className="fdltd">{props.log.food}</td>
-			<td className="fdltd">{props.log.storage.cal}</td>
-			<td className="fdltd">{props.log.storage.carb}</td>
-			<td className="fdltd">{props.log.storage.prot}</td>
-			<td className="fdltd">{props.log.storage.fat}</td>
-			<td className="fdltd">{props.log.storage.fib}</td>
-			<td className="fdltd">{props.log.storage.n6}</td>
-			{deleteButton}
-		</tr>
-	);
+	render() {
+		
+		const deleteButton = Cookies.get('currentProfileID') === Cookies.get('userID') ?
+			<td className="fdltd" onClick={()=>{
+				this.props.deleteFoodDiaryEntry(this.props.log)
+				.then(() => {
+					this.props.fetchFoodDiary()
+					.then(() => {
+						this.props.fetchMacros();
+					});
+				});
+			}}>
+				x
+			</td>
+			: null;
+		
+		return (
+			<tr className="foodDiaryLogtr">
+				<td className="fdltd">{this.props.log.qty}</td>
+				<td className="fdltd">{this.props.log.food}</td>
+				<td className="fdltd">{this.props.log.storage.cal}</td>
+				<td className="fdltd">{this.props.log.storage.carb}</td>
+				<td className="fdltd">{this.props.log.storage.prot}</td>
+				<td className="fdltd">{this.props.log.storage.fat}</td>
+				<td className="fdltd">{this.props.log.storage.fib}</td>
+				<td className="fdltd">{this.props.log.storage.n6}</td>
+				{deleteButton}
+			</tr>
+		);
+		
+	}
 
 }
 
-export default FoodDiaryLog;
+const mapStateToProps = (state) => {
+  return {
+    diaryData: state.foodDiary.logs,
+    actualMacros: state.userProfile.actualMacros
+  }
+}
+
+export default connect(mapStateToProps, { deleteFoodDiaryEntry, fetchFoodDiary, fetchMacros })(FoodDiaryLog);

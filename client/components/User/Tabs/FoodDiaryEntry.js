@@ -18,8 +18,10 @@ class FoodDiaryEntry extends Component {
     const submitEntry = (e) => {
       this.props.submitFoodDiaryEntry(e)
       .then(() => {
-        this.props.fetchFoodDiary();
-        this.props.fetchMacros();
+        this.props.fetchFoodDiary()
+        .then(() => {
+          this.props.fetchMacros();
+        })
       });
     }
     const today = new Date().toISOString().substr(0,10);
@@ -88,8 +90,8 @@ FoodDiaryEntry = reduxForm({
 const mapStateToProps = (state) => {
   return {
     diaryData: state.foodDiary.logs,
-    msg: state.foodDiary.msg,
-    actualMacros: state.userProfile.actualMacros
+    actualMacros: state.userProfile.actualMacros,
+    msg: state.foodDiary.msg
   }
 }
 

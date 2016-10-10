@@ -33,7 +33,6 @@ export function fetchUserData() {
         for(var total in response.data.nutritionTotals) {
           response.data.nutritionTotals[total].date = response.data.nutritionTotals[total].date.substr(0,10);
         }
-        response.data.nutritionTotals = _.sortBy(response.data.nutritionTotals, 'date');
         return { type: FETCH_USER_DATA, payload: response.data };
       }
     })
