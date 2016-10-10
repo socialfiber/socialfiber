@@ -60,7 +60,7 @@ class FriendList extends Component {
             <ul>
               {friendList}
             </ul>
-            <div className="chat-window">
+            <div className="chat-window-container">
               {this.state.chatFlag ? <ChatWindow /> : ''}
             </div>
           </div>
