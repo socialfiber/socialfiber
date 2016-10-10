@@ -31,13 +31,13 @@ class Questionnaire extends Component {
       if(this.state.gender === 'female') {
         return (
           <div>
-            <div>
-              <label>Are you currently pregnant?</label>
-              <Field name="preg" component={SelectComponent} options={pregnantOptions} />
+            <div className="questionnaire-inputs">
+              <label className="q-label">Are you currently pregnant?</label>
+              <Field className="selectComponent-div" name="preg" component={SelectComponent} options={pregnantOptions} />
             </div>
-            <div>
-              <label>Are you currently lactating?</label>
-              <Field name="lact" component={SelectComponent} options={lactatingOptions} />
+            <div className="questionnaire-inputs">
+              <label className="q-label">Are you currently lactating?</label>
+              <Field className="selectComponent-div" name="lact" component={SelectComponent} options={lactatingOptions} />
             </div>
           </div>
         );
@@ -98,7 +98,7 @@ class Questionnaire extends Component {
                   </div>
                   <div className="questionnaire-inputs">
                     <label className="q-label">Gender</label>
-                    <Field name="gender" component={GenderSelect} genderState={this} />
+                    <Field className="selectComponent-div" name="gender" component={GenderSelect} genderState={this} />
                   </div>
                   {femaleQuestions()}
                   <button className='submitquestionnaire btn btn-secondary' type="submit" disabled={submitting} >Submit</button>
