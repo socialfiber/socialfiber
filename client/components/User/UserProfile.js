@@ -116,7 +116,7 @@ class UserProfile extends Component {
         );
 
       }
-      
+
     } else {
 
       return (

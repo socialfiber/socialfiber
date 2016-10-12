@@ -44,8 +44,8 @@ class BrowseProfile extends Component {
           );
         } else {
           return (
-            <h4  className="all-container">
-              You must be friends to see {this.props.userProfile.username}'s profile.
+            <h4>
+              You must be friends to see {this.props.userProfile.username}'s full profile.
             </h4>
           );
         }
@@ -90,8 +90,10 @@ class BrowseProfile extends Component {
               <div className="col-lg-4 user-profile-block-right">
                 <MacroTable idealMacros={this.props.userProfile.idealMacros} actualMacros={this.props.userProfile.actualMacros} />
               </div>
-              {showTabs()}
               </div>
+            </div>
+            <div className="must-be-friends">
+              {showTabs()}
             </div>
           </div>
         </MuiThemeProvider>
@@ -111,7 +113,7 @@ class BrowseProfile extends Component {
       );
 
     }
-    
+
   }
 
 }
