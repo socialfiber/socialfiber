@@ -580,7 +580,7 @@ li.dropdown {
 
 .user-profile-block-left {
   float: left;
-  margin-top: 11px;
+  margin-top: 10px;
   padding-top: 35px;
   height: 505px;
   width: 16%;
@@ -591,14 +591,15 @@ li.dropdown {
 .user-profile-block-right {
   float: left;
   height: 505px;
-  width: 32%;
+  width: 30%;
   padding-top: 110px;
   font-size: 20px;
+  text-align: center;
 }
 
 .user-info {
   position: absolute;
-  bottom: 120px;
+  bottom: 85px;
   right: 0;
   left: 0;
 }
@@ -622,6 +623,15 @@ li.dropdown {
 
 .edit-info-btn {
   z-index: 1;
+}
+
+.must-be-friends {
+  text-align: center;
+  padding-top: 20px;
+}
+
+.must-be-friends h4 {
+  font-size: 20px;
 }
 
 /* -------------------- My Friends -------------------- */
@@ -1275,4 +1285,10 @@ li.dropdown {
   text-align: center;
   margin-top: 10px;
   font-size: 14px;
+}
+
+/* -------------------- Macro Table -------------------- */
+
+.macro-table th{
+  text-align: center;
 }
