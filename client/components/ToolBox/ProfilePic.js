@@ -36,7 +36,7 @@ class ProfilePic extends Component {
 
       return (
         <div>
-          <img src="../../assets/profile-icon-9.png" style={{ width: "200px", height: "200px" }}></img>
+          <img src="../../assets/profile-icon-9.png" style={{ width: "100%", height: "200px" }}></img>
         </div>
       );
 
@@ -44,7 +44,7 @@ class ProfilePic extends Component {
 
       return (
         <div>
-          <img src={this.state.url} className="img-circle" style={{ width: "200px", height: "200px" }}></img>
+          <img src={this.state.url} className="img-circle" style={{ width: "100%", height: "200px" }}></img>
         </div>
       );
 
