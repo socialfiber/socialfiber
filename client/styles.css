@@ -245,8 +245,6 @@ span, .reject-fr-btn {
 
 .questionnaire {
   background-image: url('./assets/blueberrytree.jpeg');
-  height: 100%;
-  width: 100%;
   background-color: #FFFFFF;
   background-repeat: no-repeat;
   background-position: center center;
@@ -257,6 +255,11 @@ span, .reject-fr-btn {
   background-size: cover;
   color: white;
   overflow: auto;
+}
+
+.questionnaire-block {
+  height: 100%;
+  width: 100%;
 }
 
 .container.questionnaire.all-container {
@@ -327,6 +330,12 @@ span, .reject-fr-btn {
 
 .selectComponent-div {
   color: white;
+}
+
+.gender-form-group {
+  margin: 0 auto;
+  margin-bottom: 15px;
+  width: 200px;
 }
 
 /*<---- main nav ---->*/
