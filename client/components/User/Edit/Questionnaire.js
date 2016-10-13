@@ -109,11 +109,11 @@ class Questionnaire extends Component {
                     inputStyle={styles.inputStyle}
                   />
                 </div>
-                <div className="questionnaire-inputs">
+                <div className="form-group">
                   <label className="q-label">
                     Gender
                   </label>
-                  <Field className="selectComponent-div" name="gender" component={GenderSelect} genderState={this} />
+                  <Field name="gender" component={GenderSelect} genderState={this} />
                 </div>
                 {femaleQuestions()}
                 <button className='submitquestionnaire btn btn-secondary' type="submit" disabled={submitting} >
