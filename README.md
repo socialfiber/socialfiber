@@ -1,4 +1,4 @@
-##social fiber
+# social fiber
 
 A social nutrition application that encourages users to live a healthy lifestyle through USDA/RDA dietary reference intake recommendations and a sense of communnity.
 
