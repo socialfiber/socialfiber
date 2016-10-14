@@ -27,13 +27,15 @@ class SplashPg extends Component {
 				    </li>
 					</ul>
 				</nav>
-				<div className="jumbotron">
-					<h1 className='header-splashpg'>
-						social fiber.
-					</h1>
-					<p className='oneliner'>
-						live healthy, with friends
-					</p>
+				<div className="jumbotron" id="header-parent">
+					<div id="header-child">
+						<h1 className='header-splashpg'>
+							social fiber.
+						</h1>
+						<div className="oneliner">
+							<p>live healthy, with friends</p>
+						</div>
+					</div>
 				</div>
 			</div>
 		);

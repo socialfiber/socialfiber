@@ -122,6 +122,15 @@ html, body, #main{
   margin-top: -50px;
 }
 
+#header-parent {
+  display: table;
+  margin-top: 0;
+}
+#header-child {
+  display: table-cell;
+  vertical-align: middle;
+}
+
 /* -------------------- Splash Page -------------------- */
 
 .container, .creategroup {
@@ -143,6 +152,8 @@ html, body, #main{
 .main-btn {
   margin-top: 20px !important;
 }
+
+
 
 /* -------------------- All Users -------------------- */
 
