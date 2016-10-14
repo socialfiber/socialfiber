@@ -1,16 +1,9 @@
-# thesis
+# social fiber
 
-##social fiber
+A social nutrition application that encourages users to live a healthy lifestyle through USDA/RDA dietary reference intake recommendations and a sense of communnity.
 
+####[socialfiber.herokuapp.com](https://socialfiber.herokuapp.com/)
 
-
-
-
-####[social fiber link](https://socialfiber.herokuapp.com/)
---------------------------------------------------------------------------------
-A social nutrition application that encourages users to live a healthy lifestyle through USDA/RDA dietary reference intake recommendations and a sense of communnity. 
-
--------
 ##Getting Started
 
 ###Prerequisites
@@ -26,19 +19,20 @@ Run npm run bundle in a separate terminal table. (Run bundle creates the compile
 Run npm start to start the server.
 Open a browser and type localhost:8080 to see the application.
 
----------
-
-
 ##Built with
 
-Node express
-Sequelize
-React
-Redux
-Materialize
-Bootstrap
+Node.js,
+Express.js,
+MySQL,
+Sequelize,
+React,
+Redux,
+Materialize,
+Bootstrap,
 
------------
+##Schema Design
+
+![Alt text](/client/assets/schema.png?raw=true)
 
 ##Engineers
 
