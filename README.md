@@ -4,7 +4,6 @@ A social nutrition application that encourages users to live a healthy lifestyle
 
 ####[socialfiber.herokuapp.com](https://socialfiber.herokuapp.com/)
 
--------
 ##Getting Started
 
 ###Prerequisites
@@ -20,9 +19,6 @@ Run npm run bundle in a separate terminal table. (Run bundle creates the compile
 Run npm start to start the server.
 Open a browser and type localhost:8080 to see the application.
 
----------
-
-
 ##Built with
 
 Node.js,
@@ -34,13 +30,9 @@ Redux,
 Materialize,
 Bootstrap,
 
----------
-
 ##Schema Design
 
 ![Alt text](/client/assets/schema.png?raw=true)
-
------------
 
 ##Engineers
 
