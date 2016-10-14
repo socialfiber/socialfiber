@@ -1,8 +1,8 @@
 ##social fiber
 
-####[socialfiber.herokuapp.com](https://socialfiber.herokuapp.com/)
---------------------------------------------------------------------------------
 A social nutrition application that encourages users to live a healthy lifestyle through USDA/RDA dietary reference intake recommendations and a sense of communnity.
+
+####[socialfiber.herokuapp.com](https://socialfiber.herokuapp.com/)
 
 -------
 ##Getting Started
